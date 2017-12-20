@@ -2,9 +2,9 @@ import UIKit
 
 public class Response<FromViewController: UIViewController, ToViewController: UIViewController, EmbeddingViewController: UIViewController> {
     
-    public weak var fromViewController: FromViewController?
-    public weak var toViewController: ToViewController?
-    public weak var embeddingViewController: EmbeddingViewController?
+    internal(set) public weak var fromViewController: FromViewController?
+    internal(set) public weak var toViewController: ToViewController?
+    internal(set) public weak var embeddingViewController: EmbeddingViewController?
     
     init(fromViewController: FromViewController?, toViewController: ToViewController?, embeddingViewController: EmbeddingViewController?) {
         self.fromViewController = fromViewController

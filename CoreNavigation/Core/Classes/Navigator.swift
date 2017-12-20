@@ -34,7 +34,7 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
     private func present(_ completion: ((NavigationResponse?) -> Void)?) -> NavigationResponse? {
         guard let fromViewController = fromViewController as? FromViewController else { return nil }
         
-        @discardableResult func response(with toViewController: ToViewController, completion: ((NavigationResponse?) -> Void)?) -> NavigationResponse? {
+        @discardableResult func response(with toViewController: ToViewController, perform: Bool, completion: ((NavigationResponse?) -> Void)?) -> NavigationResponse? {
             let response = NavigationResponse(fromViewController: fromViewController, toViewController: toViewController, embeddingViewController: nil)
             
             let destinationViewController = embeddingViewController(with: response) ?? toViewController
@@ -43,28 +43,29 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
             let transitioningDelegate = configuration.transition.viewControllerTransitioningDelegate
             
             fromViewController.transitioningDelegate = transitioningDelegate
-            
-            cache(viewController: toViewController)
-            bindEvents(to: toViewController)
-            
-            fromViewController.present(destinationViewController, animated: animated, completion: { [weak self] in
-                guard let `self` = self else { return }
+            if perform {
+                cache(viewController: toViewController)
+                bindEvents(to: toViewController)
                 
-                self.configuration.transition.completionBlocks.forEach({ (transitionCompletionBlock) in
-                    transitionCompletionBlock()
+                fromViewController.present(destinationViewController, animated: animated, completion: { [weak self] in
+                    guard let `self` = self else { return }
+                    
+                    self.configuration.transition.completionBlocks.forEach({ (transitionCompletionBlock) in
+                        transitionCompletionBlock()
+                    })
                 })
-            })
+            }
             
             return response
         }
         
         guard let toViewController = getToViewController({ (toViewController) in
             if let toViewController = toViewController {
-                response(with: toViewController, completion: completion)
+                response(with: toViewController, perform: true, completion: completion)
             }
         }) else { return nil }
         
-        return response(with: toViewController, completion: nil)
+        return response(with: toViewController, perform: false, completion: nil)
     }
     
     private func push(_ completion: ((NavigationResponse?) -> Void)?) -> NavigationResponse? {
@@ -76,22 +77,24 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
                 return nil
         }
         
-        @discardableResult func response(with toViewController: ToViewController, completion: ((NavigationResponse?) -> Void)?) -> NavigationResponse? {
+        @discardableResult func response(with toViewController: ToViewController, perform: Bool, completion: ((NavigationResponse?) -> Void)?) -> NavigationResponse? {
             let response = NavigationResponse(fromViewController: fromViewController, toViewController: toViewController, embeddingViewController: nil)
             
             let destinationViewController = embeddingViewController(with: response) ?? toViewController
             
-            let animated = configuration.transition.animated ?? true
-            
-            cache(viewController: toViewController)
-            bindEvents(to: toViewController)
-            
-            navigationController.pushViewController(destinationViewController, animated: animated) { [weak self] in
-                guard let `self` = self else { return }
+            if perform {
+                let animated = configuration.transition.animated ?? true
                 
-                self.configuration.transition.completionBlocks.forEach({ (completion) in
-                    completion()
-                })
+                cache(viewController: toViewController)
+                bindEvents(to: toViewController)
+                
+                navigationController.pushViewController(destinationViewController, animated: animated) { [weak self] in
+                    guard let `self` = self else { return }
+                    
+                    self.configuration.transition.completionBlocks.forEach({ (completion) in
+                        completion()
+                    })
+                }
             }
             
             return response
@@ -99,15 +102,15 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
         
         guard let toViewController = getToViewController({ (toViewController) in
             if let toViewController = toViewController {
-                response(with: toViewController, completion: completion)
+                response(with: toViewController, perform: true, completion: completion)
             }
         }) else { return nil }
         
-        return response(with: toViewController, completion: nil)
+        return response(with: toViewController, perform: false, completion: nil)
     }
     
     private func response() -> Response<FromViewController, ToViewController, EmbeddingViewController>? {
-        return nil
+        fatalError("not implemented yet")
     }
     
     private var fromViewController: UIViewController? {
