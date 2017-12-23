@@ -1,6 +1,5 @@
 import UIKit
 import CoreRoute
-import CoreNavigation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

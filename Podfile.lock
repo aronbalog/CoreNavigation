@@ -1,27 +1,18 @@
 PODS:
-  - CoreNavigation (0.1.2):
-    - CoreNavigation/Core (= 0.1.2)
-  - CoreNavigation/Core (0.1.2)
-  - CoreNavigation/Routing (0.1.2):
-    - CoreNavigation/Core
-    - CoreRoute (~> 0.1.1)
   - CoreRoute (0.1.1)
   - Nimble (7.0.3)
   - Quick (1.2.0)
 
 DEPENDENCIES:
-  - CoreNavigation (~> 0.1.2)
-  - CoreNavigation/Routing (~> 0.1.2)
   - CoreRoute (~> 0.1.1)
   - Nimble
   - Quick
 
 SPEC CHECKSUMS:
-  CoreNavigation: 61fe56b6c74299ac7913ff38836caab4aff168c3
   CoreRoute: 8e7a6b1135d419edd08b655ebb2fb1e08f23f220
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
 
-PODFILE CHECKSUM: 7cef1f0cb957abc6c9c6dcd06ed23edacb96df33
+PODFILE CHECKSUM: ed746455acda96dd05054ae7a57c58a516381fdc
 
 COCOAPODS: 1.4.0.beta.2

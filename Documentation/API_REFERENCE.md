@@ -4,6 +4,7 @@
     - [Passing instance](#passing-instance)
     - [Passing class](#passing-class)
     - [Passing route](#passing-route)
+- 📡 [Passing data between view controllers](#passing-data-between-view-controllers-)
 - 🎞 [Transitioning](#transitioning-)
     - [Animation](#animation)
     - [Transitioning delegate](#transitioning-delegate)
@@ -25,7 +26,7 @@ Usage:
 
 ### Passing instance
 
-`.to(_ viewController: [UIViewController)`
+`.to(_ viewController: UIViewController)`
 
 ### Passing class
 
@@ -40,6 +41,32 @@ Usage:
 Routing capabilities are avaliable as external plugin.
 
 [Routing documentation](ROUTING_DOCUMENTATION.md)
+
+## Passing data between view controllers 📡
+
+Passing and receiving data between view controllers can be easily achieved.
+
+#### Sending parameters
+
+```swift
+Navigation.present { $0    
+    ...
+    .pass(parameters: [
+        "firstName": "john",
+        "lastName": "doe"
+    ])
+}
+```
+
+#### Receiving response
+
+Conform your view controllers to `ResponseAware` protocol and implement:
+
+```swift
+func didReceiveResponse(_ response: Response) {
+    // response.parameters -> ["firstName": "john", "lastName": "doe"]        
+}
+```
 
 ## Transitioning 🎞
 

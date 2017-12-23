@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 public class ViewControllerEvents {
     var loadViewBlocks: [() -> Void] = []

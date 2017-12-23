@@ -43,9 +43,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "38E4580E1FACFD4F00134E74"
-            BuildableName = "CoreNavigation.framework"
-            BlueprintName = "CoreNavigation"
+            BlueprintIdentifier = "38C518AE1FE5E2A500581709"
+            BuildableName = "CoreNavigationExample.app"
+            BlueprintName = "CoreNavigationExample"
             ReferencedContainer = "container:CoreNavigation.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,15 +63,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "38E4580E1FACFD4F00134E74"
-            BuildableName = "CoreNavigation.framework"
-            BlueprintName = "CoreNavigation"
+            BlueprintIdentifier = "38C518AE1FE5E2A500581709"
+            BuildableName = "CoreNavigationExample.app"
+            BlueprintName = "CoreNavigationExample"
             ReferencedContainer = "container:CoreNavigation.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

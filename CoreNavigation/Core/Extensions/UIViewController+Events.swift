@@ -1,3 +1,5 @@
+import UIKit
+
 extension UIViewController {
     static let swizzleMethods: Void = {
         Swizzler.swizzle(UIViewController.self, #selector(loadView), #selector(coreNavigation_loadView))

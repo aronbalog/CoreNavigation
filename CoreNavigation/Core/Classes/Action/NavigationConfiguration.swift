@@ -3,8 +3,8 @@ import UIKit
 public typealias ResponseSuccessBlock<FromViewController: UIViewController, ToViewController: UIViewController, EmbeddingViewController: UIViewController> = (Response<FromViewController, ToViewController, EmbeddingViewController>) -> Void
 public typealias ResponseFailureBlock = (Error) -> Void
 
-public class NavigationConfiguration<FromViewController: UIViewController, ToViewController: UIViewController, EmbeddingViewController: UIViewController>: TransitioningDelegatable, Eventable {
-    
+public class NavigationConfiguration<FromViewController: UIViewController, ToViewController: UIViewController, EmbeddingViewController: UIViewController>: TransitioningDelegatable, Eventable, DataPassable {
+
     let configuration: Configuration.Base<FromViewController, ToViewController, EmbeddingViewController>
 
     init(with configuration: Configuration.Base<FromViewController, ToViewController, EmbeddingViewController>) {
@@ -41,6 +41,20 @@ public class NavigationConfiguration<FromViewController: UIViewController, ToVie
         
         return self
     }
+    
+    @discardableResult public func pass(parameters: [String : Any]) -> Self {
+        if var oldValue = configuration.data.value {
+            oldValue.merge(parameters, uniquingKeysWith: { (oldValue, newValue) -> Any in
+                return newValue
+            })
+        } else {
+            configuration.data.value = parameters
+        }
+    
+        return self
+    }
+    
+    
     
     func cast<T, U>(_ x: T, to type: U.Type) -> U {
         return unsafeBitCast(x, to: type)

@@ -24,6 +24,36 @@
 		383BE4DE1FCB680C00C17AE3 /* Cachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4DA1FCB66F100C17AE3 /* Cachable.swift */; };
 		383BE4E61FCBA91200C17AE3 /* NavigationAction+Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4E51FCBA91200C17AE3 /* NavigationAction+Routing.swift */; };
 		385718661FBDB33C0050810F /* UINavigationController+ViewControllerEmbedding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385718651FBDB33C0050810F /* UINavigationController+ViewControllerEmbedding.swift */; };
+		385B9CCF1FEC5A06001306EC /* DataPassable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385B9CCE1FEC5A06001306EC /* DataPassable.swift */; };
+		3865B9741FEE959700C3182E /* ResponseAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3865B9731FEE959700C3182E /* ResponseAware.swift */; };
+		3865B9761FEEA66D00C3182E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C518B31FE5E2A600581709 /* ViewController.swift */; };
+		3865B9771FEEA67000C3182E /* ViewController_Yellow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C518CF1FE5E2E700581709 /* ViewController_Yellow.swift */; };
+		3865B9791FEEA68B00C3182E /* NavigationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4585D1FAE7F3200134E74 /* NavigationConfiguration.swift */; };
+		3865B97A1FEEA68B00C3182E /* NavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E458311FAD00BD00134E74 /* NavigationAction.swift */; };
+		3865B97B1FEEA68B00C3182E /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4582D1FACFE1C00134E74 /* Navigation.swift */; };
+		3865B97C1FEEA68B00C3182E /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38392DAF1FBCF66D00040EA8 /* Navigator.swift */; };
+		3865B97D1FEEA68B00C3182E /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4DB1FCB67F400C17AE3 /* Cache.swift */; };
+		3865B97E1FEEA68B00C3182E /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4584E1FAD332D00134E74 /* Response.swift */; };
+		3865B97F1FEEA68B00C3182E /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38392DB41FBD175000040EA8 /* Configuration.swift */; };
+		3865B9801FEEA68B00C3182E /* Swizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4CC1FCB4DAD00C17AE3 /* Swizzler.swift */; };
+		3865B9811FEEA68B00C3182E /* ViewControllerEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4CE1FCB4DC100C17AE3 /* ViewControllerEvents.swift */; };
+		3865B9821FEEA68B00C3182E /* ObjectAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4D21FCB4E7D00C17AE3 /* ObjectAssociation.swift */; };
+		3865B9831FEEA68E00C3182E /* UIViewController+VisibleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F34B011FCB0D8C000F2696 /* UIViewController+VisibleViewController.swift */; };
+		3865B9841FEEA68E00C3182E /* UINavigationController+TransitioningCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F34AFF1FCB0C32000F2696 /* UINavigationController+TransitioningCompletion.swift */; };
+		3865B9851FEEA68E00C3182E /* UINavigationController+ViewControllerEmbedding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385718651FBDB33C0050810F /* UINavigationController+ViewControllerEmbedding.swift */; };
+		3865B9861FEEA68E00C3182E /* UIViewController+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4D01FCB4E6900C17AE3 /* UIViewController+Events.swift */; };
+		3865B9871FEEA68E00C3182E /* UIApplication+RunOnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4D61FCB579500C17AE3 /* UIApplication+RunOnce.swift */; };
+		3865B9881FEEA69B00C3182E /* ResponseAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3865B9731FEE959700C3182E /* ResponseAware.swift */; };
+		3865B9891FEEA69B00C3182E /* DataPassable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385B9CCE1FEC5A06001306EC /* DataPassable.swift */; };
+		3865B98A1FEEA69B00C3182E /* Protectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CBD2E21FE71A9500D495CE /* Protectable.swift */; };
+		3865B98B1FEEA69B00C3182E /* Lifetime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4D91FCB66F100C17AE3 /* Lifetime.swift */; };
+		3865B98C1FEEA69B00C3182E /* Cachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4DA1FCB66F100C17AE3 /* Cachable.swift */; };
+		3865B98D1FEEA69B00C3182E /* Transitionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4C61FCB4BA300C17AE3 /* Transitionable.swift */; };
+		3865B98E1FEEA69B00C3182E /* ViewControllerEventable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4C81FCB4BC800C17AE3 /* ViewControllerEventable.swift */; };
+		3865B98F1FEEA69B00C3182E /* Eventable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4CA1FCB4BE600C17AE3 /* Eventable.swift */; };
+		3865B9901FEEA69B00C3182E /* ViewControllerEmbedding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4584A1FAD0F5600134E74 /* ViewControllerEmbedding.swift */; };
+		3865B9911FEEA6A400C3182E /* NavigationAction+Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4E51FCBA91200C17AE3 /* NavigationAction+Routing.swift */; };
+		3865B9921FEEA6A400C3182E /* Router+SharedInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381C01141FCCCCC700CA7531 /* Router+SharedInstance.swift */; };
 		38C518B21FE5E2A600581709 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C518B11FE5E2A600581709 /* AppDelegate.swift */; };
 		38C518B41FE5E2A600581709 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C518B31FE5E2A600581709 /* ViewController.swift */; };
 		38C518B91FE5E2A600581709 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38C518B81FE5E2A600581709 /* Assets.xcassets */; };
@@ -86,6 +116,8 @@
 		383BE4DB1FCB67F400C17AE3 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		383BE4E51FCBA91200C17AE3 /* NavigationAction+Routing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationAction+Routing.swift"; sourceTree = "<group>"; };
 		385718651FBDB33C0050810F /* UINavigationController+ViewControllerEmbedding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+ViewControllerEmbedding.swift"; sourceTree = "<group>"; };
+		385B9CCE1FEC5A06001306EC /* DataPassable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPassable.swift; sourceTree = "<group>"; };
+		3865B9731FEE959700C3182E /* ResponseAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseAware.swift; sourceTree = "<group>"; };
 		38C518AF1FE5E2A500581709 /* CoreNavigationExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreNavigationExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38C518B11FE5E2A600581709 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38C518B31FE5E2A600581709 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -198,6 +230,22 @@
 				381C01141FCCCCC700CA7531 /* Router+SharedInstance.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		385B9CCD1FEC59FE001306EC /* DataPassing */ = {
+			isa = PBXGroup;
+			children = (
+				385B9CCE1FEC5A06001306EC /* DataPassable.swift */,
+			);
+			path = DataPassing;
+			sourceTree = "<group>";
+		};
+		3865B9751FEE96F200C3182E /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				3865B9731FEE959700C3182E /* ResponseAware.swift */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 		38C518B01FE5E2A600581709 /* CoreNavigationExample */ = {
@@ -357,6 +405,8 @@
 		38E4582B1FACFDAD00134E74 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				3865B9751FEE96F200C3182E /* Response */,
+				385B9CCD1FEC59FE001306EC /* DataPassing */,
 				38CBD2E11FE71A7700D495CE /* Protecting */,
 				383BE4D81FCB66F100C17AE3 /* Cache */,
 				383BE4C51FCB4BA300C17AE3 /* Transitioning */,
@@ -577,14 +627,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CoreNavigationTests/Pods-CoreNavigationTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CoreRoute/CoreRoute.framework",
-				"${BUILT_PRODUCTS_DIR}/CoreNavigation-Core-Routing/CoreNavigation.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CoreRoute.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CoreNavigation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
 			);
@@ -667,12 +715,10 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CoreNavigationExample/Pods-CoreNavigationExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CoreRoute/CoreRoute.framework",
-				"${BUILT_PRODUCTS_DIR}/CoreNavigation.default-Routing/CoreNavigation.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CoreRoute.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CoreNavigation.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -705,11 +751,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				38C518D21FE5E70400581709 /* ViewController_Orange.swift in Sources */,
+				3865B97C1FEEA68B00C3182E /* Navigator.swift in Sources */,
 				38C518B41FE5E2A600581709 /* ViewController.swift in Sources */,
 				38C518D01FE5E2E700581709 /* ViewController_Yellow.swift in Sources */,
+				3865B97E1FEEA68B00C3182E /* Response.swift in Sources */,
+				3865B9881FEEA69B00C3182E /* ResponseAware.swift in Sources */,
+				3865B9871FEEA68E00C3182E /* UIApplication+RunOnce.swift in Sources */,
+				3865B9851FEEA68E00C3182E /* UINavigationController+ViewControllerEmbedding.swift in Sources */,
+				3865B97D1FEEA68B00C3182E /* Cache.swift in Sources */,
+				3865B98A1FEEA69B00C3182E /* Protectable.swift in Sources */,
+				3865B98D1FEEA69B00C3182E /* Transitionable.swift in Sources */,
+				3865B98B1FEEA69B00C3182E /* Lifetime.swift in Sources */,
+				3865B9821FEEA68B00C3182E /* ObjectAssociation.swift in Sources */,
+				3865B98E1FEEA69B00C3182E /* ViewControllerEventable.swift in Sources */,
+				3865B9921FEEA6A400C3182E /* Router+SharedInstance.swift in Sources */,
+				3865B9911FEEA6A400C3182E /* NavigationAction+Routing.swift in Sources */,
+				3865B9891FEEA69B00C3182E /* DataPassable.swift in Sources */,
 				38C518D71FE5E74400581709 /* Route_Orange.swift in Sources */,
+				3865B97F1FEEA68B00C3182E /* Configuration.swift in Sources */,
+				3865B9811FEEA68B00C3182E /* ViewControllerEvents.swift in Sources */,
+				3865B9901FEEA69B00C3182E /* ViewControllerEmbedding.swift in Sources */,
 				38C518D51FE5E73600581709 /* Destination.swift in Sources */,
+				3865B9841FEEA68E00C3182E /* UINavigationController+TransitioningCompletion.swift in Sources */,
+				3865B98C1FEEA69B00C3182E /* Cachable.swift in Sources */,
+				3865B9791FEEA68B00C3182E /* NavigationConfiguration.swift in Sources */,
+				3865B97B1FEEA68B00C3182E /* Navigation.swift in Sources */,
+				3865B9801FEEA68B00C3182E /* Swizzler.swift in Sources */,
+				3865B98F1FEEA69B00C3182E /* Eventable.swift in Sources */,
 				38C518B21FE5E2A600581709 /* AppDelegate.swift in Sources */,
+				3865B9861FEEA68E00C3182E /* UIViewController+Events.swift in Sources */,
+				3865B9831FEEA68E00C3182E /* UIViewController+VisibleViewController.swift in Sources */,
+				3865B97A1FEEA68B00C3182E /* NavigationAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,9 +818,13 @@
 				38E4582E1FACFE1C00134E74 /* Navigation.swift in Sources */,
 				383BE4CF1FCB4DC100C17AE3 /* ViewControllerEvents.swift in Sources */,
 				38E458321FAD00BD00134E74 /* NavigationAction.swift in Sources */,
+				3865B9741FEE959700C3182E /* ResponseAware.swift in Sources */,
 				385718661FBDB33C0050810F /* UINavigationController+ViewControllerEmbedding.swift in Sources */,
+				3865B9771FEEA67000C3182E /* ViewController_Yellow.swift in Sources */,
 				38F34B001FCB0C32000F2696 /* UINavigationController+TransitioningCompletion.swift in Sources */,
+				3865B9761FEEA66D00C3182E /* ViewController.swift in Sources */,
 				383BE4CD1FCB4DAD00C17AE3 /* Swizzler.swift in Sources */,
+				385B9CCF1FEC5A06001306EC /* DataPassable.swift in Sources */,
 				38392DB51FBD175000040EA8 /* Configuration.swift in Sources */,
 				383BE4CB1FCB4BE600C17AE3 /* Eventable.swift in Sources */,
 				383BE4D31FCB4E7D00C17AE3 /* ObjectAssociation.swift in Sources */,
@@ -783,6 +859,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.aronbalog.CoreNavigationExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ROUTING";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -799,6 +876,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.aronbalog.CoreNavigationExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ROUTING";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

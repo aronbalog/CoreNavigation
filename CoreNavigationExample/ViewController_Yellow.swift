@@ -1,8 +1,7 @@
 import UIKit
-import CoreNavigation
 
 extension ViewController {
-    class Yellow: UIViewController {
+    class Yellow: UIViewController, ResponseAware {
         lazy var button: UIButton = {
             let button = UIButton(type: UIButtonType.system)
             button.addTarget(self, action: #selector(didTouchUpInside(_:)), for: UIControlEvents.touchUpInside)
@@ -25,6 +24,10 @@ extension ViewController {
             button.center = view.center
             
             view.addSubview(button)
+        }
+        
+        public func didReceiveResponse(_ response: Response<UIViewController, UIViewController, UIViewController>) {
+            print("RESPONSE RECEIVED!", response.parameters!)
         }
     }
 }

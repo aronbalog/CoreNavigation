@@ -34,38 +34,34 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
     private func present(_ completion: ((NavigationResponse?) -> Void)?) -> NavigationResponse? {
         guard let fromViewController = fromViewController as? FromViewController else { return nil }
         
-        @discardableResult func response(with toViewController: ToViewController, perform: Bool, completion: ((NavigationResponse?) -> Void)?) -> NavigationResponse? {
-            let response = NavigationResponse(fromViewController: fromViewController, toViewController: toViewController, embeddingViewController: nil)
-            
-            let destinationViewController = embeddingViewController(with: response) ?? toViewController
-            
-            let animated = configuration.transition.animated ?? true
-            let transitioningDelegate = configuration.transition.viewControllerTransitioningDelegate
-            
-            fromViewController.transitioningDelegate = transitioningDelegate
-            if perform {
-                cache(viewController: toViewController)
-                bindEvents(to: toViewController)
+        var _response: NavigationResponse?
+        
+        func action(destinationViewController: UIViewController) {
+            let animated = self.configuration.transition.animated ?? true
+            fromViewController.present(destinationViewController, animated: animated, completion: { [weak self] in
+                guard let `self` = self else { return }
                 
-                fromViewController.present(destinationViewController, animated: animated, completion: { [weak self] in
-                    guard let `self` = self else { return }
-                    
-                    self.configuration.transition.completionBlocks.forEach({ (transitionCompletionBlock) in
-                        transitionCompletionBlock()
-                    })
+                self.configuration.transition.completionBlocks.forEach({ (transitionCompletionBlock) in
+                    transitionCompletionBlock()
                 })
-            }
-            
-            return response
+            })
         }
         
         guard let toViewController = getToViewController({ (toViewController) in
             if let toViewController = toViewController {
-                response(with: toViewController, perform: true, completion: completion)
+                _response = self.response(fromViewController: fromViewController, toViewController: toViewController, perform: true, action: { destinationViewController in
+                    action(destinationViewController: destinationViewController)
+                }, completion: completion)
             }
         }) else { return nil }
         
-        return response(with: toViewController, perform: false, completion: nil)
+        if _response != nil {
+            return _response
+        }
+        
+        return self.response(fromViewController: fromViewController, toViewController: toViewController, perform: true, action: { destinationViewController in
+            action(destinationViewController: destinationViewController)
+        }, completion: completion)
     }
     
     private func push(_ completion: ((NavigationResponse?) -> Void)?) -> NavigationResponse? {
@@ -76,37 +72,57 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
             else {
                 return nil
         }
+   
+        var _response: NavigationResponse?
         
-        @discardableResult func response(with toViewController: ToViewController, perform: Bool, completion: ((NavigationResponse?) -> Void)?) -> NavigationResponse? {
-            let response = NavigationResponse(fromViewController: fromViewController, toViewController: toViewController, embeddingViewController: nil)
+        func action(destinationViewController: UIViewController) {
+            let animated = self.configuration.transition.animated ?? true
             
-            let destinationViewController = embeddingViewController(with: response) ?? toViewController
-            
-            if perform {
-                let animated = configuration.transition.animated ?? true
+            navigationController.pushViewController(destinationViewController, animated: animated) { [weak self] in
+                guard let `self` = self else { return }
                 
-                cache(viewController: toViewController)
-                bindEvents(to: toViewController)
-                
-                navigationController.pushViewController(destinationViewController, animated: animated) { [weak self] in
-                    guard let `self` = self else { return }
-                    
-                    self.configuration.transition.completionBlocks.forEach({ (completion) in
-                        completion()
-                    })
-                }
+                self.configuration.transition.completionBlocks.forEach({ (completion) in
+                    completion()
+                })
             }
-            
-            return response
         }
         
         guard let toViewController = getToViewController({ (toViewController) in
             if let toViewController = toViewController {
-                response(with: toViewController, perform: true, completion: completion)
+                _response = self.response(fromViewController: fromViewController, toViewController: toViewController, perform: true, action: { destinationViewController in
+                    action(destinationViewController: destinationViewController)
+                }, completion: completion)
             }
         }) else { return nil }
         
-        return response(with: toViewController, perform: false, completion: nil)
+        if _response != nil {
+            return _response
+        }
+        
+        return self.response(fromViewController: fromViewController, toViewController: toViewController, perform: true, action: { destinationViewController in
+            action(destinationViewController: destinationViewController)
+        }, completion: completion)
+    }
+    
+    private func response(fromViewController: FromViewController, toViewController: ToViewController, perform: Bool, action: (UIViewController) -> Void, completion: ((NavigationResponse?) -> Void)?) -> NavigationResponse? {
+        let response = NavigationResponse(fromViewController: fromViewController, toViewController: toViewController, embeddingViewController: nil)
+        response.parameters = configuration.data.value
+        
+        let destinationViewController = embeddingViewController(with: response) ?? toViewController
+        
+        let transitioningDelegate = configuration.transition.viewControllerTransitioningDelegate
+        
+        fromViewController.transitioningDelegate = transitioningDelegate
+        if perform {
+            cache(viewController: toViewController)
+            bindEvents(to: toViewController)
+            
+            passResponse(response, to: toViewController)
+            
+            action(destinationViewController)
+        }
+        
+        return response
     }
     
     private func response() -> Response<FromViewController, ToViewController, EmbeddingViewController>? {
@@ -182,10 +198,21 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
         
         response.embeddingViewController = embeddingViewController
         
+        if let embeddingViewController = embeddingViewController {
+            passResponse(response, to: embeddingViewController)
+        }
+        
         return embeddingViewController
     }
     
     // helpers
+    
+    private func passResponse(_ response: Response<FromViewController, ToViewController, EmbeddingViewController>, to viewController: UIViewController) {
+        if let responseAware = viewController as? ResponseAware {
+            let response = unsafeDowncast(response, to: Response<UIViewController, UIViewController, UIViewController>.self)
+            responseAware.didReceiveResponse(response)
+        }
+    }
     
     private func bindEvents(to viewController: UIViewController) {
         // append events

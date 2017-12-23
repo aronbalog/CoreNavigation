@@ -7,14 +7,12 @@ target 'CoreNavigation' do
 end
 
 target 'CoreNavigationExample' do
-    pod 'CoreNavigation', '~> 0.1.2'
-    pod 'CoreNavigation/Routing', '~> 0.1.2'
+    pod 'CoreRoute', '~> 0.1.1'
 end
 
 target 'CoreNavigationTests' do
     inherit! :search_paths
     pod 'CoreRoute', '~> 0.1.1'
-    pod 'CoreNavigation/Routing', '~> 0.1.2'
     
     pod 'Quick'
     pod 'Nimble'

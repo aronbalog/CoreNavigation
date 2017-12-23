@@ -1,5 +1,4 @@
 import UIKit
-import CoreNavigation
 
 class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
@@ -8,6 +7,10 @@ class ViewController: UIViewController {
         Navigation.present { $0
             .to(ViewController.Yellow())
             .embed(in: UINavigationController.self)
+            .pass(parameters: [
+                "firstName": "John",
+                "lastName": "Doe"
+                ])
         }
     }
 }

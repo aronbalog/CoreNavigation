@@ -2,6 +2,10 @@
 
 Navigate between view controllers with ease. 💫
 
+[![Build Status](https://travis-ci.org/aronbalog/CoreNavigation.svg?branch=master)](https://travis-ci.org/aronbalog/CoreNavigation)
+[![Platform](https://img.shields.io/cocoapods/p/CoreNavigation.svg?style=flat)](https://github.com/aronbalog/CoreNavigation)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/CoreNavigation.svg)](https://img.shields.io/cocoapods/v/CoreNavigation.svg)
+
 - 📋 [Synopsis](#synopsis-)
 - ✊ [Motivation](#motivation-)
 - 🚀 [Getting Started](#getting-started-)
@@ -87,6 +91,7 @@ Read [API reference](Documentation/API_REFERENCE.md)
     - [Instance](Documentation/API_REFERENCE.md#passing-instance)
     - [Class](Documentation/API_REFERENCE.md#passing-class)
     - [Routing](Documentation/API_REFERENCE.md#passing-route)
+- 📡 [Passing data between view controllers](Documentation/API_REFERENCE.md#passing-data-between-view-controllers-)
 - 🎞 [Transitioning](Documentation/API_REFERENCE.md#transitioning-)
     - [Animation](Documentation/API_REFERENCE.md#animation)
     - [Transitioning delegate](Documentation/API_REFERENCE.md#transitioning-delegate)
@@ -108,7 +113,7 @@ Available in `CoreNavigationTests` target.
 
 Current release:
 
-- 0.1.2
+- 0.1.4
 
 ## Authors 👨‍💻
 

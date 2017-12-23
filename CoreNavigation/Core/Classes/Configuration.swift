@@ -17,6 +17,7 @@ public struct Configuration {
         let event = Event()
         let result = Result()
         let life = Life()
+        let data = Data()
         
         init(action: Action) {
             self.action = action
@@ -47,6 +48,9 @@ public struct Configuration {
         }
         class Life {
             var value: (Lifetime, String)?
+        }
+        class Data {
+            var value: [String: Any]?
         }
         class Event: ViewControllerEventable {
             var viewControllerEventBlocks: [(ViewControllerEventable, UIViewController) -> Void] = []
