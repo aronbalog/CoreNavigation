@@ -193,7 +193,7 @@ Pass any class conforming `Lifetime` protocol.
 
 ### `Lifetime` protocol
 
-There are two methods you have to implement:
+There are two methods that have to be implemented:
 
 - `init()`
     - Setup your lifetime object in `init()`
@@ -245,7 +245,81 @@ Navigation.present { $0
 
 ## Protection 👮
 
-TODO
+#### Usage
+
+`.protect(with: ProtectionSpace)`
+
+#### Description
+
+Pass any class conforming `ProtectionSpace` protocol.
+
+### `ProtectionSpace` protocol
+
+There is one method that has to be implemented:
+
+- `func shouldProtect(unprotect: @escaping () -> Void, failure: @escaping (Error) -> Void) -> Bool`
+    - call `unprotect()` when you are ready to execute navigation
+
+#### Simple use case
+
+1. Unauthenticated user initates navigation to `VC1` that is available only to authenticated users
+1. When such navigation is requested, `VC1` should not open immediately
+1. Authentication view controller `VC2` is presented
+1. When user is finally authenticated, `VC2` is dismissed and `VC1` is presented automatically without need to initiate navigation again
+
+How do we achieve this?
+
+First we declare our protection space:
+
+```swift
+class Auth: ProtectionSpace {
+    let authenticationService = SomeAuthService()
+    
+    // MARK: ProtectionSpace
+    
+    func shouldProtect(unprotect: @escaping () -> Void, failure: @escaping (Error) -> Void) -> Bool {
+        guard let shouldProtect = !authenticationService.isUserSignedIn else {
+            // should not protect if user is signed in
+            return false
+        }
+
+        // present some AuthVC
+        Navigation.present { (present) in
+            present
+                .to(AuthVC.self)
+                .onSuccess({ (response) in
+                    authenticationService.userDidSignIn {
+                        // `authenticationService.isUserSignedIn` now resolves to `true`               
+                        
+                        // dismiss AuthVC                    
+                        response.toViewController?.dismiss(animated: true, completion: {
+                            // unprotect and proceed with navigation
+                            unprotect()
+                        })
+                    }
+                    
+                    authenticationService.userDidFailToSignIn { error in
+                        // pass error if want to trigger onFailure blocks
+                        // on main navigation request
+                        failure(error)
+                    }
+                })
+        }
+        
+        return shouldProtect
+    }
+}
+```
+
+Applying `ProtectionSpace ` to navigation:
+
+```swift
+Navigation.present { $0
+    .to(VC1.self)
+    .protect(with: Auth())
+}
+```
+
 
 [UIViewController]: https://developer.apple.com/documentation/uikit/uiviewcontroller
 [UIViewControllerTransitioningDelegate]: https://developer.apple.com/documentation/uikit/uiviewcontrollertransitioningdelegate

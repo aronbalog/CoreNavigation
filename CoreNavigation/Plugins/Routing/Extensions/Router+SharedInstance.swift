@@ -1,10 +1,9 @@
-import Foundation
 #if ROUTING
+import Foundation
 import CoreRoute
-#endif
 
 extension Navigation {
-    #if ROUTING
     public static let router = Router()
-    #endif
 }
+
+#endif

@@ -36,4 +36,10 @@ public class NavigationAction<FromViewController: UIViewController, ToViewContro
         
         return self
     }
+    
+    @discardableResult public func protect(with protectionSpace: ProtectionSpace) -> Self {
+        configuration.protection.protectionSpace = protectionSpace
+        
+        return self
+    }
 }

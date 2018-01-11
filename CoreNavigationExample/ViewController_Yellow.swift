@@ -1,5 +1,34 @@
 import UIKit
 
+class Auth: ProtectionSpace {
+    var loggedIn: Bool = false
+    
+    func shouldProtect(unprotect: @escaping () -> Void, failure: @escaping (Error) -> Void) -> Bool {
+        if loggedIn {
+            return false
+        }
+        
+        var vc: UIViewController?
+        
+        Navigation.present { (present) in
+            present
+                .to(ViewController.Green.self)
+                .onSuccess({ (response) in
+                    vc = response.toViewController
+                })
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            vc?.dismiss(animated: true, completion: {
+                self.loggedIn = true
+                unprotect()
+            })
+        }
+        
+        return !loggedIn
+    }
+}
+
 extension ViewController {
     class Yellow: UIViewController, ResponseAware {
         lazy var button: UIButton = {
@@ -12,6 +41,7 @@ extension ViewController {
         @objc func didTouchUpInside(_ button: UIButton) {
             Navigation.push { $0
                 .to("orange")
+                .protect(with: Auth())
             }
         }
         
@@ -27,7 +57,7 @@ extension ViewController {
         }
         
         public func didReceiveResponse(_ response: Response<UIViewController, UIViewController, UIViewController>) {
-            print("RESPONSE RECEIVED!", response.parameters!)
+            
         }
     }
 }

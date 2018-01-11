@@ -13,6 +13,23 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
     }
     
     @discardableResult func execute(_ completion: ((NavigationResponse?) -> Void)?) -> NavigationResponse? {
+        // protect if needed
+        if let protectionSpace = configuration.protection.protectionSpace {
+            var execution: NavigationResponse?
+            
+            let shouldProtect = protectionSpace.shouldProtect(unprotect: {
+                execution = self.execute(completion)
+            }, failure: { (error) in
+                self.configuration.result.failureBlocks.forEach({ (block) in
+                    block(error)
+                })
+            })
+            
+            if shouldProtect {
+                return execution
+            }
+        }
+        
         guard let response: Response<FromViewController, ToViewController, EmbeddingViewController> = {
             switch configuration.action {
             case .present:
@@ -53,7 +70,9 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
                     action(destinationViewController: destinationViewController)
                 }, completion: completion)
             }
-        }) else { return nil }
+        }) else {
+            return nil
+        }
         
         if _response != nil {
             return _response
@@ -148,9 +167,13 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
         
         
         let toViewController: ToViewController? = {
-            guard let target = target as? ToViewController else { return nil }
+            if let viewController = target as? ToViewController {
+                return viewController
+            } else if let viewControllerClass = target as? ToViewController.Type {
+                return viewControllerClass.init(nibName: nil, bundle: nil)
+            }
             
-            return target
+            return nil
         }()
         
         #if ROUTING

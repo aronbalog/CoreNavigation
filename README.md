@@ -113,7 +113,7 @@ Available in `CoreNavigationTests` target.
 
 Current release:
 
-- 0.1.4
+- 0.1.5
 
 ## Authors 👨‍💻
 

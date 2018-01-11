@@ -18,6 +18,7 @@ public struct Configuration {
         let result = Result()
         let life = Life()
         let data = Data()
+        let protection = Protection()
         
         init(action: Action) {
             self.action = action
@@ -51,6 +52,9 @@ public struct Configuration {
         }
         class Data {
             var value: [String: Any]?
+        }
+        class Protection {
+            var protectionSpace: ProtectionSpace?
         }
         class Event: ViewControllerEventable {
             var viewControllerEventBlocks: [(ViewControllerEventable, UIViewController) -> Void] = []

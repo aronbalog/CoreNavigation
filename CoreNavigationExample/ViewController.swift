@@ -5,7 +5,7 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         
         Navigation.present { $0
-            .to(ViewController.Yellow())
+            .to(ViewController.Yellow.self)
             .embed(in: UINavigationController.self)
             .pass(parameters: [
                 "firstName": "John",

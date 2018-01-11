@@ -69,10 +69,15 @@
 		38CBD2FF1FE7309300D495CE /* NavigationTest_Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CBD2FB1FE7309300D495CE /* NavigationTest_Routing.swift */; };
 		38E458141FACFD4F00134E74 /* CoreNavigation.h in Headers */ = {isa = PBXBuildFile; fileRef = 38E458121FACFD4F00134E74 /* CoreNavigation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		38E4582E1FACFE1C00134E74 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4582D1FACFE1C00134E74 /* Navigation.swift */; };
-		38E458321FAD00BD00134E74 /* NavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E458311FAD00BD00134E74 /* NavigationAction.swift */; };
 		38E4584B1FAD0F5600134E74 /* ViewControllerEmbedding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4584A1FAD0F5600134E74 /* ViewControllerEmbedding.swift */; };
 		38E4584F1FAD332D00134E74 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4584E1FAD332D00134E74 /* Response.swift */; };
 		38E4585E1FAE7F3200134E74 /* NavigationConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4585D1FAE7F3200134E74 /* NavigationConfiguration.swift */; };
+		38E890542002C651006C1C67 /* ProtectionSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E890532002C651006C1C67 /* ProtectionSpace.swift */; };
+		38E890552002CAF3006C1C67 /* ProtectionSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E890532002C651006C1C67 /* ProtectionSpace.swift */; };
+		38E890572002CD98006C1C67 /* ViewController_Green.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E890562002CD98006C1C67 /* ViewController_Green.swift */; };
+		38E890582002DAF5006C1C67 /* ViewController_Green.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E890562002CD98006C1C67 /* ViewController_Green.swift */; };
+		38E890592002DBF6006C1C67 /* NavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E458311FAD00BD00134E74 /* NavigationAction.swift */; };
+		38E8905C2002DFBA006C1C67 /* NavigationTest_Protect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E8905B2002DFBA006C1C67 /* NavigationTest_Protect.swift */; };
 		38F34B001FCB0C32000F2696 /* UINavigationController+TransitioningCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F34AFF1FCB0C32000F2696 /* UINavigationController+TransitioningCompletion.swift */; };
 		38F34B021FCB0D8C000F2696 /* UIViewController+VisibleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F34B011FCB0D8C000F2696 /* UIViewController+VisibleViewController.swift */; };
 		B226786EA3B2D22E53ACA7E1 /* Pods_CoreNavigationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F1AAFD9211B7E85A9A6C6D0 /* Pods_CoreNavigationTests.framework */; };
@@ -142,6 +147,9 @@
 		38E4584A1FAD0F5600134E74 /* ViewControllerEmbedding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerEmbedding.swift; sourceTree = "<group>"; };
 		38E4584E1FAD332D00134E74 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		38E4585D1FAE7F3200134E74 /* NavigationConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationConfiguration.swift; sourceTree = "<group>"; };
+		38E890532002C651006C1C67 /* ProtectionSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectionSpace.swift; sourceTree = "<group>"; };
+		38E890562002CD98006C1C67 /* ViewController_Green.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController_Green.swift; sourceTree = "<group>"; };
+		38E8905B2002DFBA006C1C67 /* NavigationTest_Protect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTest_Protect.swift; sourceTree = "<group>"; };
 		38F34AFF1FCB0C32000F2696 /* UINavigationController+TransitioningCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+TransitioningCompletion.swift"; sourceTree = "<group>"; };
 		38F34B011FCB0D8C000F2696 /* UIViewController+VisibleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+VisibleViewController.swift"; sourceTree = "<group>"; };
 		56E233F0A99E17CFE96228DA /* Pods-CoreNavigationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreNavigationTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoreNavigationTests/Pods-CoreNavigationTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -257,6 +265,7 @@
 				38C518B81FE5E2A600581709 /* Assets.xcassets */,
 				38C518BD1FE5E2A600581709 /* Info.plist */,
 				38C518CF1FE5E2E700581709 /* ViewController_Yellow.swift */,
+				38E890562002CD98006C1C67 /* ViewController_Green.swift */,
 				38C518D11FE5E70400581709 /* ViewController_Orange.swift */,
 			);
 			path = CoreNavigationExample;
@@ -285,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				38CBD2E21FE71A9500D495CE /* Protectable.swift */,
+				38E890532002C651006C1C67 /* ProtectionSpace.swift */,
 			);
 			path = Protecting;
 			sourceTree = "<group>";
@@ -301,6 +311,7 @@
 		38CBD2F31FE7309300D495CE /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				38E8905A2002DF89006C1C67 /* Protection */,
 				38CBD2F41FE7309300D495CE /* Cache */,
 				38CBD2F51FE7309300D495CE /* NavigationTest.swift */,
 				38CBD2F61FE7309300D495CE /* Present */,
@@ -431,6 +442,14 @@
 				38E4584A1FAD0F5600134E74 /* ViewControllerEmbedding.swift */,
 			);
 			path = Embedding;
+			sourceTree = "<group>";
+		};
+		38E8905A2002DF89006C1C67 /* Protection */ = {
+			isa = PBXGroup;
+			children = (
+				38E8905B2002DFBA006C1C67 /* NavigationTest_Protect.swift */,
+			);
+			path = Protection;
 			sourceTree = "<group>";
 		};
 		D7A0F0DB8A0966152CA9CA78 /* Frameworks */ = {
@@ -750,8 +769,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3865B97A1FEEA68B00C3182E /* NavigationAction.swift in Sources */,
 				38C518D21FE5E70400581709 /* ViewController_Orange.swift in Sources */,
 				3865B97C1FEEA68B00C3182E /* Navigator.swift in Sources */,
+				38E890572002CD98006C1C67 /* ViewController_Green.swift in Sources */,
 				38C518B41FE5E2A600581709 /* ViewController.swift in Sources */,
 				38C518D01FE5E2E700581709 /* ViewController_Yellow.swift in Sources */,
 				3865B97E1FEEA68B00C3182E /* Response.swift in Sources */,
@@ -764,6 +785,7 @@
 				3865B98B1FEEA69B00C3182E /* Lifetime.swift in Sources */,
 				3865B9821FEEA68B00C3182E /* ObjectAssociation.swift in Sources */,
 				3865B98E1FEEA69B00C3182E /* ViewControllerEventable.swift in Sources */,
+				38E890552002CAF3006C1C67 /* ProtectionSpace.swift in Sources */,
 				3865B9921FEEA6A400C3182E /* Router+SharedInstance.swift in Sources */,
 				3865B9911FEEA6A400C3182E /* NavigationAction+Routing.swift in Sources */,
 				3865B9891FEEA69B00C3182E /* DataPassable.swift in Sources */,
@@ -781,7 +803,6 @@
 				38C518B21FE5E2A600581709 /* AppDelegate.swift in Sources */,
 				3865B9861FEEA68E00C3182E /* UIViewController+Events.swift in Sources */,
 				3865B9831FEEA68E00C3182E /* UIViewController+VisibleViewController.swift in Sources */,
-				3865B97A1FEEA68B00C3182E /* NavigationAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -789,6 +810,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38E8905C2002DFBA006C1C67 /* NavigationTest_Protect.swift in Sources */,
 				38CBD2FF1FE7309300D495CE /* NavigationTest_Routing.swift in Sources */,
 				38CBD2FD1FE7309300D495CE /* NavigationTest_Present.swift in Sources */,
 				38CBD2FC1FE7309300D495CE /* NavigationTest.swift in Sources */,
@@ -800,10 +822,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				383BE4E61FCBA91200C17AE3 /* NavigationAction+Routing.swift in Sources */,
 				383BE4DE1FCB680C00C17AE3 /* Cachable.swift in Sources */,
 				383BE4DD1FCB680A00C17AE3 /* Lifetime.swift in Sources */,
 				38E4585E1FAE7F3200134E74 /* NavigationConfiguration.swift in Sources */,
+				38E890592002DBF6006C1C67 /* NavigationAction.swift in Sources */,
+				38E890542002C651006C1C67 /* ProtectionSpace.swift in Sources */,
 				383BE4C91FCB4BC800C17AE3 /* ViewControllerEventable.swift in Sources */,
 				381C01151FCCCCC700CA7531 /* Router+SharedInstance.swift in Sources */,
 				38F34B021FCB0D8C000F2696 /* UIViewController+VisibleViewController.swift in Sources */,
@@ -817,10 +840,10 @@
 				38E4584F1FAD332D00134E74 /* Response.swift in Sources */,
 				38E4582E1FACFE1C00134E74 /* Navigation.swift in Sources */,
 				383BE4CF1FCB4DC100C17AE3 /* ViewControllerEvents.swift in Sources */,
-				38E458321FAD00BD00134E74 /* NavigationAction.swift in Sources */,
 				3865B9741FEE959700C3182E /* ResponseAware.swift in Sources */,
 				385718661FBDB33C0050810F /* UINavigationController+ViewControllerEmbedding.swift in Sources */,
 				3865B9771FEEA67000C3182E /* ViewController_Yellow.swift in Sources */,
+				38E890582002DAF5006C1C67 /* ViewController_Green.swift in Sources */,
 				38F34B001FCB0C32000F2696 /* UINavigationController+TransitioningCompletion.swift in Sources */,
 				3865B9761FEEA66D00C3182E /* ViewController.swift in Sources */,
 				383BE4CD1FCB4DAD00C17AE3 /* Swizzler.swift in Sources */,
@@ -828,6 +851,7 @@
 				38392DB51FBD175000040EA8 /* Configuration.swift in Sources */,
 				383BE4CB1FCB4BE600C17AE3 /* Eventable.swift in Sources */,
 				383BE4D31FCB4E7D00C17AE3 /* ObjectAssociation.swift in Sources */,
+				383BE4E61FCBA91200C17AE3 /* NavigationAction+Routing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
