@@ -1,3 +1,5 @@
+![](Documentation/Assets/cover-image.png)
+
 # CoreNavigation 📱📲
 
 Navigate between view controllers with ease. 💫
@@ -14,6 +16,7 @@ Navigate between view controllers with ease. 💫
 - 🔬 [Running the tests](#running-the-tests-)
 - ☀️ [Dependencies](#dependencies-%EF%B8%8F)
 - 🤖 [Versioning](#versioning-)
+- 🛣 [Roadmap](#roadmap-)
 - 👨‍💻 [Authors](#authors-)
 - 📄 [License](#license-)
 
@@ -100,7 +103,9 @@ Read [API reference](Documentation/API_REFERENCE.md)
 - ♻️ [Caching](Documentation/API_REFERENCE.md#caching-%EF%B8%8F)
     - [Lifetime protocol](Documentation/API_REFERENCE.md#lifetime-protocol)
 - 👮 [Protection](Documentation/API_REFERENCE.md#protection-)
-    
+- ↪️ [State restoration](Documentation/API_REFERENCE.md#state-restoration-%EF%B8%8F)
+    - [StateRestorationDelegate protocol](Documentation/API_REFERENCE.md#staterestorationdelegate-protocol)
+
 ## Running the tests 🔬
 
 Available in `CoreNavigationTests` target.
@@ -113,7 +118,16 @@ Available in `CoreNavigationTests` target.
 
 Current release:
 
-- 0.1.5
+- 0.2.0
+
+## Roadmap 🛣
+
+- [x] CoreNavigation foundation
+- [x] State restoration handling
+- [ ] Routing documentation
+- [ ] Code documentation
+- [ ] Deep & universal links handling
+- [ ] Add missing unit tests
 
 ## Authors 👨‍💻
 

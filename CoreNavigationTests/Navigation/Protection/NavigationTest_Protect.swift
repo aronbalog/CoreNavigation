@@ -57,7 +57,7 @@ fileprivate class MockProtection: ProtectionSpace {
         self.unprotectBlock = unprotect
         Navigation.present { (present) in
             present
-                .to(ViewController.Green.self)
+                .to(UIViewController.self)
                 .onSuccess({ (response) in
                     let vc = response.toViewController
                     vc?.dismiss(animated: true, completion: {

@@ -13,6 +13,8 @@
 - ♻️ [Caching](#caching-%EF%B8%8F)
     - [Lifetime protocol](#lifetime-protocol)
 - 👮 [Protection](#protection-)
+- ↪️ [State restoration](#state-restoration-%EF%B8%8F)
+    - [StateRestorationDelegate protocol](#staterestorationdelegate-protocol)
 
 ## Destination 📲
 
@@ -100,7 +102,7 @@ Navigation.present { $0
 
 Not calling this function or passing `true` will navigate with animation (default behaviour). If `false` is passed, navigation will perform without animation.
 
-This wrapps argument passed to:
+Argument is passed as `animated` argument in:
 
 `pushViewController(UIViewController, animated: Bool)`
 
@@ -140,9 +142,9 @@ Argument is passed as `completion` argument in:
 
 This block has no return value and takes no parameters.
 
-Note:
-
-*Although* `pushViewController(UIViewController, animated: Bool)` *method does not have* `completion` *argument,* **CoreNavigation** *has its own implementation to achive this.*
+>  Note:
+>
+> Although `pushViewController(UIViewController, animated: Bool)` method does not have `completion` argument, **CoreNavigation** has its own implementation to achive this.
 
 
 ## View controller events 🎯
@@ -262,64 +264,180 @@ There is one method that has to be implemented:
 
 #### Simple use case
 
-1. Unauthenticated user initates navigation to `VC1` that is available only to authenticated users
+> 1. Unauthenticated user initiates navigation to `VC1` that is available only to authenticated users
 1. When such navigation is requested, `VC1` should not open immediately
 1. Authentication view controller `VC2` is presented
 1. When user is finally authenticated, `VC2` is dismissed and `VC1` is presented automatically without need to initiate navigation again
 
-How do we achieve this?
+How to achieve this?
 
-First we declare our protection space:
+1. Declare protection space:
+    
+    ```swift
+    class Auth: ProtectionSpace {
+        let authenticationService = SomeAuthService()
+        
+        // MARK: ProtectionSpace
+        
+        func shouldProtect(unprotect: @escaping () -> Void, failure: @escaping (Error) -> Void) -> Bool {
+            guard let shouldProtect = !authenticationService.isUserSignedIn else {
+                // should not protect if user is signed in
+                return false
+            }
+    
+            // present some AuthVC
+            Navigation.present { (present) in
+                present
+                    .to(AuthVC.self)
+                    .onSuccess({ (response) in
+                        authenticationService.userDidSignIn {
+                            // `authenticationService.isUserSignedIn` now resolves to `true`               
+                            
+                            // dismiss AuthVC                    
+                            response.toViewController?.dismiss(animated: true, completion: {
+                                // unprotect and proceed with navigation
+                                unprotect()
+                            })
+                        }
+                        
+                        authenticationService.userDidFailToSignIn { error in
+                            // pass error if want to trigger onFailure blocks
+                            // on main navigation request
+                            failure(error)
+                        }
+                    })
+            }
+            
+            return shouldProtect
+        }
+    }
+    ```
 
-```swift
-class Auth: ProtectionSpace {
-    let authenticationService = SomeAuthService()
+1. Apply `ProtectionSpace` instance to navigation:
+
+    ```swift
+    Navigation.present { $0
+        .to(VC1.self)
+        .protect(with: Auth())
+    }
+    ```
+
+## State restoration ↪️
+
+CoreNavigation interacts with iOS state restoration engine and provides solution to cases where some checks has to be done before state restoration should continue. However, there are some prerequisites that have to be met:
+
+- If you do not use storyboards and instead create your window and root view controller in code, make sure you create them in AppDelegate's `application:willFinishLaunchingWithOptions:` instead of `application:didFinishLaunchingWithOptions:`
+
+    From Apple's [documentation](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623032-application):
     
-    // MARK: ProtectionSpace
+
+    >    Important
+    >
+    > If your app relies on the state restoration machinery to restore its view controllers, always show your app’s window from this method. Do not show the window in your app’s application(_:didFinishLaunchingWithOptions:) method. Calling the window’s makeKeyAndVisible() method does not make the window visible right away anyway. UIKit waits until your app’s application(_:didFinishLaunchingWithOptions:) method finishes before making the window visible on the screen.
+
+- Conform your App delegate to `StateRestorationDelegate` and implement:
+    - `application:shouldSaveApplicationState:`
+    - `application:shouldRestoreApplicationState:`
+    - `application:stateRestorationBehaviorForContext:`
     
-    func shouldProtect(unprotect: @escaping () -> Void, failure: @escaping (Error) -> Void) -> Bool {
-        guard let shouldProtect = !authenticationService.isUserSignedIn else {
-            // should not protect if user is signed in
-            return false
+    Example:
+
+    ```swift
+    @UIApplicationMain
+    class AppDelegate: UIResponder, UIApplicationDelegate, StateRestorationDelegate {
+        var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+        lazy var rootViewController = ViewController()
+            
+        func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+            window?.rootViewController = rootViewController
+            window?.makeKeyAndVisible()
+            
+            return true
         }
 
-        // present some AuthVC
-        Navigation.present { (present) in
-            present
-                .to(AuthVC.self)
-                .onSuccess({ (response) in
-                    authenticationService.userDidSignIn {
-                        // `authenticationService.isUserSignedIn` now resolves to `true`               
-                        
-                        // dismiss AuthVC                    
-                        response.toViewController?.dismiss(animated: true, completion: {
-                            // unprotect and proceed with navigation
-                            unprotect()
-                        })
-                    }
-                    
-                    authenticationService.userDidFailToSignIn { error in
-                        // pass error if want to trigger onFailure blocks
-                        // on main navigation request
-                        failure(error)
-                    }
-                })
+        func application(_ application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
+            return true
+        }
+    
+        func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
+            return true
         }
         
-        return shouldProtect
+        func application(_ application: UIApplication, stateRestorationBehaviorForContext context: StateRestorationContext) -> StateRestorationBehavior {
+            // check if restoration is heading to some protected view controller
+
+            if context.identifier == "my-account" {
+                return .protect(protectionSpace: Auth())
+            }            
+            
+            context.onUnprotect { (viewController: UIViewController) in
+                // if you unprotect state restoration on different thread, you can manually present resolved view controller from here
+            }
+            
+            return .allow // or .reject if state restoration is not wanted
+        }
+        
+        func application(_ application: UIApplication, viewControllerWithRestorationIdentifierPath identifierComponents: [Any], coder: NSCoder) -> UIViewController? {
+            /*
+            Fallback to default iOS state restoration handling.
+            Only implement this method if you handle state restoration manually.
+            */
+
+            return nil
+        }
     }
-}
-```
+    ```
 
-Applying `ProtectionSpace ` to navigation:
+#### Usage
 
-```swift
-Navigation.present { $0
-    .to(VC1.self)
-    .protect(with: Auth())
-}
-```
 
+To handle state restoration automatically:
+
+`.withStateRestoration()`
+
+To handle state restoration automatically with ability to pass custom restoration identifier:
+
+`.withStateRestoration(restorationIdentifier: String)`
+
+To handle state restoration manually:
+
+`.withManualStateRestoration(restorationIdentifier: String, restorationClass: UIViewControllerRestoration.Type?)`
+
+
+> Note:
+> 
+> If you handle state restoration automatically (using CoreNavigation engine), then your `AppDelegate` must conform `StateRestorationDelegate` protocol.
+
+### `StateRestorationDelegate` protocol
+
+There is one method that has to be implemented:
+
+- `func application(_ application: UIApplication, stateRestorationBehaviorForContext context: StateRestorationContext) -> StateRestorationBehavior`
+
+    When state restoration is handled through *CoreNavigation*, on app launch App delegate will be asked to provide behavior for single state restoration case.
+    
+    Method must return a case from `StateRestorationBehavior` enum:
+    
+    | Case                                        | Description |
+    | :------------------------------------------ | :---------- |
+    | `allow`                                     | State restoration should be processed. | 
+    | `reject`                                    | State restoration should NOT be processed. |
+    | `protect(protectionSpace: ProtectionSpace)` | State restoration should be protected with an object conforming `ProtectionSpace`. Unprotection block from this object must be called on same thread to support state restoration because state restoration engine needs view controller immediately to be able to restore it.<br><br>If you want to handle a case asynchronously, you can use `onUnprotect` handler in `StateRestorationContext` where you will be provided with view controller instance. Use it as you wish. |
+    
+    
+    Method will receive `StateRestorationContext` object (used for meta purposes) which has following properties:
+
+    | Property name        | Type           | Description  |
+    | :------------- |:-------------:| :----- |
+    | `restorationIdentifier` | `String` | State restoration identifier which can be explicitly passed in `.withStateRestoration(restorationIdentifier: String)` or is internally generated by *CoreNavigation*) when `.withStateRestoration()` is called. |
+    | `viewControllerClass` | `UIViewController.Type` | A view controller class that is going to be restored. |
+    | `protectionSpaceClass` | `AnyClass?` | A class of object passed in `protect(with:)` method. |
+    | `parameters` | `[String: Any]?` | Parameters passed in `pass(parameters:)` method. |   
+    
+    > Note:
+    >
+    > View controllers restored by *CoreNavigation* state restoration engine & conformed to `ResponseAware` protocol will receive response with parameters passed in the moment navigation occurs so you can avoid using UIViewController's `decodeRestorableState(with:)` and `encodeRestorableState(with:)`.
+        
 
 [UIViewController]: https://developer.apple.com/documentation/uikit/uiviewcontroller
 [UIViewControllerTransitioningDelegate]: https://developer.apple.com/documentation/uikit/uiviewcontrollertransitioningdelegate

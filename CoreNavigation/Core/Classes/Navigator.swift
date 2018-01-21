@@ -132,6 +132,19 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
         let transitioningDelegate = configuration.transition.viewControllerTransitioningDelegate
         
         fromViewController.transitioningDelegate = transitioningDelegate
+        
+        switch configuration.stateRestoration.option {
+        case .automatically:
+            StateRestoration.prepare(toViewController, identifier: nil, parameters: response.parameters, protectionSpace: configuration.protection.protectionSpace)
+        case .automaticallyWithIdentifier(let restorationIdentifier):
+            StateRestoration.prepare(toViewController, identifier: restorationIdentifier, parameters: response.parameters, protectionSpace: configuration.protection.protectionSpace)
+        case .manually(let restorationIdentifier, let restorationClass):
+            toViewController.restorationIdentifier = restorationIdentifier
+            toViewController.restorationClass = restorationClass
+        default:
+            ()
+        }
+
         if perform {
             cache(viewController: toViewController)
             bindEvents(to: toViewController)
@@ -223,6 +236,13 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
         
         if let embeddingViewController = embeddingViewController {
             passResponse(response, to: embeddingViewController)
+
+            switch configuration.stateRestoration.option {
+            case .automatically, .automaticallyWithIdentifier(_):
+                StateRestoration.prepare(embeddingViewController, identifier: nil, parameters: nil, protectionSpace: nil)
+            default:
+                ()
+            }
         }
         
         return embeddingViewController

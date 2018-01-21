@@ -1,34 +1,5 @@
 import UIKit
 
-class Auth: ProtectionSpace {
-    var loggedIn: Bool = false
-    
-    func shouldProtect(unprotect: @escaping () -> Void, failure: @escaping (Error) -> Void) -> Bool {
-        if loggedIn {
-            return false
-        }
-        
-        var vc: UIViewController?
-        
-        Navigation.present { (present) in
-            present
-                .to(ViewController.Green.self)
-                .onSuccess({ (response) in
-                    vc = response.toViewController
-                })
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            vc?.dismiss(animated: true, completion: {
-                self.loggedIn = true
-                unprotect()
-            })
-        }
-        
-        return !loggedIn
-    }
-}
-
 extension ViewController {
     class Yellow: UIViewController, ResponseAware {
         lazy var button: UIButton = {
@@ -38,11 +9,26 @@ extension ViewController {
             return button
         }()
         
+        lazy var closeButton: UIButton = {
+            let button = UIButton(type: UIButtonType.system)
+            button.addTarget(self, action: #selector(close), for: UIControlEvents.touchUpInside)
+            button.setTitle("Close", for: UIControlState.normal)
+            return button
+        }()
+        
         @objc func didTouchUpInside(_ button: UIButton) {
-            Navigation.push { $0
+            Navigation.present { $0
                 .to("orange")
+                .pass(parameters: ["name": "matija"])
+                .withStateRestoration()
                 .protect(with: Auth())
+                .embed(in: UINavigationController.self)
+                
             }
+        }
+        
+        @objc func close() {
+            dismiss(animated: true, completion: nil)
         }
         
         override func viewDidLoad() {
@@ -53,11 +39,16 @@ extension ViewController {
             button.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
             button.center = view.center
             
+            closeButton.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+            
             view.addSubview(button)
+            view.addSubview(closeButton)
         }
         
         public func didReceiveResponse(_ response: Response<UIViewController, UIViewController, UIViewController>) {
             
         }
+        
+        
     }
 }

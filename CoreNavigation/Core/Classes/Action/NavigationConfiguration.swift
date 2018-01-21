@@ -3,8 +3,7 @@ import UIKit
 public typealias ResponseSuccessBlock<FromViewController: UIViewController, ToViewController: UIViewController, EmbeddingViewController: UIViewController> = (Response<FromViewController, ToViewController, EmbeddingViewController>) -> Void
 public typealias ResponseFailureBlock = (Error) -> Void
 
-public class NavigationConfiguration<FromViewController: UIViewController, ToViewController: UIViewController, EmbeddingViewController: UIViewController>: TransitioningDelegatable, Eventable, DataPassable {
-
+public class NavigationConfiguration<FromViewController: UIViewController, ToViewController: UIViewController, EmbeddingViewController: UIViewController>: TransitioningDelegatable, Eventable, DataPassable, StateRestorable {
     let configuration: Configuration.Base<FromViewController, ToViewController, EmbeddingViewController>
 
     init(with configuration: Configuration.Base<FromViewController, ToViewController, EmbeddingViewController>) {
@@ -54,7 +53,23 @@ public class NavigationConfiguration<FromViewController: UIViewController, ToVie
         return self
     }
     
+    @discardableResult public func withStateRestoration() -> Self {
+        configuration.stateRestoration.option = .automatically
+        
+        return self
+    }
     
+    @discardableResult public func withStateRestoration(restorationIdentifier: String) -> Self {
+        configuration.stateRestoration.option = .automaticallyWithIdentifier(restorationIdentifier: restorationIdentifier)
+        
+        return self
+    }
+    
+    @discardableResult public func withManualStateRestoration(restorationIdentifier: String, restorationClass: UIViewControllerRestoration.Type) -> Self {
+        configuration.stateRestoration.option = .manually(restorationIdentifier: restorationIdentifier, restorationClass: restorationClass)
+        
+        return self
+    }
     
     func cast<T, U>(_ x: T, to type: U.Type) -> U {
         return unsafeBitCast(x, to: type)

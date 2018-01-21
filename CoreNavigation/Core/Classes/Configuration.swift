@@ -19,6 +19,7 @@ public struct Configuration {
         let life = Life()
         let data = Data()
         let protection = Protection()
+        let stateRestoration = StateRestoration()
         
         init(action: Action) {
             self.action = action
@@ -55,6 +56,15 @@ public struct Configuration {
         }
         class Protection {
             var protectionSpace: ProtectionSpace?
+        }
+        class StateRestoration {
+            enum Option {
+                case ignore
+                case automatically
+                case automaticallyWithIdentifier(restorationIdentifier: String)
+                case manually(restorationIdentifier: String, restorationClass: UIViewControllerRestoration.Type?)
+            }
+            var option: Option = .ignore
         }
         class Event: ViewControllerEventable {
             var viewControllerEventBlocks: [(ViewControllerEventable, UIViewController) -> Void] = []
