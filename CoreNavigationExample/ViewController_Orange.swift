@@ -19,8 +19,7 @@ extension ViewController {
         @objc func didTouchUpInside(_ button: UIButton) {
             Navigation.present { $0
                 .to(ViewController.Purple.self)
-                .withStateRestoration()
-                .protect(with: Auth())
+                
             }
         }
         
@@ -43,7 +42,6 @@ extension ViewController {
         }
         
         public func didReceiveResponse(_ response: Response<UIViewController, UIViewController, UIViewController>) {
-
         }
         
         

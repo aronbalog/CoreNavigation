@@ -13,6 +13,22 @@ Navigate between view controllers with ease. 💫
 - 🚀 [Getting Started](#getting-started-)
 - 💻 [Example Use](#example-use-)
 - ⌨️ [API Reference](#api-reference-%EF%B8%8F)
+    - [Defining destination](Documentation/API_REFERENCE.md#destination-) (view controller to navigate to)
+        - [Instance](Documentation/API_REFERENCE.md#passing-instance)
+        - [Class](Documentation/API_REFERENCE.md#passing-class)
+        - [Routing](Documentation/API_REFERENCE.md#passing-route)
+    - [Passing data between view controllers](Documentation/API_REFERENCE.md#passing-data-between-view-controllers-)
+    - [Transitioning](Documentation/API_REFERENCE.md#transitioning-)
+        - [Animation](Documentation/API_REFERENCE.md#animation)
+        - [Transitioning delegate](Documentation/API_REFERENCE.md#transitioning-delegate)
+        - [Completion](Documentation/API_REFERENCE.md#completion)
+    - [View controller events](Documentation/API_REFERENCE.md#view-controller-events-)
+    - [Caching](Documentation/API_REFERENCE.md#caching-%EF%B8%8F)
+        - [Lifetime protocol](Documentation/API_REFERENCE.md#lifetime-protocol)
+    - [Protection](Documentation/API_REFERENCE.md#protection-)
+    - [State restoration](Documentation/API_REFERENCE.md#state-restoration-%EF%B8%8F)
+        - [StateRestorationDelegate protocol](Documentation/API_REFERENCE.md#staterestorationdelegate-protocol)
+    - [Routing](Documentation/ROUTING_DOCUMENTATION.md) 
 - 🔬 [Running the tests](#running-the-tests-)
 - ☀️ [Dependencies](#dependencies-%EF%B8%8F)
 - 🤖 [Versioning](#versioning-)
@@ -28,7 +44,7 @@ CoreNavigation is a Swift wrapper around iOS navigation.
 
 Apple provided us with simplest possible API to achive navigation between view controllers. Some apps usually use given APIs directly while other have some wraping logic around them. And that's cool.
 
-But think about the situation where your app has dozens of screens. And you have to support additional features like deep linking and state restoration on all of them? CoreNavigation is created to provide developers with cleaner and more powerful APIs to navigate. 🔌
+But think about the situation where your app has dozens of screens. And you have to support additional features like deep linking and state restoration. CoreNavigation is created to provide developers with cleaner and more powerful APIs to navigate. 🔌
 
 ## Getting Started 🚀
 
@@ -59,9 +75,9 @@ Cocoapods will fetch and integrate CoreNavigation.
 
 ## Example Use 💻
 
-Basic examples:
+### Basic examples
 
-#### Presenting view controller
+#### Presenting view controller:
 
 ```swift
 Navigation.present { navigate in    
@@ -69,16 +85,7 @@ Navigation.present { navigate in
 }
 ```
 
-#### Presenting view controller embedded in navigation controller
-
-```swift
-Navigation.present { $0    
-    .to(MyViewController.self)
-    .embed(in: UINavigationController.self)
-}
-```
-
-#### Pushing view controller
+#### Pushing view controller:
 
 ```swift
 Navigation.push { navigate in    
@@ -86,25 +93,69 @@ Navigation.push { navigate in
 }
 ```
 
+### Advanced example
+
+#### Use case
+
+> Navigate to view controller which is:
+> 
+> - presented without animation
+> - embedded in navigation controller
+> - state restorable
+> - configurable with parameters
+> - available only to signed in users
+
+
+```swift
+Navigation.present { navigate in    
+    navigate
+        .to(MyViewController.self)
+        .animated(false)
+        .completion {
+            // transition completion    
+        }   
+        .protect(with: UserAuth())
+        .embed(in: UINavigationController.self)
+        .withStateRestoration()
+        .pass(parameters: [
+            "name": "john doe"
+        ])        
+        .viewControllerEvents({ (events, viewController) in
+            events.viewDidLoad {
+                // view did load
+            }
+        })
+        .onSuccess({ (response) in
+            // response.parameters?["name"] -> "john doe"
+            // response.toViewController -> MyViewController.self
+            // response.embeddingViewController -> UINavigationController.self
+        })
+        .onFailure({ (error) in
+            // handle error
+        })
+}
+```
+
 ## API Reference ⌨️
 
 Read [API reference](Documentation/API_REFERENCE.md)
 
-- 📲 [Defining destination](Documentation/API_REFERENCE.md#destination-) (view controller to navigate to)
+- [Defining destination](Documentation/API_REFERENCE.md#destination-) (view controller to navigate to)
     - [Instance](Documentation/API_REFERENCE.md#passing-instance)
     - [Class](Documentation/API_REFERENCE.md#passing-class)
     - [Routing](Documentation/API_REFERENCE.md#passing-route)
-- 📡 [Passing data between view controllers](Documentation/API_REFERENCE.md#passing-data-between-view-controllers-)
-- 🎞 [Transitioning](Documentation/API_REFERENCE.md#transitioning-)
+- [Passing data between view controllers](Documentation/API_REFERENCE.md#passing-data-between-view-controllers-)
+- [Transitioning](Documentation/API_REFERENCE.md#transitioning-)
     - [Animation](Documentation/API_REFERENCE.md#animation)
     - [Transitioning delegate](Documentation/API_REFERENCE.md#transitioning-delegate)
     - [Completion](Documentation/API_REFERENCE.md#completion)
-- 🎯 [View controller events](Documentation/API_REFERENCE.md#view-controller-events-)
-- ♻️ [Caching](Documentation/API_REFERENCE.md#caching-%EF%B8%8F)
+- [View controller events](Documentation/API_REFERENCE.md#view-controller-events-)
+- [Caching](Documentation/API_REFERENCE.md#caching-%EF%B8%8F)
     - [Lifetime protocol](Documentation/API_REFERENCE.md#lifetime-protocol)
-- 👮 [Protection](Documentation/API_REFERENCE.md#protection-)
-- ↪️ [State restoration](Documentation/API_REFERENCE.md#state-restoration-%EF%B8%8F)
+- [Protection](Documentation/API_REFERENCE.md#protection-)
+- [State restoration](Documentation/API_REFERENCE.md#state-restoration-%EF%B8%8F)
     - [StateRestorationDelegate protocol](Documentation/API_REFERENCE.md#staterestorationdelegate-protocol)
+- [Routing](Documentation/ROUTING_DOCUMENTATION.md) 
 
 ## Running the tests 🔬
 
@@ -118,20 +169,21 @@ Available in `CoreNavigationTests` target.
 
 Current release:
 
-- 0.2.0
+- 0.3.0
 
 ## Roadmap 🛣
 
 - [x] CoreNavigation foundation
 - [x] State restoration handling
-- [ ] Routing documentation
-- [ ] Code documentation
+- [x] Routing documentation
 - [ ] Deep & universal links handling
+- [ ] Code documentation
 - [ ] Add missing unit tests
+- [ ] Define code of conduct
 
 ## Authors 👨‍💻
 
-- Aron Balog - [Github](https://github.com/aronbalog)
+- Aron Balog ([GitHub](https://github.com/aronbalog))
 
 See also the list of [contributors](CONTRIBUTORS.md) who participated in this project.
 
@@ -141,4 +193,4 @@ Please read [Contributing](CONTRIBUTING.md) for details on code of conduct, and 
 
 ## License 📄
 
-This project is licensed under the **MIT License** - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE.md) file for details.

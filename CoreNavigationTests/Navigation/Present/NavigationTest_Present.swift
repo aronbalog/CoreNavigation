@@ -1,12 +1,19 @@
 import UIKit
 import Quick
 import Nimble
+import UIKit
 
 @testable import CoreNavigation
 
+
+
 extension NavigationTest {
-    fileprivate class OriginViewController: UIViewController {}
-    fileprivate class DestinationViewController: UIViewController {}
+    fileprivate class DestinationViewController: UIViewController {
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            
+        }
+    }
     fileprivate class MethodInvocationCounter {
         let viewControllerEvents = ViewControllerEvents()
         
@@ -18,22 +25,22 @@ extension NavigationTest {
         }
     }
     class Present: QuickSpec {
-        fileprivate lazy var originVC = OriginViewController()
-        fileprivate lazy var destinationVC = DestinationViewController()
         fileprivate lazy var methodInvocationCounter = MethodInvocationCounter()
 
         override func spec() {
             describe("navigation") {
                 let delegate = UIApplication.shared.delegate
-                delegate?.window??.rootViewController = originVC
+                
+                let rootViewController = UIViewController()
+                delegate?.window??.rootViewController = rootViewController
 
                 context("when presented", {
-                    var response: Response<OriginViewController, DestinationViewController, UINavigationController>?
+                    var response: Response<UIViewController, DestinationViewController, UINavigationController>?
                     
                     CoreNavigation.Navigation.present({ (present) in
                         present
-                            .from(self.originVC)
-                            .to(self.destinationVC)
+//                            .from(self.originVC)
+                            .to(DestinationViewController.self)
                             .embed(in: UINavigationController.self)
                             .onSuccess({ (_response) in
                                 response = _response
@@ -60,10 +67,8 @@ extension NavigationTest {
                     
                     it("returns response in success block", closure: {
                         expect(response).toEventuallyNot(beNil())
-                        expect(response?.fromViewController).toEventually(be(self.originVC))
-                        expect(response?.toViewController).toEventually(be(self.destinationVC))
                         expect(response?.embeddingViewController).toEventually(beAKindOf(UINavigationController.self))
-                        expect(self.methodInvocationCounter.viewControllerEvents.onViewDidLoad).toEventually(equal(1))
+                        expect(self.methodInvocationCounter.viewControllerEvents.onViewLoad).toEventually(equal(1))
                         expect(self.methodInvocationCounter.viewControllerEvents.onViewWillAppear).toEventually(equal(1))
                         expect(self.methodInvocationCounter.viewControllerEvents.onViewDidAppear).toEventually(equal(1))
                     })

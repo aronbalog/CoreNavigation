@@ -45,7 +45,7 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
             block(response)
         }
         
-        return nil
+        return response
     }
     
     private func present(_ completion: ((NavigationResponse?) -> Void)?) -> NavigationResponse? {
@@ -55,18 +55,20 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
         
         func action(destinationViewController: UIViewController) {
             let animated = self.configuration.transition.animated ?? true
-            fromViewController.present(destinationViewController, animated: animated, completion: { [weak self] in
-                guard let `self` = self else { return }
-                
-                self.configuration.transition.completionBlocks.forEach({ (transitionCompletionBlock) in
-                    transitionCompletionBlock()
+            DispatchQueue.main.async {
+                fromViewController.present(destinationViewController, animated: animated, completion: { [weak self] in
+                    guard let `self` = self else { return }
+                    
+                    self.configuration.transition.completionBlocks.forEach({ (transitionCompletionBlock) in
+                        transitionCompletionBlock()
+                    })
                 })
-            })
+            }
         }
         
         guard let toViewController = getToViewController({ (toViewController) in
             if let toViewController = toViewController {
-                _response = self.response(fromViewController: fromViewController, toViewController: toViewController, perform: true, action: { destinationViewController in
+                _response = self.response(fromViewController: fromViewController, toViewController: toViewController, perform: true, releaseDestination: true, action: { destinationViewController in
                     action(destinationViewController: destinationViewController)
                 }, completion: completion)
             }
@@ -78,7 +80,7 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
             return _response
         }
         
-        return self.response(fromViewController: fromViewController, toViewController: toViewController, perform: true, action: { destinationViewController in
+        return self.response(fromViewController: fromViewController, toViewController: toViewController, perform: true, releaseDestination: true, action: { destinationViewController in
             action(destinationViewController: destinationViewController)
         }, completion: completion)
     }
@@ -97,18 +99,20 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
         func action(destinationViewController: UIViewController) {
             let animated = self.configuration.transition.animated ?? true
             
-            navigationController.pushViewController(destinationViewController, animated: animated) { [weak self] in
-                guard let `self` = self else { return }
-                
-                self.configuration.transition.completionBlocks.forEach({ (completion) in
-                    completion()
-                })
+            DispatchQueue.main.async {
+                navigationController.pushViewController(destinationViewController, animated: animated) { [weak self] in
+                    guard let `self` = self else { return }
+                    
+                    self.configuration.transition.completionBlocks.forEach({ (completion) in
+                        completion()
+                    })
+                }
             }
         }
         
         guard let toViewController = getToViewController({ (toViewController) in
             if let toViewController = toViewController {
-                _response = self.response(fromViewController: fromViewController, toViewController: toViewController, perform: true, action: { destinationViewController in
+                _response = self.response(fromViewController: fromViewController, toViewController: toViewController, perform: true, releaseDestination: true, action: { destinationViewController in
                     action(destinationViewController: destinationViewController)
                 }, completion: completion)
             }
@@ -118,29 +122,32 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
             return _response
         }
         
-        return self.response(fromViewController: fromViewController, toViewController: toViewController, perform: true, action: { destinationViewController in
+        return self.response(fromViewController: fromViewController, toViewController: toViewController, perform: true, releaseDestination: true, action: { destinationViewController in
             action(destinationViewController: destinationViewController)
         }, completion: completion)
     }
     
-    private func response(fromViewController: FromViewController, toViewController: ToViewController, perform: Bool, action: (UIViewController) -> Void, completion: ((NavigationResponse?) -> Void)?) -> NavigationResponse? {
-        let response = NavigationResponse(fromViewController: fromViewController, toViewController: toViewController, embeddingViewController: nil)
+    private func response(fromViewController: FromViewController?, toViewController: ToViewController, perform: Bool, releaseDestination: Bool, action: (UIViewController) -> Void, completion: ((NavigationResponse?) -> Void)?) -> NavigationResponse? {
+        let response = NavigationResponse(fromViewController: fromViewController, toViewController: toViewController, embeddingViewController: nil, releaseDestination: releaseDestination)
         response.parameters = configuration.data.value
         
         let destinationViewController = embeddingViewController(with: response) ?? toViewController
         
         let transitioningDelegate = configuration.transition.viewControllerTransitioningDelegate
         
-        fromViewController.transitioningDelegate = transitioningDelegate
+        fromViewController?.transitioningDelegate = transitioningDelegate
         
         switch configuration.stateRestoration.option {
         case .automatically:
             StateRestoration.prepare(toViewController, identifier: nil, parameters: response.parameters, protectionSpace: configuration.protection.protectionSpace)
+            break
         case .automaticallyWithIdentifier(let restorationIdentifier):
             StateRestoration.prepare(toViewController, identifier: restorationIdentifier, parameters: response.parameters, protectionSpace: configuration.protection.protectionSpace)
+            break
         case .manually(let restorationIdentifier, let restorationClass):
             toViewController.restorationIdentifier = restorationIdentifier
             toViewController.restorationClass = restorationClass
+            break
         default:
             ()
         }
@@ -157,8 +164,30 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
         return response
     }
     
-    private func response() -> Response<FromViewController, ToViewController, EmbeddingViewController>? {
-        fatalError("not implemented yet")
+    private func response() -> NavigationResponse? {
+        var _response: NavigationResponse?
+        
+        guard let toViewController = getToViewController({ (toViewController) in
+            if let toViewController = toViewController {
+                _response = self.response(fromViewController: nil, toViewController: toViewController, perform: true, releaseDestination: false, action: { _ in
+
+                }, completion: { _ in
+                    
+                })
+            }
+        }) else {
+            return nil
+        }
+        
+        if _response != nil {
+            return _response
+        }
+        
+        return self.response(fromViewController: nil, toViewController: toViewController, perform: true, releaseDestination: false, action: { destinationViewController in
+
+        }, completion: { _ in
+        
+        })
     }
     
     private var fromViewController: UIViewController? {
@@ -190,7 +219,7 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
         }()
         
         #if ROUTING
-        func _route(to route: AbstractRoute, in router: Router) -> ToViewController? {
+            func _route(to route: AbstractRoute, in router: Router) -> ToViewController? {
             let request = Request<String, Any?>(route: route.routePath)
             
             var _toViewController: ToViewController?
@@ -201,6 +230,18 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
                         _toViewController = destination
                     } else if let destination = response.destination as? ToViewController.Type {
                         _toViewController = destination.init(nibName: nil, bundle: nil)
+                    }
+                    
+                    if let parameters = response.parameters {
+                        self.configuration.data.value.merge(parameters, uniquingKeysWith: { (oldValue, newValue) -> Any in
+                            newValue
+                        })
+                    }
+                    
+                    if let parameters = (route as? ParametersAware)?.parameters {
+                        self.configuration.data.value.merge(parameters, uniquingKeysWith: { (oldValue, newValue) -> Any in
+                            newValue
+                        })
                     }
                     
                     toViewControllerBlock(_toViewController)
@@ -225,6 +266,7 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
         
         return viewController
     }
+    
     private func embeddingViewController(with response: NavigationResponse) -> EmbeddingViewController? {
         guard let type = configuration.embedding.embeddableViewControllerType else { return nil }
         
@@ -238,8 +280,12 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
             passResponse(response, to: embeddingViewController)
 
             switch configuration.stateRestoration.option {
-            case .automatically, .automaticallyWithIdentifier(_):
+            case .automatically:
                 StateRestoration.prepare(embeddingViewController, identifier: nil, parameters: nil, protectionSpace: nil)
+                break
+            case .automaticallyWithIdentifier(let restorationIdentifier):
+                StateRestoration.prepare(embeddingViewController, identifier: "embed_"+restorationIdentifier, parameters: nil, protectionSpace: nil)
+                break
             default:
                 ()
             }

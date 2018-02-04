@@ -11,10 +11,9 @@ class ViewController: UIViewController, ResponseAware {
     @objc func didTouchUpInside(_ button: UIButton) {
         Navigation.present { $0
             .to(ViewController.Yellow.self)
-            .from(self)
-            //            .embed(in: UINavigationController.self)
+            .embed(in: UINavigationController.self)
             .withStateRestoration()
-            .protect(with: Auth())
+//            .protect(with: Auth())
             .pass(parameters: [
                 "firstName": "John",
                 "lastName": "Doe"

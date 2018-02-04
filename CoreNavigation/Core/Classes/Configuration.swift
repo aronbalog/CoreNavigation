@@ -52,7 +52,7 @@ public struct Configuration {
             var value: (Lifetime, String)?
         }
         class Data {
-            var value: [String: Any]?
+            var value: [String: Any] = [:]
         }
         class Protection {
             var protectionSpace: ProtectionSpace?

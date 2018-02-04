@@ -2,4 +2,4 @@
 
 This is a list of all CoreNavigation contributors.
 
-* Your Name Here
+There are no contributors yet.

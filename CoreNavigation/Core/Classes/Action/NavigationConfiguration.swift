@@ -10,6 +10,18 @@ public class NavigationConfiguration<FromViewController: UIViewController, ToVie
         self.configuration = configuration
     }
     
+    @discardableResult public func to<ToViewController>(_ viewController: ToViewController) -> NavigationConfiguration<FromViewController, ToViewController, EmbeddingViewController> {
+        configuration.destination.target = viewController
+        
+        return cast(self, to: NavigationConfiguration<FromViewController, ToViewController, EmbeddingViewController>.self)
+    }
+    
+    @discardableResult public func to<ToViewController>(_ viewControllerType: ToViewController.Type) -> NavigationConfiguration<FromViewController, ToViewController, EmbeddingViewController> {
+        configuration.destination.target = viewControllerType
+        
+        return cast(self, to: NavigationConfiguration<FromViewController, ToViewController, EmbeddingViewController>.self)
+    }
+    
     @discardableResult public func embed<EmbeddingViewController: ViewControllerEmbedding>(in embeddableViewControllerType: EmbeddingViewController.Type) -> NavigationConfiguration<FromViewController, ToViewController, EmbeddingViewController> {
         configuration.embedding.embeddableViewControllerType = embeddableViewControllerType
         
@@ -42,13 +54,9 @@ public class NavigationConfiguration<FromViewController: UIViewController, ToVie
     }
     
     @discardableResult public func pass(parameters: [String : Any]) -> Self {
-        if var oldValue = configuration.data.value {
-            oldValue.merge(parameters, uniquingKeysWith: { (oldValue, newValue) -> Any in
-                return newValue
-            })
-        } else {
-            configuration.data.value = parameters
-        }
+        configuration.data.value.merge(parameters, uniquingKeysWith: { (oldValue, newValue) -> Any in
+            return newValue
+        })
     
         return self
     }

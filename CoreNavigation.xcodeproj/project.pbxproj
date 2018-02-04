@@ -28,7 +28,7 @@
 		383BE4DC1FCB67F400C17AE3 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4DB1FCB67F400C17AE3 /* Cache.swift */; };
 		383BE4DD1FCB680A00C17AE3 /* Lifetime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4D91FCB66F100C17AE3 /* Lifetime.swift */; };
 		383BE4DE1FCB680C00C17AE3 /* Cachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4DA1FCB66F100C17AE3 /* Cachable.swift */; };
-		383BE4E61FCBA91200C17AE3 /* NavigationAction+Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4E51FCBA91200C17AE3 /* NavigationAction+Routing.swift */; };
+		383BE4E61FCBA91200C17AE3 /* NavigationConfiguration+Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4E51FCBA91200C17AE3 /* NavigationConfiguration+Routing.swift */; };
 		385718661FBDB33C0050810F /* UINavigationController+ViewControllerEmbedding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385718651FBDB33C0050810F /* UINavigationController+ViewControllerEmbedding.swift */; };
 		385B9CCF1FEC5A06001306EC /* DataPassable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385B9CCE1FEC5A06001306EC /* DataPassable.swift */; };
 		3865B9741FEE959700C3182E /* ResponseAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3865B9731FEE959700C3182E /* ResponseAware.swift */; };
@@ -56,7 +56,7 @@
 		3865B98E1FEEA69B00C3182E /* ViewControllerEventable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4C81FCB4BC800C17AE3 /* ViewControllerEventable.swift */; };
 		3865B98F1FEEA69B00C3182E /* Eventable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4CA1FCB4BE600C17AE3 /* Eventable.swift */; };
 		3865B9901FEEA69B00C3182E /* ViewControllerEmbedding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4584A1FAD0F5600134E74 /* ViewControllerEmbedding.swift */; };
-		3865B9911FEEA6A400C3182E /* NavigationAction+Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4E51FCBA91200C17AE3 /* NavigationAction+Routing.swift */; };
+		3865B9911FEEA6A400C3182E /* NavigationConfiguration+Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4E51FCBA91200C17AE3 /* NavigationConfiguration+Routing.swift */; };
 		3865B9921FEEA6A400C3182E /* Router+SharedInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381C01141FCCCCC700CA7531 /* Router+SharedInstance.swift */; };
 		38814B02200EA3C900480711 /* ViewController_Purple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38814B01200EA3C900480711 /* ViewController_Purple.swift */; };
 		38814B04200EBA0A00480711 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38814B03200EBA0A00480711 /* Auth.swift */; };
@@ -75,6 +75,8 @@
 		38CBD2FD1FE7309300D495CE /* NavigationTest_Present.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CBD2F71FE7309300D495CE /* NavigationTest_Present.swift */; };
 		38CBD2FE1FE7309300D495CE /* NavigationTest_Push.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CBD2F91FE7309300D495CE /* NavigationTest_Push.swift */; };
 		38CBD2FF1FE7309300D495CE /* NavigationTest_Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38CBD2FB1FE7309300D495CE /* NavigationTest_Routing.swift */; };
+		38D8232720228CD3003FA799 /* UIViewController+Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D8232620228CD3003FA799 /* UIViewController+Routing.swift */; };
+		38D8232820228CD3003FA799 /* UIViewController+Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D8232620228CD3003FA799 /* UIViewController+Routing.swift */; };
 		38E458141FACFD4F00134E74 /* CoreNavigation.h in Headers */ = {isa = PBXBuildFile; fileRef = 38E458121FACFD4F00134E74 /* CoreNavigation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		38E4582E1FACFE1C00134E74 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4582D1FACFE1C00134E74 /* Navigation.swift */; };
 		38E4584B1FAD0F5600134E74 /* ViewControllerEmbedding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4584A1FAD0F5600134E74 /* ViewControllerEmbedding.swift */; };
@@ -129,7 +131,7 @@
 		383BE4D91FCB66F100C17AE3 /* Lifetime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lifetime.swift; sourceTree = "<group>"; };
 		383BE4DA1FCB66F100C17AE3 /* Cachable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cachable.swift; sourceTree = "<group>"; };
 		383BE4DB1FCB67F400C17AE3 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
-		383BE4E51FCBA91200C17AE3 /* NavigationAction+Routing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationAction+Routing.swift"; sourceTree = "<group>"; };
+		383BE4E51FCBA91200C17AE3 /* NavigationConfiguration+Routing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationConfiguration+Routing.swift"; sourceTree = "<group>"; };
 		385718651FBDB33C0050810F /* UINavigationController+ViewControllerEmbedding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+ViewControllerEmbedding.swift"; sourceTree = "<group>"; };
 		385B9CCE1FEC5A06001306EC /* DataPassable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPassable.swift; sourceTree = "<group>"; };
 		3865B9731FEE959700C3182E /* ResponseAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseAware.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 		38CBD2F71FE7309300D495CE /* NavigationTest_Present.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationTest_Present.swift; sourceTree = "<group>"; };
 		38CBD2F91FE7309300D495CE /* NavigationTest_Push.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationTest_Push.swift; sourceTree = "<group>"; };
 		38CBD2FB1FE7309300D495CE /* NavigationTest_Routing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationTest_Routing.swift; sourceTree = "<group>"; };
+		38D8232620228CD3003FA799 /* UIViewController+Routing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Routing.swift"; sourceTree = "<group>"; };
 		38E4580F1FACFD4F00134E74 /* CoreNavigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreNavigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38E458121FACFD4F00134E74 /* CoreNavigation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreNavigation.h; sourceTree = "<group>"; };
 		38E458131FACFD4F00134E74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -256,8 +259,9 @@
 		383BE4E41FCBA90300C17AE3 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				383BE4E51FCBA91200C17AE3 /* NavigationAction+Routing.swift */,
+				383BE4E51FCBA91200C17AE3 /* NavigationConfiguration+Routing.swift */,
 				381C01141FCCCCC700CA7531 /* Router+SharedInstance.swift */,
+				38D8232620228CD3003FA799 /* UIViewController+Routing.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -815,7 +819,7 @@
 				3865B98E1FEEA69B00C3182E /* ViewControllerEventable.swift in Sources */,
 				38E890552002CAF3006C1C67 /* ProtectionSpace.swift in Sources */,
 				3865B9921FEEA6A400C3182E /* Router+SharedInstance.swift in Sources */,
-				3865B9911FEEA6A400C3182E /* NavigationAction+Routing.swift in Sources */,
+				3865B9911FEEA6A400C3182E /* NavigationConfiguration+Routing.swift in Sources */,
 				3865B9891FEEA69B00C3182E /* DataPassable.swift in Sources */,
 				38C518D71FE5E74400581709 /* Route_Orange.swift in Sources */,
 				3865B97F1FEEA68B00C3182E /* Configuration.swift in Sources */,
@@ -824,6 +828,7 @@
 				38814B02200EA3C900480711 /* ViewController_Purple.swift in Sources */,
 				3865B9901FEEA69B00C3182E /* ViewControllerEmbedding.swift in Sources */,
 				38814B04200EBA0A00480711 /* Auth.swift in Sources */,
+				38D8232820228CD3003FA799 /* UIViewController+Routing.swift in Sources */,
 				3808A414200C2991006FD933 /* StateRestorable.swift in Sources */,
 				38C518D51FE5E73600581709 /* Destination.swift in Sources */,
 				3865B9841FEEA68E00C3182E /* UINavigationController+TransitioningCompletion.swift in Sources */,
@@ -864,6 +869,7 @@
 				383BE4C91FCB4BC800C17AE3 /* ViewControllerEventable.swift in Sources */,
 				3808A413200C2991006FD933 /* StateRestorable.swift in Sources */,
 				381C01151FCCCCC700CA7531 /* Router+SharedInstance.swift in Sources */,
+				38D8232720228CD3003FA799 /* UIViewController+Routing.swift in Sources */,
 				38F34B021FCB0D8C000F2696 /* UIViewController+VisibleViewController.swift in Sources */,
 				383BE4C71FCB4BB100C17AE3 /* Transitionable.swift in Sources */,
 				38392DB01FBCF66D00040EA8 /* Navigator.swift in Sources */,
@@ -885,7 +891,7 @@
 				38392DB51FBD175000040EA8 /* Configuration.swift in Sources */,
 				383BE4CB1FCB4BE600C17AE3 /* Eventable.swift in Sources */,
 				383BE4D31FCB4E7D00C17AE3 /* ObjectAssociation.swift in Sources */,
-				383BE4E61FCBA91200C17AE3 /* NavigationAction+Routing.swift in Sources */,
+				383BE4E61FCBA91200C17AE3 /* NavigationConfiguration+Routing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

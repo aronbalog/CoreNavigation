@@ -7,13 +7,13 @@ public class NavigationAction<FromViewController: UIViewController, ToViewContro
         return cast(self, to: NavigationAction<FromViewController, ToViewController, EmbeddingViewController>.self)
     }
     
-    @discardableResult public func to<ToViewController>(_ viewController: ToViewController) -> NavigationAction<FromViewController, ToViewController, EmbeddingViewController> {
+    @discardableResult override public func to<ToViewController>(_ viewController: ToViewController) -> NavigationAction<FromViewController, ToViewController, EmbeddingViewController> {
         configuration.destination.target = viewController
         
         return cast(self, to: NavigationAction<FromViewController, ToViewController, EmbeddingViewController>.self)
     }
     
-    @discardableResult public func to<ToViewController>(_ viewControllerType: ToViewController.Type) -> NavigationAction<FromViewController, ToViewController, EmbeddingViewController> {
+    @discardableResult override public func to<ToViewController>(_ viewControllerType: ToViewController.Type) -> NavigationAction<FromViewController, ToViewController, EmbeddingViewController> {
         configuration.destination.target = viewControllerType
 
         return cast(self, to: NavigationAction<FromViewController, ToViewController, EmbeddingViewController>.self)

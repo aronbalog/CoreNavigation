@@ -1,19 +1,19 @@
 # API Reference ⌨️
 
-- 📲 [Destination](#destination-) (view controller to navigate to)
+- [Destination](#destination-) (view controller to navigate to)
     - [Passing instance](#passing-instance)
     - [Passing class](#passing-class)
     - [Passing route](#passing-route)
-- 📡 [Passing data between view controllers](#passing-data-between-view-controllers-)
-- 🎞 [Transitioning](#transitioning-)
+- [Passing data between view controllers](#passing-data-between-view-controllers-)
+- [Transitioning](#transitioning-)
     - [Animation](#animation)
     - [Transitioning delegate](#transitioning-delegate)
     - [Completion](#completion)
-- 🎯 [View controller events](#view-controller-events-)
-- ♻️ [Caching](#caching-%EF%B8%8F)
+- [View controller events](#view-controller-events-)
+- [Caching](#caching-%EF%B8%8F)
     - [Lifetime protocol](#lifetime-protocol)
-- 👮 [Protection](#protection-)
-- ↪️ [State restoration](#state-restoration-%EF%B8%8F)
+- [Protection](#protection-)
+- [State restoration](#state-restoration-%EF%B8%8F)
     - [StateRestorationDelegate protocol](#staterestorationdelegate-protocol)
 
 ## Destination 📲
@@ -22,7 +22,7 @@ Destination can be:
 
 - `UIViewController` instance
 - `UIViewController` class
-- `Route` or `AbstractRoute` resolving it's destionation to `UIViewController`
+- or `Route` or `AbstractRoute` resolving it's destionation to `UIViewController`
 
 Usage:
 
@@ -40,9 +40,7 @@ Usage:
 
 `.to(_ route: AbstractRoute)`
 
-Routing capabilities are avaliable as external plugin.
-
-[Routing documentation](ROUTING_DOCUMENTATION.md)
+Routing capabilities are avaliable as external plugin and explained in the [separate document](ROUTING_DOCUMENTATION.md).
 
 ## Passing data between view controllers 📡
 
@@ -51,12 +49,13 @@ Passing and receiving data between view controllers can be easily achieved.
 #### Sending parameters
 
 ```swift
-Navigation.present { $0    
-    ...
-    .pass(parameters: [
-        "firstName": "john",
-        "lastName": "doe"
-    ])
+Navigation.present { (navigate) in    
+    navigate
+        .to(MyViewController.self)
+        .pass(parameters: [
+            "firstName": "john",
+            "lastName": "doe"
+        ])
 }
 ```
 
@@ -82,13 +81,14 @@ CoreNavigation provides API wrapper around:
 #### Full example
 
 ```swift
-Navigation.present { $0    
-    ...
-    .animated(false)
-    .transitioningDelegate(transitioningDelegate)
-    .completion {
-                
-    }
+Navigation.present { (navigate) in    
+    navigate
+        .to(MyViewController.self)
+        .animated(false)
+        .transitioningDelegate(transitioningDelegate)
+        .completion {
+                    
+        }
 }
 ```
 
@@ -206,10 +206,10 @@ There are two methods that have to be implemented:
 
 Let's say following use case has to be implemented:
 
-1. When some action `A1` occurs (eg. button is tapped), `VC1` is presented
-1. 
-    - If `VC1` is dismissed and `A1` action is repeated within `60` seconds, presented `VC1` should be the same instance from `step 1` of this use case
-    - Otherwise, new instance of `VC1` should be presented
+> 1. When some action `A1` occurs (eg. button is tapped), `VC1` is presented
+> 1. 
+>    - If `VC1` is dismissed and `A1` action is repeated within `60` seconds, presented `VC1` should be the same instance from `step 1` of this use case
+>    - Otherwise, new instance of `VC1` should be presented
 
 This can be easily achieved by passing an object conforming `Lifetime` protocol.
 
@@ -239,9 +239,10 @@ class Age: Lifetime {
 Applying `Lifetime` to navigation: 
 
 ```swift
-Navigation.present { $0
-    .to(VC1.self)
-    .keepAlive(within: Age(seconds: 60), identifier: "CACHE_IDENTIFIER")
+Navigation.present { (navigate) in
+    navigate
+        .to(VC1.self)
+        .keepAlive(within: Age(seconds: 60), identifier: "CACHE_IDENTIFIER")
 }
 ```
 
@@ -265,9 +266,9 @@ There is one method that has to be implemented:
 #### Simple use case
 
 > 1. Unauthenticated user initiates navigation to `VC1` that is available only to authenticated users
-1. When such navigation is requested, `VC1` should not open immediately
-1. Authentication view controller `VC2` is presented
-1. When user is finally authenticated, `VC2` is dismissed and `VC1` is presented automatically without need to initiate navigation again
+> 1. When such navigation is requested, `VC1` should not open immediately
+> 1. Authentication view controller `VC2` is presented
+> 1. When user is finally authenticated, `VC2` is dismissed and `VC1` is presented automatically without need to initiate navigation again
 
 How to achieve this?
 
@@ -316,9 +317,10 @@ How to achieve this?
 1. Apply `ProtectionSpace` instance to navigation:
 
     ```swift
-    Navigation.present { $0
-        .to(VC1.self)
-        .protect(with: Auth())
+    Navigation.present { (navigate) in
+        navigate
+            .to(VC1.self)
+            .protect(with: Auth())
     }
     ```
 
@@ -436,8 +438,8 @@ There is one method that has to be implemented:
     
     > Note:
     >
-    > View controllers restored by *CoreNavigation* state restoration engine & conformed to `ResponseAware` protocol will receive response with parameters passed in the moment navigation occurs so you can avoid using UIViewController's `decodeRestorableState(with:)` and `encodeRestorableState(with:)`.
-        
+    > View controllers restored by *CoreNavigation* state restoration engine & conformed to `ResponseAware` protocol will receive response with parameters passed during navigation so `decodeRestorableState(with:)` and `encodeRestorableState(with:)` can be ignored if you use these just for decoding parameters. Also, parameters passed during navigation must conform to `NSCoding` protocol when used with state restoration.
+
 
 [UIViewController]: https://developer.apple.com/documentation/uikit/uiviewcontroller
 [UIViewControllerTransitioningDelegate]: https://developer.apple.com/documentation/uikit/uiviewcontrollertransitioningdelegate

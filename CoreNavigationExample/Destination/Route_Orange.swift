@@ -2,9 +2,13 @@ import Foundation
 import CoreRoute
 
 extension Destination {
-    class Orange: Route {
-        lazy var destination = ViewController.Orange.self
+    struct Orange: Route {
+        let id: String
         
-        var routePath: String = "orange"
+        static var destination = ViewController.Orange()
+        
+        static var routePattern: String = "orange/<id>"
+        
+        var routePath: String { return "orange/\(id)" }
     }
 }

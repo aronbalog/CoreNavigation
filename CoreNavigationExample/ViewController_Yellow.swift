@@ -18,7 +18,7 @@ extension ViewController {
         
         @objc func didTouchUpInside(_ button: UIButton) {
             Navigation.present { $0
-                .to("orange")
+                .to(Destination.Orange(id: "hello"))
                 .pass(parameters: ["name": "matija"])
                 .withStateRestoration()
                 .protect(with: Auth())

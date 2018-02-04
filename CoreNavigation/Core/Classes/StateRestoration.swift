@@ -1,10 +1,11 @@
 import UIKit
 
 class StateRestoration: UIViewControllerRestoration {
-    struct StorageItem: Codable {
+    
+    @objc(StateRestorationStorageItem) class StorageItem: NSObject, NSCoding {
         let identifier: String
         let viewControllerClass: UIViewController.Type
-        let parameters: Data?
+        let parameters: [String: Any]?
         let protectionSpaceClass: AnyClass?
         
         enum CodingKeys: CodingKey {
@@ -14,50 +15,37 @@ class StateRestoration: UIViewControllerRestoration {
             case protectionSpaceClass
         }
         
-        init(identifier: String, viewControllerClass: UIViewController.Type, parameters: Data?, protectionSpaceClass: ProtectionSpace.Type?) {
+        init(identifier: String, viewControllerClass: UIViewController.Type, parameters: [String: Any]?, protectionSpaceClass: ProtectionSpace.Type?) {
             self.identifier = identifier
             self.viewControllerClass = viewControllerClass
             self.parameters = parameters
             self.protectionSpaceClass = protectionSpaceClass
         }
         
-        init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
+        func encode(with aCoder: NSCoder) {
+            aCoder.encode(identifier, forKey: "identifier")
+            aCoder.encode(NSStringFromClass(viewControllerClass), forKey: "viewControllerClass")
+            if let parameters = parameters {
+                aCoder.encode(parameters, forKey: "parameters")
+            }
+            if let protectionSpaceClass = protectionSpaceClass {
+                aCoder.encode(NSStringFromClass(protectionSpaceClass), forKey: "protectionSpaceClass")
+            }
+        }
+        
+        required init?(coder aDecoder: NSCoder) {
+            self.identifier = aDecoder.decodeObject(forKey: "identifier") as! String
             
-            identifier = try container.decode(String.self, forKey: .identifier)
+            let viewControllerClassString = aDecoder.decodeObject(forKey: "viewControllerClass") as! String
+            self.viewControllerClass = NSClassFromString(viewControllerClassString) as! UIViewController.Type
             
-            let viewControllerClassString = try container.decode(String.self, forKey: .viewControllerClass)
-            viewControllerClass = NSClassFromString(viewControllerClassString) as! UIViewController.Type
-
-            parameters = try container.decodeIfPresent(Data.self, forKey: .parameters)
+            self.parameters = aDecoder.decodeObject(forKey: "parameters") as? [String: Any]
             
-            if let protectionSpaceClassString = try container.decodeIfPresent(String.self, forKey: .viewControllerClass) {
-                protectionSpaceClass = NSClassFromString(protectionSpaceClassString)
+            if let protectionSpaceClassString = aDecoder.decodeObject(forKey: "protectionSpaceClass") as? String {
+                self.protectionSpaceClass = NSClassFromString(protectionSpaceClassString)
             } else {
-                protectionSpaceClass = nil
+                self.protectionSpaceClass = nil
             }
-            
-        }
-        
-        func encode(to encoder: Encoder) throws {
-            var container = encoder.container(keyedBy: CodingKeys.self)
-            
-            try container.encode(identifier, forKey: .identifier)
-            let viewControllerClassString = NSStringFromClass(self.viewControllerClass)
-            try container.encode(viewControllerClassString, forKey: .viewControllerClass)
-            try container.encodeIfPresent(parameters, forKey: .parameters)
-            if let protectionSpaceClass = self.protectionSpaceClass {
-                let protectionSpaceClassString = NSStringFromClass(protectionSpaceClass)
-                try container.encodeIfPresent(protectionSpaceClassString, forKey: .protectionSpaceClass)
-            }
-        }
-        
-        func parametersDictionary() -> [String: Any]? {
-            guard let parameters = parameters else { return nil }
-        
-            let jsonObject = try? JSONSerialization.jsonObject(with: parameters, options: [])
-            
-            return (jsonObject as? [String: Any]) ?? nil
         }
     }
     
@@ -65,15 +53,19 @@ class StateRestoration: UIViewControllerRestoration {
 
     static func viewController(withRestorationIdentifierPath identifierComponents: [Any], coder: NSCoder) -> UIViewController? {
         
+        print("Components: ", identifierComponents)
+        
         guard let identifier = identifierComponents.last as? String else { return nil }
-        guard let storageItem = find(identifier: identifier) else { return nil }
+        guard let storageItem = find(identifier: identifier) else {
+            print("Restoration \(identifier) not found")
+            return nil }
         guard let delegate = UIApplication.shared.delegate as? StateRestorationDelegate else {
             fatalError("App delegate must conform `StateRestorationDelegate`")
         }
         
         var viewController: UIViewController?
         
-        let context = StateRestorationContext(restorationIdentifier: identifier, viewControllerClass: storageItem.viewControllerClass, protectionSpaceClass: storageItem.protectionSpaceClass, parameters: storageItem.parametersDictionary())
+        let context = StateRestorationContext(restorationIdentifier: identifier, viewControllerClass: storageItem.viewControllerClass, protectionSpaceClass: storageItem.protectionSpaceClass, parameters: storageItem.parameters)
         
         let behavior = delegate.application(UIApplication.shared, stateRestorationBehaviorForContext: context)
         switch behavior {
@@ -109,11 +101,7 @@ class StateRestoration: UIViewControllerRestoration {
         if let viewController = viewController as? ResponseAware {
             let response = Response<UIViewController, UIViewController, UIViewController>(fromViewController: nil, toViewController: nil, embeddingViewController: nil)
             
-            if
-                let data = storageItem.parameters,
-                let parameters = try? JSONSerialization.jsonObject(with: data, options: []) {
-                response.parameters = parameters as? [String: Any]
-            }
+            response.parameters = storageItem.parameters
             
             viewController.didReceiveResponse(response)
         }
@@ -122,7 +110,8 @@ class StateRestoration: UIViewControllerRestoration {
     }
     
     static func prepare(_ viewController: UIViewController, identifier: String?, parameters: [String: Any]?, protectionSpace: ProtectionSpace?) {
-        let identifier = UUID().uuidString
+        
+        let identifier = identifier ?? UUID().uuidString
         
         viewController.restorationIdentifier = identifier
         viewController.restorationClass = StateRestoration.self
@@ -133,12 +122,19 @@ class StateRestoration: UIViewControllerRestoration {
             return type(of: protectionSpace)
         }()
 
-        let parametersData: Data? = {
-            guard let parameters = parameters else { return nil }
-            return try? JSONSerialization.data(withJSONObject: parameters, options: [])
-        }()
+        var _parameters: [String: Any]? = [:]
         
-        let storageItem = StorageItem(identifier: identifier, viewControllerClass: type(of: viewController), parameters: parametersData, protectionSpaceClass: protectionSpaceClass)
+        parameters?.forEach({ (object) in
+            if object.value is NSCoding {
+                _parameters?[object.key] = object.value
+            }
+        })
+        
+        if _parameters?.isEmpty == true {
+            _parameters = nil
+        }
+        
+        let storageItem = StorageItem(identifier: identifier, viewControllerClass: type(of: viewController), parameters: _parameters, protectionSpaceClass: protectionSpaceClass)
         
         store(storageItem)
     }
@@ -147,12 +143,15 @@ class StateRestoration: UIViewControllerRestoration {
     private static func find(identifier: String) -> StorageItem? {
         guard let data = UserDefaults.standard.object(forKey: storageIdentifier(for: identifier)) as? Data else { return nil }
         
-        return try? JSONDecoder().decode(StorageItem.self, from: data)
+        let item = NSKeyedUnarchiver.unarchiveObject(with: data) as? StorageItem
+        
+        return item
     }
     
     private static func store(_ storageItem: StorageItem) {
-        let data = try? JSONEncoder().encode(storageItem)
+        let data = NSKeyedArchiver.archivedData(withRootObject: storageItem)
         UserDefaults.standard.set(data, forKey: storageIdentifier(for: storageItem.identifier))
+        
         UserDefaults.standard.synchronize()
     }
     
