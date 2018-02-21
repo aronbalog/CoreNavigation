@@ -19,7 +19,9 @@ extension ViewController {
         @objc func didTouchUpInside(_ button: UIButton) {
             Navigation.present { $0
                 .to(ViewController.Green.self)
+                
                 .withStateRestoration()
+                .hidesBottomBarWhenPushed(true)
                 //                .protect(with: Auth())
             }
         }

@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, StateRestorationDelegate 
     }
     
     func application(_ application: UIApplication, stateRestorationBehaviorForContext context: StateRestorationContext) -> StateRestorationBehavior {
-        return .protect(protectionSpace: Auth(loggedIn: true))
+        return .protect(protectionSpace: Auth(loggedIn: true), onUnprotect: nil, onFailure: nil)
     }
     
     func application(_ application: UIApplication, viewControllerWithRestorationIdentifierPath identifierComponents: [Any], coder: NSCoder) -> UIViewController? {

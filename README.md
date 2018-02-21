@@ -80,16 +80,16 @@ Cocoapods will fetch and integrate CoreNavigation.
 #### Presenting view controller:
 
 ```swift
-Navigation.present { navigate in    
-    navigate.to(MyViewController.self)
+present { $0
+    .to(MyViewController())
 }
 ```
 
 #### Pushing view controller:
 
 ```swift
-Navigation.push { navigate in    
-    navigate.to(MyViewController.self)
+push { $0
+    .to(MyViewController())
 }
 ```
 
@@ -107,32 +107,33 @@ Navigation.push { navigate in
 
 
 ```swift
-Navigation.present { navigate in    
-    navigate
-        .to(MyViewController.self)
-        .animated(false)
-        .completion {
-            // transition completion    
-        }   
-        .protect(with: UserAuth())
-        .embed(in: UINavigationController.self)
-        .withStateRestoration()
-        .pass(parameters: [
-            "name": "john doe"
-        ])        
-        .viewControllerEvents({ (events, viewController) in
-            events.viewDidLoad {
-                // view did load
-            }
-        })
-        .onSuccess({ (response) in
-            // response.parameters?["name"] -> "john doe"
-            // response.toViewController -> MyViewController.self
-            // response.embeddingViewController -> UINavigationController.self
-        })
-        .onFailure({ (error) in
-            // handle error
-        })
+present { $0
+    .to(MyViewController.self)
+    .animated(false)
+    .transitioningDelegate(MyTransitioningDelegate())
+    .hidesBottomBarWhenPushed(true)
+    .completion {
+        // transition completion    
+    }   
+    .protect(with: UserAuth())
+    .embed(in: UINavigationController.self)
+    .withStateRestoration()
+    .pass(parameters: [
+        "name": "john doe"
+    ])        
+    .viewControllerEvents({ (events, viewController) in
+        events.viewDidLoad {
+            // view did load
+        }
+    })
+    .onSuccess({ (response) in
+        // response.parameters?["name"] -> "john doe"
+        // response.toViewController -> MyViewController.self
+        // response.embeddingViewController -> UINavigationController.self
+    })
+    .onFailure({ (error) in
+        // handle error
+    })
 }
 ```
 
@@ -169,7 +170,7 @@ Available in `CoreNavigationTests` target.
 
 Current release:
 
-- 0.3.0
+- 0.4.0
 
 ## Roadmap 🛣
 

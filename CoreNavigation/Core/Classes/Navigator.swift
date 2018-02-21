@@ -39,7 +39,7 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
             case .response:
                 return self.response()
             }
-        }() else { return nil }
+            }() else { return nil }
         
         configuration.result.successBlocks.forEach { (block) in
             block(response)
@@ -93,7 +93,7 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
             else {
                 return nil
         }
-   
+        
         var _response: NavigationResponse?
         
         func action(destinationViewController: UIViewController) {
@@ -137,6 +137,10 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
         
         fromViewController?.transitioningDelegate = transitioningDelegate
         
+        if let hidesBottomBarWhenPushed = configuration.transition.hidesBottomBarWhenPushed {
+            toViewController.hidesBottomBarWhenPushed = hidesBottomBarWhenPushed
+        }
+        
         switch configuration.stateRestoration.option {
         case .automatically:
             StateRestoration.prepare(toViewController, identifier: nil, parameters: response.parameters, protectionSpace: configuration.protection.protectionSpace)
@@ -151,7 +155,7 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
         default:
             ()
         }
-
+        
         if perform {
             cache(viewController: toViewController)
             bindEvents(to: toViewController)
@@ -170,7 +174,7 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
         guard let toViewController = getToViewController({ (toViewController) in
             if let toViewController = toViewController {
                 _response = self.response(fromViewController: nil, toViewController: toViewController, perform: true, releaseDestination: false, action: { _ in
-
+                    
                 }, completion: { _ in
                     
                 })
@@ -184,16 +188,16 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
         }
         
         return self.response(fromViewController: nil, toViewController: toViewController, perform: true, releaseDestination: false, action: { destinationViewController in
-
+            
         }, completion: { _ in
-        
+            
         })
     }
     
     private var fromViewController: UIViewController? {
         return
             (configuration.origin.fromViewController as? FromViewController) ??
-            UIViewController.currentViewController
+                UIViewController.currentViewController
     }
     private func getToViewController(_ toViewControllerBlock: @escaping (ToViewController?) -> Void) -> ToViewController? {
         var cachedViewController: ToViewController? {
@@ -220,45 +224,47 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
         
         #if ROUTING
             func _route(to route: AbstractRoute, in router: Router) -> ToViewController? {
-            let request = Request<String, Any?>(route: route.routePath)
-            
-            var _toViewController: ToViewController?
-            
-            router.request(request)
-                .onSuccess({ (response) in
-                    if let destination = response.destination as? ToViewController {
-                        _toViewController = destination
-                    } else if let destination = response.destination as? ToViewController.Type {
-                        _toViewController = destination.init(nibName: nil, bundle: nil)
-                    }
-                    
-                    if let parameters = response.parameters {
-                        self.configuration.data.value.merge(parameters, uniquingKeysWith: { (oldValue, newValue) -> Any in
-                            newValue
-                        })
-                    }
-                    
-                    if let parameters = (route as? ParametersAware)?.parameters {
-                        self.configuration.data.value.merge(parameters, uniquingKeysWith: { (oldValue, newValue) -> Any in
-                            newValue
-                        })
-                    }
-                    
-                    toViewControllerBlock(_toViewController)
-                })
-                .execute()
-            
-            return _toViewController
-        }
+                
+                var _toViewController: ToViewController?
+                
+                if let parameters = (route as? ParametersAware)?.parameters {
+                    self.configuration.data.value.merge(parameters, uniquingKeysWith: { (oldValue, newValue) -> Any in
+                        newValue
+                    })
+                }
+                
+                let request = Request<String, Any?>(route: route.routePath, parameters: self.configuration.data.value)
+                
+                router.request(request)
+                    .onSuccess({ (response) in
+                        if let destination = response.destination as? ToViewController {
+                            _toViewController = destination
+                        } else if let destination = response.destination as? ToViewController.Type {
+                            _toViewController = destination.init(nibName: nil, bundle: nil)
+                        }
+                        
+                        if let parameters = response.parameters {
+                            self.configuration.data.value.merge(parameters, uniquingKeysWith: { (oldValue, newValue) -> Any in
+                                newValue
+                            })
+                        }
+                        
+                        
+                        toViewControllerBlock(_toViewController)
+                    })
+                    .execute()
+                
+                return _toViewController
+            }
         #endif
         
         guard let viewController = cachedViewController ?? toViewController else {
             #if ROUTING
-            if let (route, router) = target as? (AbstractRoute, Router) {
-                if let _toViewController = _route(to: route, in: router) {
-                    return _toViewController
+                if let (route, router) = target as? (AbstractRoute, Router) {
+                    if let _toViewController = _route(to: route, in: router) {
+                        return _toViewController
+                    }
                 }
-            }
             #endif
             
             return nil
@@ -278,7 +284,7 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
         
         if let embeddingViewController = embeddingViewController {
             passResponse(response, to: embeddingViewController)
-
+            
             switch configuration.stateRestoration.option {
             case .automatically:
                 StateRestoration.prepare(embeddingViewController, identifier: nil, parameters: nil, protectionSpace: nil)
@@ -323,3 +329,4 @@ class Navigator<FromViewController: UIViewController, ToViewController: UIViewCo
         }
     }
 }
+

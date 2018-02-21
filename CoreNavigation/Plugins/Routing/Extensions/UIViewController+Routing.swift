@@ -3,7 +3,7 @@ import UIKit
 import CoreRoute
 
 public extension UIViewController {
-    static func from<R: Route>(route: R) -> UIViewController? {
+    public static func from<R: AbstractRoute>(route: R) -> UIViewController? {
         var response: Response<UIViewController, UIViewController, UIViewController>?
         
         response = Navigation.response({ $0
@@ -14,6 +14,5 @@ public extension UIViewController {
         return response?.toViewController
     }
 }
-
+    
 #endif
-

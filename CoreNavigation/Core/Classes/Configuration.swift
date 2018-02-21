@@ -43,6 +43,7 @@ public struct Configuration {
             var animated: Bool?
             var completionBlocks: [(() -> Void)] = []
             var viewControllerTransitioningDelegate: UIViewControllerTransitioningDelegate?
+            var hidesBottomBarWhenPushed: Bool?
         }
         class Result {
             var successBlocks: [ResponseSuccessBlock<FromViewController, ToViewController, EmbeddingViewController>] = []

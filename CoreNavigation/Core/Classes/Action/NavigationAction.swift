@@ -42,4 +42,11 @@ public class NavigationAction<FromViewController: UIViewController, ToViewContro
         
         return self
     }
+    
+    @discardableResult public func hidesBottomBarWhenPushed(_ hidesBottomBarWhenPushed: Bool) -> Self {
+        configuration.transition.hidesBottomBarWhenPushed = hidesBottomBarWhenPushed
+        
+        return self
+    }
+    
 }

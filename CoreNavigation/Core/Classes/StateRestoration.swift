@@ -75,16 +75,18 @@ class StateRestoration: UIViewControllerRestoration {
             viewController = action(storageItem: storageItem)
             
             return viewController
-        case .protect(let protectionSpace):
+        case .protect(let protectionSpace, let onUnprotect, let onFailure):
             if protectionSpace.shouldProtect(unprotect: {
                 viewController = action(storageItem: storageItem)
                 
                 if let viewController = viewController {
                     context.unprotectSuccess?(viewController)
+                    onUnprotect?(viewController)
                 }
             }, failure: { (error) in
                 viewController = nil
                 context.unprotectFailure?(error)
+                onFailure?(error)
             }) == false {
                 viewController = action(storageItem: storageItem)
             }

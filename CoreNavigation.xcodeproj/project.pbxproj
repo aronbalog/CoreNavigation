@@ -58,6 +58,12 @@
 		3865B9901FEEA69B00C3182E /* ViewControllerEmbedding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E4584A1FAD0F5600134E74 /* ViewControllerEmbedding.swift */; };
 		3865B9911FEEA6A400C3182E /* NavigationConfiguration+Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383BE4E51FCBA91200C17AE3 /* NavigationConfiguration+Routing.swift */; };
 		3865B9921FEEA6A400C3182E /* Router+SharedInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381C01141FCCCCC700CA7531 /* Router+SharedInstance.swift */; };
+		386EE1F8202924990005AFBB /* Route+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386EE1F7202924990005AFBB /* Route+ViewController.swift */; };
+		386EE1F9202924990005AFBB /* Route+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386EE1F7202924990005AFBB /* Route+ViewController.swift */; };
+		386EE1FB20292A140005AFBB /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386EE1FA20292A140005AFBB /* Global.swift */; };
+		386EE1FC20292A140005AFBB /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386EE1FA20292A140005AFBB /* Global.swift */; };
+		386EE1FE202938D80005AFBB /* Route+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386EE1FD202938D80005AFBB /* Route+Registration.swift */; };
+		386EE1FF202938D80005AFBB /* Route+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386EE1FD202938D80005AFBB /* Route+Registration.swift */; };
 		38814B02200EA3C900480711 /* ViewController_Purple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38814B01200EA3C900480711 /* ViewController_Purple.swift */; };
 		38814B04200EBA0A00480711 /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38814B03200EBA0A00480711 /* Auth.swift */; };
 		38C518B21FE5E2A600581709 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C518B11FE5E2A600581709 /* AppDelegate.swift */; };
@@ -135,6 +141,9 @@
 		385718651FBDB33C0050810F /* UINavigationController+ViewControllerEmbedding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+ViewControllerEmbedding.swift"; sourceTree = "<group>"; };
 		385B9CCE1FEC5A06001306EC /* DataPassable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPassable.swift; sourceTree = "<group>"; };
 		3865B9731FEE959700C3182E /* ResponseAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseAware.swift; sourceTree = "<group>"; };
+		386EE1F7202924990005AFBB /* Route+ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Route+ViewController.swift"; sourceTree = "<group>"; };
+		386EE1FA20292A140005AFBB /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		386EE1FD202938D80005AFBB /* Route+Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Route+Registration.swift"; sourceTree = "<group>"; };
 		38814B01200EA3C900480711 /* ViewController_Purple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController_Purple.swift; sourceTree = "<group>"; };
 		38814B03200EBA0A00480711 /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		38C518AF1FE5E2A500581709 /* CoreNavigationExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreNavigationExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -262,6 +271,8 @@
 				383BE4E51FCBA91200C17AE3 /* NavigationConfiguration+Routing.swift */,
 				381C01141FCCCCC700CA7531 /* Router+SharedInstance.swift */,
 				38D8232620228CD3003FA799 /* UIViewController+Routing.swift */,
+				386EE1F7202924990005AFBB /* Route+ViewController.swift */,
+				386EE1FD202938D80005AFBB /* Route+Registration.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -427,6 +438,7 @@
 				383BE4D21FCB4E7D00C17AE3 /* ObjectAssociation.swift */,
 				3808A415200C2D63006FD933 /* StateRestoration.swift */,
 				380E0C5520143358006E3F4B /* StateRestorationContext.swift */,
+				386EE1FA20292A140005AFBB /* Global.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -804,6 +816,7 @@
 				3865B97A1FEEA68B00C3182E /* NavigationAction.swift in Sources */,
 				38C518D21FE5E70400581709 /* ViewController_Orange.swift in Sources */,
 				3865B97C1FEEA68B00C3182E /* Navigator.swift in Sources */,
+				386EE1FC20292A140005AFBB /* Global.swift in Sources */,
 				38E890572002CD98006C1C67 /* ViewController_Green.swift in Sources */,
 				38C518B41FE5E2A600581709 /* ViewController.swift in Sources */,
 				38C518D01FE5E2E700581709 /* ViewController_Yellow.swift in Sources */,
@@ -815,6 +828,7 @@
 				3865B98A1FEEA69B00C3182E /* Protectable.swift in Sources */,
 				3865B98D1FEEA69B00C3182E /* Transitionable.swift in Sources */,
 				3865B98B1FEEA69B00C3182E /* Lifetime.swift in Sources */,
+				386EE1FF202938D80005AFBB /* Route+Registration.swift in Sources */,
 				3865B9821FEEA68B00C3182E /* ObjectAssociation.swift in Sources */,
 				3865B98E1FEEA69B00C3182E /* ViewControllerEventable.swift in Sources */,
 				38E890552002CAF3006C1C67 /* ProtectionSpace.swift in Sources */,
@@ -824,6 +838,7 @@
 				38C518D71FE5E74400581709 /* Route_Orange.swift in Sources */,
 				3865B97F1FEEA68B00C3182E /* Configuration.swift in Sources */,
 				3865B9811FEEA68B00C3182E /* ViewControllerEvents.swift in Sources */,
+				386EE1F9202924990005AFBB /* Route+ViewController.swift in Sources */,
 				380E0C5720143358006E3F4B /* StateRestorationContext.swift in Sources */,
 				38814B02200EA3C900480711 /* ViewController_Purple.swift in Sources */,
 				3865B9901FEEA69B00C3182E /* ViewControllerEmbedding.swift in Sources */,
@@ -872,9 +887,11 @@
 				38D8232720228CD3003FA799 /* UIViewController+Routing.swift in Sources */,
 				38F34B021FCB0D8C000F2696 /* UIViewController+VisibleViewController.swift in Sources */,
 				383BE4C71FCB4BB100C17AE3 /* Transitionable.swift in Sources */,
+				386EE1F8202924990005AFBB /* Route+ViewController.swift in Sources */,
 				38392DB01FBCF66D00040EA8 /* Navigator.swift in Sources */,
 				38CBD2E31FE71A9500D495CE /* Protectable.swift in Sources */,
 				3808A416200C2D63006FD933 /* StateRestoration.swift in Sources */,
+				386EE1FB20292A140005AFBB /* Global.swift in Sources */,
 				383BE4D71FCB579500C17AE3 /* UIApplication+RunOnce.swift in Sources */,
 				383BE4D11FCB4E6900C17AE3 /* UIViewController+Events.swift in Sources */,
 				38E4584B1FAD0F5600134E74 /* ViewControllerEmbedding.swift in Sources */,
@@ -892,6 +909,7 @@
 				383BE4CB1FCB4BE600C17AE3 /* Eventable.swift in Sources */,
 				383BE4D31FCB4E7D00C17AE3 /* ObjectAssociation.swift in Sources */,
 				383BE4E61FCBA91200C17AE3 /* NavigationConfiguration+Routing.swift in Sources */,
+				386EE1FE202938D80005AFBB /* Route+Registration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

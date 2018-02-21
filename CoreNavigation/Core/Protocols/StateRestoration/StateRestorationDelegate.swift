@@ -3,7 +3,7 @@ import UIKit
 public enum StateRestorationBehavior {
     case allow
     case reject
-    case protect(protectionSpace: ProtectionSpace)
+    case protect(protectionSpace: ProtectionSpace, onUnprotect: StateRestorationContext.UnprotectSuccess?, onFailure: StateRestorationContext.UnprotectFailure?)
 }
 
 public protocol StateRestorationDelegate {

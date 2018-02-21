@@ -49,13 +49,12 @@ Passing and receiving data between view controllers can be easily achieved.
 #### Sending parameters
 
 ```swift
-Navigation.present { (navigate) in    
-    navigate
-        .to(MyViewController.self)
-        .pass(parameters: [
-            "firstName": "john",
-            "lastName": "doe"
-        ])
+present { $0
+    .to(MyViewController.self)
+    .pass(parameters: [
+        "firstName": "john",
+        "lastName": "doe"
+    ])
 }
 ```
 
@@ -81,14 +80,13 @@ CoreNavigation provides API wrapper around:
 #### Full example
 
 ```swift
-Navigation.present { (navigate) in    
-    navigate
-        .to(MyViewController.self)
-        .animated(false)
-        .transitioningDelegate(transitioningDelegate)
-        .completion {
-                    
-        }
+present { $0
+    .to(MyViewController.self)
+    .animated(false)
+    .transitioningDelegate(transitioningDelegate)
+    .completion {
+                
+    }
 }
 ```
 
@@ -144,7 +142,7 @@ This block has no return value and takes no parameters.
 
 >  Note:
 >
-> Although `pushViewController(UIViewController, animated: Bool)` method does not have `completion` argument, **CoreNavigation** has its own implementation to achive this.
+> Although `pushViewController(UIViewController, animated: Bool)` method does not have `completion` argument, **CoreNavigation** has its own implementation to achieve this.
 
 
 ## View controller events 🎯
@@ -369,7 +367,7 @@ CoreNavigation interacts with iOS state restoration engine and provides solution
             // check if restoration is heading to some protected view controller
 
             if context.identifier == "my-account" {
-                return .protect(protectionSpace: Auth())
+                return .protect(protectionSpace: Auth(), onUnprotect: nil, onFailure: nil)
             }            
             
             context.onUnprotect { (viewController: UIViewController) in
@@ -424,7 +422,7 @@ There is one method that has to be implemented:
     | :------------------------------------------ | :---------- |
     | `allow`                                     | State restoration should be processed. | 
     | `reject`                                    | State restoration should NOT be processed. |
-    | `protect(protectionSpace: ProtectionSpace)` | State restoration should be protected with an object conforming `ProtectionSpace`. Unprotection block from this object must be called on same thread to support state restoration because state restoration engine needs view controller immediately to be able to restore it.<br><br>If you want to handle a case asynchronously, you can use `onUnprotect` handler in `StateRestorationContext` where you will be provided with view controller instance. Use it as you wish. |
+    | `protect(protectionSpace: ProtectionSpace, onUnprotect: StateRestorationContext.UnprotectSuccess?, onFailure: StateRestorationContext.UnprotectFailure?)` | State restoration should be protected with an object conforming `ProtectionSpace`. Unprotection block from this object must be called on same thread to support state restoration because state restoration engine needs view controller immediately to be able to restore it.<br><br>If you want to handle a case asynchronously, you can use `onUnprotect` handler in `StateRestorationContext` where you will be provided with view controller instance. Use it as you wish. |
     
     
     Method will receive `StateRestorationContext` object (used for meta purposes) which has following properties:
