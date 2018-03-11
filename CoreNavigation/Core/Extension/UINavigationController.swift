@@ -17,17 +17,23 @@ extension UINavigationController {
         }
     }
     
-    func pushViewController(_ viewController: UIViewController, animated: Bool, _ completion: @escaping (() -> Void)) {
+    func pushViewController(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
         pushViewController(viewController, animated: animated)
         doAfterAnimatingTransition(animated: animated, completion: completion)
     }
     
-    func popViewController(animated: Bool, _ completion: @escaping (() -> Void)) {
+    func popViewController(animated: Bool, completion: (() -> Void)?) {
         popViewController(animated: animated)
         doAfterAnimatingTransition(animated: animated, completion: completion)
     }
     
-    func popToRootViewController(animated: Bool, _ completion: @escaping (() -> Void)) {
+    func popToViewController(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
+        popToViewController(viewController, animated: animated)
+        doAfterAnimatingTransition(animated: animated, completion: completion)
+    }
+
+    
+    func popToRootViewController(animated: Bool, completion: (() -> Void)?) {
         popToRootViewController(animated: animated)
         doAfterAnimatingTransition(animated: animated, completion: completion)
     }

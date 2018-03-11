@@ -1,7 +1,7 @@
 import Foundation
 
 extension Navigator {
-    static func present<T>(_ viewController: UIViewController, with configuration: Configuration<T>)  {
+    static func present<T>(_ viewController: UIViewController, with configuration: Configuration<T>, completion: @escaping () -> Void)  {
         let animated = configuration.transition.animated
         
         DispatchQueue.main.async {
@@ -10,6 +10,7 @@ extension Navigator {
 
             fromViewController?.present(viewController, animated: animated, completion: {
                 completionBlocks.forEach { $0() }
+                completion()
             })
         }
     }

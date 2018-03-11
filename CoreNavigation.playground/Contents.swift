@@ -13,10 +13,9 @@ class MyVC: UIViewController {
 
 PlaygroundPage.current.liveView = UINavigationController(rootViewController: UIViewController())
 
-
 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-    Navigation.push { $0
-        .to(MyVC())
+    Navigation.present { $0
+        .to(UINavigationController(rootViewController: MyVC()))
         .animated(true)
         .completion {
             print("Completed!")
@@ -24,6 +23,20 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
         .completion {
             print("Completed 2!")
         }
+    }.present { $0
+            .to(UINavigationController(rootViewController: MyVC()))
+            .animated(true)
+            .completion {
+                print("Completed!")
+            }
+            .completion {
+                print("Completed 2!")
+            }
     }
+    
+    
 }
 
+DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+    Navigation.history.back(animated: true, steps: 2)
+}
