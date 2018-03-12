@@ -1,6 +1,6 @@
 import Foundation
 
-public class Result<T1: UIViewController>: Resultable {
+public class Result<T1: UIViewController, T2>: Resultable {
     public typealias ToViewController = T1
-    
+    public typealias ParameterType = T2
 }

@@ -7,17 +7,12 @@ extension Navigator {
         DispatchQueue.main.async {
             let fromViewController = UIViewController.currentViewController
             let completionBlocks = configuration.transitioning.completionBlocks
-
-            let viewControllerToPresent: UIViewController = {
-                guard let embeddingType = configuration.embedding.embeddingType else { return viewController }
-                
-                switch embeddingType {
-                case .embeddingProtocol(let aProtocol):
-                    return aProtocol.embed(viewController)
-                case .navigationController:
-                    return UINavigationController(rootViewController: viewController)
-                }
-            }()
+            
+            configuration.willNavigateBlocks.forEach({ (block) in
+                block(viewController)
+            })
+            
+            let viewControllerToPresent = self.viewControllerToPresent(viewController, with: configuration)
             
             let item = History.Item(viewController: viewControllerToPresent,
                                     navigationType: .present,
@@ -28,6 +23,19 @@ extension Navigator {
                 completionBlocks.forEach { $0() }
                 completion()
             })
+        }
+    }
+    
+    private static func viewControllerToPresent<T>(_ viewController: UIViewController, with configuration: Configuration<T>) -> UIViewController {
+        guard let embeddingType = configuration.embedding.embeddingType else {
+            return viewController
+        }
+        
+        switch embeddingType {
+        case .embeddingProtocol(let aProtocol):
+            return aProtocol.embed(viewController)
+        case .navigationController:
+            return UINavigationController(rootViewController: viewController)
         }
     }
 }

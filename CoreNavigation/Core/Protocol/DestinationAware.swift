@@ -1,6 +1,6 @@
 import Foundation
 
 public protocol DestinationAware {
-    func to<T: UIViewController>(_ destination: T) -> Configuration<Result<T>>
-    func to<T: UIViewController>(_ destination: T.Type) -> Configuration<Result<T>>
+    func to<T1: UIViewController>(_ destination: T1) -> Configuration<Result<T1, Any>>
+    func to<T1: UIViewController>(_ destination: T1.Type) -> Configuration<Result<T1, Any>>
 }

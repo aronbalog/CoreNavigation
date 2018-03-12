@@ -16,6 +16,14 @@ class MyVC: UIViewController {
     }
 }
 
+class OtherVC: UIViewController, ParametersAware {
+    typealias ParametersType = String
+    
+    func didReceiveParameters(_ parameters: String) {
+        print("Parameters!", parameters)
+    }
+}
+
 
 class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
@@ -41,12 +49,14 @@ class ViewController: UIViewController {
                     .to(MyVC())
                     .animated(false)
                 }.present { $0
-                    .to(MyVC())
+                    .to(OtherVC())
                     .embedInNavigationController()
                     .animated(false)
+                    .pass("Hello!")
                 }.push { $0
-                    .to(MyVC())
+                    .to(OtherVC())
                     .animated(false)
+                    .pass("Hello!")
                 }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

@@ -10,18 +10,27 @@ public class To<ResultableType: Resultable>: DestinationAware {
         self.navigationType = navigationType
     }
     
-    @discardableResult public func to<T>(_ destination: T) -> Configuration<Result<T>> where T : UIViewController {
+    @discardableResult public func to<T1>(_ destination: T1) -> Configuration<Result<T1, Any>> where T1 : UIViewController {
         let viewController = destination
-        let configuration = Configuration<Result<T>>(destination: .viewController(viewController))
+        let configuration = Configuration<Result<T1, Any>>(destination: .viewController(viewController))
         
         navigate(with: configuration)
         
         return configuration
     }
     
-    @discardableResult public func to<T>(_ destination: T.Type) -> Configuration<Result<T>> where T : UIViewController {
+    @discardableResult public func to<T1: ParametersAware>(_ destination: T1) -> Configuration<Result<T1, T1.ParametersType>> {
+        let viewController = destination
+        let configuration = Configuration<Result<T1, T1.ParametersType>>(destination: .viewController(viewController))
+        
+        navigate(with: configuration)
+        
+        return configuration
+    }
+    
+    @discardableResult public func to<T1>(_ destination: T1.Type) -> Configuration<Result<T1, Any>> where T1 : UIViewController {
         let viewController = destination.init(nibName: nil, bundle: nil)
-        let configuration = Configuration<Result<T>>(destination: .viewController(viewController))
+        let configuration = Configuration<Result<T1, Any>>(destination: .viewController(viewController))
         
         navigate(with: configuration)
         
