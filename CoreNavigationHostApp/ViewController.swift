@@ -24,29 +24,32 @@ class ViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             Navigation
                 .present { $0
-                    .to(UINavigationController(rootViewController: MyVC()))
-                    .animated(true)
+                    .to(MyVC())
+                    .embedInNavigationController()
+                    .animated(false)
                 }.present { $0
-                    .to(UINavigationController(rootViewController: MyVC()))
-                    .animated(true)
+                    .to(MyVC())
+                    .embedInNavigationController()
+                    .animated(false)
                 }.push { $0
                     .to(MyVC())
-                    .animated(true)
+                    .animated(false)
                 }.push { $0
                     .to(MyVC())
-                    .animated(true)
+                    .animated(false)
                 }.push { $0
                     .to(MyVC())
-                    .animated(true)
+                    .animated(false)
                 }.present { $0
-                    .to(UINavigationController(rootViewController: MyVC()))
-                    .animated(true)
+                    .to(MyVC())
+                    .embedInNavigationController()
+                    .animated(false)
                 }.push { $0
                     .to(MyVC())
-                    .animated(true)
+                    .animated(false)
                 }
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 Navigation.history.back(animated: true, steps: 6)
             }
         }

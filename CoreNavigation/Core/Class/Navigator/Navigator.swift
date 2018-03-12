@@ -13,11 +13,6 @@ class Navigator {
         let operation = NavigationOperation(block: { handler in
             switch configuration.destination {
             case .viewController(let viewController):
-                let item = History.Item(viewController: viewController,
-                                        navigationType: type,
-                                        configuration: configuration)
-                History.shared.add(item)
-                
                 switch type {
                 case .push:
                     push(viewController, with: configuration, completion: {

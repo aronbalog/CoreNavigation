@@ -1,14 +1,9 @@
 import Foundation
 
-public protocol TransitionAware: class {
-    var animated: Bool { get set }
-    var completionBlocks: [() -> Void] { get set }
-}
-
 public protocol Transitionable: class {
-    associatedtype Transition: TransitionAware
+    associatedtype Transitioning: TransitioningAware
     
-    var transition: Transition { get set }
+    var transitioning: Transitioning { get set }
     
     @discardableResult func animated(_ animated: Bool) -> Self
     @discardableResult func completion(_ completion: @escaping () -> Void) -> Self
@@ -16,13 +11,13 @@ public protocol Transitionable: class {
 
 extension Transitionable {
     @discardableResult public func animated(_ animated: Bool) -> Self {
-        transition.animated = animated
+        transitioning.animated = animated
         
         return self
     }
     
     @discardableResult public func completion(_ completion: @escaping () -> Void) -> Self {
-        transition.completionBlocks.append(completion)
+        transitioning.completionBlocks.append(completion)
         
         return self
     }
