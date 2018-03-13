@@ -8,10 +8,14 @@ extension Navigator {
             let navigationController = UIViewController.currentViewController?.navigationController
             let completionBlocks = configuration.transitioning.completionBlocks
             
-            let item = History.Item(viewController: viewController,
-                                    navigationType: .push,
-                                    configuration: configuration)
-            History.shared.add(item)
+            configuration.willNavigateBlocks.forEach({ (block) in
+                block(viewController)
+            })
+//            
+//            let item = History.Item(viewController: viewController,
+//                                    navigationType: .push,
+//                                    configuration: configuration)
+//            History.shared.add(item)
             
             navigationController?.pushViewController(viewController, animated: animated, completion: {
                 completionBlocks.forEach { $0() }

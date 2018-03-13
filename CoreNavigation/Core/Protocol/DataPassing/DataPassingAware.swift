@@ -1,5 +1,5 @@
 import Foundation
 
 public protocol DataPassingAware {
-    var parameters: Any? { get }
+    var data: Any? { get set }
 }

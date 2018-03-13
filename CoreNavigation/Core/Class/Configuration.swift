@@ -25,18 +25,20 @@ public final class Configuration<ResultableType: Resultable>: ConfigurationConfo
     }
     
     public class DataPassing: DataPassingAware {
-        public var parameters: Any?
+        public var data: Any?
     }
 }
 
-extension Configuration where ResultableType.ToViewController: ParametersAware {
-    @discardableResult public func pass(_ parameters: ResultableType.ToViewController.ParametersType) -> Configuration<Result<ResultableType.ToViewController, ResultableType.ToViewController.ParametersType>> {
-        dataPassing.parameters = parameters
-        
-        willNavigateBlocks.append { (viewController) in
-            (viewController as! ResultableType.ToViewController).didReceiveParameters(parameters)
+extension Configuration where ResultableType.ToViewController: DataReceivable {
+    @discardableResult public func pass(_ parameters: ResultableType.ToViewController.DataType) -> Configuration<Result<ResultableType.ToViewController, ResultableType.ToViewController.DataType>> {
+        if dataPassing.data == nil {
+            dataPassing.data = parameters
         }
         
-        return cast(self, to: Configuration<Result<ResultableType.ToViewController, ResultableType.ToViewController.ParametersType>>.self)
+        willNavigateBlocks.append { (viewController) in
+            (viewController as! ResultableType.ToViewController).didReceiveData(self.dataPassing.data as! ResultableType.ToViewController.DataType)
+        }
+        
+        return cast(self, to: Configuration<Result<ResultableType.ToViewController, ResultableType.ToViewController.DataType>>.self)
     }
 }

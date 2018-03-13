@@ -7,7 +7,7 @@ class MyVC: UIViewController {
     @objc func closeVC() {
         dismiss(animated: true, completion: nil)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -16,52 +16,96 @@ class MyVC: UIViewController {
     }
 }
 
-class OtherVC: UIViewController, ParametersAware {
+class OtherVC: MyVC, DataReceivable {
+    func didReceiveData(_ data: String) {
+        print("Data!", data)
+    }
+    
     typealias ParametersType = String
     
-    func didReceiveParameters(_ parameters: String) {
-        print("Parameters!", parameters)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .purple
     }
 }
 
+struct MyRoute: Route {
+    typealias Destination = OtherVC
+    
+    init() {}
+    
+    func route(handler: RouteHandler<MyRoute>) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            handler.complete(data: "hello")
+        }
+    }
+}
 
 class ViewController: UIViewController {
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             Navigation
-                .present { $0
-                    .to(MyVC())
-                    .embedInNavigationController()
-                    .animated(false)
-                }.present { $0
-                    .to(MyVC())
-                    .embedInNavigationController()
-                    .animated(false)
-                }.push { $0
-                    .to(MyVC())
-                    .animated(false)
-                }.push { $0
-                    .to(MyVC())
-                    .animated(false)
-                }.push { $0
-                    .to(MyVC())
-                    .animated(false)
-                }.present { $0
-                    .to(OtherVC())
-                    .embedInNavigationController()
-                    .animated(false)
-                    .pass("Hello!")
-                }.push { $0
-                    .to(OtherVC())
-                    .animated(false)
-                    .pass("Hello!")
-                }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                Navigation.history.back(animated: true, steps: 6)
+            .present { $0
+                .to(MyRoute())
+                .animated(false)
+                .pass("Hello 2!")
+                .embedInNavigationController()
+                .completion({
+                    print("Completed!")
+                })
+            }
+            .present { $0
+                .to(MyVC())
+                .embedInNavigationController()
+                .animated(false)
+            }
+            .present { $0
+                .to(MyRoute())
+                .animated(false)
+                .pass("Hello 2!")
+                .embedInNavigationController()
+                .completion({
+                    print("Completed!")
+                })
+            }
+            .present { $0
+                .to(MyVC())
+                .embedInNavigationController()
+                .animated(false)
             }
         }
+                    /*
+         
+         
+                .push { $0
+                    .to(MyVC())
+                    .animated(true)
+                }
+                .push { $0
+                    .to(MyVC())
+                    .animated(true)
+                }
+                .push { $0
+                    .to(OtherVC())
+                    .animated(true)
+                    .pass(1)
+                }
+                .present { $0
+                    .to(OtherVC())
+                    .embedInNavigationController()
+                    .animated(true)
+                    .pass(2)
+                }
+                .push { $0
+                    .to(MyRoute())
+                    .animated(true)
+                    .pass("Hello 2!")
+                    .completion({
+                        print("Completed!")
+                    })
+                     */
     }
 }

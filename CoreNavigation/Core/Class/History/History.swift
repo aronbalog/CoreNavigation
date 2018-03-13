@@ -8,7 +8,6 @@ public class History {
     private init() {}
     
     public func add(_ historyItem: HistoryItem) {
-        print("Added history item")
         items.append(historyItem)
     }
     

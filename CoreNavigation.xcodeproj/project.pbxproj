@@ -36,9 +36,10 @@
 		3881752320560F2C0054CFBB /* EmbeddingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3881752220560F2C0054CFBB /* EmbeddingProtocol.swift */; };
 		3881752520560F390054CFBB /* EmbeddingAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3881752420560F390054CFBB /* EmbeddingAware.swift */; };
 		3881752720560FB80054CFBB /* TransitioningAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3881752620560FB80054CFBB /* TransitioningAware.swift */; };
-		3881752A205612140054CFBB /* DataPassable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38817529205612140054CFBB /* DataPassable.swift */; };
 		38817577205710530054CFBB /* DataPassingAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38817576205710530054CFBB /* DataPassingAware.swift */; };
-		38817579205712990054CFBB /* ParametersAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38817578205712990054CFBB /* ParametersAware.swift */; };
+		38817579205712990054CFBB /* DataReceivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38817578205712990054CFBB /* DataReceivable.swift */; };
+		3881757D20573CCC0054CFBB /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3881757C20573CCC0054CFBB /* Route.swift */; };
+		388C73172059C7A400C11EEB /* DataPassable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38817529205612140054CFBB /* DataPassable.swift */; };
 		38D5B387204A354A005A15BC /* CoreNavigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D5B37D204A354A005A15BC /* CoreNavigation.framework */; };
 		38D5B38E204A354B005A15BC /* CoreNavigation.h in Headers */ = {isa = PBXBuildFile; fileRef = 38D5B380204A354A005A15BC /* CoreNavigation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		38D5B399204A3567005A15BC /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5B398204A3567005A15BC /* Global.swift */; };
@@ -102,7 +103,8 @@
 		3881752620560FB80054CFBB /* TransitioningAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitioningAware.swift; sourceTree = "<group>"; };
 		38817529205612140054CFBB /* DataPassable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPassable.swift; sourceTree = "<group>"; };
 		38817576205710530054CFBB /* DataPassingAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPassingAware.swift; sourceTree = "<group>"; };
-		38817578205712990054CFBB /* ParametersAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParametersAware.swift; sourceTree = "<group>"; };
+		38817578205712990054CFBB /* DataReceivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReceivable.swift; sourceTree = "<group>"; };
+		3881757C20573CCC0054CFBB /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		38D5B37D204A354A005A15BC /* CoreNavigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreNavigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38D5B380204A354A005A15BC /* CoreNavigation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreNavigation.h; sourceTree = "<group>"; };
 		38D5B381204A354A005A15BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -251,9 +253,25 @@
 			children = (
 				38817529205612140054CFBB /* DataPassable.swift */,
 				38817576205710530054CFBB /* DataPassingAware.swift */,
-				38817578205712990054CFBB /* ParametersAware.swift */,
+				38817578205712990054CFBB /* DataReceivable.swift */,
 			);
 			path = DataPassing;
+			sourceTree = "<group>";
+		};
+		3881757A20573CAC0054CFBB /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				3881757B20573CC60054CFBB /* Protocol */,
+			);
+			path = Routing;
+			sourceTree = "<group>";
+		};
+		3881757B20573CC60054CFBB /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				3881757C20573CCC0054CFBB /* Route.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		38D5B373204A354A005A15BC = {
@@ -283,6 +301,7 @@
 		38D5B37F204A354A005A15BC /* CoreNavigation */ = {
 			isa = PBXGroup;
 			children = (
+				3881757A20573CAC0054CFBB /* Routing */,
 				38D5B39E204A3698005A15BC /* Core */,
 				38D5B380204A354A005A15BC /* CoreNavigation.h */,
 				38D5B381204A354A005A15BC /* Info.plist */,
@@ -616,10 +635,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3881752A205612140054CFBB /* DataPassable.swift in Sources */,
 				3881752520560F390054CFBB /* EmbeddingAware.swift in Sources */,
 				381D744F2055989600F1C154 /* History.swift in Sources */,
 				381D745220559A7300F1C154 /* History_Item.swift in Sources */,
+				3881757D20573CCC0054CFBB /* Route.swift in Sources */,
 				3881751F205602950054CFBB /* Embeddable.swift in Sources */,
 				3881752320560F2C0054CFBB /* EmbeddingProtocol.swift in Sources */,
 				384CF98C204DBB8E00330EC7 /* Result.swift in Sources */,
@@ -636,9 +655,10 @@
 				380411152055D1CF000C6A25 /* Navigator_NavigationOperation.swift in Sources */,
 				384CF988204DBB5400330EC7 /* Destination.swift in Sources */,
 				381D744720558FF700F1C154 /* UINavigationController.swift in Sources */,
-				38817579205712990054CFBB /* ParametersAware.swift in Sources */,
+				38817579205712990054CFBB /* DataReceivable.swift in Sources */,
 				3881752720560FB80054CFBB /* TransitioningAware.swift in Sources */,
 				38D5B39C204A35A0005A15BC /* Navigation.swift in Sources */,
+				388C73172059C7A400C11EEB /* DataPassable.swift in Sources */,
 				384CF991204DBBE200330EC7 /* Resultable.swift in Sources */,
 				384CF98F204DBBD100330EC7 /* DestinationAware.swift in Sources */,
 				381D745420559A9500F1C154 /* HistoryItem.swift in Sources */,

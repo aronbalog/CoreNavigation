@@ -14,10 +14,10 @@ extension Navigator {
             
             let viewControllerToPresent = self.viewControllerToPresent(viewController, with: configuration)
             
-            let item = History.Item(viewController: viewControllerToPresent,
-                                    navigationType: .present,
-                                    configuration: configuration)
-            History.shared.add(item)
+//            let item = History.Item(viewController: viewControllerToPresent,
+//                                    navigationType: .present,
+//                                    configuration: configuration)
+//            History.shared.add(item)
             
             fromViewController?.present(viewControllerToPresent, animated: animated, completion: {
                 completionBlocks.forEach { $0() }
