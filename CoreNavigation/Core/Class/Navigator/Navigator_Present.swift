@@ -6,7 +6,14 @@ extension Navigator {
         
         DispatchQueue.main.async {
             let fromViewController = UIViewController.currentViewController
-            let completionBlocks = configuration.transitioning.completionBlocks
+            let transitioningCompletionBlocks = configuration.transitioning.completionBlocks
+            let eventBlocks: [() -> Void] = configuration.events.navigationEvents.flatMap({ (event) -> (() -> Void)? in
+                if case NavigationEvent.completion(let block) = event {
+                    return block
+                }
+                
+                return nil
+            })
             
             configuration.willNavigateBlocks.forEach({ (block) in
                 block(viewController)
@@ -20,7 +27,13 @@ extension Navigator {
 //            History.shared.add(item)
             
             fromViewController?.present(viewControllerToPresent, animated: animated, completion: {
-                completionBlocks.forEach { $0() }
+                // from transitioning
+                transitioningCompletionBlocks.forEach { $0() }
+                
+                // from events
+                eventBlocks.forEach { $0() }
+                
+                // final
                 completion()
             })
         }

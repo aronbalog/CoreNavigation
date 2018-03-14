@@ -51,11 +51,23 @@ class ViewController: UIViewController {
             .present { $0
                 .to(MyRoute())
                 .animated(false)
-                .pass("Hello 2!")
+                .pass("Hello!")
                 .embedInNavigationController()
                 .completion({
-                    print("Completed!")
+                    print("Completed A!")
                 })
+                .on(.completion({
+                    print("Completed B!")
+                }))
+                .event.completion {
+                    print("Completed C!")
+                }
+                .event.passData({ (data) in
+                    print("Passed A:", data)
+                })
+                .on(.passData({ (data) in
+                    print("Passed B:", data)
+                }))
             }
             .present { $0
                 .to(MyVC())
@@ -67,9 +79,6 @@ class ViewController: UIViewController {
                 .animated(false)
                 .pass("Hello 2!")
                 .embedInNavigationController()
-                .completion({
-                    print("Completed!")
-                })
             }
             .present { $0
                 .to(MyVC())

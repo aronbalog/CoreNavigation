@@ -2,26 +2,9 @@ import Foundation
 
 extension Navigator {
     class NavigationOperation: Operation {
-        let block: (@escaping () -> Void) -> Void
+        private let block: (@escaping () -> Void) -> Void
         
-        init(block: @escaping (@escaping () -> Void) -> Void) {
-            self.block = block
-        }
-        
-        private var _executing = false {
-            willSet {
-                willChangeValue(forKey: "isExecuting")
-            }
-            didSet {
-                didChangeValue(forKey: "isExecuting")
-            }
-        }
-        
-        override var isExecuting: Bool {
-            return _executing
-        }
-        
-        private var _finished = false {
+        fileprivate var _finished = false {
             willSet {
                 willChangeValue(forKey: "isFinished")
             }
@@ -31,16 +14,17 @@ extension Navigator {
             }
         }
         
-        override var isFinished: Bool {
-            return _finished
+        fileprivate var _executing = false {
+            willSet {
+                willChangeValue(forKey: "isExecuting")
+            }
+            didSet {
+                didChangeValue(forKey: "isExecuting")
+            }
         }
         
-        func executing(_ executing: Bool) {
-            _executing = executing
-        }
-        
-        func finish(_ finished: Bool) {
-            _finished = finished
+        init(block: @escaping (@escaping () -> Void) -> Void) {
+            self.block = block
         }
         
         override func main() {
@@ -55,5 +39,23 @@ extension Navigator {
                 self.finish(true)
             })
         }
+    }
+}
+
+extension Navigator.NavigationOperation {
+    override var isExecuting: Bool {
+        return _executing
+    }
+    
+    func executing(_ executing: Bool) {
+        _executing = executing
+    }
+
+    override var isFinished: Bool {
+        return _finished
+    }
+    
+    func finish(_ finished: Bool) {
+        _finished = finished
     }
 }

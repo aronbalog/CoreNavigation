@@ -5,12 +5,12 @@ public protocol DataPassable: class {
     
     var dataPassing: DataPassing { get set }
     
-    @discardableResult func pass(_ parameters: Any) -> Self
+    @discardableResult func pass(_ data: Any) -> Self
 }
 
 extension DataPassable {
-    @discardableResult public func pass(_ parameters: Any) -> Self {
-        dataPassing.data = parameters
+    @discardableResult public func pass(_ data: Any) -> Self {
+        dataPassing.data = data
         
         return self
     }
