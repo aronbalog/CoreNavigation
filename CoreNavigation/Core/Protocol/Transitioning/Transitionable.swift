@@ -7,6 +7,7 @@ public protocol Transitionable: class {
     
     @discardableResult func animated(_ animated: Bool) -> Self
     @discardableResult func completion(_ completion: @escaping () -> Void) -> Self
+    @discardableResult func transitioningDelegate(_ transitioningDelegate: UIViewControllerTransitioningDelegate) -> Self
 }
 
 extension Transitionable {
@@ -22,4 +23,9 @@ extension Transitionable {
         return self
     }
 
+    @discardableResult public func transitioningDelegate(_ transitioningDelegate: UIViewControllerTransitioningDelegate) -> Self {
+        transitioning.viewControllerTransitioningDelegate = transitioningDelegate
+        
+        return self
+    }
 }

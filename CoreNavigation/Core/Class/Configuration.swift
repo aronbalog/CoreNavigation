@@ -23,6 +23,7 @@ public final class Configuration<ResultableType: Resultable>: ConfigurationConfo
     public class Transitioning: TransitioningAware {
         public var animated: Bool = true
         public var completionBlocks: [() -> Void] = []
+        public var viewControllerTransitioningDelegate: UIViewControllerTransitioningDelegate?
     }
     
     public class Embedding: EmbeddingAware {

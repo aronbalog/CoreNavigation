@@ -3,9 +3,12 @@ import Foundation
 extension Navigator {
     static func present<T>(_ viewController: UIViewController, with configuration: Configuration<T>, completion: @escaping () -> Void)  {
         let animated = configuration.transitioning.animated
+        let viewControllerTransitioningDelegate = configuration.transitioning.viewControllerTransitioningDelegate
         
         DispatchQueue.main.async {
             let fromViewController = UIViewController.currentViewController
+            fromViewController?.transitioningDelegate = viewControllerTransitioningDelegate
+            
             let transitioningCompletionBlocks = configuration.transitioning.completionBlocks
             let eventBlocks: [() -> Void] = configuration.events.navigationEvents.flatMap({ (event) -> (() -> Void)? in
                 if case NavigationEvent.completion(let block) = event {
