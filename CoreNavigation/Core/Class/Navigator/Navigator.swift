@@ -42,7 +42,24 @@ class Navigator {
                     }
                     
                 }
-                
+            case .viewControllerClassBlock(let block):
+                block { viewControllerClass in
+                    let viewController = viewControllerClass.init(nibName: nil, bundle: nil)
+                    
+                    switch type {
+                    case .push:
+                        push(viewController, with: configuration, completion: {
+                            handler()
+                        })
+                    case .present:
+                        print("Executing operation block")
+                        
+                        present(viewController, with: configuration, completion: {
+                            handler()
+                        })
+                    }
+                    
+                }
             case .unknown:
                 ()
             }

@@ -50,7 +50,7 @@ class ViewController: UIViewController {
             Navigation
             .present { $0
                 .to(MyRoute())
-                .animated(false)
+                .animated(true)
                 .pass("Hello!")
                 .embedInNavigationController()
                 .completion({
@@ -70,20 +70,24 @@ class ViewController: UIViewController {
                 }))
             }
             .present { $0
-                .to(MyVC())
-                .embedInNavigationController()
-                .animated(false)
+                .to({ (block) in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                        block(MyVC())
+                    })
+                })
+                .embed(in: .navigationController)
+                .animated(true)
             }
             .present { $0
                 .to(MyRoute())
-                .animated(false)
+                .animated(true)
                 .pass("Hello 2!")
                 .embedInNavigationController()
             }
             .present { $0
                 .to(MyVC())
                 .embedInNavigationController()
-                .animated(false)
+                .animated(true)
             }
         }
                     /*

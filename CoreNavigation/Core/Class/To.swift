@@ -44,6 +44,38 @@ public class To<ResultableType: Resultable>: DestinationAware {
         return configuration
     }
     
+    @discardableResult public func to<T>(_ block: @escaping (@escaping (T) -> Void) -> Void) -> Configuration<Result<T, Any>> where T : UIViewController {
+        let configuration = Configuration<Result<T, Any>>(destination: .viewControllerBlock(block))
+        
+        navigate(with: configuration)
+
+        return configuration
+    }
+    
+    @discardableResult public func to<T: DataReceivable>(_ block: @escaping (@escaping (T) -> Void) -> Void) -> Configuration<Result<T, T.DataType>> {
+        let configuration = Configuration<Result<T, T.DataType>>(destination: .viewControllerBlock(block))
+        
+        navigate(with: configuration)
+        
+        return configuration
+    }
+    
+    @discardableResult public func to<T>(_ block: @escaping (@escaping (T.Type) -> Void) -> Void) -> Configuration<Result<T, Any>> where T : UIViewController {
+        let configuration = Configuration<Result<T, Any>>(destination: .viewControllerClassBlock(block))
+
+        navigate(with: configuration)
+        
+        return configuration
+    }
+    
+    @discardableResult public func to<T: DataReceivable>(_ block: @escaping (@escaping (T.Type) -> Void) -> Void) -> Configuration<Result<T, T.DataType>> {
+        let configuration = Configuration<Result<T, T.DataType>>(destination: .viewControllerClassBlock(block))
+        
+        navigate(with: configuration)
+        
+        return configuration
+    }
+    
     @discardableResult public func to<T: Route>(_ route: T) -> Configuration<Result<T.Destination, Any>> {
         let handler = RouteHandler<T>()
 
