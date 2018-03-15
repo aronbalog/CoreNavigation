@@ -50,7 +50,7 @@ class ViewController: UIViewController {
             Navigation
             .present { $0
                 .to(MyRoute())
-                .animated(true)
+                .animated(false)
                 .pass("Hello!")
                 .embedInNavigationController()
                 .completion({
@@ -65,9 +65,18 @@ class ViewController: UIViewController {
                 .event.passData({ (data) in
                     print("Passed A:", data)
                 })
+                .event.viewController(.viewDidLoad({
+                    print("View did loaded A!")
+                }))
                 .on(.passData({ (data) in
                     print("Passed B:", data)
                 }))
+                .on(.viewControllerEvent(.viewWillAppear({ (animated) in
+                    print("Animated: ", animated)
+                })))
+                .on(.viewControllerEvent(.viewDidLoad({
+                    print("View did loaded B!")
+                })))
             }
             .push { $0
                 .to({ (block) in

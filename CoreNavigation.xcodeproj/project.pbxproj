@@ -48,6 +48,12 @@
 		38D5B399204A3567005A15BC /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5B398204A3567005A15BC /* Global.swift */; };
 		38D5B39C204A35A0005A15BC /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5B39B204A35A0005A15BC /* Navigation.swift */; };
 		38D5B3A1204A36BD005A15BC /* To.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5B3A0204A36BD005A15BC /* To.swift */; };
+		38F1D897205B04FB001F0B0B /* Swizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1D896205B04FB001F0B0B /* Swizzler.swift */; };
+		38F1D899205B054E001F0B0B /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1D898205B054E001F0B0B /* UIApplication.swift */; };
+		38F1D89B205B0574001F0B0B /* UIViewController+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1D89A205B0574001F0B0B /* UIViewController+Events.swift */; };
+		38F1D89D205B059E001F0B0B /* ObjectAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1D89C205B059E001F0B0B /* ObjectAssociation.swift */; };
+		38F1D89F205B05CF001F0B0B /* ViewControllerObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1D89E205B05CF001F0B0B /* ViewControllerObserver.swift */; };
+		38F1D8A1205B0F32001F0B0B /* ViewControllerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1D8A0205B0F32001F0B0B /* ViewControllerEvent.swift */; };
 		4CDC5B0E03F469257562D5E9 /* Pods_CoreNavigationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 978DC88BCF3C32C02F68261A /* Pods_CoreNavigationTests.framework */; };
 		5045FEA6C45FFD8E3FAF9F02 /* Pods_CoreNavigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C24A04FA7E3D35F3012C525 /* Pods_CoreNavigation.framework */; };
 /* End PBXBuildFile section */
@@ -120,6 +126,12 @@
 		38D5B39B204A35A0005A15BC /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		38D5B39D204A360D005A15BC /* CoreNavigation.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CoreNavigation.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		38D5B3A0204A36BD005A15BC /* To.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = To.swift; sourceTree = "<group>"; };
+		38F1D896205B04FB001F0B0B /* Swizzler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swizzler.swift; sourceTree = "<group>"; };
+		38F1D898205B054E001F0B0B /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		38F1D89A205B0574001F0B0B /* UIViewController+Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Events.swift"; sourceTree = "<group>"; };
+		38F1D89C205B059E001F0B0B /* ObjectAssociation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectAssociation.swift; sourceTree = "<group>"; };
+		38F1D89E205B05CF001F0B0B /* ViewControllerObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerObserver.swift; sourceTree = "<group>"; };
+		38F1D8A0205B0F32001F0B0B /* ViewControllerEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerEvent.swift; sourceTree = "<group>"; };
 		4A7F275B61391C0769913096 /* Pods-CoreNavigationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreNavigationTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoreNavigationTests/Pods-CoreNavigationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7C24A04FA7E3D35F3012C525 /* Pods_CoreNavigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreNavigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		978DC88BCF3C32C02F68261A /* Pods_CoreNavigationTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreNavigationTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,8 +251,10 @@
 		384CF9AC204DC35400330EC7 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				38F1D89A205B0574001F0B0B /* UIViewController+Events.swift */,
 				384CF9AD204DC35E00330EC7 /* UIViewController.swift */,
 				381D744620558FF700F1C154 /* UINavigationController.swift */,
+				38F1D898205B054E001F0B0B /* UIApplication.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -352,6 +366,7 @@
 				381D74552055A28A00F1C154 /* HistoryDirection.swift */,
 				3881752020560F090054CFBB /* EmbeddingType.swift */,
 				388C731D2059FA1E00C11EEB /* NavigationEvent.swift */,
+				38F1D8A0205B0F32001F0B0B /* ViewControllerEvent.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -377,6 +392,9 @@
 				38D5B3A0204A36BD005A15BC /* To.swift */,
 				384CF9B1204DC54400330EC7 /* Configuration.swift */,
 				384CF98B204DBB8E00330EC7 /* Result.swift */,
+				38F1D896205B04FB001F0B0B /* Swizzler.swift */,
+				38F1D89E205B05CF001F0B0B /* ViewControllerObserver.swift */,
+				38F1D89C205B059E001F0B0B /* ObjectAssociation.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -658,6 +676,7 @@
 				381D745220559A7300F1C154 /* History_Item.swift in Sources */,
 				3881757D20573CCC0054CFBB /* Route.swift in Sources */,
 				3881751F205602950054CFBB /* Embeddable.swift in Sources */,
+				38F1D89D205B059E001F0B0B /* ObjectAssociation.swift in Sources */,
 				3881752320560F2C0054CFBB /* EmbeddingProtocol.swift in Sources */,
 				384CF98C204DBB8E00330EC7 /* Result.swift in Sources */,
 				384CF9B0204DC38000330EC7 /* Navigator.swift in Sources */,
@@ -665,6 +684,7 @@
 				38D5B3A1204A36BD005A15BC /* To.swift in Sources */,
 				3822436F2054BF8C00426342 /* Navigator_Present.swift in Sources */,
 				381D7444205588F200F1C154 /* Transitionable.swift in Sources */,
+				38F1D897205B04FB001F0B0B /* Swizzler.swift in Sources */,
 				384CF9AE204DC35E00330EC7 /* UIViewController.swift in Sources */,
 				3881752120560F090054CFBB /* EmbeddingType.swift in Sources */,
 				381D74562055A28A00F1C154 /* HistoryDirection.swift in Sources */,
@@ -673,12 +693,16 @@
 				380411152055D1CF000C6A25 /* Navigator_NavigationOperation.swift in Sources */,
 				384CF988204DBB5400330EC7 /* Destination.swift in Sources */,
 				381D744720558FF700F1C154 /* UINavigationController.swift in Sources */,
+				38F1D89B205B0574001F0B0B /* UIViewController+Events.swift in Sources */,
 				38817579205712990054CFBB /* DataReceivable.swift in Sources */,
 				3881752720560FB80054CFBB /* TransitioningAware.swift in Sources */,
 				38D5B39C204A35A0005A15BC /* Navigation.swift in Sources */,
+				38F1D8A1205B0F32001F0B0B /* ViewControllerEvent.swift in Sources */,
 				388C73172059C7A400C11EEB /* DataPassable.swift in Sources */,
 				388C731C2059E1A400C11EEB /* EventAware.swift in Sources */,
 				384CF991204DBBE200330EC7 /* Resultable.swift in Sources */,
+				38F1D89F205B05CF001F0B0B /* ViewControllerObserver.swift in Sources */,
+				38F1D899205B054E001F0B0B /* UIApplication.swift in Sources */,
 				384CF98F204DBBD100330EC7 /* DestinationAware.swift in Sources */,
 				381D745420559A9500F1C154 /* HistoryItem.swift in Sources */,
 				384CF9B2204DC54400330EC7 /* Configuration.swift in Sources */,

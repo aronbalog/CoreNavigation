@@ -50,6 +50,12 @@ public final class Configuration<ResultableType: Resultable>: ConfigurationConfo
             
             return configuration
         }
+        
+        public func viewController(_ event: ViewControllerEvent) -> Configuration {
+            configuration.on(.viewControllerEvent(event))
+            
+            return configuration
+        }
     }
 }
 

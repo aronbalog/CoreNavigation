@@ -12,15 +12,14 @@ class PresentSpec: QuickSpec {
                 
                 var completionInvokes = 0
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
-                    Navigation.present({ $0
-                        .to(viewController)
-                        .animated(false)
-                        .completion {
-                            completionInvokes.invoke()
-                        }
-                    })
+                Navigation.present({ $0
+                    .to(viewController)
+                    .animated(false)
+                    .completion {
+                        completionInvokes.invoke()
+                    }
                 })
+                
                 it("is presented", closure: {
                     expect(completionInvokes.isInvokedOnce).to(beTrue())
                 })
@@ -31,14 +30,12 @@ class PresentSpec: QuickSpec {
                 
                 var completionInvokes = 0
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.15, execute: {
-                    Navigation.present({ $0
-                        .to(viewController)
-                        .animated(true)
-                        .completion {
-                            completionInvokes.invoke()
-                        }
-                    })
+                Navigation.present({ $0
+                    .to(viewController)
+                    .animated(true)
+                    .completion {
+                        completionInvokes.invoke()
+                    }
                 })
                 
                 it("is presented", closure: {
