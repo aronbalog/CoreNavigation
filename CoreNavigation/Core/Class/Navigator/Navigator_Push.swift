@@ -18,13 +18,22 @@ extension Navigator {
             configuration.willNavigateBlocks.forEach({ (block) in
                 block(viewController)
             })
+            
+            let viewControllerToPush: UIViewController = {
+                // pushing navigation controller is not supported
+                if case .navigationController? = configuration.embedding.embeddingType {
+                    return viewController
+                } else {
+                    return self.viewControllerToNavigate(viewController, with: configuration)
+                }
+            }()
 //            
 //            let item = History.Item(viewController: viewController,
 //                                    navigationType: .push,
 //                                    configuration: configuration)
 //            History.shared.add(item)
             
-            navigationController?.pushViewController(viewController, animated: animated, completion: {
+            navigationController?.pushViewController(viewControllerToPush, animated: animated, completion: {
                 // from transitioning
                 transitioningCompletionBlocks.forEach { $0() }
                 

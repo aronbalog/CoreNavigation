@@ -69,4 +69,17 @@ class Navigator {
         print("Added operation")
         queue.addOperation(operation)
     }
+    
+    static func viewControllerToNavigate<T>(_ viewController: UIViewController, with configuration: Configuration<T>) -> UIViewController {
+        guard let embeddingType = configuration.embedding.embeddingType else {
+            return viewController
+        }
+        
+        switch embeddingType {
+        case .embeddingProtocol(let aProtocol):
+            return aProtocol.embed(viewController)
+        case .navigationController:
+            return UINavigationController(rootViewController: viewController)
+        }
+    }
 }

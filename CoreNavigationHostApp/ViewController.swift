@@ -46,7 +46,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             Navigation
             .present { $0
                 .to(MyRoute())
@@ -69,7 +69,7 @@ class ViewController: UIViewController {
                     print("Passed B:", data)
                 }))
             }
-            .present { $0
+            .push { $0
                 .to({ (block) in
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                         block(MyVC())
@@ -78,13 +78,13 @@ class ViewController: UIViewController {
                 .embed(in: .navigationController)
                 .animated(true)
             }
-            .present { $0
+            .push { $0
                 .to(MyRoute())
                 .animated(true)
                 .pass("Hello 2!")
                 .embedInNavigationController()
             }
-            .present { $0
+            .push { $0
                 .to(MyVC())
                 .embedInNavigationController()
                 .animated(true)
