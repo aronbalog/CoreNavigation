@@ -53,30 +53,12 @@ class ViewController: UIViewController {
                 .animated(false)
                 .pass("Hello!")
                 .embedInNavigationController()
-                .completion({
-                    print("Completed A!")
-                })
-                .on(.completion({
-                    print("Completed B!")
-                }))
-                .event.completion {
-                    print("Completed C!")
-                }
-                .event.passData({ (data) in
-                    print("Passed A:", data)
-                })
-                .event.viewController(.viewDidLoad({
-                    print("View did loaded A!")
-                }))
-                .on(.passData({ (data) in
-                    print("Passed B:", data)
-                }))
-                .on(.viewControllerEvent(.viewWillAppear({ (animated) in
-                    print("Animated: ", animated)
+                .on(.viewController(.viewDidAppear({ (viewController, animated) in
+                    print("View controller!", viewController)
                 })))
-                .on(.viewControllerEvent(.viewDidLoad({
-                    print("View did loaded B!")
-                })))
+                .event.viewController(.viewWillDisappear({ (viewController, animated) in
+                    print("Will disappear!")
+                }))
             }
             .push { $0
                 .to({ (block) in

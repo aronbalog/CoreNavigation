@@ -42,7 +42,6 @@
 		388C73172059C7A400C11EEB /* DataPassable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38817529205612140054CFBB /* DataPassable.swift */; };
 		388C731A2059DED500C11EEB /* Eventable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388C73192059DED500C11EEB /* Eventable.swift */; };
 		388C731C2059E1A400C11EEB /* EventAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388C731B2059E1A400C11EEB /* EventAware.swift */; };
-		388C731E2059FA1E00C11EEB /* NavigationEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388C731D2059FA1E00C11EEB /* NavigationEvent.swift */; };
 		38D5B387204A354A005A15BC /* CoreNavigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D5B37D204A354A005A15BC /* CoreNavigation.framework */; };
 		38D5B38E204A354B005A15BC /* CoreNavigation.h in Headers */ = {isa = PBXBuildFile; fileRef = 38D5B380204A354A005A15BC /* CoreNavigation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		38D5B399204A3567005A15BC /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5B398204A3567005A15BC /* Global.swift */; };
@@ -116,7 +115,6 @@
 		3881757C20573CCC0054CFBB /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		388C73192059DED500C11EEB /* Eventable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eventable.swift; sourceTree = "<group>"; };
 		388C731B2059E1A400C11EEB /* EventAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAware.swift; sourceTree = "<group>"; };
-		388C731D2059FA1E00C11EEB /* NavigationEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationEvent.swift; sourceTree = "<group>"; };
 		38D5B37D204A354A005A15BC /* CoreNavigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreNavigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38D5B380204A354A005A15BC /* CoreNavigation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreNavigation.h; sourceTree = "<group>"; };
 		38D5B381204A354A005A15BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -365,7 +363,6 @@
 				382243692054B91A00426342 /* NavigationType.swift */,
 				381D74552055A28A00F1C154 /* HistoryDirection.swift */,
 				3881752020560F090054CFBB /* EmbeddingType.swift */,
-				388C731D2059FA1E00C11EEB /* NavigationEvent.swift */,
 				38F1D8A0205B0F32001F0B0B /* ViewControllerEvent.swift */,
 			);
 			path = Enum;
@@ -672,7 +669,6 @@
 			files = (
 				3881752520560F390054CFBB /* EmbeddingAware.swift in Sources */,
 				381D744F2055989600F1C154 /* History.swift in Sources */,
-				388C731E2059FA1E00C11EEB /* NavigationEvent.swift in Sources */,
 				381D745220559A7300F1C154 /* History_Item.swift in Sources */,
 				3881757D20573CCC0054CFBB /* Route.swift in Sources */,
 				3881751F205602950054CFBB /* Embeddable.swift in Sources */,

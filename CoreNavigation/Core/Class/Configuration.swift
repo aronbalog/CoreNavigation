@@ -35,6 +35,12 @@ public final class Configuration<ResultableType: Resultable>: ConfigurationConfo
     }
     
     public class Events: EventAware {
+        public enum NavigationEvent {
+            case completion(() -> Void)
+            case passData((Any) -> Void)
+            case viewController(ViewControllerEvent<ResultableType.ToViewController>)
+        }
+        
         public var navigationEvents: [NavigationEvent] = []
         var dataPassBlocks: [Any] = []
     }
@@ -46,14 +52,14 @@ public final class Configuration<ResultableType: Resultable>: ConfigurationConfo
             self.configuration = configuration
         }
         
-        public func completion(_ block: @escaping () -> Void) -> Configuration {
+        @discardableResult public func completion(_ block: @escaping () -> Void) -> Configuration {
             configuration.on(.completion(block))
             
             return configuration
         }
         
-        public func viewController(_ event: ViewControllerEvent) -> Configuration {
-            configuration.on(.viewControllerEvent(event))
+        @discardableResult public func viewController(_ event: ViewControllerEvent<ResultableType.ToViewController>) -> Configuration {
+            configuration.on(.viewController(event))
             
             return configuration
         }
@@ -70,7 +76,7 @@ extension Configuration where ResultableType.ToViewController: DataReceivable {
             let data = self.dataPassing.data as! ResultableType.ToViewController.DataType
             (viewController as! ResultableType.ToViewController).didReceiveData(data)
             self.events.navigationEvents.forEach({ (event) in
-                if case NavigationEvent.passData(let block) = event {
+                if case Events.NavigationEvent.passData(let block) = event {
                     block(data)
                 }
             })
@@ -85,7 +91,7 @@ extension Configuration where ResultableType.ToViewController: DataReceivable {
 }
 
 extension Configuration.Event where ResultableType.ToViewController: DataReceivable {
-    public func passData(_ block: @escaping (ResultableType.ToViewController.DataType) -> Void) -> Configuration {
+    @discardableResult public func passData(_ block: @escaping (ResultableType.ToViewController.DataType) -> Void) -> Configuration {
         configuration.events.dataPassBlocks.append(block)
         
         return configuration

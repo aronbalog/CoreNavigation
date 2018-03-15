@@ -6,13 +6,13 @@ public protocol Eventable {
 
     var events: Events { get set }
     
-    @discardableResult func on(_ event: NavigationEvent) -> Self
+    @discardableResult func on(_ event: Events.NavigationEvent) -> Self
     
     var event: Event { get }
 }
 
 extension Eventable {
-    @discardableResult public func on(_ event: NavigationEvent) -> Self {
+    @discardableResult public func on(_ event: Events.NavigationEvent) -> Self {
         events.navigationEvents.append(event)
         
         return self
