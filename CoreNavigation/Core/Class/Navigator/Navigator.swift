@@ -12,67 +12,54 @@ class Navigator {
 
     static func navigate<T>(with type: NavigationType, configuration: Configuration<T>, completion: (() -> Void)? = nil) {
         let operation = NavigationOperation(block: { handler in
-            switch configuration.destination {
-            case .viewController(let viewController):
-                bindEvents(to: viewController, with: configuration)
-                
-                switch type {
-                case .push:
-                    push(viewController, with: configuration, completion: {
-                        handler()
-                    })
-                case .present:
-                    present(viewController, with: configuration, completion: {
-                        handler()
-                    })
-                }
-            case .routePath(let routePath):
-                ()
-            case .viewControllerBlock(let block):
-                block { viewController in
-                    bindEvents(to: viewController, with: configuration)
-                    
-                    switch type {
-                    case .push:
-                        push(viewController, with: configuration, completion: {
-                            handler()
-                        })
-                    case .present:
-                        print("Executing operation block")
 
-                        present(viewController, with: configuration, completion: {
-                            handler()
-                        })
+            // check if cached
+            if
+                let cacheIdentifier = configuration.caching.lifetime?.cacheIdentifier(),
+                let viewController = Cache.shared.viewController(for: cacheIdentifier)
+            {
+                action(type: type, viewController: viewController, configuration: configuration, handler: handler)
+            } else {
+                switch configuration.destination {
+                case .viewController(let viewController):
+                    action(type: type, viewController: viewController, configuration: configuration, handler: handler)
+                case .routePath(let routePath):
+                    ()
+                case .viewControllerBlock(let block):
+                    block { viewController in
+                        action(type: type, viewController: viewController, configuration: configuration, handler: handler)
                     }
-                    
-                }
-            case .viewControllerClassBlock(let block):
-                block { viewControllerClass in
-                    let viewController = viewControllerClass.init(nibName: nil, bundle: nil)
-                    bindEvents(to: viewController, with: configuration)
-                    
-                    switch type {
-                    case .push:
-                        push(viewController, with: configuration, completion: {
-                            handler()
-                        })
-                    case .present:
-                        print("Executing operation block")
+                case .viewControllerClassBlock(let block):
+                    block { viewControllerClass in
+                        let viewController = viewControllerClass.init(nibName: nil, bundle: nil)
                         
-                        present(viewController, with: configuration, completion: {
-                            handler()
-                        })
+                        action(type: type, viewController: viewController, configuration: configuration, handler: handler)
                     }
-                    
+                case .unknown:
+                    ()
                 }
-            case .unknown:
-                ()
             }
             
             completion?()
         })
-        print("Added operation")
+
         queue.addOperation(operation)
+    }
+    
+    static func action<T>(type: NavigationType, viewController: UIViewController, configuration: Configuration<T>, handler: @escaping () -> Void) {
+        bindViewControllerEvents(to: viewController, with: configuration)
+        cacheIfNeeded(viewController: viewController, with: configuration)
+        
+        switch type {
+        case .push:
+            push(viewController, with: configuration, completion: {
+                handler()
+            })
+        case .present:
+            present(viewController, with: configuration, completion: {
+                handler()
+            })
+        }
     }
     
     static func viewControllerToNavigate<T>(_ viewController: UIViewController, with configuration: Configuration<T>) -> UIViewController {
@@ -88,7 +75,7 @@ class Navigator {
         }
     }
     
-    private static func bindEvents<T>(to viewController: UIViewController, with configuration: Configuration<T>) {
+    private static func bindViewControllerEvents<T>(to viewController: UIViewController, with configuration: Configuration<T>) {
         let viewControllerEvents = ViewControllerObserver()
         
         configuration.events.navigationEvents.forEach { (event) in
@@ -134,5 +121,11 @@ class Navigator {
         }
         
         viewController.events = viewControllerEvents
+    }
+    
+    private static func cacheIfNeeded<T>(viewController: UIViewController, with configuration: Configuration<T>) {
+        guard let lifetime = configuration.caching.lifetime else { return }
+        
+        Cache.shared.add(viewController: viewController, lifetime: lifetime)
     }
 }

@@ -47,6 +47,7 @@ extension RouteHandler where RouteType.Destination: DataReceivable {
         }
 
         destinationBlocks = []
+        dataBlocks = []
         
         return viewController
     }

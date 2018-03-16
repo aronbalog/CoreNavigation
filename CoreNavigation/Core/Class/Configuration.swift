@@ -1,15 +1,20 @@
 import Foundation
 
-public typealias ConfigurationConformance = Transitionable & Embeddable & DataPassable & Eventable
+public typealias ConfigurationConformance = Transitionable &
+                                            Embeddable &
+                                            DataPassable &
+                                            Eventable &
+                                            Cacheable
 
 public final class Configuration<ResultableType: Resultable>: ConfigurationConformance {
-    
     public let destination: Destination
     
     public var transitioning = Transitioning()
     public var embedding = Embedding()
     public var dataPassing = DataPassing()
     public var events = Events()
+    public var caching = Caching()
+
     public var event: Configuration<ResultableType>.Event {
         return Event(configuration: self)
     }
@@ -45,6 +50,10 @@ public final class Configuration<ResultableType: Resultable>: ConfigurationConfo
         var dataPassBlocks: [Any] = []
     }
     
+    public class Caching: CachingAware {
+        public var lifetime: Lifetime?
+    }
+    
     public class Event {
         unowned var configuration: Configuration
         
@@ -72,7 +81,9 @@ extension Configuration where ResultableType.ToViewController: DataReceivable {
             dataPassing.data = parameters
         }
         
-        willNavigateBlocks.append { (viewController) in
+        willNavigateBlocks.append { [weak self] (viewController) in
+            guard let `self` = self else { return }
+            
             let data = self.dataPassing.data as! ResultableType.ToViewController.DataType
             (viewController as! ResultableType.ToViewController).didReceiveData(data)
             self.events.navigationEvents.forEach({ (event) in

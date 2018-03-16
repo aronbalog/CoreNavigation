@@ -27,6 +27,10 @@ class OtherVC: MyVC, DataReceivable {
         super.viewDidLoad()
         
         view.backgroundColor = .purple
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.view.backgroundColor = .green
+        }
     }
 }
 
@@ -42,9 +46,24 @@ struct MyRoute: Route {
     }
 }
 
+class MyLifetime: Lifetime {
+    func cacheIdentifier() -> String {
+        return "my"
+    }
+    
+    func die(_ kill: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            kill()
+        }
+    }
+    
+    
+}
+
 class ViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             Navigation
@@ -59,27 +78,9 @@ class ViewController: UIViewController {
                 .event.viewController(.viewWillDisappear({ (viewController, animated) in
                     print("Will disappear!")
                 }))
+                .keepAlive(within: MyLifetime())
             }
-            .push { $0
-                .to({ (block) in
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                        block(MyVC())
-                    })
-                })
-                .embed(in: .navigationController)
-                .animated(true)
-            }
-            .push { $0
-                .to(MyRoute())
-                .animated(true)
-                .pass("Hello 2!")
-                .embedInNavigationController()
-            }
-            .push { $0
-                .to(MyVC())
-                .embedInNavigationController()
-                .animated(true)
-            }
+            
         }
                     /*
          
