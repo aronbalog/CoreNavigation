@@ -1,15 +1,21 @@
 import Foundation
 import UIKit
 
+/// Define destination.
 public class To<ResultableType: Resultable>: DestinationAware {
-    public let navigationType: NavigationType
+    // MARK: Public
     
-    public var destination: Destination?
-    
-    init(_ navigationType: NavigationType) {
-        self.navigationType = navigationType
-    }
-    
+    /// Assign view controller to navigate to.
+    ///
+    /// - Example: Simple navigation to view controller instance.
+    ///     ````
+    ///     Navigation.present { $0
+    ///        .to(UIViewController())
+    ///     }
+    ///     ````
+    ///
+    /// - Parameter viewController: A view controller instance.
+    /// - Returns: `Configuration` object.
     @discardableResult public func to<T>(_ viewController: T) -> Configuration<Result<T, Any>> where T : UIViewController {
         let configuration = Configuration<Result<T, Any>>(destination: .viewController(viewController))
         
@@ -18,6 +24,19 @@ public class To<ResultableType: Resultable>: DestinationAware {
         return configuration
     }
     
+    /// Assign data receivable view controller to navigate to.
+    ///
+    /// - Example: Simple navigation to view controller instance.
+    ///     ````
+    ///     let viewController: DataReceivable = ViewController()
+    ///
+    ///     Navigation.present { $0
+    ///        .to(viewController)
+    ///     }
+    ///     ````
+    ///
+    /// - Parameter viewController: A view controller instance conforming `DataReceivable` protocol.
+    /// - Returns: `Configuration` object.
     @discardableResult public func to<T: DataReceivable>(_ viewController: T) -> Configuration<Result<T, T.DataType>> {
         let configuration = Configuration<Result<T, T.DataType>>(destination: .viewController(viewController))
         
@@ -26,6 +45,17 @@ public class To<ResultableType: Resultable>: DestinationAware {
         return configuration
     }
     
+    /// Assign view controller class to navigate to.
+    ///
+    /// - Example: Simple navigation to view controller class.
+    ///     ````
+    ///     Navigation.present { $0
+    ///        .to(UIViewController.self)
+    ///     }
+    ///     ````
+    ///
+    /// - Parameter viewControllerClass: A view controller class.
+    /// - Returns: `Configuration` object.
     @discardableResult public func to<T>(_ viewControllerClass: T.Type) -> Configuration<Result<T, Any>> where T : UIViewController {
         let viewController = viewControllerClass.init(nibName: nil, bundle: nil)
         let configuration = Configuration<Result<T, Any>>(destination: .viewController(viewController))
@@ -35,6 +65,19 @@ public class To<ResultableType: Resultable>: DestinationAware {
         return configuration
     }
     
+    /// Assign data receivable view controller class to navigate to.
+    ///
+    /// - Example: Simple navigation to view controller instance.
+    ///     ````
+    ///     let viewControllerClass: DataReceivable.Type = ViewController.self
+    ///
+    ///     Navigation.present { $0
+    ///        .to(viewControllerClass)
+    ///     }
+    ///     ````
+    ///
+    /// - Parameter viewControllerClass: A view controller class conforming `DataReceivable` protocol.
+    /// - Returns: `Configuration` object.
     @discardableResult public func to<T: DataReceivable>(_ viewControllerClass: T.Type) -> Configuration<Result<T, T.DataType>> {
         let viewController = viewControllerClass.init(nibName: nil, bundle: nil)
         let configuration = Configuration<Result<T, T.DataType>>(destination: .viewController(viewController))
@@ -44,6 +87,10 @@ public class To<ResultableType: Resultable>: DestinationAware {
         return configuration
     }
     
+    /// Assign block which can be used to resolve view controller asynchronously.
+    ///
+    /// - Parameter block: Pass view controller instance to this block when navigation is wanted.
+    /// - Returns: `Configuration` object.
     @discardableResult public func to<T>(_ block: @escaping (@escaping (T) -> Void) -> Void) -> Configuration<Result<T, Any>> where T : UIViewController {
         let configuration = Configuration<Result<T, Any>>(destination: .viewControllerBlock(block))
         
@@ -52,6 +99,11 @@ public class To<ResultableType: Resultable>: DestinationAware {
         return configuration
     }
     
+    
+    /// Assign block which can be used to resolve data receivable view controller asynchronously.
+    ///
+    /// - Parameter block: Pass view controller instance conforming `DataReceivable` protocol to this block when navigation is wanted.
+    /// - Returns: `Configuration` object
     @discardableResult public func to<T: DataReceivable>(_ block: @escaping (@escaping (T) -> Void) -> Void) -> Configuration<Result<T, T.DataType>> {
         let configuration = Configuration<Result<T, T.DataType>>(destination: .viewControllerBlock(block))
         
@@ -60,6 +112,10 @@ public class To<ResultableType: Resultable>: DestinationAware {
         return configuration
     }
     
+    /// Assign block which can be used to resolve view controller asynchronously.
+    ///
+    /// - Parameter block: Pass view controller class to this block when navigation is wanted.
+    /// - Returns: `Configuration` object
     @discardableResult public func to<T>(_ block: @escaping (@escaping (T.Type) -> Void) -> Void) -> Configuration<Result<T, Any>> where T : UIViewController {
         let configuration = Configuration<Result<T, Any>>(destination: .viewControllerClassBlock(block))
 
@@ -68,6 +124,10 @@ public class To<ResultableType: Resultable>: DestinationAware {
         return configuration
     }
     
+    /// Assign block which can be used to resolve data receivable view controller asynchronously.
+    ///
+    /// - Parameter block: Pass view controller class conforming `DataReceivable` protocol to this block when navigation is wanted.
+    /// - Returns: `Configuration` object
     @discardableResult public func to<T: DataReceivable>(_ block: @escaping (@escaping (T.Type) -> Void) -> Void) -> Configuration<Result<T, T.DataType>> {
         let configuration = Configuration<Result<T, T.DataType>>(destination: .viewControllerClassBlock(block))
         
@@ -76,18 +136,26 @@ public class To<ResultableType: Resultable>: DestinationAware {
         return configuration
     }
     
+    /// Assign route resolving it's destination to UIViewController class or subclass.
+    ///
+    /// - Parameter route: Route object resolving it's `Destination` type to `UIViewController` class or subclass.
+    /// - Returns: `Configuration` object
     @discardableResult public func to<T: Route>(_ route: T) -> Configuration<Result<T.Destination, Any>> {
         let handler = RouteHandler<T>()
 
         let configuration = Configuration<Result<T.Destination, Any>>(destination: .viewControllerBlock(handler.onDestination))
         
-        self.navigate(with: configuration, completion: {
+        navigate(with: configuration, completion: {
             route.route(handler: handler)
         })
         
         return configuration
     }
     
+    /// Assign route resolving it's destination to UIViewController class or subclass conforming `DataReceivable` protocol.
+    ///
+    /// - Parameter route: Route object resolving it's `Destination` type to `UIViewController` class or subclass conforming `DataReceivable` protocol.
+    /// - Returns: `Configuration` object
     @discardableResult public func to<T: Route>(_ route: T) -> Configuration<Result<T.Destination, T.Destination.DataType>> where T.Destination: DataReceivable {
         let handler = RouteHandler<T>()
 
@@ -97,12 +165,23 @@ public class To<ResultableType: Resultable>: DestinationAware {
             configuration.dataPassing.data = data
         })
         
-        self.navigate(with: configuration, completion: {
+        navigate(with: configuration, completion: {
             route.route(handler: handler)
         })
         
         return configuration
     }
+    
+    // MARK: Internal
+    
+    let navigationType: NavigationType
+    var destination: Destination?
+    
+    init(_ navigationType: NavigationType) {
+        self.navigationType = navigationType
+    }
+    
+    // MARK: private
     
     private func navigate<T>(with configuration: Configuration<T>, completion: (() -> Void)? = nil) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
