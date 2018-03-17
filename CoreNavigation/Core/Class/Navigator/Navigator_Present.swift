@@ -24,10 +24,10 @@ extension Navigator {
             
             let viewControllerToPresent = self.viewControllerToNavigate(viewController, with: configuration)
             
-//            let item = History.Item(viewController: viewControllerToPresent,
-//                                    navigationType: .present,
-//                                    configuration: configuration)
-//            History.shared.add(item)
+            let item = History.Item(viewController: viewControllerToPresent,
+                                    navigationType: .present,
+                                    configuration: configuration)
+            History.shared.add(item)
             
             fromViewController?.present(viewControllerToPresent, animated: animated, completion: {
                 // from transitioning

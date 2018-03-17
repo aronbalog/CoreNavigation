@@ -40,7 +40,7 @@ struct MyRoute: Route {
     init() {}
     
     func route(handler: RouteHandler<MyRoute>) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             handler.complete(data: "hello")
         }
     }
@@ -76,7 +76,7 @@ class MyProtectionSpace: ProtectionSpace {
             }))
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             MyProtectionSpace.isSignedIn = true
 
             viewController.dismiss(animated: true, completion: {
@@ -124,6 +124,9 @@ class ViewController: UIViewController {
                     .animated(true)
             }
             
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+                Navigation.history.back(steps: 3)
+            })
         }
                     /*
          

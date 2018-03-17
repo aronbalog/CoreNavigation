@@ -30,11 +30,11 @@ extension Navigator {
                     return self.viewControllerToNavigate(viewController, with: configuration)
                 }
             }()
-//            
-//            let item = History.Item(viewController: viewController,
-//                                    navigationType: .push,
-//                                    configuration: configuration)
-//            History.shared.add(item)
+            
+            let item = History.Item(viewController: viewController,
+                                    navigationType: .push,
+                                    configuration: configuration)
+            History.shared.add(item)
             
             navigationController?.pushViewController(viewControllerToPush, animated: animated, completion: {
                 // from transitioning

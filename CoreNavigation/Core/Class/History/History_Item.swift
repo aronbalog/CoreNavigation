@@ -2,10 +2,12 @@ import Foundation
 
 extension History {
     class Item<T: Resultable>: HistoryItem {
-        let viewController: UIViewController
+        weak var viewController: UIViewController?
+        weak var configuration: Configuration<T>?
+        
         let navigationType: NavigationType
         
-        let configuration: Configuration<T>
+        
         
         init(viewController: UIViewController, navigationType: NavigationType, configuration: Configuration<T>) {
             self.viewController = viewController
@@ -16,6 +18,8 @@ extension History {
         func go(_ direction: HistoryDirection, animated: Bool, completion: (() -> Void)?) {
             switch direction {
             case .back(_):
+                guard let viewController = viewController else { return }
+                
                 switch self.navigationType {
                 case .push:
                     pop(to: viewController, animated: animated, completion: completion)
