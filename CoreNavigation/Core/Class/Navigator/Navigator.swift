@@ -11,39 +11,61 @@ class Navigator {
     }()
 
     static func navigate<T>(with type: NavigationType, configuration: Configuration<T>, completion: (() -> Void)? = nil) {
-        let operation = NavigationOperation(block: { handler in
-
-            // check if cached
-            if
-                let cacheIdentifier = configuration.caching.lifetime?.cacheIdentifier(),
-                let viewController = Cache.shared.viewController(for: cacheIdentifier)
-            {
-                action(type: type, viewController: viewController, configuration: configuration, handler: handler)
-            } else {
-                switch configuration.destination {
-                case .viewController(let viewController):
+        func main(handler: @escaping () -> Void) {
+            func navigation() {
+                // check if cached
+                if
+                    let cacheIdentifier = configuration.caching.lifetime?.cacheIdentifier(),
+                    let viewController = Cache.shared.viewController(for: cacheIdentifier)
+                {
                     action(type: type, viewController: viewController, configuration: configuration, handler: handler)
-                case .routePath(let routePath):
-                    ()
-                case .viewControllerBlock(let block):
-                    block { viewController in
+                } else {
+                    switch configuration.destination {
+                    case .viewController(let viewController):
                         action(type: type, viewController: viewController, configuration: configuration, handler: handler)
+                    case .routePath(let routePath):
+                        ()
+                    case .viewControllerBlock(let block):
+                        block { viewController in
+                            action(type: type, viewController: viewController, configuration: configuration, handler: handler)
+                        }
+                    case .viewControllerClassBlock(let block):
+                        block { viewControllerClass in
+                            let viewController = viewControllerClass.init(nibName: nil, bundle: nil)
+                            
+                            action(type: type, viewController: viewController, configuration: configuration, handler: handler)
+                        }
+                    case .unknown:
+                        ()
                     }
-                case .viewControllerClassBlock(let block):
-                    block { viewControllerClass in
-                        let viewController = viewControllerClass.init(nibName: nil, bundle: nil)
-                        
-                        action(type: type, viewController: viewController, configuration: configuration, handler: handler)
-                    }
-                case .unknown:
-                    ()
                 }
+                
+                completion?()
             }
             
-            completion?()
-        })
-
-        queue.addOperation(operation)
+            if
+                let protectionSpace = configuration.protection.protectionSpace,
+                protectionSpace.shouldProtect() == true
+            {
+                let handler = ProtectionHandler()
+                
+                handler.onUnprotect {
+                    navigation()
+                }
+                
+                protectionSpace.protect(handler)
+            } else {
+                navigation()
+            }
+        }
+        
+        if configuration.unsafeNavigation.isUnsafe {
+            main(handler: {})
+        } else {
+            let operation = NavigationOperation(block: main)
+            
+            queue.addOperation(operation)
+        }
     }
     
     static func action<T>(type: NavigationType, viewController: UIViewController, configuration: Configuration<T>, handler: @escaping () -> Void) {

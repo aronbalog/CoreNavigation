@@ -31,6 +31,13 @@
 		384CF9AE204DC35E00330EC7 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CF9AD204DC35E00330EC7 /* UIViewController.swift */; };
 		384CF9B0204DC38000330EC7 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CF9AF204DC38000330EC7 /* Navigator.swift */; };
 		384CF9B2204DC54400330EC7 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CF9B1204DC54400330EC7 /* Configuration.swift */; };
+		38577C92205C863D00FB4B83 /* ProtectionSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577C91205C863D00FB4B83 /* ProtectionSpace.swift */; };
+		38577C94205C872800FB4B83 /* Protectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577C93205C872800FB4B83 /* Protectable.swift */; };
+		38577C96205C876A00FB4B83 /* ProtectionAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577C95205C876A00FB4B83 /* ProtectionAware.swift */; };
+		38577C98205C88A900FB4B83 /* Configuration+DataReceivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577C97205C88A900FB4B83 /* Configuration+DataReceivable.swift */; };
+		38577C9E205CB88C00FB4B83 /* UnsafeNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577C9D205CB88C00FB4B83 /* UnsafeNavigation.swift */; };
+		38577CA0205CBB1300FB4B83 /* UnsafeNavigationAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577C9F205CBB1300FB4B83 /* UnsafeNavigationAware.swift */; };
+		38577CA3205CBB4700FB4B83 /* ProtectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577CA2205CBB4700FB4B83 /* ProtectionHandler.swift */; };
 		3881751F205602950054CFBB /* Embeddable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3881751E205602950054CFBB /* Embeddable.swift */; };
 		3881752120560F090054CFBB /* EmbeddingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3881752020560F090054CFBB /* EmbeddingType.swift */; };
 		3881752320560F2C0054CFBB /* EmbeddingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3881752220560F2C0054CFBB /* EmbeddingProtocol.swift */; };
@@ -108,6 +115,13 @@
 		384CF9AD204DC35E00330EC7 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		384CF9AF204DC38000330EC7 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		384CF9B1204DC54400330EC7 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		38577C91205C863D00FB4B83 /* ProtectionSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectionSpace.swift; sourceTree = "<group>"; };
+		38577C93205C872800FB4B83 /* Protectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protectable.swift; sourceTree = "<group>"; };
+		38577C95205C876A00FB4B83 /* ProtectionAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectionAware.swift; sourceTree = "<group>"; };
+		38577C97205C88A900FB4B83 /* Configuration+DataReceivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Configuration+DataReceivable.swift"; sourceTree = "<group>"; };
+		38577C9D205CB88C00FB4B83 /* UnsafeNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsafeNavigation.swift; sourceTree = "<group>"; };
+		38577C9F205CBB1300FB4B83 /* UnsafeNavigationAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsafeNavigationAware.swift; sourceTree = "<group>"; };
+		38577CA2205CBB4700FB4B83 /* ProtectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectionHandler.swift; sourceTree = "<group>"; };
 		3881751E205602950054CFBB /* Embeddable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embeddable.swift; sourceTree = "<group>"; };
 		3881752020560F090054CFBB /* EmbeddingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddingType.swift; sourceTree = "<group>"; };
 		3881752220560F2C0054CFBB /* EmbeddingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddingProtocol.swift; sourceTree = "<group>"; };
@@ -231,6 +245,8 @@
 		384CF98D204DBBC700330EC7 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				38577C9C205CB87E00FB4B83 /* Unsafe */,
+				38577C90205C863700FB4B83 /* Protection */,
 				38F1D8A2205B2F7C001F0B0B /* Caching */,
 				388C73182059DE3800C11EEB /* Events */,
 				388175282056120D0054CFBB /* DataPassing */,
@@ -262,8 +278,36 @@
 				384CF9AD204DC35E00330EC7 /* UIViewController.swift */,
 				381D744620558FF700F1C154 /* UINavigationController.swift */,
 				38F1D898205B054E001F0B0B /* UIApplication.swift */,
+				38577C97205C88A900FB4B83 /* Configuration+DataReceivable.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		38577C90205C863700FB4B83 /* Protection */ = {
+			isa = PBXGroup;
+			children = (
+				38577C91205C863D00FB4B83 /* ProtectionSpace.swift */,
+				38577C93205C872800FB4B83 /* Protectable.swift */,
+				38577C95205C876A00FB4B83 /* ProtectionAware.swift */,
+			);
+			path = Protection;
+			sourceTree = "<group>";
+		};
+		38577C9C205CB87E00FB4B83 /* Unsafe */ = {
+			isa = PBXGroup;
+			children = (
+				38577C9D205CB88C00FB4B83 /* UnsafeNavigation.swift */,
+				38577C9F205CBB1300FB4B83 /* UnsafeNavigationAware.swift */,
+			);
+			path = Unsafe;
+			sourceTree = "<group>";
+		};
+		38577CA1205CBB3F00FB4B83 /* Protection */ = {
+			isa = PBXGroup;
+			children = (
+				38577CA2205CBB4700FB4B83 /* ProtectionHandler.swift */,
+			);
+			path = Protection;
 			sourceTree = "<group>";
 		};
 		3881751D2056028C0054CFBB /* Embedding */ = {
@@ -393,6 +437,7 @@
 		38D5B39F204A36B5005A15BC /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				38577CA1205CBB3F00FB4B83 /* Protection */,
 				38F1D8AB205B31AF001F0B0B /* Cache */,
 				381D744D2055988800F1C154 /* History */,
 				3822436B2054BF5900426342 /* Navigator */,
@@ -710,17 +755,22 @@
 				38D5B3A1204A36BD005A15BC /* To.swift in Sources */,
 				3822436F2054BF8C00426342 /* Navigator_Present.swift in Sources */,
 				381D7444205588F200F1C154 /* Transitionable.swift in Sources */,
+				38577C96205C876A00FB4B83 /* ProtectionAware.swift in Sources */,
 				38F1D897205B04FB001F0B0B /* Swizzler.swift in Sources */,
 				384CF9AE204DC35E00330EC7 /* UIViewController.swift in Sources */,
+				38577CA0205CBB1300FB4B83 /* UnsafeNavigationAware.swift in Sources */,
 				3881752120560F090054CFBB /* EmbeddingType.swift in Sources */,
 				38F1D8AA205B31A8001F0B0B /* Cache.swift in Sources */,
 				381D74562055A28A00F1C154 /* HistoryDirection.swift in Sources */,
 				38D5B399204A3567005A15BC /* Global.swift in Sources */,
 				3822436A2054B91A00426342 /* NavigationType.swift in Sources */,
+				38577C9E205CB88C00FB4B83 /* UnsafeNavigation.swift in Sources */,
 				380411152055D1CF000C6A25 /* Navigator_NavigationOperation.swift in Sources */,
+				38577C92205C863D00FB4B83 /* ProtectionSpace.swift in Sources */,
 				384CF988204DBB5400330EC7 /* Destination.swift in Sources */,
 				381D744720558FF700F1C154 /* UINavigationController.swift in Sources */,
 				38F1D89B205B0574001F0B0B /* UIViewController+Events.swift in Sources */,
+				38577C98205C88A900FB4B83 /* Configuration+DataReceivable.swift in Sources */,
 				38817579205712990054CFBB /* DataReceivable.swift in Sources */,
 				3881752720560FB80054CFBB /* TransitioningAware.swift in Sources */,
 				38D5B39C204A35A0005A15BC /* Navigation.swift in Sources */,
@@ -729,6 +779,7 @@
 				388C731C2059E1A400C11EEB /* EventAware.swift in Sources */,
 				384CF991204DBBE200330EC7 /* Resultable.swift in Sources */,
 				38F1D89F205B05CF001F0B0B /* ViewControllerObserver.swift in Sources */,
+				38577CA3205CBB4700FB4B83 /* ProtectionHandler.swift in Sources */,
 				38F1D899205B054E001F0B0B /* UIApplication.swift in Sources */,
 				384CF98F204DBBD100330EC7 /* DestinationAware.swift in Sources */,
 				381D745420559A9500F1C154 /* HistoryItem.swift in Sources */,
@@ -736,6 +787,7 @@
 				388C731A2059DED500C11EEB /* Eventable.swift in Sources */,
 				3822436D2054BF6100426342 /* Navigator_Push.swift in Sources */,
 				38F1D8A6205B2F9F001F0B0B /* Cacheable.swift in Sources */,
+				38577C94205C872800FB4B83 /* Protectable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

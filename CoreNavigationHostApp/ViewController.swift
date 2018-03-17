@@ -28,9 +28,9 @@ class OtherVC: MyVC, DataReceivable {
         
         view.backgroundColor = .purple
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.view.backgroundColor = .green
-        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//            self.view.backgroundColor = .green
+//        }
     }
 }
 
@@ -56,19 +56,46 @@ class MyLifetime: Lifetime {
             kill()
         }
     }
+}
+
+class MyProtectionSpace: ProtectionSpace {
+    func shouldProtect() -> Bool {
+        return !MyProtectionSpace.isSignedIn
+    }
     
+    static var isSignedIn = false
     
+    func protect(_ handler: ProtectionHandler) {
+        let viewController = UIViewController()
+        
+        Navigation.present { $0
+            .to(viewController)
+            .unsafely()
+            .event.viewController(ViewControllerEvent<UIViewController>.viewDidLoad({ (viewController) in
+                viewController.view.backgroundColor = .yellow
+            }))
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            MyProtectionSpace.isSignedIn = true
+
+            viewController.dismiss(animated: true, completion: {
+                handler.unprotect()
+            })
+        }
+    }
 }
 
 class ViewController: UIViewController {
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidLoad() {
         
-        super.viewDidAppear(animated)
+        super.viewDidLoad()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             Navigation
             .present { $0
                 .to(MyRoute())
+                .protect(with: MyProtectionSpace())
                 .animated(false)
                 .pass("Hello!")
                 .embedInNavigationController()
@@ -78,7 +105,23 @@ class ViewController: UIViewController {
                 .event.viewController(.viewWillDisappear({ (viewController, animated) in
                     print("Will disappear!")
                 }))
+                .event.passData({ (data) in
+                    
+                })
                 .keepAlive(within: MyLifetime())
+            }
+                .push { $0
+                    .to(MyVC())
+                    .animated(false)
+            }
+                .push { $0
+                    .to(MyVC())
+                    .animated(true)
+            }
+                .present { $0
+                    .to(OtherVC())
+                    .embedInNavigationController()
+                    .animated(true)
             }
             
         }
