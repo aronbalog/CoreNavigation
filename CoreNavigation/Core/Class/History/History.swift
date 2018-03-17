@@ -3,11 +3,11 @@ import Foundation
 public class History {
     static let shared = History()
     
-    public internal(set) var items: [HistoryItem] = []
+    var items: [HistoryItem] = []
     
     private init() {}
     
-    public func add(_ historyItem: HistoryItem) {
+    func add(_ historyItem: HistoryItem) {
         items.append(historyItem)
     }
     

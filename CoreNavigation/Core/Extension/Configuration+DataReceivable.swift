@@ -17,7 +17,7 @@ extension Configuration where ResultableType.ToViewController: DataReceivable {
                 }
             })
             
-            (self.events.dataPassBlocks as? [(ResultableType.ToViewController.DataType) -> Void])?.forEach { block in
+            (self.events.passDataBlocks as? [(ResultableType.ToViewController.DataType) -> Void])?.forEach { block in
                 block(data)
             }
         }
@@ -28,7 +28,7 @@ extension Configuration where ResultableType.ToViewController: DataReceivable {
 
 extension Configuration.Event where ResultableType.ToViewController: DataReceivable {
     @discardableResult public func passData(_ block: @escaping (ResultableType.ToViewController.DataType) -> Void) -> Configuration {
-        configuration.events.dataPassBlocks.append(block)
+        configuration.events.passDataBlocks.append(block)
         
         return configuration
     }

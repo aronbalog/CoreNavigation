@@ -95,37 +95,29 @@ class ViewController: UIViewController {
             Navigation
             .present { $0
                 .to(MyRoute())
-                .protect(with: MyProtectionSpace())
                 .animated(false)
-                .pass("Hello!")
                 .embedInNavigationController()
-                .on(.viewController(.viewDidAppear({ (viewController, animated) in
-                    print("View controller!", viewController)
-                })))
-                .event.viewController(.viewWillDisappear({ (viewController, animated) in
-                    print("Will disappear!")
-                }))
-                .event.passData({ (data) in
-                    
-                })
-                .keepAlive(within: MyLifetime())
             }
-                .push { $0
-                    .to(MyVC())
-                    .animated(false)
+            .push { $0
+                .to(MyVC())
+                .animated(false)
             }
-                .push { $0
-                    .to(MyVC())
-                    .animated(true)
+            .push { $0
+                .to(MyVC())
+                .animated(true)
             }
-                .present { $0
-                    .to(OtherVC())
-                    .embedInNavigationController()
-                    .animated(true)
+            .present { $0
+                .to(OtherVC())
+                .embedInNavigationController()
+                .animated(true)
             }
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-                Navigation.history.back(steps: 3)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 6, execute: {
+                Navigation.history.back(steps: 1)
+            })
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 7, execute: {
+                Navigation.history.forward()
             })
         }
                     /*

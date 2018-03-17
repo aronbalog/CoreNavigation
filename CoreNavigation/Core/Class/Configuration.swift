@@ -51,7 +51,7 @@ public final class Configuration<ResultableType: Resultable>: ConfigurationConfo
         }
         
         public var navigationEvents: [NavigationEvent] = []
-        var dataPassBlocks: [Any] = []
+        var passDataBlocks: [Any] = []
     }
     
     public class Caching: CachingAware {
