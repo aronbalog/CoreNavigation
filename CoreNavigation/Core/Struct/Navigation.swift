@@ -11,6 +11,11 @@ public struct Navigation {
         return History.shared
     }
     
+    /// Navigation router.
+    public static var router: Router {
+        return Router.shared
+    }
+    
     /// Presents view controller with configuration block.
     ///
     /// - Parameter configuration: `Configuration` block which returns object that can be used to configure push navigation.

@@ -40,13 +40,13 @@ public final class Configuration<ResultableType: Resultable>: ConfigurationConfo
     }
     
     public class DataPassing: DataPassingAware {
-        public var data: Any?
+        public var data: Any??
     }
     
     public class Events: EventAware {
         public enum NavigationEvent {
             case completion(() -> Void)
-            case passData((Any) -> Void)
+            case passData((Any?) -> Void)
             case viewController(ViewControllerEvent<ResultableType.ToViewController>)
         }
         

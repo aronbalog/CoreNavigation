@@ -12,7 +12,12 @@ public class History {
     }
     
     public func back(animated: Bool = true, completion: (() -> Void)? = nil, steps: Int = 1) {
-        let index = items.count - steps - 1
+        var index = items.count - steps - 1
+        
+        if index < 0 {
+            index = 0
+        }
+        
         guard items.count > index else {
             return
         }

@@ -23,8 +23,6 @@ class Navigator {
                     switch configuration.destination {
                     case .viewController(let viewController):
                         action(type: type, viewController: viewController, configuration: configuration, handler: handler)
-                    case .routePath(let routePath):
-                        ()
                     case .viewControllerBlock(let block):
                         block { viewController in
                             action(type: type, viewController: viewController, configuration: configuration, handler: handler)

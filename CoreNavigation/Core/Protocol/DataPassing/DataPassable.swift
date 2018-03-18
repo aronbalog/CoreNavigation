@@ -9,9 +9,9 @@ public protocol DataPassable: class {
 }
 
 extension DataPassable {
-    @discardableResult public func pass(_ data: Any) -> Self {
-        dataPassing.data = data
-        
-        return self
-    }
+//    @discardableResult public func pass(_ data: Any?) -> Self {
+//        dataPassing.data = data
+//        
+//        return self
+//    }
 }

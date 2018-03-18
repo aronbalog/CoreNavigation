@@ -8,11 +8,8 @@ target 'CoreNavigation' do
     pod 'Nimble'
   end
   
-  target 'CoreNavigationHostAppTests' do
-      inherit! :search_paths
+  target 'CoreNavigationHostApp' do
       
-      pod 'Quick'
-      pod 'Nimble'
   end
 
 end

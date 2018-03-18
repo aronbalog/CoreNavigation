@@ -1,10 +1,34 @@
 import Foundation
 
-extension Configuration where ResultableType.ToViewController: DataReceivable {
-    @discardableResult public func pass(_ parameters: ResultableType.ToViewController.DataType) -> Configuration<Result<ResultableType.ToViewController, ResultableType.ToViewController.DataType>> {
-        if dataPassing.data == nil {
-            dataPassing.data = parameters
+extension Configuration {
+    public func pass(_ data: Any) -> Self {
+        dataPassing.data = data
+        
+        willNavigateBlocks.append { [weak self] (viewController) in
+            guard let `self` = self else { return }
+            
+            if let data = self.dataPassing.data {
+                (viewController as? AbstractDataReceivable)?.didReceiveAbstractData(data)
+            }
+            
+            self.events.navigationEvents.forEach({ (event) in
+                if case Events.NavigationEvent.passData(let block) = event {
+                    block(data)
+                }
+            })
+            
+            (self.events.passDataBlocks as? [(Any?) -> Void])?.forEach { block in
+                block(data)
+            }
         }
+        
+        return self
+    }
+}
+
+extension Configuration where ResultableType.ToViewController: DataReceivable {
+    @discardableResult public func pass(_ data: ResultableType.ToViewController.DataType) -> Configuration<Result<ResultableType.ToViewController, ResultableType.ToViewController.DataType>> {
+        dataPassing.data = data
         
         willNavigateBlocks.append { [weak self] (viewController) in
             guard let `self` = self else { return }
