@@ -69,6 +69,7 @@ class Navigator {
     static func action<T>(type: NavigationType, viewController: UIViewController, configuration: Configuration<T>, handler: @escaping () -> Void) {
         bindViewControllerEvents(to: viewController, with: configuration)
         cacheIfNeeded(viewController: viewController, with: configuration)
+        prepareForStateRestorationIfNeeded(viewController: viewController, with: configuration)
         
         switch type {
         case .push:
@@ -87,12 +88,36 @@ class Navigator {
             return viewController
         }
         
-        switch embeddingType {
-        case .embeddingProtocol(let aProtocol):
-            return aProtocol.embed(viewController)
-        case .navigationController:
-            return UINavigationController(rootViewController: viewController)
+        let viewControllerToNavigate: UIViewController = {
+            switch embeddingType {
+            case .embeddingProtocol(let aProtocol):
+                return aProtocol.embed(viewController)
+            case .navigationController:
+                return UINavigationController(rootViewController: viewController)
+            }
+        }()
+        
+        prepareForStateRestorationIfNeeded(viewController: viewControllerToNavigate, with: configuration)
+        
+        return viewControllerToNavigate
+    }
+    
+    static func prepareForStateRestorationIfNeeded<T>(viewController: UIViewController, with configuration: Configuration<T>) {
+        let data = configuration.dataPassing.data ?? nil
+        let protectionSpace = configuration.protection.protectionSpace
+        
+        switch configuration.stateRestoration.option {
+        case .automatically:
+            StateRestoration.prepare(viewController, data: data, protectionSpace: protectionSpace)
+        case .automaticallyWithIdentifier(let restorationIdentifier):
+            StateRestoration.prepare(viewController, identifier: restorationIdentifier, data: data, protectionSpace: protectionSpace)
+        case .manually(let restorationIdentifier, let restorationClass):
+            viewController.restorationIdentifier = restorationIdentifier
+            viewController.restorationClass = restorationClass
+        default:
+            ()
         }
+        
     }
     
     private static func bindViewControllerEvents<T>(to viewController: UIViewController, with configuration: Configuration<T>) {

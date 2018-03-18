@@ -6,7 +6,8 @@ public typealias ConfigurationConformance = Transitionable &
                                             Eventable &
                                             Cacheable &
                                             Protectable &
-                                            UnsafeNavigation
+                                            UnsafeNavigation &
+                                            StateRestorable
 
 public final class Configuration<ResultableType: Resultable>: ConfigurationConformance {
     public let destination: Destination
@@ -18,6 +19,7 @@ public final class Configuration<ResultableType: Resultable>: ConfigurationConfo
     public var caching = Caching()
     public var protection = Protection()
     public var unsafeNavigation = UnsafeNavigationObject()
+    public var stateRestoration = StateRestoration()
     
     public var event: Configuration<ResultableType>.Event {
         return Event(configuration: self)
@@ -85,6 +87,9 @@ public final class Configuration<ResultableType: Resultable>: ConfigurationConfo
     public class UnsafeNavigationObject: UnsafeNavigationAware {
         public var isUnsafe: Bool = false
     }
-
+    
+    public class StateRestoration: StateRestorationAware {
+        public var option: StateRestorationOption = .ignore
+    }
 }
 

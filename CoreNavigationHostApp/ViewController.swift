@@ -2,35 +2,23 @@ import UIKit
 import CoreNavigation
 
 class ViewController: UIViewController {
+    lazy var navigateBarButtonItem: UIBarButtonItem = UIBarButtonItem(title: "Navigate", style: UIBarButtonItemStyle.plain, target: self, action: #selector(navigate))
+    
+    @objc func navigate() {
+        Navigation
+            .present { $0
+                .to("pattern/aron-123-something/balog")
+//                .pass(["kurac":"od ovce"])
+                .stateRestorable()
+                .embeddedInNavigationController()
+        }
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        restorationIdentifier = "VC"
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            Navigation
-            .present { $0
-                .to("pattern/drek-something/balog")
-                .pass(["kurac":"od ovce"])
-                .animated(false)
-                .embedInNavigationController()
-            }
-//            .push { $0
-//                .to(MyVC())
-//                .animated(false)
-//            }
-//            .push { $0
-//                .to(MyVC())
-//                .animated(true)
-//            }
-//            .present { $0
-//                .to(OtherVC())
-//                .embedInNavigationController()
-//                .animated(true)
-//            }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 6, execute: {
-                Navigation.history.back(steps: 1)
-            })
-        }
+        navigationItem.setLeftBarButton(navigateBarButtonItem, animated: false)
     }
 }

@@ -5,25 +5,25 @@ public protocol Embeddable: class {
     
     var embedding: Embedding { get set }
     
-    @discardableResult func embed(in type: EmbeddingType) -> Self
-    @discardableResult func embed(in embeddingProtocol: EmbeddingProtocol.Type) -> Self
-    @discardableResult func embedInNavigationController() -> Self
+    @discardableResult func embedded(in type: EmbeddingType) -> Self
+    @discardableResult func embedded(in embeddingProtocol: EmbeddingProtocol.Type) -> Self
+    @discardableResult func embeddedInNavigationController() -> Self
 }
 
 extension Embeddable {
-    @discardableResult public func embed(in type: EmbeddingType) -> Self {
+    @discardableResult public func embedded(in type: EmbeddingType) -> Self {
         embedding.embeddingType = type
         
         return self
     }
     
-    @discardableResult public func embed(in embeddingProtocol: EmbeddingProtocol.Type) -> Self {
+    @discardableResult public func embedded(in embeddingProtocol: EmbeddingProtocol.Type) -> Self {
         embedding.embeddingType = .embeddingProtocol(embeddingProtocol)
         
         return self
     }
     
-    @discardableResult public func embedInNavigationController() -> Self {
+    @discardableResult public func embeddedInNavigationController() -> Self {
         embedding.embeddingType = .navigationController
         
         return self
