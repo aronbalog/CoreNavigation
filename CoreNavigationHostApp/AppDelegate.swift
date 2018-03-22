@@ -33,7 +33,10 @@ class OtherVC: MyVC, DataReceivable {
 struct MyRoute: Route, URLAccessibleRoute {
     typealias Destination = MyVC
     
-    static var pattern: String = "pattern/:firstName(.*)-something/:lastName(.*)"
+    static var patterns = [
+        "pattern/:firstName(.*)-something/:lastName(.*)",
+        ":firstName(.*)/:lastName(.*)"
+    ]
 }
 
 class MyLifetime: Lifetime {
@@ -57,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, StateRestorationDelegate 
 
         Navigation.router.registerRoute(MyRoute.self)
 
-        UIViewController.route(to: "pattern/aron-something/balog") { (viewController: MyVC) in
+        UIViewController.route(to: "aron/balog") { (viewController: MyVC) in
             viewController.restorationIdentifier = "root"
             self.window?.rootViewController = viewController
             self.window?.makeKeyAndVisible()

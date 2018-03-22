@@ -3,7 +3,7 @@ import Foundation
 public class Router {
     static let shared = Router()
     
-    private var registeredRoutes: [RoutePatternAware.Type] = []
+    private var registeredRoutes: [RoutePatternsAware.Type] = []
     
     public func registerRoute<T: URLAccessibleRoute>(_ route: T.Type) {
         registeredRoutes.append(route)
@@ -13,7 +13,7 @@ public class Router {
         registeredRoutes.append(route)
     }
     
-    public func registerRoute<T: RoutePatternAware>(_ route: T.Type) {
+    public func registerRoute<T: RoutePatternsAware>(_ route: T.Type) {
         registeredRoutes.append(route)
     }
     
@@ -26,10 +26,12 @@ public class Router {
     }
 }
 
-fileprivate extension RoutePatternAware {
+fileprivate extension RoutePatternsAware {
     static func matches(_ matchable: Matchable, _ parameters: inout [String: Any]?) -> Bool {
-        guard let regularExpression = try? RegularExpression(pattern: pattern) else { return false }
-        
-        return regularExpression.matchResult(for: matchable.uri, parameters: &parameters)
+        return patterns.first { (pattern) -> Bool in
+            guard let regularExpression = try? RegularExpression(pattern: pattern) else { return false }
+            
+            return regularExpression.matchResult(for: matchable.uri, parameters: &parameters)
+        } != nil
     }
 }

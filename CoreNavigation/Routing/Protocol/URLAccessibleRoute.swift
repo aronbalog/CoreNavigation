@@ -1,5 +1,5 @@
 import Foundation
 
-public protocol URLAccessibleRoute: RoutePatternAware where Self: Route {
+public protocol URLAccessibleRoute: RoutePatternsAware where Self: Route {
     
 }
