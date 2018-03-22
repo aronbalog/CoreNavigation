@@ -10,6 +10,27 @@ class Navigator {
         return queue
     }()
 
+    static func getViewController<T>(configuration: Configuration<T>, completion: @escaping ((T.ToViewController) -> Void)) {
+        switch configuration.destination {
+        case .viewController(let _viewController):
+            guard let viewController = _viewController as? T.ToViewController else { break }
+            completion(viewController)
+        case .viewControllerBlock(let block):
+            block { _viewController in
+                
+                guard let viewController = _viewController as? T.ToViewController else { return }
+                
+                completion(viewController)
+            }
+        case .viewControllerClassBlock(let block):
+            block { viewControllerClass in
+                guard let viewController = (viewControllerClass as? T.ToViewController.Type)?.init(nibName: nil, bundle: nil) else { return }
+
+                completion(viewController)
+            }
+        }
+    }
+    
     static func navigate<T>(with type: NavigationType, configuration: Configuration<T>, completion: (() -> Void)? = nil) {
         func main(handler: @escaping () -> Void) {
             func navigation() {
@@ -33,8 +54,6 @@ class Navigator {
                             
                             action(type: type, viewController: viewController, configuration: configuration, handler: handler)
                         }
-                    case .unknown:
-                        ()
                     }
                 }
                 
@@ -68,7 +87,7 @@ class Navigator {
     
     static func action<T>(type: NavigationType, viewController: UIViewController, configuration: Configuration<T>, handler: @escaping () -> Void) {
         bindViewControllerEvents(to: viewController, with: configuration)
-        cacheIfNeeded(viewController: viewController, with: configuration)
+        cacheViewControllerIfNeeded(viewController: viewController, with: configuration)
         prepareForStateRestorationIfNeeded(viewController: viewController, with: configuration)
         
         switch type {
@@ -168,7 +187,7 @@ class Navigator {
         viewController.events = viewControllerEvents
     }
     
-    private static func cacheIfNeeded<T>(viewController: UIViewController, with configuration: Configuration<T>) {
+    private static func cacheViewControllerIfNeeded<T>(viewController: UIViewController, with configuration: Configuration<T>) {
         guard let lifetime = configuration.caching.lifetime else { return }
         
         Cache.shared.add(viewController: viewController, lifetime: lifetime)

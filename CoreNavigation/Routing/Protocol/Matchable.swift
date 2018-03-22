@@ -1,17 +1,17 @@
 import Foundation
 
-protocol Matchable {
+public protocol Matchable {
     var uri: String { get }
 }
 
 extension String: Matchable {
-    var uri: String {
+    public var uri: String {
         return self
     }
 }
 
 extension URL: Matchable {
-    var uri: String {
+    public var uri: String {
         return self.absoluteString
     }
 }

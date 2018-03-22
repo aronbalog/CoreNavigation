@@ -33,6 +33,7 @@
 		38444A9F205EFBA5001F3F5C /* StateRestoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38444A9E205EFBA5001F3F5C /* StateRestoration.swift */; };
 		38444AA1205EFBE1001F3F5C /* StateRestorationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38444AA0205EFBE1001F3F5C /* StateRestorationDelegate.swift */; };
 		38444AA3205EFBFD001F3F5C /* StateRestorationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38444AA2205EFBFD001F3F5C /* StateRestorationContext.swift */; };
+		38444AB3205F570F001F3F5C /* ViewController+Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38444AB2205F570F001F3F5C /* ViewController+Route.swift */; };
 		384CF988204DBB5400330EC7 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CF987204DBB5400330EC7 /* Destination.swift */; };
 		384CF98C204DBB8E00330EC7 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CF98B204DBB8E00330EC7 /* Result.swift */; };
 		384CF98F204DBBD100330EC7 /* DestinationAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CF98E204DBBD100330EC7 /* DestinationAware.swift */; };
@@ -65,6 +66,9 @@
 		388C73172059C7A400C11EEB /* DataPassable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38817529205612140054CFBB /* DataPassable.swift */; };
 		388C731A2059DED500C11EEB /* Eventable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388C73192059DED500C11EEB /* Eventable.swift */; };
 		388C731C2059E1A400C11EEB /* EventAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388C731B2059E1A400C11EEB /* EventAware.swift */; };
+		38A7AFED2063261900C36040 /* UIViewController+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7AFEC2063261900C36040 /* UIViewController+Navigation.swift */; };
+		38A7AFEF2063264B00C36040 /* Route+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7AFEE2063264B00C36040 /* Route+ViewController.swift */; };
+		38A7AFF3206330B600C36040 /* Matchable+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7AFF2206330B600C36040 /* Matchable+ViewController.swift */; };
 		38D5B387204A354A005A15BC /* CoreNavigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D5B37D204A354A005A15BC /* CoreNavigation.framework */; };
 		38D5B38E204A354B005A15BC /* CoreNavigation.h in Headers */ = {isa = PBXBuildFile; fileRef = 38D5B380204A354A005A15BC /* CoreNavigation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		38D5B399204A3567005A15BC /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5B398204A3567005A15BC /* Global.swift */; };
@@ -133,6 +137,7 @@
 		38444A9E205EFBA5001F3F5C /* StateRestoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateRestoration.swift; sourceTree = "<group>"; };
 		38444AA0205EFBE1001F3F5C /* StateRestorationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateRestorationDelegate.swift; sourceTree = "<group>"; };
 		38444AA2205EFBFD001F3F5C /* StateRestorationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateRestorationContext.swift; sourceTree = "<group>"; };
+		38444AB2205F570F001F3F5C /* ViewController+Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Route.swift"; sourceTree = "<group>"; };
 		384CF987204DBB5400330EC7 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
 		384CF98B204DBB8E00330EC7 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		384CF98E204DBBD100330EC7 /* DestinationAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationAware.swift; sourceTree = "<group>"; };
@@ -168,6 +173,9 @@
 		3881757C20573CCC0054CFBB /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		388C73192059DED500C11EEB /* Eventable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eventable.swift; sourceTree = "<group>"; };
 		388C731B2059E1A400C11EEB /* EventAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAware.swift; sourceTree = "<group>"; };
+		38A7AFEC2063261900C36040 /* UIViewController+Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Navigation.swift"; sourceTree = "<group>"; };
+		38A7AFEE2063264B00C36040 /* Route+ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Route+ViewController.swift"; sourceTree = "<group>"; };
+		38A7AFF2206330B600C36040 /* Matchable+ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Matchable+ViewController.swift"; sourceTree = "<group>"; };
 		38D5B37D204A354A005A15BC /* CoreNavigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreNavigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38D5B380204A354A005A15BC /* CoreNavigation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreNavigation.h; sourceTree = "<group>"; };
 		38D5B381204A354A005A15BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -297,6 +305,25 @@
 				38444AA2205EFBFD001F3F5C /* StateRestorationContext.swift */,
 			);
 			path = StateRestoration;
+			sourceTree = "<group>";
+		};
+		38444AB0205F56FA001F3F5C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				38444AB1205F56FF001F3F5C /* ViewController */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		38444AB1205F56FF001F3F5C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				38444AB2205F570F001F3F5C /* ViewController+Route.swift */,
+				38A7AFEC2063261900C36040 /* UIViewController+Navigation.swift */,
+				38A7AFEE2063264B00C36040 /* Route+ViewController.swift */,
+				38A7AFF2206330B600C36040 /* Matchable+ViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		384CF98D204DBBC700330EC7 /* Protocol */ = {
@@ -447,6 +474,7 @@
 		38D5B37F204A354A005A15BC /* CoreNavigation */ = {
 			isa = PBXGroup;
 			children = (
+				38444AB0205F56FA001F3F5C /* Extensions */,
 				3881757A20573CAC0054CFBB /* Routing */,
 				38D5B39E204A3698005A15BC /* Core */,
 				38D5B380204A354A005A15BC /* CoreNavigation.h */,
@@ -886,6 +914,7 @@
 				38342D8E205E1D890085DFF4 /* RouteParametersAware.swift in Sources */,
 				383320CB205DE9BF008492EE /* URLAccessibleRoute.swift in Sources */,
 				383320CF205DE9E1008492EE /* AnyRoute.swift in Sources */,
+				38A7AFF3206330B600C36040 /* Matchable+ViewController.swift in Sources */,
 				38817577205710530054CFBB /* DataPassingAware.swift in Sources */,
 				38D5B3A1204A36BD005A15BC /* To.swift in Sources */,
 				3822436F2054BF8C00426342 /* Navigator_Present.swift in Sources */,
@@ -913,6 +942,7 @@
 				38817579205712990054CFBB /* DataReceivable.swift in Sources */,
 				387B789C205E0CC60078974C /* RouteMatch.swift in Sources */,
 				38444AA1205EFBE1001F3F5C /* StateRestorationDelegate.swift in Sources */,
+				38A7AFED2063261900C36040 /* UIViewController+Navigation.swift in Sources */,
 				3881752720560FB80054CFBB /* TransitioningAware.swift in Sources */,
 				38D5B39C204A35A0005A15BC /* Navigation.swift in Sources */,
 				38F1D8A1205B0F32001F0B0B /* ViewControllerEvent.swift in Sources */,
@@ -926,6 +956,7 @@
 				383320D1205DE9FE008492EE /* RoutePatternAware.swift in Sources */,
 				38F1D899205B054E001F0B0B /* UIApplication.swift in Sources */,
 				383320D3205DEA24008492EE /* RouteHandler.swift in Sources */,
+				38444AB3205F570F001F3F5C /* ViewController+Route.swift in Sources */,
 				384CF98F204DBBD100330EC7 /* DestinationAware.swift in Sources */,
 				38444A9C205EF894001F3F5C /* StateRestorationOption.swift in Sources */,
 				381D745420559A9500F1C154 /* HistoryItem.swift in Sources */,
@@ -933,6 +964,7 @@
 				388C731A2059DED500C11EEB /* Eventable.swift in Sources */,
 				3822436D2054BF6100426342 /* Navigator_Push.swift in Sources */,
 				38F1D8A6205B2F9F001F0B0B /* Cacheable.swift in Sources */,
+				38A7AFEF2063264B00C36040 /* Route+ViewController.swift in Sources */,
 				38577C94205C872800FB4B83 /* Protectable.swift in Sources */,
 				38444A9A205EF768001F3F5C /* StateRestorationAware.swift in Sources */,
 			);

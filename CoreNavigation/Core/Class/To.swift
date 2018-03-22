@@ -177,7 +177,9 @@ public class To<ResultableType: Resultable>: DestinationAware {
     /// - Parameter url: URL instance.
     /// - Returns: `Configuration` object.
     @discardableResult public func to(_ url: URL) -> Configuration<Result<UIViewController, Any>> {
-        return to(matchable: url)
+        return To.to(matchable: url, action: { configuration in
+            navigate(with: configuration)
+        })
     }
     
     /// Assign registered route's path to navigate to.
@@ -185,7 +187,9 @@ public class To<ResultableType: Resultable>: DestinationAware {
     /// - Parameter path: String instance
     /// - Returns: `Configuration` object
     @discardableResult public func to(_ path: String) -> Configuration<Result<UIViewController, Any>> {
-        return to(matchable: path)
+        return To.to(matchable: path, action: { configuration in
+            navigate(with: configuration)
+        })
     }
     
     // MARK: Internal
@@ -197,11 +201,11 @@ public class To<ResultableType: Resultable>: DestinationAware {
         self.navigationType = navigationType
     }
     
-    func to(matchable: Matchable) -> Configuration<Result<UIViewController, Any>> {
+    @discardableResult static func to<T>(matchable: Matchable, action: (Configuration<Result<T, Any>>) -> Void) -> Configuration<Result<T, Any>> {
         
         let match = Navigation.router.match(for: matchable)
         
-        var _configuration: Configuration<Result<UIViewController, Any>>?
+        var _configuration: Configuration<Result<T, Any>>?
         
         let viewControllerBlock: (@escaping (UIViewController) -> Void) -> Void = { handler in
             guard let match = match else {
@@ -221,10 +225,10 @@ public class To<ResultableType: Resultable>: DestinationAware {
             })
         }
         
-        let configuration = Configuration<Result<UIViewController, Any>>(destination: .viewControllerBlock(viewControllerBlock))
+        let configuration = Configuration<Result<T, Any>>(destination: .viewControllerBlock(viewControllerBlock))
         _configuration = configuration
         
-        navigate(with: configuration)
+        action(configuration)
         
         return configuration
     }
