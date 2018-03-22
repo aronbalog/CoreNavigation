@@ -1,5 +1,5 @@
 import Foundation
 
 public protocol CachingAware {
-    var lifetime: Lifetime? { get set }
+    var configuration: (lifetime: Lifetime, cacheIdentifier: String)? { get set }
 }

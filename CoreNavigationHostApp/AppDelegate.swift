@@ -40,10 +40,6 @@ struct MyRoute: Route, URLAccessibleRoute {
 }
 
 class MyLifetime: Lifetime {
-    func cacheIdentifier() -> String {
-        return "my"
-    }
-    
     func die(_ kill: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
             kill()

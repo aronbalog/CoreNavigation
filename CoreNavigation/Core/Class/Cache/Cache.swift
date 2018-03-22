@@ -15,10 +15,8 @@ class Cache {
     
     private var items: [String: Storage?] = [:]
     
-    func add(viewController: UIViewController, lifetime: Lifetime) {
+    func add(viewController: UIViewController, lifetime: Lifetime, cacheIdentifier: String) {
         let storage = Storage(viewController: viewController, lifetime: lifetime)
-
-        let identifier = lifetime.cacheIdentifier()
 
         weak var lifetime = lifetime
         
@@ -26,18 +24,18 @@ class Cache {
             guard let `self` = self else { return }
             
             if
-                let _lifetime = self.items[identifier]??.lifetime,
+                let _lifetime = self.items[cacheIdentifier]??.lifetime,
                 _lifetime === lifetime
             {
-                self.items[identifier] = nil
+                self.items[cacheIdentifier] = nil
             }
         }
         
-        items[identifier] = storage
+        items[cacheIdentifier] = storage
     }
     
-    func viewController(for identifier: String) -> UIViewController? {
-        return items[identifier]??.viewController
+    func viewController(for cacheIdentifier: String) -> UIViewController? {
+        return items[cacheIdentifier]??.viewController
     }
     
     private init() {}

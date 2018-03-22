@@ -57,7 +57,7 @@ public final class Configuration<ResultableType: Resultable>: ConfigurationConfo
     }
     
     public class Caching: CachingAware {
-        public var lifetime: Lifetime?
+        public var configuration: (lifetime: Lifetime, cacheIdentifier: String)?
     }
     
     public class Event {

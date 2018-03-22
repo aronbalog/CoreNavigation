@@ -36,7 +36,7 @@ class Navigator {
             func navigation() {
                 // check if cached
                 if
-                    let cacheIdentifier = configuration.caching.lifetime?.cacheIdentifier(),
+                    let cacheIdentifier = configuration.caching.configuration?.cacheIdentifier,
                     let viewController = Cache.shared.viewController(for: cacheIdentifier)
                 {
                     action(type: type, viewController: viewController, configuration: configuration, handler: handler)
@@ -188,8 +188,8 @@ class Navigator {
     }
     
     private static func cacheViewControllerIfNeeded<T>(viewController: UIViewController, with configuration: Configuration<T>) {
-        guard let lifetime = configuration.caching.lifetime else { return }
+        guard let configuration = configuration.caching.configuration else { return }
         
-        Cache.shared.add(viewController: viewController, lifetime: lifetime)
+        Cache.shared.add(viewController: viewController, lifetime: configuration.lifetime, cacheIdentifier: configuration.cacheIdentifier)
     }
 }
