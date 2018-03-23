@@ -11,4 +11,3 @@ extension Route where Self.Destination: UIViewController {
         type(of: self).route(handler: handler)
     }
 }
-

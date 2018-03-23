@@ -27,102 +27,162 @@ extension UIViewController {
     @objc func coreNavigation_loadView() {
         coreNavigation_loadView()
         
-        events?.loadViewBlocks.forEach({ [weak self] (block) in
+        events?.loadViewBlocks.forEach({ [weak self] in
             guard let `self` = self else { return }
 
-            block(self)
+            $0(self)
         })
     }
     
     @objc func coreNavigation_viewDidLoad() {
         coreNavigation_viewDidLoad()
         
-        events?.viewDidLoadBlocks.forEach({ $0(self) })
+        events?.viewDidLoadBlocks.forEach({ [weak self] in
+            guard let `self` = self else { return }
+
+            $0(self)
+        })
     }
     
     @objc func coreNavigation_viewWillAppear(_ animated: Bool) {
         coreNavigation_viewWillAppear(animated)
         
-        events?.viewWillAppearBlocks.forEach({ $0(self, animated) })
+        events?.viewWillAppearBlocks.forEach({ [weak self] in
+            guard let `self` = self else { return }
+            
+            $0(self, animated)
+        })
     }
     
     @objc func coreNavigation_viewDidAppear(_ animated: Bool) {
         coreNavigation_viewDidAppear(animated)
         
-        events?.viewDidAppearBlocks.forEach({ $0(self, animated) })
+        events?.viewDidAppearBlocks.forEach({ [weak self] in
+            guard let `self` = self else { return }
+            
+            $0(self, animated)
+        })
     }
     
     @objc func coreNavigation_viewWillDisappear(_ animated: Bool) {
         coreNavigation_viewWillDisappear(animated)
         
-        events?.viewWillDisappearBlocks.forEach({ $0(self, animated) })
+        events?.viewWillDisappearBlocks.forEach({ [weak self] in
+            guard let `self` = self else { return }
+            
+            $0(self, animated)
+        })
     }
     
     @objc func coreNavigation_viewDidDisappear(_ animated: Bool) {
         coreNavigation_viewDidDisappear(animated)
         
-        events?.viewDidDisappearBlocks.forEach({ $0(self, animated) })
+        events?.viewDidDisappearBlocks.forEach({ [weak self] in
+            guard let `self` = self else { return }
+
+            $0(self, animated)
+        })
     }
     
     @objc func coreNavigation_viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         coreNavigation_viewWillTransition(to: size, with: coordinator)
         
-        events?.viewWillTransitionBlocks.forEach({ $0(self, size, coordinator) })
+        events?.viewWillTransitionBlocks.forEach({ [weak self] in
+            guard let `self` = self else { return }
+
+            $0(self, size, coordinator)
+        })
     }
     
     @objc func coreNavigation_viewWillLayoutSubviews() {
         coreNavigation_viewWillLayoutSubviews()
         
-        events?.viewWillLayoutSubviewsBlocks.forEach({ $0(self) })
+        events?.viewWillLayoutSubviewsBlocks.forEach({ [weak self] in
+            guard let `self` = self else { return }
+
+            $0(self)
+        })
     }
     
     @objc func coreNavigation_viewDidLayoutSubviews() {
         coreNavigation_viewDidLayoutSubviews()
         
-        events?.viewDidLayoutSubviewsBlocks.forEach({ $0(self) })
+        events?.viewDidLayoutSubviewsBlocks.forEach({ [weak self] in
+            guard let `self` = self else { return }
+
+            $0(self)
+        })
     }
     
     @objc func coreNavigation_updateViewConstraints() {
         coreNavigation_updateViewConstraints()
         
-        events?.updateViewConstraintsBlocks.forEach({ $0(self) })
+        events?.updateViewConstraintsBlocks.forEach({ [weak self] in
+            guard let `self` = self else { return }
+
+            $0(self)
+        })
     }
     
     @objc func coreNavigation_willMove(toParentViewController: UIViewController?) {
         coreNavigation_willMove(toParentViewController: toParentViewController)
         
-        events?.willMoveToBlocks.forEach({ $0(self, toParentViewController) })
+        events?.willMoveToBlocks.forEach({ [weak self] in
+            guard let `self` = self else { return }
+            
+            $0(self, toParentViewController)
+        })
     }
     
     @objc func coreNavigation_didMove(toParentViewController: UIViewController?) {
         coreNavigation_didMove(toParentViewController: toParentViewController)
         
-        events?.didMoveToBlocks.forEach({ $0(self, toParentViewController) })
+        events?.didMoveToBlocks.forEach({ [weak self] in
+            guard let `self` = self else { return }
+            
+            $0(self, toParentViewController)
+        })
     }
     
     @objc func coreNavigation_didReceiveMemoryWarning() {
         coreNavigation_didReceiveMemoryWarning()
         
-        events?.didReceiveMemoryWarningBlocks.forEach({ $0(self) })
+        events?.didReceiveMemoryWarningBlocks.forEach({ [weak self] in
+            guard let `self` = self else { return }
+            
+            $0(self)
+        })
     }
     
     @objc func coreNavigation_applicationFinishedRestoringState() {
         coreNavigation_applicationFinishedRestoringState()
         
-        events?.applicationFinishedRestoringStateBlocks.forEach({ $0(self) })
+        events?.applicationFinishedRestoringStateBlocks.forEach({ [weak self] in
+            guard let `self` = self else { return }
+            
+            $0(self)
+        })
     }
     
     @available(iOS 11.0, *)
     @objc func coreNavigation_viewLayoutMarginsDidChange() {
         coreNavigation_viewLayoutMarginsDidChange()
-        events?.viewLayoutMarginsDidChangeBlocks.forEach({ $0(self) })
+        events?.viewLayoutMarginsDidChangeBlocks.forEach({ [weak self] in
+            guard let `self` = self else { return }
+            
+            $0(self)
+        })
     }
     
     @available(iOS 11.0, *)
     @objc func coreNavigation_viewSafeAreaInsetsDidChange() {
         coreNavigation_viewSafeAreaInsetsDidChange()
         
-        events?.viewSafeAreaInsetsDidChangeBlocks.forEach({ $0(self) })
+        events?.viewSafeAreaInsetsDidChangeBlocks.forEach({ [weak self] in
+            guard let `self` = self else { return }
+            
+            $0(self)
+        })
     }
 }
 

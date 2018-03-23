@@ -7,7 +7,8 @@ public typealias ConfigurationConformance = Transitionable &
                                             Cacheable &
                                             Protectable &
                                             UnsafeNavigation &
-                                            StateRestorable
+                                            StateRestorable &
+                                            Application
 
 public final class Configuration<ResultableType: Resultable>: ConfigurationConformance {
     public let destination: Destination
@@ -20,6 +21,7 @@ public final class Configuration<ResultableType: Resultable>: ConfigurationConfo
     public var protection = Protection()
     public var unsafeNavigation = UnsafeNavigationObject()
     public var stateRestoration = StateRestoration()
+    public var application = Application()
     
     public var event: Configuration<ResultableType>.Event {
         return Event(configuration: self)
@@ -48,7 +50,7 @@ public final class Configuration<ResultableType: Resultable>: ConfigurationConfo
     public class Events: EventAware {
         public enum NavigationEvent {
             case completion(() -> Void)
-            case passData((Any?) -> Void)
+            case passData((ResultableType.DataType) -> Void)
             case viewController(ViewControllerEvent<ResultableType.ToViewController>)
         }
         
@@ -91,5 +93,11 @@ public final class Configuration<ResultableType: Resultable>: ConfigurationConfo
     public class StateRestoration: StateRestorationAware {
         public var option: StateRestorationOption = .ignore
     }
+    
+    public class Application: ApplicationAware {
+        public var application: UIApplicationProtocol = UIApplication.shared
+    }
 }
+
+extension UIApplication: UIApplicationProtocol {}
 

@@ -52,13 +52,8 @@ class StateRestoration: UIViewControllerRestoration {
     private static let storageIdentifier = "CoreNavigation.StateRestoration"
     
     static func viewController(withRestorationIdentifierPath identifierComponents: [Any], coder: NSCoder) -> UIViewController? {
-        
-        print("Components: ", identifierComponents)
-        
         guard let identifier = identifierComponents.last as? String else { return nil }
-        guard let storageItem = find(identifier: identifier) else {
-            print("Restoration \(identifier) not found")
-            return nil }
+        guard let storageItem = find(identifier: identifier) else { return nil }
         guard let delegate = UIApplication.shared.delegate as? StateRestorationDelegate else {
             fatalError("App delegate must conform `StateRestorationDelegate`")
         }

@@ -13,6 +13,7 @@ extension Configuration {
             
             self.events.navigationEvents.forEach({ (event) in
                 if case Events.NavigationEvent.passData(let block) = event {
+                    guard let data = data as? ResultableType.DataType else { return }
                     block(data)
                 }
             })
@@ -37,6 +38,7 @@ extension Configuration where ResultableType.ToViewController: DataReceivable {
             (viewController as! ResultableType.ToViewController).didReceiveData(data)
             self.events.navigationEvents.forEach({ (event) in
                 if case Events.NavigationEvent.passData(let block) = event {
+                    guard let data = data as? ResultableType.DataType else { return }
                     block(data)
                 }
             })

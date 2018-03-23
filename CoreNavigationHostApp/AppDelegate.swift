@@ -30,7 +30,7 @@ class OtherVC: MyVC, DataReceivable {
     }
 }
 
-struct MyRoute: Route, URLAccessibleRoute {
+struct MyRoute: Route, RoutePatternsAware {
     typealias Destination = MyVC
     
     static var patterns = [
@@ -54,19 +54,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, StateRestorationDelegate 
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window?.restorationIdentifier = "MainWindow"
 
-        Navigation.router.registerRoute(MyRoute.self)
-
-        UIViewController.route(to: "aron/balog") { (viewController: MyVC) in
-            viewController.restorationIdentifier = "root"
-            self.window?.rootViewController = viewController
-            self.window?.makeKeyAndVisible()
-        }
-        
-//        UIViewController.route(to: MyRoute()) { (viewController) in
+//        Navigation.router.registerRoute(MyRoute.self)
+//
+//        UIViewController.route(to: "pattern/aron-something/balog") { (viewController: MyVC) in
 //            viewController.restorationIdentifier = "root"
 //            self.window?.rootViewController = viewController
 //            self.window?.makeKeyAndVisible()
 //        }
+//        
+////        UIViewController.route(to: MyRoute()) { (viewController) in
+////            viewController.restorationIdentifier = "root"
+////            self.window?.rootViewController = viewController
+////            self.window?.makeKeyAndVisible()
+////        }
         
         return true
     }

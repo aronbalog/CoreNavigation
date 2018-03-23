@@ -6,7 +6,7 @@ extension Navigator {
         let viewControllerTransitioningDelegate = configuration.transitioning.viewControllerTransitioningDelegate
         
         DispatchQueue.main.async {
-            let fromViewController = UIViewController.currentViewController
+            let fromViewController = UIViewController.currentViewController(in: configuration.application.application)
             fromViewController?.transitioningDelegate = viewControllerTransitioningDelegate
             
             let transitioningCompletionBlocks = configuration.transitioning.completionBlocks

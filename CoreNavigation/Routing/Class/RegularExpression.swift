@@ -16,13 +16,15 @@ class RegularExpression: NSRegularExpression {
     }
     
     func matchResult(for string: String, parameters: inout [String: Any]?) -> Bool {
+        var _parameters: [String: Any] = [:]
+        
+        let string = stripURLQueryItems(from: string, parameters: &_parameters)
+        
         let _matches = matches(in: string, options: [], range: NSMakeRange(0, string.count))
         
         if _matches.isEmpty {
             return false
         }
-        
-        var _parameters: [String: Any] = [:]
         
         for result in _matches {
             for i in (1..<result.numberOfRanges) {
@@ -41,6 +43,19 @@ class RegularExpression: NSRegularExpression {
         }
         
         return true
+    }
+    
+    private func stripURLQueryItems(from string: String, parameters: inout [String: Any]) -> String {
+        let components = URLComponents(string: string)
+        components?.queryItems?.forEach({ (item) in
+            parameters[item.name] = item.value
+        })
+        
+        if let substring = string.split(separator: "?").first {
+            return String(substring)
+        }
+        
+        return string
     }
     
     required init?(coder aDecoder: NSCoder) {

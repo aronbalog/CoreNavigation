@@ -23,6 +23,8 @@ extension RouteHandler where RouteType.Destination: DataReceivable {
         
         destinationBlocks.forEach { $0(viewController) }
         if let data = data {
+            viewController.didReceiveData(data)
+            
             dataBlocks.forEach { block in
                 guard let block = block as? (RouteType.Destination.DataType) -> Void else { return }
                 

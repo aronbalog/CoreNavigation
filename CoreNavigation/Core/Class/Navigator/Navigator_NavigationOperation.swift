@@ -28,11 +28,6 @@ extension Navigator {
         }
         
         override func main() {
-            guard isCancelled == false else {
-                finish(true)
-                return
-            }
-            
             executing(true)
             block({
                 self.executing(false)
