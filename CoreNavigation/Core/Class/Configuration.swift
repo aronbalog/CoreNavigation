@@ -8,11 +8,13 @@ public typealias ConfigurationConformance = Transitionable &
                                             Protectable &
                                             UnsafeNavigation &
                                             StateRestorable &
-                                            Application
+                                            Application &
+                                            Originable
 
 public final class Configuration<ResultableType: Resultable>: ConfigurationConformance {
     public let destination: Destination
-    
+    public let from: UIViewController?
+
     public var transitioning = Transitioning()
     public var embedding = Embedding()
     public var dataPassing = DataPassing()
@@ -22,6 +24,7 @@ public final class Configuration<ResultableType: Resultable>: ConfigurationConfo
     public var unsafeNavigation = UnsafeNavigationObject()
     public var stateRestoration = StateRestoration()
     public var application = Application()
+    public var origin = Origin()
     
     public var event: Configuration<ResultableType>.Event {
         return Event(configuration: self)
@@ -29,8 +32,9 @@ public final class Configuration<ResultableType: Resultable>: ConfigurationConfo
 
     var willNavigateBlocks: [(UIViewController) -> Void] = []
     
-    init(destination: Destination) {
+    init(destination: Destination, from: UIViewController?) {
         self.destination = destination
+        self.from = from
     }
     
     public class Transitioning: TransitioningAware {
@@ -96,6 +100,10 @@ public final class Configuration<ResultableType: Resultable>: ConfigurationConfo
     
     public class Application: ApplicationAware {
         public var application: UIApplicationProtocol = UIApplication.shared
+    }
+    
+    public class Origin: OriginAware {
+        public var fromViewController: UIViewController?
     }
 }
 

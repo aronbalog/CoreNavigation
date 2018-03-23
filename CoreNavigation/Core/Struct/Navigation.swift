@@ -21,7 +21,7 @@ public struct Navigation {
     /// - Parameter configuration: `Configuration` block which returns object that can be used to configure push navigation.
     /// - Returns: `Navigation` class.
     @discardableResult public static func present(_ configuration: ConfigurationBlock) -> Navigation.Type {
-        configuration(To<Result<UIViewController, Any>>(.present))
+        configuration(To<Result<UIViewController, Any>>(.present, from: nil))
         
         return self
     }
@@ -31,7 +31,7 @@ public struct Navigation {
     /// - Parameter configuration: `Configuration` block which returns object that can be used to configure presenting navigation.
     /// - Returns: `Navigation` class.
     @discardableResult public static func push(_ configuration: ConfigurationBlock) -> Navigation.Type {
-        configuration(To<Result<UIViewController, Any>>(.push))
+        configuration(To<Result<UIViewController, Any>>(.push, from: nil))
         
         return self
     }

@@ -6,9 +6,15 @@ extension Navigator {
         let viewControllerTransitioningDelegate = configuration.transitioning.viewControllerTransitioningDelegate
         
         DispatchQueue.main.async {
-            let currentViewController = UIViewController.currentViewController(in: configuration.application.application)
+            let currentViewController: UIViewController? = {
+                if let fromViewController = configuration.origin.fromViewController {
+                    return fromViewController
+                }
+                
+                return UIViewController.currentViewController(in: configuration.application.application)
+            }()
             
-            let navigationController = currentViewController?.navigationController
+            let navigationController: UINavigationController? = currentViewController?.navigationController ?? currentViewController as? UINavigationController
             
             navigationController?.transitioningDelegate = viewControllerTransitioningDelegate
             

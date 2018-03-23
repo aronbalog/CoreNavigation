@@ -4,7 +4,7 @@ extension UIViewController {
     public static func route<T: UIViewController>(to path: String, _ viewControllerBlock: @escaping (T) -> Void)  {
         typealias ToType = To<Result<T, Any>>
         
-        ToType.to(matchable: path) { (configuration) in
+        ToType.to(matchable: path, from: nil) { (configuration) in
             Navigator.getViewController(configuration: configuration, completion: viewControllerBlock)
         }
     }
@@ -12,7 +12,7 @@ extension UIViewController {
     public static func route<T: UIViewController>(to url: URL, _ viewControllerBlock: @escaping (T) -> Void)  {
         typealias ToType = To<Result<T, Any>>
         
-        ToType.to(matchable: url) { (configuration) in
+        ToType.to(matchable: url, from: nil) { (configuration) in
             Navigator.getViewController(configuration: configuration, completion: viewControllerBlock)
         }
     }
@@ -20,7 +20,7 @@ extension UIViewController {
     public static func route<T: UIViewController>(to matchable: Matchable, _ viewControllerBlock: @escaping (T) -> Void)  {
         typealias ToType = To<Result<T, Any>>
         
-        ToType.to(matchable: matchable) { (configuration) in
+        ToType.to(matchable: matchable, from: nil) { (configuration) in
             Navigator.getViewController(configuration: configuration, completion: viewControllerBlock)
         }
     }
