@@ -10,7 +10,7 @@ protocol StateRestorable: class {
     @discardableResult func stateRestorable(identifier: String, class: UIViewControllerRestoration.Type) -> Self
 }
 
-extension StateRestorable {
+extension Configuration: StateRestorable {
     @discardableResult public func stateRestorable() -> Self {
         stateRestoration.option = .automatically
         

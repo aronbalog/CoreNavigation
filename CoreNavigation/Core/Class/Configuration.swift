@@ -1,17 +1,6 @@
 import Foundation
 
-typealias ConfigurationConformance = Transitionable &
-                                            Embeddable &
-                                            DataPassable &
-                                            Eventable &
-                                            Cacheable &
-                                            Protectable &
-                                            UnsafeNavigation &
-                                            StateRestorable &
-                                            Application &
-                                            Originable
-
-public final class Configuration<ResultableType: Resultable>: ConfigurationConformance {
+public final class Configuration<ResultableType: Resultable>: DataPassable {
     let destination: Destination
     let from: UIViewController?
 
@@ -51,8 +40,8 @@ public final class Configuration<ResultableType: Resultable>: ConfigurationConfo
         public var data: Any??
     }
     
-    class Events: EventAware {
-        enum NavigationEvent {
+    public class Events: EventAware {
+        public enum NavigationEvent {
             case completion(() -> Void)
             case passData((ResultableType.DataType) -> Void)
             case viewController(ViewControllerEvent<ResultableType.ToViewController>)

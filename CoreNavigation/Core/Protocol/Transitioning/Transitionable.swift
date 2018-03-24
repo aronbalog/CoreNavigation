@@ -10,7 +10,7 @@ protocol Transitionable: class {
     @discardableResult func transitioningDelegate(_ transitioningDelegate: UIViewControllerTransitioningDelegate) -> Self
 }
 
-extension Transitionable {
+extension Configuration: Transitionable {
     @discardableResult public func animated(_ animated: Bool) -> Self {
         transitioning.animated = animated
         

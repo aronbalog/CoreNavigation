@@ -8,7 +8,7 @@ protocol Protectable: class {
     @discardableResult func protect(with protectionSpace: ProtectionSpace) -> Self
 }
 
-extension Protectable {
+extension Configuration: Protectable {
     @discardableResult public func protect(with protectionSpace: ProtectionSpace) -> Self {
         protection.protectionSpace = protectionSpace
         

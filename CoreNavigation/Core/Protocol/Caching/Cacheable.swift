@@ -8,7 +8,7 @@ protocol Cacheable: class {
     @discardableResult func keepAlive(within lifetime: Lifetime, cacheIdentifier: String) -> Self
 }
 
-extension Cacheable {
+extension Configuration: Cacheable {
     @discardableResult public func keepAlive(within lifetime: Lifetime, cacheIdentifier: String) -> Self {
         caching.configuration = (lifetime, cacheIdentifier)
         

@@ -10,7 +10,7 @@ protocol Embeddable: class {
     @discardableResult func embeddedInNavigationController() -> Self
 }
 
-extension Embeddable {
+extension Configuration: Embeddable {
     @discardableResult public func embedded(in type: EmbeddingType) -> Self {
         embedding.embeddingType = type
         

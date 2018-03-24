@@ -8,7 +8,7 @@ protocol Application: class {
     @discardableResult func `in`(application: UIApplicationProtocol) -> Self
 }
 
-extension Application {
+extension Configuration: Application {
     @discardableResult public func `in`(application: UIApplicationProtocol) -> Self {
         self.application.application = application
         

@@ -11,7 +11,7 @@ protocol Eventable {
     var event: Event { get }
 }
 
-extension Eventable {
+extension Configuration: Eventable {
     @discardableResult public func on(_ event: Events.NavigationEvent) -> Self {
         events.navigationEvents.append(event)
         

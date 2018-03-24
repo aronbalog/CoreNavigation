@@ -8,7 +8,7 @@ protocol Originable: class {
     @discardableResult func from<T: UIViewController>(_ viewController: T) -> Self
 }
 
-extension Originable {
+extension Configuration: Originable {
     @discardableResult public func from<T: UIViewController>(_ viewController: T) -> Self {
         origin.fromViewController = viewController
         

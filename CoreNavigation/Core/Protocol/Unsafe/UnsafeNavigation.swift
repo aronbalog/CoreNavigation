@@ -8,7 +8,7 @@ protocol UnsafeNavigation {
     @discardableResult func unsafely() -> Self
 }
 
-extension UnsafeNavigation {
+extension Configuration: UnsafeNavigation {
     @discardableResult public func unsafely() -> Self {
         unsafeNavigation.isUnsafe = true
         
