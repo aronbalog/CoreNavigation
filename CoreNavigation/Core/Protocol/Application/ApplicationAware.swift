@@ -1,5 +1,5 @@
 import Foundation
 
-public protocol ApplicationAware {
+protocol ApplicationAware {
     var application: UIApplicationProtocol { get set }
 }

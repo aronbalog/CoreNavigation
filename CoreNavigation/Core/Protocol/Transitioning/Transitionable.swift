@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol Transitionable: class {
+protocol Transitionable: class {
     associatedtype Transitioning: TransitioningAware
     
     var transitioning: Transitioning { get set }

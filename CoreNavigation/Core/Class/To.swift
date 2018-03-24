@@ -28,16 +28,16 @@ public class To<ResultableType: Resultable>: DestinationAware {
     ///
     /// - Example: Simple navigation to view controller instance.
     ///     ````
-    ///     let viewController: DataReceivable = ViewController()
+    ///     let viewController: DataReceivingViewController = ViewController()
     ///
     ///     Navigation.present { $0
     ///        .to(viewController)
     ///     }
     ///     ````
     ///
-    /// - Parameter viewController: A view controller instance conforming `DataReceivable` protocol.
+    /// - Parameter viewController: A view controller instance conforming `DataReceivingViewController` protocol.
     /// - Returns: `Configuration` object.
-    @discardableResult public func to<T: DataReceivable>(_ viewController: T) -> Configuration<Result<T, T.DataType>> {
+    @discardableResult public func to<T: DataReceivingViewController>(_ viewController: T) -> Configuration<Result<T, T.DataType>> {
         let configuration = Configuration<Result<T, T.DataType>>(destination: .viewController(viewController), from: from)
         
         navigate(with: configuration)
@@ -69,16 +69,16 @@ public class To<ResultableType: Resultable>: DestinationAware {
     ///
     /// - Example: Simple navigation to view controller instance.
     ///     ````
-    ///     let viewControllerClass: DataReceivable.Type = ViewController.self
+    ///     let viewControllerClass: DataReceivingViewController.Type = ViewController.self
     ///
     ///     Navigation.present { $0
     ///        .to(viewControllerClass)
     ///     }
     ///     ````
     ///
-    /// - Parameter viewControllerClass: A view controller class conforming `DataReceivable` protocol.
+    /// - Parameter viewControllerClass: A view controller class conforming `DataReceivingViewController` protocol.
     /// - Returns: `Configuration` object.
-    @discardableResult public func to<T: DataReceivable>(_ viewControllerClass: T.Type) -> Configuration<Result<T, T.DataType>> {
+    @discardableResult public func to<T: DataReceivingViewController>(_ viewControllerClass: T.Type) -> Configuration<Result<T, T.DataType>> {
         let viewController = viewControllerClass.init()
         let configuration = Configuration<Result<T, T.DataType>>(destination: .viewController(viewController), from: from)
         
@@ -102,9 +102,9 @@ public class To<ResultableType: Resultable>: DestinationAware {
     
     /// Assign block which can be used to resolve data receivable view controller asynchronously.
     ///
-    /// - Parameter block: Pass view controller instance conforming `DataReceivable` protocol to this block when navigation is wanted.
+    /// - Parameter block: Pass view controller instance conforming `DataReceivingViewController` protocol to this block when navigation is wanted.
     /// - Returns: `Configuration` object.
-    @discardableResult public func to<T: DataReceivable>(_ block: @escaping (@escaping (T) -> Void) -> Void) -> Configuration<Result<T, T.DataType>> {
+    @discardableResult public func to<T: DataReceivingViewController>(_ block: @escaping (@escaping (T) -> Void) -> Void) -> Configuration<Result<T, T.DataType>> {
         let configuration = Configuration<Result<T, T.DataType>>(destination: .viewControllerBlock(block), from: from)
         
         navigate(with: configuration)
@@ -126,9 +126,9 @@ public class To<ResultableType: Resultable>: DestinationAware {
     
     /// Assign block which can be used to resolve data receivable view controller asynchronously.
     ///
-    /// - Parameter block: Pass view controller class conforming `DataReceivable` protocol to this block when navigation is wanted.
+    /// - Parameter block: Pass view controller class conforming `DataReceivingViewController` protocol to this block when navigation is wanted.
     /// - Returns: `Configuration` object.
-    @discardableResult public func to<T: DataReceivable>(_ block: @escaping (@escaping (T.Type) -> Void) -> Void) -> Configuration<Result<T, T.DataType>> {
+    @discardableResult public func to<T: DataReceivingViewController>(_ block: @escaping (@escaping (T.Type) -> Void) -> Void) -> Configuration<Result<T, T.DataType>> {
         let configuration = Configuration<Result<T, T.DataType>>(destination: .viewControllerClassBlock(block), from: from)
         
         navigate(with: configuration)
@@ -155,11 +155,11 @@ public class To<ResultableType: Resultable>: DestinationAware {
         return configuration
     }
     
-    /// Assign route resolving it's destination to UIViewController class or subclass conforming `DataReceivable` protocol.
+    /// Assign route resolving it's destination to UIViewController class or subclass conforming `DataReceivingViewController` protocol.
     ///
-    /// - Parameter route: Route object resolving it's `Destination` type to `UIViewController` class or subclass conforming `DataReceivable` protocol.
+    /// - Parameter route: Route object resolving it's `Destination` type to `UIViewController` class or subclass conforming `DataReceivingViewController` protocol.
     /// - Returns: `Configuration` object.
-    @discardableResult public func to<T: Route>(_ route: T) -> Configuration<Result<T.Destination, T.Destination.DataType>> where T.Destination: DataReceivable {
+    @discardableResult public func to<T: Route>(_ route: T) -> Configuration<Result<T.Destination, T.Destination.DataType>> where T.Destination: DataReceivingViewController {
         let handler = RouteHandler<T>(parameters: route.parameters)
 
         let configuration = Configuration<Result<T.Destination, T.Destination.DataType>>(destination: .viewControllerBlock({ block in

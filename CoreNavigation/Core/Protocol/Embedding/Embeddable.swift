@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol Embeddable: class {
+protocol Embeddable: class {
     associatedtype Embedding: EmbeddingAware
     
     var embedding: Embedding { get set }

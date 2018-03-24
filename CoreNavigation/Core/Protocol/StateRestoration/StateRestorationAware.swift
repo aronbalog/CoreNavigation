@@ -1,7 +1,5 @@
 import UIKit
 
-/// <#Description#>
-public protocol StateRestorationAware {
-    /// <#Description#>
+protocol StateRestorationAware {
     var option: StateRestorationOption { get set }
 }

@@ -4,7 +4,7 @@ import Nimble
 
 @testable import CoreNavigation
 
-fileprivate class MockViewController<T>: UIViewController, DataReceivable {
+fileprivate class MockViewController<T>: UIViewController, DataReceivingViewController {
     var receivedData: T?
     
     func didReceiveData(_ data: T) {

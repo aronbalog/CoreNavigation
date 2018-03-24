@@ -15,6 +15,8 @@
 		381D745220559A7300F1C154 /* History_Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381D745120559A7300F1C154 /* History_Item.swift */; };
 		381D745420559A9500F1C154 /* HistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381D745320559A9500F1C154 /* HistoryItem.swift */; };
 		381D74562055A28A00F1C154 /* HistoryDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381D74552055A28A00F1C154 /* HistoryDirection.swift */; };
+		38222B482066F11D00435008 /* DataReceivingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38222B472066F11C00435008 /* DataReceivingViewController.swift */; };
+		38222B4A2066F47300435008 /* DataReceiving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38222B492066F47300435008 /* DataReceiving.swift */; };
 		3822436A2054B91A00426342 /* NavigationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382243692054B91A00426342 /* NavigationType.swift */; };
 		3822436D2054BF6100426342 /* Navigator_Push.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3822436C2054BF6100426342 /* Navigator_Push.swift */; };
 		3822436F2054BF8C00426342 /* Navigator_Present.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3822436E2054BF8C00426342 /* Navigator_Present.swift */; };
@@ -58,7 +60,6 @@
 		3881752520560F390054CFBB /* EmbeddingAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3881752420560F390054CFBB /* EmbeddingAware.swift */; };
 		3881752720560FB80054CFBB /* TransitioningAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3881752620560FB80054CFBB /* TransitioningAware.swift */; };
 		38817577205710530054CFBB /* DataPassingAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38817576205710530054CFBB /* DataPassingAware.swift */; };
-		38817579205712990054CFBB /* DataReceivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38817578205712990054CFBB /* DataReceivable.swift */; };
 		3881757D20573CCC0054CFBB /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3881757C20573CCC0054CFBB /* Route.swift */; };
 		38836B5020644B50007963A0 /* PresentSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CF992204DBE7500330EC7 /* PresentSpec.swift */; };
 		38836B5220645347007963A0 /* ViewControllerEventSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38836B5120645347007963A0 /* ViewControllerEventSpec.swift */; };
@@ -131,6 +132,8 @@
 		381D745120559A7300F1C154 /* History_Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History_Item.swift; sourceTree = "<group>"; };
 		381D745320559A9500F1C154 /* HistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryItem.swift; sourceTree = "<group>"; };
 		381D74552055A28A00F1C154 /* HistoryDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryDirection.swift; sourceTree = "<group>"; };
+		38222B472066F11C00435008 /* DataReceivingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataReceivingViewController.swift; sourceTree = "<group>"; };
+		38222B492066F47300435008 /* DataReceiving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReceiving.swift; sourceTree = "<group>"; };
 		382243692054B91A00426342 /* NavigationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationType.swift; sourceTree = "<group>"; };
 		3822436C2054BF6100426342 /* Navigator_Push.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator_Push.swift; sourceTree = "<group>"; };
 		3822436E2054BF8C00426342 /* Navigator_Present.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator_Present.swift; sourceTree = "<group>"; };
@@ -179,7 +182,6 @@
 		3881752620560FB80054CFBB /* TransitioningAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitioningAware.swift; sourceTree = "<group>"; };
 		38817529205612140054CFBB /* DataPassable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPassable.swift; sourceTree = "<group>"; };
 		38817576205710530054CFBB /* DataPassingAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPassingAware.swift; sourceTree = "<group>"; };
-		38817578205712990054CFBB /* DataReceivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReceivable.swift; sourceTree = "<group>"; };
 		3881757C20573CCC0054CFBB /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		38836B5120645347007963A0 /* ViewControllerEventSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerEventSpec.swift; sourceTree = "<group>"; };
 		38836B532064556D007963A0 /* Navigator+ViewControllerEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigator+ViewControllerEvents.swift"; sourceTree = "<group>"; };
@@ -430,7 +432,8 @@
 			children = (
 				38817529205612140054CFBB /* DataPassable.swift */,
 				38817576205710530054CFBB /* DataPassingAware.swift */,
-				38817578205712990054CFBB /* DataReceivable.swift */,
+				38222B472066F11C00435008 /* DataReceivingViewController.swift */,
+				38222B492066F47300435008 /* DataReceiving.swift */,
 			);
 			path = DataPassing;
 			sourceTree = "<group>";
@@ -1006,6 +1009,7 @@
 				38817577205710530054CFBB /* DataPassingAware.swift in Sources */,
 				386DAB7C2066C6AB002FF908 /* UINavigationController+Convenience.swift in Sources */,
 				38D5B3A1204A36BD005A15BC /* To.swift in Sources */,
+				38222B482066F11D00435008 /* DataReceivingViewController.swift in Sources */,
 				3822436F2054BF8C00426342 /* Navigator_Present.swift in Sources */,
 				381D7444205588F200F1C154 /* Transitionable.swift in Sources */,
 				386DAB7E2066E033002FF908 /* String+Convenience.swift in Sources */,
@@ -1032,10 +1036,10 @@
 				38444A98205EF760001F3F5C /* StateRestorable.swift in Sources */,
 				38F1D89B205B0574001F0B0B /* UIViewController+Events.swift in Sources */,
 				38577C98205C88A900FB4B83 /* Configuration+DataReceivable.swift in Sources */,
-				38817579205712990054CFBB /* DataReceivable.swift in Sources */,
 				387B789C205E0CC60078974C /* RouteMatch.swift in Sources */,
 				38444AA1205EFBE1001F3F5C /* StateRestorationDelegate.swift in Sources */,
 				3881752720560FB80054CFBB /* TransitioningAware.swift in Sources */,
+				38222B4A2066F47300435008 /* DataReceiving.swift in Sources */,
 				38D5B39C204A35A0005A15BC /* Navigation.swift in Sources */,
 				38F1D8A1205B0F32001F0B0B /* ViewControllerEvent.swift in Sources */,
 				388C73172059C7A400C11EEB /* DataPassable.swift in Sources */,

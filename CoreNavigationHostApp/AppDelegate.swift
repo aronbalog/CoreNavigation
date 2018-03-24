@@ -16,7 +16,7 @@ class MyVC: UIViewController {
     }
 }
 
-class OtherVC: MyVC, DataReceivable {
+class OtherVC: MyVC, DataReceivingViewController {
     func didReceiveData(_ data: [String : Any]) {
         print("Data from VC! ", data)
     }

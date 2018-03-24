@@ -1,6 +1,6 @@
 import Foundation
 
-public typealias ConfigurationConformance = Transitionable &
+typealias ConfigurationConformance = Transitionable &
                                             Embeddable &
                                             DataPassable &
                                             Eventable &
@@ -12,21 +12,21 @@ public typealias ConfigurationConformance = Transitionable &
                                             Originable
 
 public final class Configuration<ResultableType: Resultable>: ConfigurationConformance {
-    public let destination: Destination
-    public let from: UIViewController?
+    let destination: Destination
+    let from: UIViewController?
 
-    public var transitioning = Transitioning()
-    public var embedding = Embedding()
-    public var dataPassing = DataPassing()
-    public var events = Events()
-    public var caching = Caching()
-    public var protection = Protection()
-    public var unsafeNavigation = UnsafeNavigationObject()
-    public var stateRestoration = StateRestoration()
-    public var application = Application()
-    public var origin = Origin()
+    var transitioning = Transitioning()
+    var embedding = Embedding()
+    var dataPassing = DataPassing()
+    var events = Events()
+    var caching = Caching()
+    var protection = Protection()
+    var unsafeNavigation = UnsafeNavigationObject()
+    var stateRestoration = StateRestoration()
+    var application = Application()
+    var origin = Origin()
     
-    public var event: Configuration<ResultableType>.Event {
+    var event: Configuration<ResultableType>.Event {
         return Event(configuration: self)
     }
 
@@ -37,22 +37,22 @@ public final class Configuration<ResultableType: Resultable>: ConfigurationConfo
         self.from = from
     }
     
-    public class Transitioning: TransitioningAware {
+    class Transitioning: TransitioningAware {
         public var animated: Bool = true
         public var completionBlocks: [() -> Void] = []
         public var viewControllerTransitioningDelegate: UIViewControllerTransitioningDelegate?
     }
     
-    public class Embedding: EmbeddingAware {
+    class Embedding: EmbeddingAware {
         public var embeddingType: EmbeddingType?
     }
     
-    public class DataPassing: DataPassingAware {
+    class DataPassing: DataPassingAware {
         public var data: Any??
     }
     
-    public class Events: EventAware {
-        public enum NavigationEvent {
+    class Events: EventAware {
+        enum NavigationEvent {
             case completion(() -> Void)
             case passData((ResultableType.DataType) -> Void)
             case viewController(ViewControllerEvent<ResultableType.ToViewController>)
@@ -62,11 +62,11 @@ public final class Configuration<ResultableType: Resultable>: ConfigurationConfo
         var passDataBlocks: [Any] = []
     }
     
-    public class Caching: CachingAware {
-        public var configuration: (lifetime: Lifetime, cacheIdentifier: String)?
+    class Caching: CachingAware {
+        var configuration: (lifetime: Lifetime, cacheIdentifier: String)?
     }
     
-    public class Event {
+    class Event {
         unowned var configuration: Configuration
         
         init(configuration: Configuration) {
@@ -86,24 +86,24 @@ public final class Configuration<ResultableType: Resultable>: ConfigurationConfo
         }
     }
     
-    public class Protection: ProtectionAware {
-        public var protectionSpace: ProtectionSpace?
+    class Protection: ProtectionAware {
+        var protectionSpace: ProtectionSpace?
     }
     
-    public class UnsafeNavigationObject: UnsafeNavigationAware {
-        public var isUnsafe: Bool = false
+    class UnsafeNavigationObject: UnsafeNavigationAware {
+        var isUnsafe: Bool = false
     }
     
-    public class StateRestoration: StateRestorationAware {
-        public var option: StateRestorationOption = .ignore
+    class StateRestoration: StateRestorationAware {
+        var option: StateRestorationOption = .ignore
     }
     
-    public class Application: ApplicationAware {
-        public var application: UIApplicationProtocol = UIApplication.shared
+    class Application: ApplicationAware {
+        var application: UIApplicationProtocol = UIApplication.shared
     }
     
-    public class Origin: OriginAware {
-        public var fromViewController: UIViewController?
+    class Origin: OriginAware {
+        var fromViewController: UIViewController?
     }
 }
 

@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol Cacheable: class {
+protocol Cacheable: class {
     associatedtype Caching: CachingAware
     
     var caching: Caching { get set }

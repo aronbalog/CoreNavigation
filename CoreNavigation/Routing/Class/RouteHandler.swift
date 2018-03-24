@@ -28,7 +28,7 @@ public class RouteHandler<RouteType: Route> {
     }
 }
 
-extension RouteHandler where RouteType.Destination: DataReceivable {
+extension RouteHandler where RouteType.Destination: DataReceivingViewController {
     /// Notifies handler to proceed with navigation.
     ///
     /// - Parameters:

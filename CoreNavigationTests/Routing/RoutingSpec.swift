@@ -4,7 +4,7 @@ import Nimble
 
 @testable import CoreNavigation
 
-fileprivate class MockViewController: UIViewController, DataReceivable {
+fileprivate class MockViewController: UIViewController, DataReceivingViewController {
     var data: String?
     var routeParameters: [String: Any]?
     

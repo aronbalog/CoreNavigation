@@ -24,14 +24,14 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             print("Completed 2!")
         }
     }.present { $0
-            .to(UINavigationController(rootViewController: MyVC()))
-            .animated(true)
-            .completion {
-                print("Completed!")
-            }
-            .completion {
-                print("Completed 2!")
-            }
+        .to(UINavigationController(rootViewController: MyVC()))
+        .animated(true)
+        .completion {
+            print("Completed!")
+        }
+        .completion {
+            print("Completed 2!")
+        }
     }
     
     

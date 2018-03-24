@@ -1,34 +1,15 @@
 import Foundation
 
-/// <#Description#>
-public protocol StateRestorable: class {
-    /// <#Description#>
+protocol StateRestorable: class {
     associatedtype StateRestoration: StateRestorationAware
     
-    /// <#Description#>
     var stateRestoration: StateRestoration { get set }
     
-    /// <#Description#>
-    ///
-    /// - Returns: <#return value description#>
     @discardableResult func stateRestorable() -> Self
-    
-    /// <#Description#>
-    ///
-    /// - Parameter identifier: <#identifier description#>
-    /// - Returns: <#return value description#>
     @discardableResult func stateRestorable(identifier: String) -> Self
-    
-    /// <#Description#>
-    ///
-    /// - Parameters:
-    ///   - identifier: <#identifier description#>
-    ///   - class: <#class description#>
-    /// - Returns: <#return value description#>
     @discardableResult func stateRestorable(identifier: String, class: UIViewControllerRestoration.Type) -> Self
 }
 
-// MARK: - <#Description#>
 extension StateRestorable {
     @discardableResult public func stateRestorable() -> Self {
         stateRestoration.option = .automatically

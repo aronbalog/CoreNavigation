@@ -1,5 +1,5 @@
 import Foundation
 
-public protocol ProtectionAware {
+protocol ProtectionAware {
     var protectionSpace: ProtectionSpace? { get set }
 }

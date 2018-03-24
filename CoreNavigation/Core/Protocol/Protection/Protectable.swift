@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol Protectable: class {
+protocol Protectable: class {
     associatedtype Protection: ProtectionAware
     
     var protection: Protection { get set }

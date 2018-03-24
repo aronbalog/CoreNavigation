@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol Application: class {
+protocol Application: class {
     associatedtype Application: ApplicationAware
     
     var application: Application { get set }

@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol Eventable {
+protocol Eventable {
     associatedtype Events: EventAware
     associatedtype Event
 

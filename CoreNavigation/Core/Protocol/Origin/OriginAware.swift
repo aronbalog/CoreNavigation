@@ -1,7 +1,5 @@
 import Foundation
 
-/// <#Description#>
-public protocol OriginAware {
-    /// <#Description#>
+protocol OriginAware {
     var fromViewController: UIViewController? { get set }
 }
