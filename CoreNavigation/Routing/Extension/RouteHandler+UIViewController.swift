@@ -5,21 +5,18 @@ extension RouteHandler where RouteType.Destination: DataReceivable {
     ///
     /// - Parameter data: Data to pass to view controller.
     /// - Returns: UIViewController instance.
-    @discardableResult public func complete(data: RouteType.Destination.DataType? = nil) -> RouteType.Destination {
-        typealias DataBlock = (RouteType.Destination.DataType) -> Void
+    @discardableResult public func complete(viewController: RouteType.Destination = .init(), data: RouteType.Destination.DataType? = nil) -> RouteType.Destination {        
+
+        destination(viewController, data: data)
         
-        let viewController = RouteType.Destination.init()
-        
-        destinationBlocks.forEach { $0(viewController) }
         if let data = data {
             viewController.didReceiveData(data)
-            
-            (dataBlocks as? [DataBlock])?.forEach { $0(data)}
         }
         
-        destinationBlocks = []
-        dataBlocks = []
-        
         return viewController
+    }
+    
+    @discardableResult public func complete(data: RouteType.Destination.DataType?) -> RouteType.Destination {
+        return self.complete(viewController: RouteType.Destination.init(), data: data)
     }
 }

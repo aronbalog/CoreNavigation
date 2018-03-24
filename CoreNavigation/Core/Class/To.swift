@@ -143,7 +143,10 @@ public class To<ResultableType: Resultable>: DestinationAware {
     @discardableResult public func to<T: Route>(_ route: T) -> Configuration<Result<T.Destination, Any>> {
         let handler = RouteHandler<T>(parameters: route.parameters)
 
-        let configuration = Configuration<Result<T.Destination, Any>>(destination: .viewControllerBlock({ handler.destinationBlocks.append($0) }), from: from)
+        let configuration = Configuration<Result<T.Destination, Any>>(destination: .viewControllerBlock({ block in
+            handler.destinationBlocks.append({ (destination, data) in
+            block(destination)
+        }) }), from: from)
         
         navigate(with: configuration, completion: {
             type(of: route).route(handler: handler)
@@ -159,9 +162,10 @@ public class To<ResultableType: Resultable>: DestinationAware {
     @discardableResult public func to<T: Route>(_ route: T) -> Configuration<Result<T.Destination, T.Destination.DataType>> where T.Destination: DataReceivable {
         let handler = RouteHandler<T>(parameters: route.parameters)
 
-        let configuration = Configuration<Result<T.Destination, T.Destination.DataType>>(destination: .viewControllerBlock({ handler.destinationBlocks.append($0) }), from: from)
-        
-        handler.dataBlocks.append({ configuration.dataPassing.data = $0 })
+        let configuration = Configuration<Result<T.Destination, T.Destination.DataType>>(destination: .viewControllerBlock({ block in
+            handler.destinationBlocks.append({ (destination, data) in
+                block(destination)
+            }) }), from: from)
         
         navigate(with: configuration, completion: {
             type(of: route).route(handler: handler)
@@ -216,12 +220,14 @@ public class To<ResultableType: Resultable>: DestinationAware {
             let route = match.route
             let parameters = match.parameters
             
-            route.route(parameters: parameters, destination: { (destination) in
+            route.route(parameters: parameters, destination: { (destination, data) in
+                if let data = data {
+                    _configuration?.dataPassing.data = data
+                }
+
                 if let viewController = destination as? UIViewController {
                     handler(viewController)
                 }
-            }, data: { (data) in
-                _configuration?.dataPassing.data = data
             })
         }
         

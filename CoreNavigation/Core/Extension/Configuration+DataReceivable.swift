@@ -35,7 +35,7 @@ extension Configuration where ResultableType.ToViewController: DataReceivable {
             guard let `self` = self else { return }
             
             let data = self.dataPassing.data as! ResultableType.ToViewController.DataType
-            (viewController as! ResultableType.ToViewController).didReceiveData(data)
+            (viewController as? ResultableType.ToViewController)?.didReceiveData(data)
             self.events.navigationEvents.forEach({ (event) in
                 if case Events.NavigationEvent.passData(let block) = event {
                     guard let data = data as? ResultableType.DataType else { return }

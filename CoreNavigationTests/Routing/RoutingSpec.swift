@@ -23,12 +23,13 @@ fileprivate struct MockRoute: Route, RoutePatternsAware {
         "1/:firstName(.*)/:lastName(.*)"
     ]
     
-    static func route(parameters: [String: Any]?, destination: @escaping (Any) -> Void, data: @escaping (Any?) -> Void) {
+    static func route(handler: RouteHandler<MockRoute>) {
         let viewController = MockViewController()
-        viewController.routeParameters = parameters
+        viewController.routeParameters = handler.parameters
         
-        destination(viewController)
-        data(parameters?["firstName"])
+        let data = handler.parameters?["firstName"] as? String
+        
+        handler.complete(viewController: viewController, data: data)
     }
 }
 
