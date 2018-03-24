@@ -329,12 +329,12 @@
 			path = StateRestoration;
 			sourceTree = "<group>";
 		};
-		38444AB0205F56FA001F3F5C /* Extensions */ = {
+		38444AB0205F56FA001F3F5C /* Convenience */ = {
 			isa = PBXGroup;
 			children = (
 				38444AB1205F56FF001F3F5C /* ViewController */,
 			);
-			path = Extensions;
+			path = Convenience;
 			sourceTree = "<group>";
 		};
 		38444AB1205F56FF001F3F5C /* ViewController */ = {
@@ -567,7 +567,7 @@
 		38D5B37F204A354A005A15BC /* CoreNavigation */ = {
 			isa = PBXGroup;
 			children = (
-				38444AB0205F56FA001F3F5C /* Extensions */,
+				38444AB0205F56FA001F3F5C /* Convenience */,
 				3881757A20573CAC0054CFBB /* Routing */,
 				38D5B39E204A3698005A15BC /* Core */,
 				38D5B380204A354A005A15BC /* CoreNavigation.h */,

@@ -92,7 +92,7 @@ class StateRestoration: UIViewControllerRestoration {
     }
     
     static private func action(storageItem: StorageItem) -> UIViewController {
-        let viewController = storageItem.viewControllerClass.init(nibName: nil, bundle: nil)
+        let viewController = storageItem.viewControllerClass.init()
         viewController.restorationIdentifier = storageItem.identifier
         viewController.restorationClass = StateRestoration.self
         

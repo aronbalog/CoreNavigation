@@ -24,7 +24,7 @@ class Navigator {
             }
         case .viewControllerClassBlock(let block):
             block { viewControllerClass in
-                guard let viewController = (viewControllerClass as? T.ToViewController.Type)?.init(nibName: nil, bundle: nil) else { return }
+                guard let viewController = (viewControllerClass as? T.ToViewController.Type)?.init() else { return }
 
                 completion(viewController)
             }
@@ -50,7 +50,7 @@ class Navigator {
                         }
                     case .viewControllerClassBlock(let block):
                         block { viewControllerClass in
-                            let viewController = viewControllerClass.init(nibName: nil, bundle: nil)
+                            let viewController = viewControllerClass.init()
                             
                             action(type: type, viewController: viewController, configuration: configuration, handler: handler)
                         }
