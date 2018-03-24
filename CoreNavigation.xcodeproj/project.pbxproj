@@ -46,6 +46,7 @@
 		38577C9E205CB88C00FB4B83 /* UnsafeNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577C9D205CB88C00FB4B83 /* UnsafeNavigation.swift */; };
 		38577CA0205CBB1300FB4B83 /* UnsafeNavigationAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577C9F205CBB1300FB4B83 /* UnsafeNavigationAware.swift */; };
 		38577CA3205CBB4700FB4B83 /* ProtectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577CA2205CBB4700FB4B83 /* ProtectionHandler.swift */; };
+		386DAB7C2066C6AB002FF908 /* UINavigationController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386DAB7B2066C6AB002FF908 /* UINavigationController+Convenience.swift */; };
 		387B7898205DF68E0078974C /* Matchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B7897205DF68E0078974C /* Matchable.swift */; };
 		387B789A205DFF4E0078974C /* RegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B7899205DFF4E0078974C /* RegularExpression.swift */; };
 		387B789C205E0CC60078974C /* RouteMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387B789B205E0CC60078974C /* RouteMatch.swift */; };
@@ -163,6 +164,7 @@
 		38577C9D205CB88C00FB4B83 /* UnsafeNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsafeNavigation.swift; sourceTree = "<group>"; };
 		38577C9F205CBB1300FB4B83 /* UnsafeNavigationAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsafeNavigationAware.swift; sourceTree = "<group>"; };
 		38577CA2205CBB4700FB4B83 /* ProtectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectionHandler.swift; sourceTree = "<group>"; };
+		386DAB7B2066C6AB002FF908 /* UINavigationController+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Convenience.swift"; sourceTree = "<group>"; };
 		387B7897205DF68E0078974C /* Matchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matchable.swift; sourceTree = "<group>"; };
 		387B7899205DFF4E0078974C /* RegularExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpression.swift; sourceTree = "<group>"; };
 		387B789B205E0CC60078974C /* RouteMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteMatch.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				38444AB2205F570F001F3F5C /* UIViewController+Convenience.swift */,
+				386DAB7B2066C6AB002FF908 /* UINavigationController+Convenience.swift */,
 				38A7AFEE2063264B00C36040 /* Route+Convenience.swift */,
 				38A7AFF2206330B600C36040 /* Matchable+Convenience.swift */,
 			);
@@ -996,6 +999,7 @@
 				383320CF205DE9E1008492EE /* AnyRoute.swift in Sources */,
 				38A7AFF3206330B600C36040 /* Matchable+Convenience.swift in Sources */,
 				38817577205710530054CFBB /* DataPassingAware.swift in Sources */,
+				386DAB7C2066C6AB002FF908 /* UINavigationController+Convenience.swift in Sources */,
 				38D5B3A1204A36BD005A15BC /* To.swift in Sources */,
 				3822436F2054BF8C00426342 /* Navigator_Present.swift in Sources */,
 				381D7444205588F200F1C154 /* Transitionable.swift in Sources */,
