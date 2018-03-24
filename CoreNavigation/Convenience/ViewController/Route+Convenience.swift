@@ -1,6 +1,6 @@
 import Foundation
 
-// MARK: - Route + UIViewController
+// MARK: - Route view controller convenience
 public extension Route {
     /// Route to view controller.
     ///

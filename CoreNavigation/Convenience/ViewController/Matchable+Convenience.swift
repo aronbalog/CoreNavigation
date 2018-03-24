@@ -1,6 +1,6 @@
 import Foundation
 
-// MARK: - Matchable + UIViewController
+// MARK: - Matchable view controller convenience
 public extension Matchable {
     /// Route to view controller.
     ///

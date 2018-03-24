@@ -1,7 +1,6 @@
 import UIKit
 
 extension UIApplication {
-    
     private static let runOnce: Void = {
         UIViewController.swizzleMethods
     }()

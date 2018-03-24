@@ -9,3 +9,14 @@ public protocol Route: AnyRoute, RouteParametersAware {
     /// - Parameter handler: `RouteHandler` object.
     static func route(handler: RouteHandler<Self>)
 }
+
+extension Route {
+    /// Handles routing.
+    ///
+    /// - Parameter handler: `RouteHandler` object.
+    public static func route(handler: RouteHandler<Self>) {
+        let viewController = Destination.init()
+        
+        handler.destination(viewController, data: nil)
+    }
+}
