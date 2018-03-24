@@ -1,10 +1,14 @@
 import Foundation
 
+/// Handles routing.
 public class Router {
     static let shared = Router()
     
     private var registeredRoutes: [RoutePatternsAware.Type] = []
     
+    /// Registers route.
+    ///
+    /// - Parameter route: Route to register.
     public func registerRoute<T: RoutePatternsAware>(_ route: T.Type) {
         registeredRoutes.append(route)
     }

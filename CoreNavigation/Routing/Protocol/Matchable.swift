@@ -1,17 +1,7 @@
 import Foundation
 
+/// Used in route matching.
 public protocol Matchable {
+    /// Route string.
     var uri: String { get }
-}
-
-extension String: Matchable {
-    public var uri: String {
-        return self
-    }
-}
-
-extension URL: Matchable {
-    public var uri: String {
-        return self.absoluteString
-    }
 }

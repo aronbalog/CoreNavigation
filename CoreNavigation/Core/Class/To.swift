@@ -225,9 +225,7 @@ public class To<ResultableType: Resultable>: DestinationAware {
                     _configuration?.dataPassing.data = data
                 }
 
-                if let viewController = destination as? UIViewController {
-                    handler(viewController)
-                }
+                handler(destination)
             })
         }
         

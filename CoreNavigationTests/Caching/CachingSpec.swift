@@ -6,7 +6,7 @@ import Nimble
 
 fileprivate class UndyingLifetime: Lifetime {
     func die(_ kill: @escaping () -> Void) {
-        
+        // never dies
     }
 }
 

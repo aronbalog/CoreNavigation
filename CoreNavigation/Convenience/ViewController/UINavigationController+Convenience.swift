@@ -1,5 +1,6 @@
 import Foundation
 
+// MARK: - UINavigationController navigation
 extension UINavigationController {
     /// Pushes view controller from this view controller.
     ///
