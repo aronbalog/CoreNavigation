@@ -9,6 +9,10 @@ protocol Originable: class {
 }
 
 extension Configuration: Originable {
+    /// Sets origin.
+    ///
+    /// - Parameter viewController: Origin view controller in navigation.
+    /// - Returns: Configuration instance.
     @discardableResult public func from<T: UIViewController>(_ viewController: T) -> Self {
         origin.fromViewController = viewController
         

@@ -5,6 +5,10 @@ protocol KeyboardObservable {
 }
 
 extension Configuration: KeyboardObservable {
+    /// Tracks keyboard.
+    ///
+    /// - Parameter keyboardTrackingMode: Keyboard tracking behaviour.
+    /// - Returns: Configuration instance.
     @discardableResult public func trackKeyboard(with keyboardTrackingMode: KeyboardTrackingMode) -> Self {
         switch keyboardTrackingMode {
         case .rise:

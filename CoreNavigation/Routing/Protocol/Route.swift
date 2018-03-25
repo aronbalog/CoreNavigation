@@ -13,6 +13,9 @@ public protocol Route: AnyRoute, RouteParametersAware {
 
 // MARK: - Route default implementation
 extension Route {
+    /// Handles routing.
+    ///
+    /// - Parameter handler: `RouteHandler` object.
     public static func route(handler: RouteHandler<Self>) {
         let viewController = Destination.init()
         
