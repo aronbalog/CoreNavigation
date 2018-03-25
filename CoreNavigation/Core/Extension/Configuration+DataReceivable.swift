@@ -1,7 +1,7 @@
 import Foundation
 
 extension Configuration {
-    public func pass(_ data: Any?) -> Self {
+    @discardableResult public func passData(_ data: Any?) -> Self {
         dataPassing.data = data
         
         willNavigateBlocks.append { [weak self] (viewController) in
@@ -28,7 +28,7 @@ extension Configuration {
 }
 
 extension Configuration where ResultableType.ToViewController: DataReceivingViewController {
-    @discardableResult public func pass(_ data: ResultableType.ToViewController.DataType?) -> Configuration<Result<ResultableType.ToViewController, ResultableType.ToViewController.DataType>> {
+    @discardableResult public func passData(_ data: ResultableType.ToViewController.DataType?) -> Configuration<Result<ResultableType.ToViewController, ResultableType.ToViewController.DataType>> {
         dataPassing.data = data
         
         willNavigateBlocks.append { [weak self] (viewController) in

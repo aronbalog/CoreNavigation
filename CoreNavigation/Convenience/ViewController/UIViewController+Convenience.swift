@@ -44,8 +44,21 @@ public extension UIViewController {
     /// Presents view controller from this view controller.
     ///
     /// - Parameter block: Configuration block.
-    public func present(_ block: (To<Result<UIViewController, Any>>) -> Void) {
+    /// - Returns: This instance.
+    @discardableResult public func present(_ block: (To<Result<UIViewController, Any>>) -> Void) -> Self {
         block(To(.present, from: self))
+        
+        return self
+    }
+    
+    /// Pushes view controller from this view controller.
+    ///
+    /// - Parameter block: Configuration block.
+    /// - Returns: This instance.
+    @discardableResult public func push(_ block: (To<Result<UIViewController, Any>>) -> Void) -> Self {
+        block(To(.push, from: self))
+        
+        return self
     }
 }
 

@@ -5,5 +5,5 @@ protocol DataPassable: class {
     
     var dataPassing: DataPassing { get set }
     
-    @discardableResult func pass(_ data: Any?) -> Self
+    @discardableResult func passData(_ data: Any?) -> Self
 }

@@ -39,7 +39,7 @@ class StateRestoration: UIViewControllerRestoration {
             let viewControllerClassString = aDecoder.decodeObject(forKey: "viewControllerClass") as! String
             self.viewControllerClass = NSClassFromString(viewControllerClassString) as! UIViewController.Type
             
-            self.data = aDecoder.decodeObject(forKey: "data") as? [String: Any]
+            self.data = aDecoder.decodeObject(forKey: "data")
             
             if let protectionSpaceClassString = aDecoder.decodeObject(forKey: "protectionSpaceClass") as? String {
                 self.protectionSpaceClass = NSClassFromString(protectionSpaceClassString) as? ProtectionSpace.Type
@@ -96,9 +96,10 @@ class StateRestoration: UIViewControllerRestoration {
         viewController.restorationIdentifier = storageItem.identifier
         viewController.restorationClass = StateRestoration.self
         
-        if let viewController = viewController as? DataReceiving {
+        if
+            let viewController = viewController as? DataReceiving,
             let data = storageItem.data
-            
+        {
             viewController.didReceiveAbstractData(data)
         }
         
