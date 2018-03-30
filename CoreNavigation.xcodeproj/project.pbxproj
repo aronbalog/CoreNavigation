@@ -47,7 +47,6 @@
 		38577C92205C863D00FB4B83 /* ProtectionSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577C91205C863D00FB4B83 /* ProtectionSpace.swift */; };
 		38577C94205C872800FB4B83 /* Protectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577C93205C872800FB4B83 /* Protectable.swift */; };
 		38577C96205C876A00FB4B83 /* ProtectionAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577C95205C876A00FB4B83 /* ProtectionAware.swift */; };
-		38577C98205C88A900FB4B83 /* Configuration+DataReceivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577C97205C88A900FB4B83 /* Configuration+DataReceivable.swift */; };
 		38577C9E205CB88C00FB4B83 /* UnsafeNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577C9D205CB88C00FB4B83 /* UnsafeNavigation.swift */; };
 		38577CA0205CBB1300FB4B83 /* UnsafeNavigationAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577C9F205CBB1300FB4B83 /* UnsafeNavigationAware.swift */; };
 		38577CA3205CBB4700FB4B83 /* ProtectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577CA2205CBB4700FB4B83 /* ProtectionHandler.swift */; };
@@ -173,7 +172,6 @@
 		38577C91205C863D00FB4B83 /* ProtectionSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectionSpace.swift; sourceTree = "<group>"; };
 		38577C93205C872800FB4B83 /* Protectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protectable.swift; sourceTree = "<group>"; };
 		38577C95205C876A00FB4B83 /* ProtectionAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectionAware.swift; sourceTree = "<group>"; };
-		38577C97205C88A900FB4B83 /* Configuration+DataReceivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Configuration+DataReceivable.swift"; sourceTree = "<group>"; };
 		38577C9D205CB88C00FB4B83 /* UnsafeNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsafeNavigation.swift; sourceTree = "<group>"; };
 		38577C9F205CBB1300FB4B83 /* UnsafeNavigationAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsafeNavigationAware.swift; sourceTree = "<group>"; };
 		38577CA2205CBB4700FB4B83 /* ProtectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectionHandler.swift; sourceTree = "<group>"; };
@@ -349,14 +347,6 @@
 		38444AB0205F56FA001F3F5C /* Convenience */ = {
 			isa = PBXGroup;
 			children = (
-				38444AB1205F56FF001F3F5C /* ViewController */,
-			);
-			path = Convenience;
-			sourceTree = "<group>";
-		};
-		38444AB1205F56FF001F3F5C /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
 				38444AB2205F570F001F3F5C /* UIViewController+Convenience.swift */,
 				386DAB7B2066C6AB002FF908 /* UINavigationController+Convenience.swift */,
 				38A7AFEE2063264B00C36040 /* Route+Convenience.swift */,
@@ -364,7 +354,7 @@
 				386DAB7D2066E033002FF908 /* String+Convenience.swift */,
 				386DAB7F2066E04F002FF908 /* URL+Convenience.swift */,
 			);
-			path = ViewController;
+			path = Convenience;
 			sourceTree = "<group>";
 		};
 		384CF98D204DBBC700330EC7 /* Protocol */ = {
@@ -408,7 +398,6 @@
 				38222B7820681EAC00435008 /* UIView+KeyboardObserver.swift */,
 				381D744620558FF700F1C154 /* UINavigationController.swift */,
 				38F1D898205B054E001F0B0B /* UIApplication.swift */,
-				38577C97205C88A900FB4B83 /* Configuration+DataReceivable.swift */,
 				38836B532064556D007963A0 /* Navigator+ViewControllerEvents.swift */,
 				38836B5520645583007963A0 /* Navigator+StateRestoration.swift */,
 				38836B57206455AB007963A0 /* Navigator+Cache.swift */,
@@ -1066,7 +1055,6 @@
 				381D744720558FF700F1C154 /* UINavigationController.swift in Sources */,
 				38444A98205EF760001F3F5C /* StateRestorable.swift in Sources */,
 				38F1D89B205B0574001F0B0B /* UIViewController+Events.swift in Sources */,
-				38577C98205C88A900FB4B83 /* Configuration+DataReceivable.swift in Sources */,
 				387B789C205E0CC60078974C /* RouteMatch.swift in Sources */,
 				38444AA1205EFBE1001F3F5C /* StateRestorationDelegate.swift in Sources */,
 				3881752720560FB80054CFBB /* TransitioningAware.swift in Sources */,

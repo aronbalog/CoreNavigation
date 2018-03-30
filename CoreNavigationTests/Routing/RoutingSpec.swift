@@ -113,7 +113,7 @@ class RoutingSpec: QuickSpec {
                 
                 Navigation.present { $0
                     .to("2/john-middle-name/doe?query=param")
-                    .pass("data")
+                    .passData("data")
                     .in(application: mockApplication)
                 }
                 

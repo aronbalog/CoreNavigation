@@ -9,6 +9,9 @@ protocol UnsafeNavigation {
 }
 
 extension Configuration: UnsafeNavigation {
+    /// Skips queue when navigating.
+    ///
+    /// - Returns: Configuration instance.
     @discardableResult public func unsafely() -> Self {
         unsafeNavigation.isUnsafe = true
         

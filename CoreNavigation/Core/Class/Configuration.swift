@@ -1,6 +1,14 @@
 import Foundation
 
-public final class Configuration<ResultableType: Resultable>: DataPassable {
+
+public enum NavigationEvent<ToViewController: UIViewController, DataType> {
+    case completion(() -> Void)
+    case passData((DataType) -> Void)
+    case viewController(ViewControllerEvent<ToViewController>)
+}
+
+/// Acts as storage for navigation parameters.
+public final class Configuration<ResultableType: Resultable> {
     let destination: Destination
     let from: UIViewController?
 
@@ -14,10 +22,6 @@ public final class Configuration<ResultableType: Resultable>: DataPassable {
     var stateRestoration = StateRestoration()
     var application = Application()
     var origin = Origin()
-    
-    var event: Configuration<ResultableType>.Event {
-        return Event(configuration: self)
-    }
 
     var willNavigateBlocks: [(UIViewController) -> Void] = []
     
@@ -40,39 +44,13 @@ public final class Configuration<ResultableType: Resultable>: DataPassable {
         public var data: Any??
     }
     
-    public class Events: EventAware {
-        public enum NavigationEvent {
-            case completion(() -> Void)
-            case passData((ResultableType.DataType) -> Void)
-            case viewController(ViewControllerEvent<ResultableType.ToViewController>)
-        }
-        
-        public var navigationEvents: [NavigationEvent] = []
+    class Events: EventAware {   
+        public var navigationEvents: [NavigationEvent<ResultableType.ToViewController, ResultableType.DataType>] = []
         var passDataBlocks: [Any] = []
     }
     
     class Caching: CachingAware {
         var configuration: (lifetime: Lifetime, cacheIdentifier: String)?
-    }
-    
-    class Event {
-        unowned var configuration: Configuration
-        
-        init(configuration: Configuration) {
-            self.configuration = configuration
-        }
-        
-        @discardableResult public func completion(_ block: @escaping () -> Void) -> Configuration {
-            configuration.on(.completion(block))
-            
-            return configuration
-        }
-        
-        @discardableResult public func viewController(_ event: ViewControllerEvent<ResultableType.ToViewController>) -> Configuration {
-            configuration.on(.viewController(event))
-            
-            return configuration
-        }
     }
     
     class Protection: ProtectionAware {

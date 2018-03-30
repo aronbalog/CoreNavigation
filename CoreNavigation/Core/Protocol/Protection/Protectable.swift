@@ -9,6 +9,10 @@ protocol Protectable: class {
 }
 
 extension Configuration: Protectable {
+    /// Protects navigation by pausing it and gives an option to continue.
+    ///
+    /// - Parameter protectionSpace: ProtectionSpace object.
+    /// - Returns: Configuration instance.
     @discardableResult public func protect(with protectionSpace: ProtectionSpace) -> Self {
         protection.protectionSpace = protectionSpace
         

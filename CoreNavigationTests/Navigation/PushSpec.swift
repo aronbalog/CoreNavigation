@@ -29,7 +29,7 @@ class PushSpec: QuickSpec {
                 
                 Navigation.push({ $0
                     .to(mockViewController)
-                    .pass(mockData)
+                    .passData(mockData)
                     .on(.passData({ data in
                         passedData = data
                     }))

@@ -2,7 +2,7 @@ import UIKit
 import Quick
 import Nimble
 
-@testable import CoreNavigation
+import CoreNavigation
 
 fileprivate class MockViewController<T>: UIViewController, DataReceivingViewController {
     var receivedData: T?
@@ -37,10 +37,16 @@ class PresentSpec: QuickSpec {
                     .to(mockViewController)
                     .animated(true)
                     .transitioningDelegate(mockTransitioningDelegate)
-                    .pass(mockData)
+                    .passData(mockData)
                     .embeddedInNavigationController()
                     .on(.completion({
                         completionInvokes.invoke()
+                    }))
+                    .on(NavigationEvent<MockViewController<DataType>, String>.passData({ (data) in
+                        print(data)
+                    }))
+                    .on(.viewController(.viewDidLoad {
+                        print($0.view)
                     }))
                     .on(.passData({ data in
                         passedData = data

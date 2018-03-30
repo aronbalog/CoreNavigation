@@ -93,47 +93,123 @@ push { $0
 }
 ```
 
-### Advanced example
+#### Routing:
 
-#### Use case
+##### Defining view controller
 
-> Navigate to view controller which is:
-> 
-> - presented without animation
-> - embedded in navigation controller
-> - state restorable
-> - configurable with parameters
-> - available only to signed in users
+```swift
+class UserProfileViewController: UIViewController, DataReceivingViewController {
+    typealias DataType = User
 
+    func didReceiveData(_ data: User) {
+        // configure UI with data
+    }
+}
+```
+
+##### Defining route
+
+```swift
+struct UserProfile: Route, RoutePatternsAware {
+    typealias Destination = UserProfileViewController
+
+    let userId: String
+    
+    var parameters: [String : Any]? {
+        return [
+            "userId":self.userId
+        ]
+    }
+
+    /*-------- routing part --------*/
+    
+    static var patterns: [String] = [
+        "https://myapp.com/user/:userId(.*)"
+    ]
+    
+    static func route(handler: RouteHandler<UserProfile>) {
+        let userId = handler.parameters?["userId"] as? String
+        
+        // e.g. fetch user from network
+        fetchUser(userId, completion: { (user: User) in
+            // notify handler
+            handler.complete(data: user)
+        })
+    }
+}
+```
+
+##### Presenting route
+
+###### Using strong route
 
 ```swift
 present { $0
-    .to(MyViewController.self)
+    // configure navigation
+    .to(UserProfile(userId: "123456")
     .animated(false)
-    .transitioningDelegate(MyTransitioningDelegate())
-    .hidesBottomBarWhenPushed(true)
-    .completion {
-        // transition completion    
-    }   
-    .protect(with: UserAuth())
-    .embed(in: UINavigationController.self)
-    .withStateRestoration()
-    .pass(parameters: [
-        "name": "john doe"
-    ])        
-    .viewControllerEvents({ (events, viewController) in
-        events.viewDidLoad {
-            // view did load
-        }
-    })
-    .onSuccess({ (response) in
-        // response.parameters?["name"] -> "john doe"
-        // response.toViewController -> MyViewController.self
-        // response.embeddingViewController -> UINavigationController.self
-    })
-    .onFailure({ (error) in
-        // handle error
-    })
+    ...
+}
+```
+
+*or*
+
+```swift
+UserProfile(userId: "123456").present { $0
+    // configure navigation
+    .animated(false)
+    ...
+}
+```
+
+*or*
+
+```swift
+UserProfile(userId: "123456").present()
+```
+
+###### Using soft route
+
+```swift
+present { $0
+    // configure navigation
+    .to("https://myapp.com/user/123456")
+    .animated(false)
+    ...
+}
+```
+
+*or*
+
+```swift
+"https://myapp.com/user/123456".present { $0
+    // configure navigation
+    .animated(false)
+    ...
+}
+```
+
+*or*
+
+```swift
+"https://myapp.com/user/123456".present()
+```
+
+##### Getting view controller
+
+###### Using strong route
+
+```swift
+UserProfile(userId: "123456").viewController { (viewController: UserProfileViewController) in
+    ...
+}
+```
+
+###### Using soft route
+
+```swift
+"https://myapp.com/user/123456".viewController { (viewController: UIViewController) in
+    ...
 }
 ```
 

@@ -11,18 +11,29 @@ protocol Embeddable: class {
 }
 
 extension Configuration: Embeddable {
+    /// Embeds destination view controller.
+    ///
+    /// - Parameter type: Embedding type.
+    /// - Returns: Configuration instance.
     @discardableResult public func embedded(in type: EmbeddingType) -> Self {
         embedding.embeddingType = type
         
         return self
     }
     
+    /// Embeds destination view controller.
+    ///
+    /// - Parameter embeddingProtocol: EmbeddingProtocol type.
+    /// - Returns: Configuration instance.
     @discardableResult public func embedded(in embeddingProtocol: EmbeddingProtocol.Type) -> Self {
         embedding.embeddingType = .embeddingProtocol(embeddingProtocol)
         
         return self
     }
     
+    /// Embeds destination view controller.
+    ///
+    /// - Returns: Configuration instance.
     @discardableResult public func embeddedInNavigationController() -> Self {
         embedding.embeddingType = .navigationController
         

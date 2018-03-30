@@ -187,9 +187,19 @@ public class To<ResultableType: Resultable>: DestinationAware {
     /// Assign registered route's path to navigate to.
     ///
     /// - Parameter path: String instance
-    /// - Returns: `Configuration` object
+    /// - Returns: `Configuration` object.
     @discardableResult public func to(_ path: String) -> Configuration<Result<UIViewController, Any>> {
         return To.to(matchable: path, from: from, action: { configuration in
+            navigate(with: configuration)
+        })
+    }
+    
+    /// Assign registered route's uri to navigate to.
+    ///
+    /// - Parameter matchable: Matchable object.
+    /// - Returns: `Configuration` object.
+    @discardableResult public func to(_ matchable: Matchable) -> Configuration<Result<UIViewController, Any>> {
+        return To.to(matchable: matchable, from: from, action: { configuration in
             navigate(with: configuration)
         })
     }
