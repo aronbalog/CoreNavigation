@@ -11,7 +11,7 @@ extension Navigator {
                     return fromViewController
                 }
                 
-                return UIViewController.currentViewController(in: configuration.application.application)
+                return UIViewController.currentViewController(in: configuration.windowObject.window)
             }()
             
             fromViewController?.transitioningDelegate = viewControllerTransitioningDelegate

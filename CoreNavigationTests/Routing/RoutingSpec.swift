@@ -109,17 +109,17 @@ class RoutingSpec: QuickSpec {
             })
             
             context("when routing to registered route", {
-                let mockApplication = MockApplication()
+                let mockWindow = MockWindow()
                 
                 Navigation.present { $0
                     .to("2/john-middle-name/doe?query=param")
                     .passData("data")
-                    .in(application: mockApplication)
+                    .inWindow(mockWindow)
                 }
                 
                 it("it routes successfully", closure: {
-                    expect(mockApplication.window.rootViewController?.presentedViewController).toEventuallyNot(beNil())
-                    expect((mockApplication.window.rootViewController?.presentedViewController as? MockViewController)?.data).toEventually(equal("data"))
+                    expect(mockWindow.rootViewController?.presentedViewController).toEventuallyNot(beNil())
+                    expect((mockWindow.rootViewController?.presentedViewController as? MockViewController)?.data).toEventually(equal("data"))
                 })
             })
             

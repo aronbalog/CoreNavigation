@@ -58,7 +58,7 @@ class PresentSpec: QuickSpec {
                         completionInvokes.invoke()
                     }
                     .unsafely()
-                    .in(application: MockApplication())
+                    .inWindow(MockWindow())
                 })
                 
                 it("is presented", closure: {
@@ -74,7 +74,7 @@ class PresentSpec: QuickSpec {
                 
                 let mockViewController = Destination()
                 
-                MockApplication().keyWindow?.rootViewController?.present({ $0
+                MockWindow().rootViewController?.present({ $0
                     .to(mockViewController)
                 })
                 

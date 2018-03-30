@@ -12,7 +12,7 @@ extension Configuration: KeyboardObservable {
     @discardableResult public func trackKeyboard(with keyboardTrackingMode: KeyboardTrackingMode) -> Self {
         switch keyboardTrackingMode {
         case .rise:
-            guard let window = application.application.keyWindow else { return self }
+            guard let window = windowObject.window else { return self }
             
             rise(view: window)
         case .shrink:

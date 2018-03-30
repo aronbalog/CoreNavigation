@@ -89,7 +89,7 @@ class ViewControllerEventsSpec: QuickSpec {
                         mockViewController.dismiss(animated: false, completion: nil)
                     }
                     .unsafely()
-                    .in(application: MockApplication())
+                    .inWindow(MockWindow())
                 })
                 
                 

@@ -50,6 +50,8 @@
 		38577C9E205CB88C00FB4B83 /* UnsafeNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577C9D205CB88C00FB4B83 /* UnsafeNavigation.swift */; };
 		38577CA0205CBB1300FB4B83 /* UnsafeNavigationAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577C9F205CBB1300FB4B83 /* UnsafeNavigationAware.swift */; };
 		38577CA3205CBB4700FB4B83 /* ProtectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577CA2205CBB4700FB4B83 /* ProtectionHandler.swift */; };
+		38645D78206EFF0900EF5D60 /* WindowNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38645D77206EFF0900EF5D60 /* WindowNavigation.swift */; };
+		38645D7A206EFF1100EF5D60 /* WindowNavigationAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38645D79206EFF1100EF5D60 /* WindowNavigationAware.swift */; };
 		386DAB7C2066C6AB002FF908 /* UINavigationController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386DAB7B2066C6AB002FF908 /* UINavigationController+Convenience.swift */; };
 		386DAB7E2066E033002FF908 /* String+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386DAB7D2066E033002FF908 /* String+Convenience.swift */; };
 		386DAB802066E04F002FF908 /* URL+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386DAB7F2066E04F002FF908 /* URL+Convenience.swift */; };
@@ -75,9 +77,6 @@
 		388C73172059C7A400C11EEB /* DataPassable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38817529205612140054CFBB /* DataPassable.swift */; };
 		388C731A2059DED500C11EEB /* Eventable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388C73192059DED500C11EEB /* Eventable.swift */; };
 		388C731C2059E1A400C11EEB /* EventAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388C731B2059E1A400C11EEB /* EventAware.swift */; };
-		3895D2DD2064453F00A7ECD6 /* ApplicationAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3895D2DC2064453F00A7ECD6 /* ApplicationAware.swift */; };
-		3895D2DF2064455B00A7ECD6 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3895D2DE2064455B00A7ECD6 /* Application.swift */; };
-		3895D2E12064478000A7ECD6 /* UIApplicationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3895D2E02064478000A7ECD6 /* UIApplicationProtocol.swift */; };
 		38A7AFEF2063264B00C36040 /* Route+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7AFEE2063264B00C36040 /* Route+Convenience.swift */; };
 		38A7AFF3206330B600C36040 /* Matchable+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7AFF2206330B600C36040 /* Matchable+Convenience.swift */; };
 		38AC50A520646B7A00E93DFF /* CachingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38AC50A420646B7A00E93DFF /* CachingSpec.swift */; };
@@ -175,6 +174,8 @@
 		38577C9D205CB88C00FB4B83 /* UnsafeNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsafeNavigation.swift; sourceTree = "<group>"; };
 		38577C9F205CBB1300FB4B83 /* UnsafeNavigationAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsafeNavigationAware.swift; sourceTree = "<group>"; };
 		38577CA2205CBB4700FB4B83 /* ProtectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectionHandler.swift; sourceTree = "<group>"; };
+		38645D77206EFF0900EF5D60 /* WindowNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowNavigation.swift; sourceTree = "<group>"; };
+		38645D79206EFF1100EF5D60 /* WindowNavigationAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowNavigationAware.swift; sourceTree = "<group>"; };
 		386DAB7B2066C6AB002FF908 /* UINavigationController+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Convenience.swift"; sourceTree = "<group>"; };
 		386DAB7D2066E033002FF908 /* String+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Convenience.swift"; sourceTree = "<group>"; };
 		386DAB7F2066E04F002FF908 /* URL+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Convenience.swift"; sourceTree = "<group>"; };
@@ -198,9 +199,6 @@
 		388A2F182065AC66009BC5AC /* OriginAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginAware.swift; sourceTree = "<group>"; };
 		388C73192059DED500C11EEB /* Eventable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eventable.swift; sourceTree = "<group>"; };
 		388C731B2059E1A400C11EEB /* EventAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventAware.swift; sourceTree = "<group>"; };
-		3895D2DC2064453F00A7ECD6 /* ApplicationAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationAware.swift; sourceTree = "<group>"; };
-		3895D2DE2064455B00A7ECD6 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
-		3895D2E02064478000A7ECD6 /* UIApplicationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationProtocol.swift; sourceTree = "<group>"; };
 		38A7AFEE2063264B00C36040 /* Route+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Route+Convenience.swift"; sourceTree = "<group>"; };
 		38A7AFF2206330B600C36040 /* Matchable+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Matchable+Convenience.swift"; sourceTree = "<group>"; };
 		38AC50A420646B7A00E93DFF /* CachingSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingSpec.swift; sourceTree = "<group>"; };
@@ -360,9 +358,9 @@
 		384CF98D204DBBC700330EC7 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				38645D76206EFEF500EF5D60 /* Window */,
 				38222B722067397500435008 /* Keyboard */,
 				388A2F152065AC4B009BC5AC /* Origin */,
-				3895D2DB2064453600A7ECD6 /* Application */,
 				38444A96205EF747001F3F5C /* StateRestoration */,
 				38577C9C205CB87E00FB4B83 /* Unsafe */,
 				38577C90205C863700FB4B83 /* Protection */,
@@ -430,6 +428,15 @@
 				38577CA2205CBB4700FB4B83 /* ProtectionHandler.swift */,
 			);
 			path = Protection;
+			sourceTree = "<group>";
+		};
+		38645D76206EFEF500EF5D60 /* Window */ = {
+			isa = PBXGroup;
+			children = (
+				38645D77206EFF0900EF5D60 /* WindowNavigation.swift */,
+				38645D79206EFF1100EF5D60 /* WindowNavigationAware.swift */,
+			);
+			path = Window;
 			sourceTree = "<group>";
 		};
 		3881751D2056028C0054CFBB /* Embedding */ = {
@@ -515,16 +522,6 @@
 				388C731B2059E1A400C11EEB /* EventAware.swift */,
 			);
 			path = Events;
-			sourceTree = "<group>";
-		};
-		3895D2DB2064453600A7ECD6 /* Application */ = {
-			isa = PBXGroup;
-			children = (
-				3895D2DC2064453F00A7ECD6 /* ApplicationAware.swift */,
-				3895D2DE2064455B00A7ECD6 /* Application.swift */,
-				3895D2E02064478000A7ECD6 /* UIApplicationProtocol.swift */,
-			);
-			path = Application;
 			sourceTree = "<group>";
 		};
 		38AC50A320646B6200E93DFF /* Caching */ = {
@@ -1041,14 +1038,12 @@
 				381D74562055A28A00F1C154 /* HistoryDirection.swift in Sources */,
 				38D5B399204A3567005A15BC /* Global.swift in Sources */,
 				3822436A2054B91A00426342 /* NavigationType.swift in Sources */,
-				3895D2DD2064453F00A7ECD6 /* ApplicationAware.swift in Sources */,
 				38577C9E205CB88C00FB4B83 /* UnsafeNavigation.swift in Sources */,
 				38836B542064556D007963A0 /* Navigator+ViewControllerEvents.swift in Sources */,
 				38836B58206455AB007963A0 /* Navigator+Cache.swift in Sources */,
 				380411152055D1CF000C6A25 /* Navigator_NavigationOperation.swift in Sources */,
 				38577C92205C863D00FB4B83 /* ProtectionSpace.swift in Sources */,
 				38222B6E206738C200435008 /* KeyboardObserver.swift in Sources */,
-				3895D2E12064478000A7ECD6 /* UIApplicationProtocol.swift in Sources */,
 				38222B752067399900435008 /* KeyboardObservable.swift in Sources */,
 				38836B5620645583007963A0 /* Navigator+StateRestoration.swift in Sources */,
 				384CF988204DBB5400330EC7 /* Destination.swift in Sources */,
@@ -1059,13 +1054,14 @@
 				38444AA1205EFBE1001F3F5C /* StateRestorationDelegate.swift in Sources */,
 				3881752720560FB80054CFBB /* TransitioningAware.swift in Sources */,
 				38222B4A2066F47300435008 /* DataReceiving.swift in Sources */,
+				38645D7A206EFF1100EF5D60 /* WindowNavigationAware.swift in Sources */,
 				38D5B39C204A35A0005A15BC /* Navigation.swift in Sources */,
 				38F1D8A1205B0F32001F0B0B /* ViewControllerEvent.swift in Sources */,
 				388C73172059C7A400C11EEB /* DataPassable.swift in Sources */,
-				3895D2DF2064455B00A7ECD6 /* Application.swift in Sources */,
 				388C731C2059E1A400C11EEB /* EventAware.swift in Sources */,
 				384CF991204DBBE200330EC7 /* Resultable.swift in Sources */,
 				38E24F74205D609C0062AE85 /* Router.swift in Sources */,
+				38645D78206EFF0900EF5D60 /* WindowNavigation.swift in Sources */,
 				38F1D89F205B05CF001F0B0B /* ViewControllerObserver.swift in Sources */,
 				386DAB802066E04F002FF908 /* URL+Convenience.swift in Sources */,
 				38577CA3205CBB4700FB4B83 /* ProtectionHandler.swift in Sources */,

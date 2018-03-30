@@ -13,7 +13,7 @@ class StateRestorationSpec: QuickSpec {
                     .to(mockViewController)
                     .stateRestorable()
                     .unsafely()
-                    .in(application: MockApplication())
+                    .inWindow(MockWindow())
                 })
                 
                 it("it has restoration data", closure: {
@@ -30,7 +30,7 @@ class StateRestorationSpec: QuickSpec {
                     .to(mockViewController)
                     .stateRestorable(identifier: identifier)
                     .unsafely()
-                    .in(application: MockApplication())
+                    .inWindow(MockWindow())
                 })
                 
                 it("it has restoration data", closure: {
@@ -53,7 +53,7 @@ class StateRestorationSpec: QuickSpec {
                     .to(mockViewController)
                     .stateRestorable(identifier: identifier, class: MockStateRestoration.self)
                     .unsafely()
-                    .in(application: MockApplication())
+                    .inWindow(MockWindow())
                 })
                 
                 it("it has restoration data", closure: {

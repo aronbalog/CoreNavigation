@@ -40,7 +40,7 @@ class CachingSpec: QuickSpec {
     override func spec() {
         describe("Navigation") {
             context("when presenting view controller multiple times with caching", {
-                let mockApplication = MockApplication()
+                let mockWindow = MockWindow()
                 let mockViewController = UndyingViewController.self
                 let cacheIdentifier = "undying"
                 
@@ -48,14 +48,14 @@ class CachingSpec: QuickSpec {
                     .to(mockViewController)
                     .keepAlive(within: UndyingLifetime(), cacheIdentifier: cacheIdentifier)
                     .unsafely()
-                    .in(application: mockApplication)
+                    .inWindow(mockWindow)
                     .completion {
-                        mockApplication.window.rootViewController?.presentedViewController?.dismiss(animated: false, completion: {
+                        mockWindow.rootViewController?.presentedViewController?.dismiss(animated: false, completion: {
                             Navigation.present({ $0
                                 .to(mockViewController)
                                 .keepAlive(within: UndyingLifetime(), cacheIdentifier: cacheIdentifier)
                                 .unsafely()
-                                .in(application: mockApplication)
+                                .inWindow(mockWindow)
                             })
                         })
                     }
@@ -67,7 +67,7 @@ class CachingSpec: QuickSpec {
             })
             
             context("when presenting view controller multiple times with caching", {
-                let mockApplication = MockApplication()
+                let mockWindow = MockWindow()
                 let mockViewController = DyingViewController.self
                 let cacheIdentifier = "dying"
                 
@@ -75,14 +75,14 @@ class CachingSpec: QuickSpec {
                     .to(mockViewController)
                     .keepAlive(within: DyingLifetime(), cacheIdentifier: cacheIdentifier)
                     .unsafely()
-                    .in(application: mockApplication)
+                    .inWindow(mockWindow)
                     .completion {
-                        mockApplication.window.rootViewController?.presentedViewController!.dismiss(animated: false, completion: {
+                        mockWindow.rootViewController?.presentedViewController!.dismiss(animated: false, completion: {
                             Navigation.present({ $0
                                 .to(mockViewController)
                                 .keepAlive(within: DyingLifetime(), cacheIdentifier: cacheIdentifier)
                                 .unsafely()
-                                .in(application: mockApplication)
+                                .inWindow(mockWindow)
                             })
                         })
                     }

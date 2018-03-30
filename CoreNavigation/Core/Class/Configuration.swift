@@ -20,8 +20,8 @@ public final class Configuration<ResultableType: Resultable> {
     var protection = Protection()
     var unsafeNavigation = UnsafeNavigationObject()
     var stateRestoration = StateRestoration()
-    var application = Application()
     var origin = Origin()
+    var windowObject = WindowObject()
 
     var willNavigateBlocks: [(UIViewController) -> Void] = []
     
@@ -65,14 +65,11 @@ public final class Configuration<ResultableType: Resultable> {
         var option: StateRestorationOption = .ignore
     }
     
-    class Application: ApplicationAware {
-        var application: UIApplicationProtocol = UIApplication.shared
-    }
-    
     class Origin: OriginAware {
         var fromViewController: UIViewController?
     }
+    
+    class WindowObject: WindowNavigationAware {
+        var window: UIWindow? = UIApplication.shared.keyWindow
+    }
 }
-
-extension UIApplication: UIApplicationProtocol {}
-

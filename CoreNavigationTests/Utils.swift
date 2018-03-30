@@ -2,14 +2,16 @@ import Foundation
 
 import CoreNavigation
 
-class MockApplication: UIApplicationProtocol {
-    let window = UIWindow(frame: UIScreen.main.bounds)
-    
-    var keyWindow: UIWindow? {
-        window.rootViewController = UINavigationController(rootViewController: UIViewController())
-        window.makeKeyAndVisible()
+class MockWindow: UIWindow {
+    override init(frame: CGRect) {
+        super.init(frame: UIScreen.main.bounds)
         
-        return window
+        rootViewController = UINavigationController(rootViewController: UIViewController())
+        makeKeyAndVisible()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 

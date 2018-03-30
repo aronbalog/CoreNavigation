@@ -3,8 +3,8 @@ import UIKit
 extension UIViewController {
     
     /// Returns the current application's top most view controller.
-    public static func currentViewController(in application: UIApplicationProtocol) -> UIViewController? {
-        let rootViewController: UIViewController? = application.keyWindow?.rootViewController
+    public static func currentViewController(in window: UIWindow?) -> UIViewController? {
+        let rootViewController: UIViewController? = window?.rootViewController
         
         return self.currentViewController(of: rootViewController)
     }
