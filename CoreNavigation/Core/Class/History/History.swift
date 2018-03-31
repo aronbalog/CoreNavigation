@@ -1,5 +1,6 @@
 import Foundation
 
+/// Provides navigation history logic.
 public class History {
     static let shared = History()
     
@@ -11,7 +12,13 @@ public class History {
         items.append(historyItem)
     }
     
-    public func back(animated: Bool = true, completion: (() -> Void)? = nil, steps: Int = 1) {
+    /// Dismisses or pops one view controller or stack of view controllers.
+    ///
+    /// - Parameters:
+    ///   - steps: Number of steps to go back.
+    ///   - animated: Boolean, `true` for animated transition, otherwise `false`.
+    ///   - completion: Completion block.
+    public func back(steps: Int = 1, animated: Bool = true, completion: (() -> Void)? = nil) {
         var index = items.count - steps - 1
         
         if index < 0 {

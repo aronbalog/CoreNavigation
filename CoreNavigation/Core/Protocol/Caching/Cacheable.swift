@@ -8,6 +8,7 @@ protocol Cacheable: class {
     @discardableResult func keepAlive(within lifetime: Lifetime, cacheIdentifier: String) -> Self
 }
 
+// MARK: - Cache configuration
 extension Configuration: Cacheable {
     /// Caches navigation.
     ///

@@ -1,4 +1,4 @@
-public class KeyboardObserver {
+class KeyboardObserver {
     enum Event {
         case keyboardWillShow
         case keyboardWillHide
@@ -6,11 +6,11 @@ public class KeyboardObserver {
         case keyboardDidHide
     }
     
-    public struct KeyboardInfo {
-        public let beginFrame: CGRect
-        public let endFrame: CGRect
-        public let animationDuration: TimeInterval
-        public let animationOptions: UIViewAnimationOptions
+    struct KeyboardInfo {
+        let beginFrame: CGRect
+        let endFrame: CGRect
+        let animationDuration: TimeInterval
+        let animationOptions: UIViewAnimationOptions
     }
     
     private class Handler {
@@ -25,7 +25,7 @@ public class KeyboardObserver {
     
     private var handlers: [Handler] = []
     
-    public init() {
+    init() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShowNotification(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHideNotification(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardDidShowNotification(_:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
@@ -36,25 +36,25 @@ public class KeyboardObserver {
         NotificationCenter.default.removeObserver(self)
     }
     
-    @discardableResult public func keyboardWillShow(_ callback: @escaping (KeyboardInfo) -> Void) -> Self {
+    @discardableResult func keyboardWillShow(_ callback: @escaping (KeyboardInfo) -> Void) -> Self {
         handlers.append(Handler(event: .keyboardWillShow, action: callback))
         
         return self
     }
     
-    @discardableResult public func keyboardDidShow(_ callback: @escaping (KeyboardInfo) -> Void) -> Self {
+    @discardableResult func keyboardDidShow(_ callback: @escaping (KeyboardInfo) -> Void) -> Self {
         handlers.append(Handler(event: .keyboardDidShow, action: callback))
         
         return self
     }
     
-    @discardableResult public func keyboardWillHide(_ callback: @escaping (KeyboardInfo) -> Void) -> Self {
+    @discardableResult func keyboardWillHide(_ callback: @escaping (KeyboardInfo) -> Void) -> Self {
         handlers.append(Handler(event: .keyboardWillHide, action: callback))
         
         return self
     }
     
-    @discardableResult public func keyboardDidHide(_ callback: @escaping (KeyboardInfo) -> Void) -> Self {
+    @discardableResult func keyboardDidHide(_ callback: @escaping (KeyboardInfo) -> Void) -> Self {
         handlers.append(Handler(event: .keyboardDidHide, action: callback))
         
         return self

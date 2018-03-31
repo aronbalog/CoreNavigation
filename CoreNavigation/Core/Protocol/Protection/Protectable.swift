@@ -8,6 +8,7 @@ protocol Protectable: class {
     @discardableResult func protect(with protectionSpace: ProtectionSpace) -> Self
 }
 
+// MARK: - Protection configuration
 extension Configuration: Protectable {
     /// Protects navigation by pausing it and gives an option to continue.
     ///

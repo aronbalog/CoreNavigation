@@ -8,6 +8,7 @@ protocol DataPassable: class {
     @discardableResult func passData(_ data: Any?) -> Self
 }
 
+// MARK: - Abstract data passing configuration
 extension Configuration: DataPassable {
     /// Prepares data for view controller.
     ///
@@ -39,6 +40,7 @@ extension Configuration: DataPassable {
     }
 }
 
+// MARK: - Data receiving view controller data passing configuration
 extension Configuration where ResultableType.ToViewController: DataReceivingViewController {
     /// Prepares data for data receiving view controller.
     ///

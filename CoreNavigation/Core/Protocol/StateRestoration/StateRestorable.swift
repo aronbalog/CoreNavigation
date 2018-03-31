@@ -10,6 +10,7 @@ protocol StateRestorable: class {
     @discardableResult func stateRestorable(identifier: String, class: UIViewControllerRestoration.Type) -> Self
 }
 
+// MARK: - State restoration configuration
 extension Configuration: StateRestorable {
     /// Makes destination state restorable.
     ///

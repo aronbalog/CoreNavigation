@@ -52,6 +52,8 @@
 		38577CA3205CBB4700FB4B83 /* ProtectionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577CA2205CBB4700FB4B83 /* ProtectionHandler.swift */; };
 		38645D78206EFF0900EF5D60 /* WindowNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38645D77206EFF0900EF5D60 /* WindowNavigation.swift */; };
 		38645D7A206EFF1100EF5D60 /* WindowNavigationAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38645D79206EFF1100EF5D60 /* WindowNavigationAware.swift */; };
+		38645D7C206F1B6300EF5D60 /* NavigationEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38645D7B206F1B6300EF5D60 /* NavigationEvent.swift */; };
+		38645D7E206F1C7D00EF5D60 /* StateRestorationBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38645D7D206F1C7D00EF5D60 /* StateRestorationBehavior.swift */; };
 		386DAB7C2066C6AB002FF908 /* UINavigationController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386DAB7B2066C6AB002FF908 /* UINavigationController+Convenience.swift */; };
 		386DAB7E2066E033002FF908 /* String+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386DAB7D2066E033002FF908 /* String+Convenience.swift */; };
 		386DAB802066E04F002FF908 /* URL+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386DAB7F2066E04F002FF908 /* URL+Convenience.swift */; };
@@ -176,6 +178,8 @@
 		38577CA2205CBB4700FB4B83 /* ProtectionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectionHandler.swift; sourceTree = "<group>"; };
 		38645D77206EFF0900EF5D60 /* WindowNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowNavigation.swift; sourceTree = "<group>"; };
 		38645D79206EFF1100EF5D60 /* WindowNavigationAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowNavigationAware.swift; sourceTree = "<group>"; };
+		38645D7B206F1B6300EF5D60 /* NavigationEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationEvent.swift; sourceTree = "<group>"; };
+		38645D7D206F1C7D00EF5D60 /* StateRestorationBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateRestorationBehavior.swift; sourceTree = "<group>"; };
 		386DAB7B2066C6AB002FF908 /* UINavigationController+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Convenience.swift"; sourceTree = "<group>"; };
 		386DAB7D2066E033002FF908 /* String+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Convenience.swift"; sourceTree = "<group>"; };
 		386DAB7F2066E04F002FF908 /* URL+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Convenience.swift"; sourceTree = "<group>"; };
@@ -616,6 +620,8 @@
 				38F1D8A0205B0F32001F0B0B /* ViewControllerEvent.swift */,
 				38444A9B205EF894001F3F5C /* StateRestorationOption.swift */,
 				38222B76206740E200435008 /* KeyboardTrackingMode.swift */,
+				38645D7B206F1B6300EF5D60 /* NavigationEvent.swift */,
+				38645D7D206F1C7D00EF5D60 /* StateRestorationBehavior.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -1005,6 +1011,7 @@
 			files = (
 				388A2F192065AC66009BC5AC /* OriginAware.swift in Sources */,
 				38F1D8A4205B2F83001F0B0B /* Lifetime.swift in Sources */,
+				38645D7C206F1B6300EF5D60 /* NavigationEvent.swift in Sources */,
 				3881752520560F390054CFBB /* EmbeddingAware.swift in Sources */,
 				381D744F2055989600F1C154 /* History.swift in Sources */,
 				381D745220559A7300F1C154 /* History_Item.swift in Sources */,
@@ -1058,6 +1065,7 @@
 				38D5B39C204A35A0005A15BC /* Navigation.swift in Sources */,
 				38F1D8A1205B0F32001F0B0B /* ViewControllerEvent.swift in Sources */,
 				388C73172059C7A400C11EEB /* DataPassable.swift in Sources */,
+				38645D7E206F1C7D00EF5D60 /* StateRestorationBehavior.swift in Sources */,
 				388C731C2059E1A400C11EEB /* EventAware.swift in Sources */,
 				384CF991204DBBE200330EC7 /* Resultable.swift in Sources */,
 				38E24F74205D609C0062AE85 /* Router.swift in Sources */,

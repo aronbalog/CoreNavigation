@@ -8,6 +8,7 @@ protocol UnsafeNavigation {
     @discardableResult func unsafely() -> Self
 }
 
+// MARK: - Unsafe navigation configuration
 extension Configuration: UnsafeNavigation {
     /// Skips queue when navigating.
     ///

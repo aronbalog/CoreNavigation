@@ -1,5 +1,6 @@
 import Foundation
 
+/// :nodoc:
 public enum ViewControllerEvent<T: UIViewController> {
     case loadView((_ viewController: T) -> Void)
     case viewDidLoad((_ viewController: T) -> Void)

@@ -1,12 +1,5 @@
 import Foundation
 
-
-public enum NavigationEvent<ToViewController: UIViewController, DataType> {
-    case completion(() -> Void)
-    case passData((DataType) -> Void)
-    case viewController(ViewControllerEvent<ToViewController>)
-}
-
 /// Acts as storage for navigation parameters.
 public final class Configuration<ResultableType: Resultable> {
     let destination: Destination

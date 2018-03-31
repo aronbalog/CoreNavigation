@@ -1,6 +1,6 @@
 import UIKit
 
-public class ViewControllerObserver {
+class ViewControllerObserver {
     var loadViewBlocks: [(UIViewController) -> Void] = []
     var viewDidLoadBlocks: [(UIViewController) -> Void] = []
     var viewWillAppearBlocks: [(UIViewController, Bool) -> Void] = []

@@ -1,23 +1,12 @@
 import UIKit
 
-/// <#Description#>
-///
-/// - allow: <#allow description#>
-/// - reject: <#reject description#>
-/// - protect: <#protect description#>
-public enum StateRestorationBehavior {
-    case allow
-    case reject
-    case protect(protectionSpace: ProtectionSpace, onUnprotect: StateRestorationContext.UnprotectSuccess?, onFailure: StateRestorationContext.UnprotectFailure?)
-}
-
-/// <#Description#>
+/// Extends iOS state restoration.
 public protocol StateRestorationDelegate {
-    /// <#Description#>
+    /// When state restoration is handled through CoreNavigation, on app launch App delegate will be asked to provide behavior for single state restoration case.
     ///
     /// - Parameters:
-    ///   - application: <#application description#>
-    ///   - context: <#context description#>
-    /// - Returns: <#return value description#>
+    ///   - application: `UIApplication` instance.
+    ///   - context: `StateRestorationContext` object is used for meta purposes.
+    /// - Returns: `StateRestorationBehavior` enum.
     func application(_ application: UIApplication, stateRestorationBehaviorForContext context: StateRestorationContext) -> StateRestorationBehavior
 }

@@ -8,6 +8,7 @@ protocol Originable: class {
     @discardableResult func from<T: UIViewController>(_ viewController: T) -> Self
 }
 
+// MARK: - Origin configuration
 extension Configuration: Originable {
     /// Sets origin.
     ///

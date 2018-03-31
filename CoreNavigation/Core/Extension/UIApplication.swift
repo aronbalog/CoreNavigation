@@ -5,6 +5,7 @@ extension UIApplication {
         UIViewController.swizzleMethods
     }()
     
+    /// :nodoc:
     override open var next: UIResponder? {
         // Called before applicationDidFinishLaunching
         UIApplication.runOnce

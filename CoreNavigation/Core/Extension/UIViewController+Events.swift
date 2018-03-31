@@ -189,12 +189,7 @@ extension UIViewController {
 extension UIViewController {
     private static let association = ObjectAssociation<ViewControllerObserver>()
     
-    public var events: ViewControllerObserver? {
-        get { return self._events }
-        set { self._events = newValue }
-    }
-    
-    var _events: ViewControllerObserver? {
+    var events: ViewControllerObserver? {
         get { return UIViewController.association[self] }
         set { UIViewController.association[self] = newValue }
     }

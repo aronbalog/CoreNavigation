@@ -1,6 +1,6 @@
 import Foundation
 
-public enum NavigationType {
+enum NavigationType {
     case push
     case present
 }

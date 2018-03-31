@@ -1,6 +1,6 @@
 import Foundation
 
-public enum StateRestorationOption {
+enum StateRestorationOption {
     case ignore
     case automatically
     case automaticallyWithIdentifier(restorationIdentifier: String)

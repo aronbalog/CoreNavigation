@@ -10,6 +10,7 @@ public protocol DataReceivingViewController: DataReceiving where Self: UIViewCon
     func didReceiveData(_ data: DataType)
 }
 
+// MARK: - DataReceivingViewController default implementation
 extension DataReceivingViewController {
     /// Called by module when data passing occurs.
     ///
