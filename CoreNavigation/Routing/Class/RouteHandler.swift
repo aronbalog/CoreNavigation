@@ -6,6 +6,7 @@ public class RouteHandler<RouteType: Route> {
     public let parameters: [String: Any]?
     
     var destinationBlocks: [(RouteType.Destination, Any?) -> Void] = []
+    var cancelBlocks: [(Error) -> Void] = []
     
     init(parameters: [String: Any]?) {
         self.parameters = parameters
@@ -21,10 +22,21 @@ public class RouteHandler<RouteType: Route> {
         return viewController
     }
     
+    /// Notifies handler to cancel navigation.
+    ///
+    /// - Parameter error: Error instance.
+    public func cancel(error: Error = NavigationError.unknown) {
+        cancelBlocks.forEach { $0(error) }
+
+        destinationBlocks = []
+        cancelBlocks = []
+    }
+    
     func destination(_ destination: RouteType.Destination, data: Any?) {
         destinationBlocks.forEach { $0(destination, data) }
         
         destinationBlocks = []
+        cancelBlocks = []
     }
 }
 

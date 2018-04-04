@@ -10,7 +10,7 @@ class Navigator {
         return queue
     }()
 
-    static func getViewController<T>(configuration: Configuration<T>, completion: @escaping ((T.ToViewController) -> Void)) {
+    static func getViewController<T>(configuration: Configuration<T>, completion: @escaping ((T.ToViewController) -> Void), failure: ((Error) -> Void)? = nil) {
         switch configuration.destination {
         case .viewController(let _viewController):
             guard let viewController = _viewController as? T.ToViewController else { break }
@@ -23,10 +23,16 @@ class Navigator {
                 completion(viewController)
             }
         case .viewControllerClassBlock(let block):
-            block { viewControllerClass in
-                guard let viewController = (viewControllerClass as? T.ToViewController.Type)?.init() else { return }
-
-                completion(viewController)
+            block { result in
+                switch result {
+                case .success(let viewControllerClass):
+                    let viewController = viewControllerClass.init()
+                    
+                    completion(viewController)
+                case .failure(let error):
+                    failure?(error)
+                }
+                
             }
         }
     }
@@ -45,14 +51,23 @@ class Navigator {
                     case .viewController(let viewController):
                         action(type: type, viewController: viewController, configuration: configuration, handler: handler)
                     case .viewControllerBlock(let block):
-                        block { viewController in
-                            action(type: type, viewController: viewController, configuration: configuration, handler: handler)
+                        block { result in
+                            switch result {
+                            case .success(let viewController):
+                                action(type: type, viewController: viewController, configuration: configuration, handler: handler)
+                            case .failure(let error):
+                                failure(error: error, configuration: configuration, handler: handler)
+                            }
                         }
                     case .viewControllerClassBlock(let block):
-                        block { viewControllerClass in
-                            let viewController = viewControllerClass.init()
-                            
-                            action(type: type, viewController: viewController, configuration: configuration, handler: handler)
+                        block { result in
+                            switch result {
+                            case .success(let viewControllerClass):
+                                let viewController = viewControllerClass.init()
+                                action(type: type, viewController: viewController, configuration: configuration, handler: handler)
+                            case .failure(let error):
+                                failure(error: error, configuration: configuration, handler: handler)
+                            }
                         }
                     }
                 }
@@ -90,16 +105,29 @@ class Navigator {
         cacheViewControllerIfNeeded(viewController: viewController, with: configuration)
         prepareForStateRestorationIfNeeded(viewController: viewController, with: configuration)
         
-        switch type {
-        case .push:
-            push(viewController, with: configuration, completion: {
-                handler()
-            })
-        case .present:
-            present(viewController, with: configuration, completion: {
-                handler()
+        let data: T.DataType? = (configuration.dataPassing.data as? T.DataType)
+        let result = T.init(toViewController: viewController as! T.ToViewController, data: data)
+        
+        configuration.successBlocks.forEach { $0(result) }
+        
+        let willNavigate: () -> Void = {
+            configuration.willNavigateBlocks.forEach({ (block) in
+                block(viewController, data)
             })
         }
+        
+        switch type {
+        case .push:
+            push(viewController, with: configuration, willNavigate: willNavigate, completion: handler)
+        case .present:
+            present(viewController, with: configuration, willNavigate: willNavigate, completion: handler)
+        }
+    }
+    
+    static func failure<T>(error: Error, configuration: Configuration<T>, handler: @escaping () -> Void) {
+        configuration.failureBlocks.forEach { $0(error) }
+        
+        handler()
     }
     
     static func viewControllerToNavigate<T>(_ viewController: UIViewController, with configuration: Configuration<T>) -> UIViewController {

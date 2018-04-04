@@ -4,18 +4,23 @@ import Foundation
 public extension Route {
     /// Route to view controller.
     ///
-    /// - Parameter viewControllerBlock: Block returning UIViewController instance.
-    public func viewController(_ viewControllerBlock: @escaping (Destination) -> Void) {
+    /// - Parameters:
+    ///   - viewControllerBlock: Block returning UIViewController instance.
+    ///   - failure: Block returning Error instance.
+    public func viewController(_ viewControllerBlock: @escaping (Destination) -> Void, failure: ((Error) -> Void)? = nil) {
         let handler = RouteHandler<Self>(parameters: parameters)
 
         let configuration = Configuration<Result<Destination, Any>>(destination: .viewControllerBlock({ block in
             handler.destinationBlocks.append({ (viewController, data) in
-                block(viewController)
+                block(.success(viewController))
+            })
+            handler.cancelBlocks.append({ (error) in
+                block(.failure(error))
             })
             
         }), from: nil)
         
-        Navigator.getViewController(configuration: configuration, completion: viewControllerBlock)
+        Navigator.getViewController(configuration: configuration, completion: viewControllerBlock, failure: failure)
         
         type(of: self).route(handler: handler)
     }

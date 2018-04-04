@@ -2,7 +2,7 @@ import Foundation
 
 /// Route protocol describes wrapper for destination.
 public protocol Route: AnyRoute, RouteParametersAware {
-// MARK: - Defines destination
+    // MARK: - Defines destination
     associatedtype Destination: UIViewController
     
     /// Handles routing.

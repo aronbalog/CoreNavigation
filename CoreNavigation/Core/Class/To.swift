@@ -92,7 +92,13 @@ public class To<ResultableType: Resultable>: DestinationAware {
     /// - Parameter block: Pass view controller instance to this block when navigation is wanted.
     /// - Returns: `Configuration` object.
     @discardableResult public func to<T>(_ block: @escaping (@escaping (T) -> Void) -> Void) -> Configuration<Result<T, Any>> where T : UIViewController {
-        let configuration = Configuration<Result<T, Any>>(destination: .viewControllerBlock(block), from: from)
+        let viewControllerBlock: (@escaping (Destination<T>.Result) -> Void) -> Void = { resultBlock in
+            block { viewController in
+                resultBlock(.success(viewController))
+            }
+        }
+        
+        let configuration = Configuration<Result<T, Any>>(destination: .viewControllerBlock(viewControllerBlock), from: from)
         
         navigate(with: configuration)
 
@@ -105,7 +111,13 @@ public class To<ResultableType: Resultable>: DestinationAware {
     /// - Parameter block: Pass view controller instance conforming `DataReceivingViewController` protocol to this block when navigation is wanted.
     /// - Returns: `Configuration` object.
     @discardableResult public func to<T: DataReceivingViewController>(_ block: @escaping (@escaping (T) -> Void) -> Void) -> Configuration<Result<T, T.DataType>> {
-        let configuration = Configuration<Result<T, T.DataType>>(destination: .viewControllerBlock(block), from: from)
+        let viewControllerBlock: (@escaping (Destination<T>.Result) -> Void) -> Void = { resultBlock in
+            block { viewController in
+                resultBlock(.success(viewController))
+            }
+        }
+        
+        let configuration = Configuration<Result<T, T.DataType>>(destination: .viewControllerBlock(viewControllerBlock), from: from)
         
         navigate(with: configuration)
         
@@ -117,7 +129,13 @@ public class To<ResultableType: Resultable>: DestinationAware {
     /// - Parameter block: Pass view controller class to this block when navigation is wanted.
     /// - Returns: `Configuration` object
     @discardableResult public func to<T>(_ block: @escaping (@escaping (T.Type) -> Void) -> Void) -> Configuration<Result<T, Any>> where T : UIViewController {
-        let configuration = Configuration<Result<T, Any>>(destination: .viewControllerClassBlock(block), from: from)
+        let viewControllerClassBlock: (@escaping (Destination<T>.Result) -> Void) -> Void = { resultBlock in
+            block { viewControllerClass in
+                resultBlock(.success(viewControllerClass))
+            }
+        }
+        
+        let configuration = Configuration<Result<T, Any>>(destination: .viewControllerClassBlock(viewControllerClassBlock), from: from)
 
         navigate(with: configuration)
         
@@ -129,7 +147,13 @@ public class To<ResultableType: Resultable>: DestinationAware {
     /// - Parameter block: Pass view controller class conforming `DataReceivingViewController` protocol to this block when navigation is wanted.
     /// - Returns: `Configuration` object.
     @discardableResult public func to<T: DataReceivingViewController>(_ block: @escaping (@escaping (T.Type) -> Void) -> Void) -> Configuration<Result<T, T.DataType>> {
-        let configuration = Configuration<Result<T, T.DataType>>(destination: .viewControllerClassBlock(block), from: from)
+        let viewControllerClassBlock: (@escaping (Destination<T>.Result) -> Void) -> Void = { resultBlock in
+            block { viewControllerClass in
+                resultBlock(.success(viewControllerClass))
+            }
+        }
+        
+        let configuration = Configuration<Result<T, T.DataType>>(destination: .viewControllerClassBlock(viewControllerClassBlock), from: from)
         
         navigate(with: configuration)
         
@@ -144,9 +168,13 @@ public class To<ResultableType: Resultable>: DestinationAware {
         let handler = RouteHandler<T>(parameters: route.parameters)
 
         let configuration = Configuration<Result<T.Destination, Any>>(destination: .viewControllerBlock({ block in
-            handler.destinationBlocks.append({ (destination, data) in
-            block(destination)
-        }) }), from: from)
+            handler.destinationBlocks.append({ (viewController, data) in
+                block(.success(viewController))
+            })
+            handler.cancelBlocks.append({ (error) in
+                block(.failure(error))
+            })
+        }), from: from)
         
         navigate(with: configuration, completion: {
             type(of: route).route(handler: handler)
@@ -163,9 +191,13 @@ public class To<ResultableType: Resultable>: DestinationAware {
         let handler = RouteHandler<T>(parameters: route.parameters)
 
         let configuration = Configuration<Result<T.Destination, T.Destination.DataType>>(destination: .viewControllerBlock({ block in
-            handler.destinationBlocks.append({ (destination, data) in
-                block(destination)
-            }) }), from: from)
+            handler.destinationBlocks.append({ (viewController, data) in
+                block(.success(viewController))
+            })
+            handler.cancelBlocks.append({ (error) in
+                block(.failure(error))
+            })
+        }), from: from)
         
         navigate(with: configuration, completion: {
             type(of: route).route(handler: handler)
@@ -207,7 +239,7 @@ public class To<ResultableType: Resultable>: DestinationAware {
     // MARK: Internal
     
     let navigationType: NavigationType
-    var destination: Destination?
+    var destination: Destination<ResultableType.ToViewController>?
     var from: UIViewController?
     
     init(_ navigationType: NavigationType, from: UIViewController?) {
@@ -221,9 +253,10 @@ public class To<ResultableType: Resultable>: DestinationAware {
         
         var _configuration: Configuration<Result<T, Any>>?
         
-        let viewControllerBlock: (@escaping (UIViewController) -> Void) -> Void = { handler in
+        let viewControllerBlock: (@escaping (Destination<T>.Result<T>) -> Void) -> Void = { (handler) in
             guard let match = match else {
                 // not matched
+                handler(.failure(NavigationError.routeNotFound))
                 return
             }
             
@@ -235,7 +268,9 @@ public class To<ResultableType: Resultable>: DestinationAware {
                     _configuration?.dataPassing.data = data
                 }
 
-                handler(destination)
+                handler(.success(destination as! T))
+            }, failure: { error in
+                handler(.failure(error ?? NavigationError.unknown))
             })
         }
         

@@ -1,7 +1,12 @@
 import UIKit
 
-enum Destination {
+enum Destination<ViewControllerType: UIViewController> {
+    enum Result<T> {
+        case success(T)
+        case failure(Error)
+    }
+    
     case viewController(UIViewController)
-    case viewControllerBlock((@escaping (UIViewController) -> Void) -> Void)
-    case viewControllerClassBlock((@escaping (UIViewController.Type) -> Void) -> Void)
+    case viewControllerBlock((@escaping (Result<ViewControllerType>) -> Void) -> Void)
+    case viewControllerClassBlock((@escaping (Result<ViewControllerType.Type>) -> Void) -> Void)
 }

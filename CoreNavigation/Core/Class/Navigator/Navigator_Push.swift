@@ -1,7 +1,7 @@
 import Foundation
 
 extension Navigator {
-    static func push<T>(_ viewController: UIViewController, with configuration: Configuration<T>, completion: @escaping () -> Void)  {
+    static func push<T>(_ viewController: UIViewController, with configuration: Configuration<T>, willNavigate: @escaping () -> Void, completion: @escaping () -> Void)  {
         let animated = configuration.transitioning.animated
         let viewControllerTransitioningDelegate = configuration.transitioning.viewControllerTransitioningDelegate
         
@@ -29,10 +29,6 @@ extension Navigator {
                 return nil
             })
             
-            configuration.willNavigateBlocks.forEach({ (block) in
-                block(viewController, configuration.dataPassing.data ?? nil)
-            })
-            
             let viewControllerToPush: UIViewController = {
                 // pushing navigation controller is not supported
                 if case .navigationController? = configuration.embedding.embeddingType {
@@ -46,6 +42,8 @@ extension Navigator {
                                     navigationType: .push,
                                     configuration: configuration)
             History.shared.add(item)
+            
+            willNavigate()
             
             navigationController?.pushViewController(viewControllerToPush, animated: animated, completion: {
                 // from transitioning

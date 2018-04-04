@@ -2,8 +2,11 @@ import Foundation
 
 /// Acts as storage for navigation parameters.
 public final class Configuration<ResultableType: Resultable> {
-    let destination: Destination
+    let destination: Destination<ResultableType.ToViewController>
     let from: UIViewController?
+    
+    var successBlocks: [(ResultableType) -> Void] = []
+    var failureBlocks: [(Error) -> Void] = []
 
     var transitioning = Transitioning()
     var embedding = Embedding()
@@ -18,7 +21,7 @@ public final class Configuration<ResultableType: Resultable> {
 
     var willNavigateBlocks: [(UIViewController, Any?) -> Void] = []
     
-    init(destination: Destination, from: UIViewController?) {
+    init(destination: Destination<ResultableType.ToViewController>, from: UIViewController?) {
         self.destination = destination
         self.from = from
     }

@@ -44,6 +44,8 @@
 		384CF9AE204DC35E00330EC7 /* UIViewController+CurrentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CF9AD204DC35E00330EC7 /* UIViewController+CurrentViewController.swift */; };
 		384CF9B0204DC38000330EC7 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CF9AF204DC38000330EC7 /* Navigator.swift */; };
 		384CF9B2204DC54400330EC7 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CF9B1204DC54400330EC7 /* Configuration.swift */; };
+		3850CBEE20756E4B0009FB57 /* NavigationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3850CBED20756E4B0009FB57 /* NavigationError.swift */; };
+		3850CBF2207575DA0009FB57 /* Configuration+Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3850CBF1207575DA0009FB57 /* Configuration+Result.swift */; };
 		38577C92205C863D00FB4B83 /* ProtectionSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577C91205C863D00FB4B83 /* ProtectionSpace.swift */; };
 		38577C94205C872800FB4B83 /* Protectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577C93205C872800FB4B83 /* Protectable.swift */; };
 		38577C96205C876A00FB4B83 /* ProtectionAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38577C95205C876A00FB4B83 /* ProtectionAware.swift */; };
@@ -170,6 +172,8 @@
 		384CF9AD204DC35E00330EC7 /* UIViewController+CurrentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+CurrentViewController.swift"; sourceTree = "<group>"; };
 		384CF9AF204DC38000330EC7 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		384CF9B1204DC54400330EC7 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		3850CBED20756E4B0009FB57 /* NavigationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationError.swift; sourceTree = "<group>"; };
+		3850CBF1207575DA0009FB57 /* Configuration+Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Configuration+Result.swift"; sourceTree = "<group>"; };
 		38577C91205C863D00FB4B83 /* ProtectionSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectionSpace.swift; sourceTree = "<group>"; };
 		38577C93205C872800FB4B83 /* Protectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protectable.swift; sourceTree = "<group>"; };
 		38577C95205C876A00FB4B83 /* ProtectionAware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectionAware.swift; sourceTree = "<group>"; };
@@ -395,6 +399,7 @@
 		384CF9AC204DC35400330EC7 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				3850CBF1207575DA0009FB57 /* Configuration+Result.swift */,
 				38F1D89A205B0574001F0B0B /* UIViewController+Events.swift */,
 				384CF9AD204DC35E00330EC7 /* UIViewController+CurrentViewController.swift */,
 				38222B7820681EAC00435008 /* UIView+KeyboardObserver.swift */,
@@ -622,6 +627,7 @@
 				38222B76206740E200435008 /* KeyboardTrackingMode.swift */,
 				38645D7B206F1B6300EF5D60 /* NavigationEvent.swift */,
 				38645D7D206F1C7D00EF5D60 /* StateRestorationBehavior.swift */,
+				3850CBED20756E4B0009FB57 /* NavigationError.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -1078,6 +1084,7 @@
 				38F1D899205B054E001F0B0B /* UIApplication.swift in Sources */,
 				383320D3205DEA24008492EE /* RouteHandler.swift in Sources */,
 				38444AB3205F570F001F3F5C /* UIViewController+Convenience.swift in Sources */,
+				3850CBF2207575DA0009FB57 /* Configuration+Result.swift in Sources */,
 				38222B7920681EAC00435008 /* UIView+KeyboardObserver.swift in Sources */,
 				384CF98F204DBBD100330EC7 /* DestinationAware.swift in Sources */,
 				38444A9C205EF894001F3F5C /* StateRestorationOption.swift in Sources */,
@@ -1087,6 +1094,7 @@
 				388C731A2059DED500C11EEB /* Eventable.swift in Sources */,
 				3822436D2054BF6100426342 /* Navigator_Push.swift in Sources */,
 				38F1D8A6205B2F9F001F0B0B /* Cacheable.swift in Sources */,
+				3850CBEE20756E4B0009FB57 /* NavigationError.swift in Sources */,
 				38A7AFEF2063264B00C36040 /* Route+Convenience.swift in Sources */,
 				38577C94205C872800FB4B83 /* Protectable.swift in Sources */,
 				38444A9A205EF768001F3F5C /* StateRestorationAware.swift in Sources */,

@@ -3,6 +3,14 @@ import PlaygroundSupport
 
 import CoreNavigation
 
+struct MyRoute: Route, RoutePatternsAware {
+    typealias Destination = MyVC
+    
+    static var patterns: [String] = [
+        "my-route"
+    ]
+}
+
 class MyVC: UIViewController, DataReceivingViewController {
     typealias DataType = String
     override func viewDidLoad() {
@@ -16,6 +24,8 @@ class MyVC: UIViewController, DataReceivingViewController {
     }
 }
 
+Navigation.router.registerRoute(MyRoute.self)
+
 PlaygroundPage.current.liveView = UINavigationController(rootViewController: UIViewController())
 
 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -26,23 +36,29 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             print("Completed!")
         }
     }.present { $0
-        .to(MyVC.self)
+        .to("my-route")
         .embeddedInNavigationController()
         .animated(true)
         .completion {
             print("Completed 2!")
         }
+        .passData("Data is passed!")
+        .onFailure({ (error) in
+            print("Got error!", error)
+        })
+        .onSuccess({ (result) in
+            print("Passed data: ", result.data)
+        })
     }.present { $0
         .to(MyVC.self)
         .embeddedInNavigationController()
         .animated(true)
-        .completion {
-            print("Completed 2!")
-        }
-        .onSuccess({ (viewController, data) in
-            print("Viewcontroller: ", viewController)
-            print("Data: ", data)
+        .onSuccess({ (result) in
+            
         })
+        .completion {
+            print("Completed 3!")
+        }
     }
     
     
