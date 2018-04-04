@@ -16,7 +16,7 @@ extension Configuration: KeyboardObservable {
             
             rise(view: window)
         case .shrink:
-            willNavigateBlocks.append({ (viewController) in
+            willNavigateBlocks.append({ (viewController, _) in
                 shrink(view: viewController.view)
             })
         case .default:

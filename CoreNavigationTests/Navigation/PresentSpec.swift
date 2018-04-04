@@ -61,7 +61,7 @@ class PresentSpec: QuickSpec {
                     .inWindow(MockWindow())
                 })
                 
-                it("is presented", closure: {
+                fit("is presented", closure: {
                     expect(completionInvokes).toEventually(be(2))
                     expect(passedData).toEventually(equal(mockData))
                     expect(mockViewController).toEventually(equal(passedViewController))

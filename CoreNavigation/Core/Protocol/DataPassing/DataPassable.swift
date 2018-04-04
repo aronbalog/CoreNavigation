@@ -17,12 +17,12 @@ extension Configuration: DataPassable {
     @discardableResult public func passData(_ data: Any?) -> Self {
         dataPassing.data = data
         
-        willNavigateBlocks.append { [weak self] (viewController) in
+        willNavigateBlocks.append { [weak self] (viewController, data) in
             guard let `self` = self else { return }
+            guard let viewController = viewController as? DataReceiving else { return }
+            guard let data = self.dataPassing.data else { return }
             
-            if let data = self.dataPassing.data {
-                (viewController as? DataReceiving)?.didReceiveAbstractData(data)
-            }
+            viewController.didReceiveAbstractData(data)
             
             self.events.navigationEvents.forEach({ (event) in
                 if case Events.NavigationEvent.passData(let block) = event {
@@ -49,14 +49,17 @@ extension Configuration where ResultableType.ToViewController: DataReceivingView
     @discardableResult public func passData(_ data: ResultableType.ToViewController.DataType?) -> Configuration<Result<ResultableType.ToViewController, ResultableType.ToViewController.DataType>> {
         dataPassing.data = data
         
-        willNavigateBlocks.append { [weak self] (viewController) in
+        willNavigateBlocks.append { [weak self] (viewController, data) in
             guard let `self` = self else { return }
+            guard let data = data as? ResultableType.ToViewController.DataType else { return }
+            guard let viewController = viewController as? ResultableType.ToViewController else { return }
             
-            let data = self.dataPassing.data as! ResultableType.ToViewController.DataType
-            (viewController as? ResultableType.ToViewController)?.didReceiveData(data)
+            viewController.didReceiveData(data)
+            
             self.events.navigationEvents.forEach({ (event) in
                 if case Events.NavigationEvent.passData(let block) = event {
                     guard let data = data as? ResultableType.DataType else { return }
+
                     block(data)
                 }
             })

@@ -16,7 +16,7 @@ public final class Configuration<ResultableType: Resultable> {
     var origin = Origin()
     var windowObject = WindowObject()
 
-    var willNavigateBlocks: [(UIViewController) -> Void] = []
+    var willNavigateBlocks: [(UIViewController, Any?) -> Void] = []
     
     init(destination: Destination, from: UIViewController?) {
         self.destination = destination
@@ -63,6 +63,6 @@ public final class Configuration<ResultableType: Resultable> {
     }
     
     class WindowObject: WindowNavigationAware {
-        var window: UIWindow? = UIApplication.shared.keyWindow
+        var window: UIWindow?
     }
 }

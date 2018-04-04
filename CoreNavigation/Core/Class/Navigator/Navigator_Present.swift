@@ -11,7 +11,9 @@ extension Navigator {
                     return fromViewController
                 }
                 
-                return UIViewController.currentViewController(in: configuration.windowObject.window)
+                let window = configuration.windowObject.window ?? UIApplication.shared.keyWindow
+                
+                return UIViewController.currentViewController(in: window)
             }()
             
             fromViewController?.transitioningDelegate = viewControllerTransitioningDelegate
@@ -26,7 +28,7 @@ extension Navigator {
             })
             
             configuration.willNavigateBlocks.forEach({ (block) in
-                block(viewController)
+                block(viewController, configuration.dataPassing.data ?? nil)
             })
             
             let viewControllerToPresent = self.viewControllerToNavigate(viewController, with: configuration)
