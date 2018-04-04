@@ -253,7 +253,7 @@ public class To<ResultableType: Resultable>: DestinationAware {
         
         var _configuration: Configuration<Result<T, Any>>?
         
-        let viewControllerBlock: (@escaping (Destination<T>.Result<T>) -> Void) -> Void = { (handler) in
+        let viewControllerBlock: (@escaping (Destination<T>.Result<T>) -> Void) -> Void = { [weak _configuration] (handler) in
             guard let match = match else {
                 // not matched
                 handler(.failure(NavigationError.routeNotFound))
