@@ -5,7 +5,7 @@ public class RouteHandler<RouteType: Route> {
     /// Parameters extracted from route's uri.
     public let parameters: [String: Any]?
     
-    var destinationBlocks: [(RouteType.Destination, Any?) -> Void] = []
+    var destinationBlocks: [(RouteType.ViewController, Any?) -> Void] = []
     var cancelBlocks: [(Error) -> Void] = []
     
     init(parameters: [String: Any]?) {
@@ -16,7 +16,7 @@ public class RouteHandler<RouteType: Route> {
     ///
     /// - Parameter viewController: UIViewController instance to navigate to.
     /// - Returns: UIViewController instance.
-    @discardableResult public func complete(viewController: RouteType.Destination = .init()) -> RouteType.Destination {
+    @discardableResult public func complete(viewController: RouteType.ViewController = .init()) -> RouteType.ViewController {
         destination(viewController, data: nil)
         
         return viewController
@@ -32,7 +32,7 @@ public class RouteHandler<RouteType: Route> {
         cancelBlocks = []
     }
     
-    func destination(_ destination: RouteType.Destination, data: Any?) {
+    func destination(_ destination: RouteType.ViewController, data: Any?) {
         destinationBlocks.forEach { $0(destination, data) }
         
         destinationBlocks = []
@@ -40,14 +40,14 @@ public class RouteHandler<RouteType: Route> {
     }
 }
 
-extension RouteHandler where RouteType.Destination: DataReceivingViewController {
+extension RouteHandler where RouteType.ViewController: DataReceivingViewController {
     /// Notifies handler to proceed with navigation.
     ///
     /// - Parameters:
     ///   - viewController: UIViewController instance to navigate to.
     ///   - data: Data to pass to view controller.
     /// - Returns: UIViewController instance.
-    @discardableResult public func complete(viewController: RouteType.Destination = .init(), data: RouteType.Destination.DataType? = nil) -> RouteType.Destination {
+    @discardableResult public func complete(viewController: RouteType.ViewController = .init(), data: RouteType.ViewController.DataType? = nil) -> RouteType.ViewController {
         
         destination(viewController, data: data)
         
@@ -62,7 +62,7 @@ extension RouteHandler where RouteType.Destination: DataReceivingViewController 
     ///
     /// - Parameter data: Data to pass to view controller.
     /// - Returns: UIViewController instance.
-    @discardableResult public func complete(data: RouteType.Destination.DataType?) -> RouteType.Destination {
-        return self.complete(viewController: RouteType.Destination.init(), data: data)
+    @discardableResult public func complete(data: RouteType.ViewController.DataType?) -> RouteType.ViewController {
+        return self.complete(viewController: RouteType.ViewController.init(), data: data)
     }
 }

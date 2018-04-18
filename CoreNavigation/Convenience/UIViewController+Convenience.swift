@@ -34,7 +34,7 @@ public extension UIViewController {
     /// - Parameters:
     ///   - route: Object conforming `Route` protocol.
     ///   - viewControllerBlock: Block returning UIViewController instance.
-    public static func route<T: Route>(to route: T, _ viewControllerBlock: @escaping (T.Destination) -> Void) {
+    public static func route<T: Route>(to route: T, _ viewControllerBlock: @escaping (T.ViewController) -> Void) {
         route.viewController(viewControllerBlock)
     }
 }

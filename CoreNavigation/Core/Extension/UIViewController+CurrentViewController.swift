@@ -4,8 +4,18 @@ extension UIViewController {
     
     /// Returns the current application's top most view controller.
     public static func currentViewController(in window: UIWindow?) -> UIViewController? {
-        let rootViewController: UIViewController? = window?.rootViewController
+        var rootViewController: UIViewController?
         
+        let currentWindows = UIApplication.shared.windows
+        
+        for window in currentWindows {
+            if let windowRootViewController = window.rootViewController {
+                rootViewController = windowRootViewController
+                
+                break
+            }
+        }
+
         return self.currentViewController(of: rootViewController)
     }
     

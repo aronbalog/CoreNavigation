@@ -19,7 +19,11 @@ public final class Configuration<ResultableType: Resultable> {
     var origin = Origin()
     var windowObject = WindowObject()
 
-    let queue = DispatchQueue(label: "corenavigation.willNavigateBlocks.queue", attributes: .concurrent)
+    let queue = DispatchQueue(label: "corenavigation.configuration.queue", attributes: .concurrent)
+    
+    var originViewController: UIViewController? {
+        return from ?? origin.fromViewController
+    }
     
     init(destination: Destination<ResultableType.ToViewController>, from: UIViewController?) {
         self.destination = destination

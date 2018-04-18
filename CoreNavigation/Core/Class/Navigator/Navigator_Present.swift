@@ -7,7 +7,7 @@ extension Navigator {
         
         DispatchQueue.main.async {
             let fromViewController: UIViewController? = {
-                if let fromViewController = configuration.origin.fromViewController {
+                if let fromViewController = configuration.originViewController {
                     return fromViewController
                 }
                 
