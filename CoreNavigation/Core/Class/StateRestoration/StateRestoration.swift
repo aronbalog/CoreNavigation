@@ -97,7 +97,7 @@ class StateRestoration: UIViewControllerRestoration {
         viewController.restorationClass = StateRestoration.self
         
         if
-            let viewController = viewController as? DataReceiving,
+            let viewController = viewController as? AbstractDataReceivable,
             let data = storageItem.data
         {
             viewController.didReceiveAbstractData(data)

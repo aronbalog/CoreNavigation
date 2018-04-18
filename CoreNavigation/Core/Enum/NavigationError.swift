@@ -3,10 +3,10 @@ import Foundation
 /// Navigation error enum.
 ///
 /// - unknown: Unknown error.
-/// - routeNotFound: Route is not found.
+/// - destinationNotFound: Destination is not found.
 public enum NavigationError: Error {
     /// Unknown error.
     case unknown
-    /// Route is not found.
-    case routeNotFound
+    /// Destination is not found.
+    case destinationNotFound
 }

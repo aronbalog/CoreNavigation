@@ -4,7 +4,7 @@ import Nimble
 
 @testable import CoreNavigation
 
-fileprivate class MockViewController<T>: UIViewController, DataReceivingViewController {
+fileprivate class MockViewController<T>: UIViewController, DataReceivable {
     var receivedData: T?
     
     func didReceiveData(_ data: T) {
@@ -19,10 +19,10 @@ class PushSpec: QuickSpec {
         describe("Navigation") {
             context("when pushing", {
                 typealias DataType = String
-                typealias Destination = MockViewController<DataType>
+                typealias ViewController = MockViewController<DataType>
                 
                 let mockData: DataType = "data"
-                let mockViewController = Destination()
+                let mockViewController = ViewController()
                 let mockWindow = MockWindow()
                 
                 var passedData: DataType?

@@ -1,6 +1,6 @@
 import UIKit
 
-enum Destination<ViewControllerType: UIViewController> {
+enum Request<ViewControllerType: UIViewController> {
     enum Result<T> {
         case success(T)
         case failure(Error)

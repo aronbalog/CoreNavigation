@@ -1,28 +1,28 @@
 import Foundation
 
-/// Handles route.
-public class RouteHandler<RouteType: Route> {
+/// Destination context.
+public class Context<DestinationType: Destination> {
     /// Parameters extracted from route's uri.
     public let parameters: [String: Any]?
     
-    var destinationBlocks: [(RouteType.ViewController, Any?) -> Void] = []
+    var destinationBlocks: [(DestinationType.ViewControllerType, Any?) -> Void] = []
     var cancelBlocks: [(Error) -> Void] = []
     
     init(parameters: [String: Any]?) {
         self.parameters = parameters
     }
     
-    /// Notifies handler to proceed with navigation.
+    /// Proceeds with navigation.
     ///
     /// - Parameter viewController: UIViewController instance to navigate to.
     /// - Returns: UIViewController instance.
-    @discardableResult public func complete(viewController: RouteType.ViewController = .init()) -> RouteType.ViewController {
+    @discardableResult public func complete(viewController: DestinationType.ViewControllerType = .init()) -> DestinationType.ViewControllerType {
         destination(viewController, data: nil)
         
         return viewController
     }
     
-    /// Notifies handler to cancel navigation.
+    /// Cancels navigation.
     ///
     /// - Parameter error: Error instance.
     public func cancel(error: Error = NavigationError.unknown) {
@@ -32,7 +32,7 @@ public class RouteHandler<RouteType: Route> {
         cancelBlocks = []
     }
     
-    func destination(_ destination: RouteType.ViewController, data: Any?) {
+    func destination(_ destination: DestinationType.ViewControllerType, data: Any?) {
         destinationBlocks.forEach { $0(destination, data) }
         
         destinationBlocks = []
@@ -40,14 +40,14 @@ public class RouteHandler<RouteType: Route> {
     }
 }
 
-extension RouteHandler where RouteType.ViewController: DataReceivingViewController {
-    /// Notifies handler to proceed with navigation.
+extension Context where DestinationType.ViewControllerType: DataReceivable {
+    /// Proceeds with navigation.
     ///
     /// - Parameters:
     ///   - viewController: UIViewController instance to navigate to.
     ///   - data: Data to pass to view controller.
     /// - Returns: UIViewController instance.
-    @discardableResult public func complete(viewController: RouteType.ViewController = .init(), data: RouteType.ViewController.DataType? = nil) -> RouteType.ViewController {
+    @discardableResult public func complete(viewController: DestinationType.ViewControllerType = .init(), data: DestinationType.ViewControllerType.DataType? = nil) -> DestinationType.ViewControllerType {
         
         destination(viewController, data: data)
         
@@ -58,11 +58,11 @@ extension RouteHandler where RouteType.ViewController: DataReceivingViewControll
         return viewController
     }
     
-    /// Notifies handler to proceed with navigation.
+    /// Cancels navigation.
     ///
     /// - Parameter data: Data to pass to view controller.
     /// - Returns: UIViewController instance.
-    @discardableResult public func complete(data: RouteType.ViewController.DataType?) -> RouteType.ViewController {
-        return self.complete(viewController: RouteType.ViewController.init(), data: data)
+    @discardableResult public func complete(data: DestinationType.ViewControllerType.DataType?) -> DestinationType.ViewControllerType {
+        return self.complete(viewController: DestinationType.ViewControllerType.init(), data: data)
     }
 }

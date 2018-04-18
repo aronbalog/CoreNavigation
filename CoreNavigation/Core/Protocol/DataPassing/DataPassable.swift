@@ -23,8 +23,8 @@ extension Configuration: DataPassable {
     }
 }
 
-// MARK: - Data receiving view controller data passing configuration
-extension Configuration where ResultableType.ToViewController: DataReceivingViewController {
+// MARK: - Data receivable view controller data passing configuration
+extension Configuration where ResultableType.ToViewController: DataReceivable {
     /// Prepares data for data receiving view controller.
     ///
     /// - Parameter data: Data to pass.

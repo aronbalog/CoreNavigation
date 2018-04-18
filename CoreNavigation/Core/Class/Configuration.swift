@@ -2,7 +2,7 @@ import Foundation
 
 /// Acts as storage for navigation parameters.
 public final class Configuration<ResultableType: Resultable> {
-    let destination: Destination<ResultableType.ToViewController>
+    let request: Request<ResultableType.ToViewController>
     let from: UIViewController?
     
     var successBlocks: [(ResultableType) -> Void] = []
@@ -25,8 +25,8 @@ public final class Configuration<ResultableType: Resultable> {
         return from ?? origin.fromViewController
     }
     
-    init(destination: Destination<ResultableType.ToViewController>, from: UIViewController?) {
-        self.destination = destination
+    init(request: Request<ResultableType.ToViewController>, from: UIViewController?) {
+        self.request = request
         self.from = from
     }
     

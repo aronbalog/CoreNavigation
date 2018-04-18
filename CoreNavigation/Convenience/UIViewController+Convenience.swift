@@ -2,40 +2,40 @@ import UIKit
 
 // MARK: - UIViewController routing
 public extension UIViewController {
-    /// Route to path.
+    /// Resolves view controller from string path.
     ///
     /// - Parameters:
-    ///   - path: Path to route to.
+    ///   - path: Path to resolve.
     ///   - viewControllerBlock: Block returning UIViewController instance.
-    public static func route<T: UIViewController>(to path: String, _ viewControllerBlock: @escaping (T) -> Void)  {
-        _route(to: path, viewControllerBlock)
+    public static func resolve<T: UIViewController>(_ path: String, _ viewControllerBlock: @escaping (T) -> Void)  {
+        _resolve(matchable: path, viewControllerBlock)
     }
     
-    /// Route to URL.
+    /// Resolves view controller from URL.
     ///
     /// - Parameters:
-    ///   - url: URL to route to.
+    ///   - url: URL to resolve.
     ///   - viewControllerBlock: Block returning UIViewController instance.
-    public static func route<T: UIViewController>(to url: URL, _ viewControllerBlock: @escaping (T) -> Void)  {
-        _route(to: url, viewControllerBlock)
+    public static func resolve<T: UIViewController>(_ url: URL, _ viewControllerBlock: @escaping (T) -> Void)  {
+        _resolve(matchable: url, viewControllerBlock)
     }
     
-    /// Route to `Matchable` object.
+    /// Resolves view controller from `Matchable` object.
     ///
     /// - Parameters:
     ///   - matchable: Object conforming `Matchable` protocol.
     ///   - viewControllerBlock: Block returning UIViewController instance.
-    public static func route<T: UIViewController>(to matchable: Matchable, _ viewControllerBlock: @escaping (T) -> Void)  {
-        _route(to: matchable, viewControllerBlock)
+    public static func resolve<T: UIViewController>(_ matchable: Matchable, _ viewControllerBlock: @escaping (T) -> Void)  {
+        _resolve(matchable: matchable, viewControllerBlock)
     }
     
-    /// Route to `Route` object.
+    /// Resolves view controller from `Destination` object.
     ///
     /// - Parameters:
-    ///   - route: Object conforming `Route` protocol.
+    ///   - destination: Object conforming `Destination` protocol.
     ///   - viewControllerBlock: Block returning UIViewController instance.
-    public static func route<T: Route>(to route: T, _ viewControllerBlock: @escaping (T.ViewController) -> Void) {
-        route.viewController(viewControllerBlock)
+    public static func resolve<T: Destination>(_ destination: T, _ viewControllerBlock: @escaping (T.ViewControllerType) -> Void) {
+        destination.viewController(viewControllerBlock)
     }
 }
 
@@ -62,7 +62,7 @@ public extension UIViewController {
     }
 }
 
-private func _route<T: UIViewController>(to matchable: Matchable, _ viewControllerBlock: @escaping (T) -> Void)  {
+private func _resolve<T: UIViewController>(matchable: Matchable, _ viewControllerBlock: @escaping (T) -> Void)  {
     typealias ToType = To<Result<T, Any>>
     
     ToType.to(matchable: matchable, from: nil) { (configuration) in

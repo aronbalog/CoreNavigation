@@ -1,13 +1,13 @@
 import Foundation
 
-// MARK: - Route view controller convenience
-public extension Route {
-    /// Route to view controller synchronously.
+// MARK: - Destination convenience
+public extension Destination {
+    /// Resolves view controller synchronously.
     ///
-    /// - Returns: Route's view controller instance.
+    /// - Returns: Destination's view controller instance.
     /// - Throws: Throws error if view controller couldn't be resolved.
-    public func viewController() throws -> ViewController {
-        var viewController: ViewController?
+    public func viewController() throws -> ViewControllerType {
+        var viewController: ViewControllerType?
         var error: Error?
         
         self.viewController({ (_viewController) in
@@ -27,19 +27,19 @@ public extension Route {
         return _viewController
     }
     
-    /// Route to view controller asynchronously.
+    /// Resolves view controller asynchronously.
     ///
     /// - Parameters:
     ///   - viewControllerBlock: Block returning UIViewController instance.
     ///   - failure: Block returning Error instance.
-    public func viewController(_ viewControllerBlock: @escaping (ViewController) -> Void, failure: ((Error) -> Void)? = nil) {
-        let handler = RouteHandler<Self>(parameters: parameters)
+    public func viewController(_ viewControllerBlock: @escaping (ViewControllerType) -> Void, failure: ((Error) -> Void)? = nil) {
+        let context = Context<Self>(parameters: parameters)
 
-        let configuration = Configuration<Result<ViewController, Any>>(destination: .viewControllerBlock({ block in
-            handler.destinationBlocks.append({ (viewController, data) in
+        let configuration = Configuration<Result<ViewControllerType, Any>>(request: .viewControllerBlock({ block in
+            context.destinationBlocks.append({ (viewController, data) in
                 block(.success(viewController))
             })
-            handler.cancelBlocks.append({ (error) in
+            context.cancelBlocks.append({ (error) in
                 block(.failure(error))
             })
             
@@ -47,14 +47,14 @@ public extension Route {
         
         Navigator.getViewController(configuration: configuration, completion: viewControllerBlock, failure: failure)
         
-        type(of: self).route(handler: handler)
+        type(of: self).resolve(context: context)
     }
     
     /// Presents view controller.
     ///
     /// - Parameter completion: Completion block.
     public func present(completion: (() -> Void)? = nil) {
-        let configuration = To<Result<ViewController, Any>>(.present, from: nil).to(self)
+        let configuration = To<Result<ViewControllerType, Any>>(.present, from: nil).to(self)
         
         if let completion = completion {
             configuration.completion(completion)
@@ -64,14 +64,14 @@ public extension Route {
     /// Presents view controller.
     ///
     /// - Parameter block: Configuration object.
-    public func present(_ block: @escaping (Configuration<Result<ViewController, Any>>) -> Void) {
-        block(To<Result<ViewController, Any>>(.present, from: nil).to(self))
+    public func present(_ block: @escaping (Configuration<Result<ViewControllerType, Any>>) -> Void) {
+        block(To<Result<ViewControllerType, Any>>(.present, from: nil).to(self))
     }
     
     /// Pushes view controller.
     ///
     /// - Parameter block: Configuration object.
-    public func push(_ block: @escaping (Configuration<Result<ViewController, Any>>) -> Void) {
-        block(To<Result<ViewController, Any>>(.push, from: nil).to(self))
+    public func push(_ block: @escaping (Configuration<Result<ViewControllerType, Any>>) -> Void) {
+        block(To<Result<ViewControllerType, Any>>(.push, from: nil).to(self))
     }
 }

@@ -3,15 +3,15 @@ import PlaygroundSupport
 
 import CoreNavigation
 
-struct MyRoute: Route, RoutePatternsAware {
-    typealias Destination = MyVC
+struct MyRoute: Destination, Routable {
+    typealias ViewControllerType = MyVC
     
     static var patterns: [String] = [
         "my-route"
     ]
 }
 
-class MyVC: UIViewController, DataReceivingViewController {
+class MyVC: UIViewController, DataReceivable {
     typealias DataType = String
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class MyVC: UIViewController, DataReceivingViewController {
     }
 }
 
-Navigation.router.registerRoute(MyRoute.self)
+Navigation.router.register(MyRoute.self)
 
 PlaygroundPage.current.liveView = UINavigationController(rootViewController: UIViewController())
 

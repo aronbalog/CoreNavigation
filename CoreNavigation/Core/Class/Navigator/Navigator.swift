@@ -11,7 +11,7 @@ class Navigator {
     }()
 
     static func getViewController<T>(configuration: Configuration<T>, completion: @escaping ((T.ToViewController) -> Void), failure: ((Error) -> Void)? = nil) {
-        switch configuration.destination {
+        switch configuration.request {
         case .viewController(let _viewController):
             guard let viewController = _viewController as? T.ToViewController else { break }
             completion(viewController)
@@ -48,7 +48,7 @@ class Navigator {
                 {
                     action(type: type, viewController: viewController, configuration: configuration, handler: handler)
                 } else {
-                    switch configuration.destination {
+                    switch configuration.request {
                     case .viewController(let viewController):
                         action(type: type, viewController: viewController, configuration: configuration, handler: handler)
                     case .viewControllerBlock(let block):

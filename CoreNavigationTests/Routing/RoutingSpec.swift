@@ -4,7 +4,7 @@ import Nimble
 
 @testable import CoreNavigation
 
-fileprivate class MockViewController: UIViewController, DataReceivingViewController {
+fileprivate class MockViewController: UIViewController, DataReceivable {
     var data: String?
     var routeParameters: [String: Any]?
     
@@ -15,26 +15,26 @@ fileprivate class MockViewController: UIViewController, DataReceivingViewControl
     typealias DataType = String
 }
 
-fileprivate struct MockRoute: Route, RoutePatternsAware {
-    typealias Destination = MockViewController
+fileprivate struct MockRoute: Destination, Routable {
+    typealias ViewControllerType = MockViewController
     
     static var patterns: [String] = [
         "1/:firstName([a-zA-Z]+).*/:lastName(.*)",
         "1/:firstName(.*)/:lastName(.*)"
     ]
     
-    static func route(handler: RouteHandler<MockRoute>) {
+    static func resolve(context: Context<MockRoute>) {
         let viewController = MockViewController()
-        viewController.routeParameters = handler.parameters
+        viewController.routeParameters = context.parameters
         
-        let data = handler.parameters?["firstName"] as? String
+        let data = context.parameters?["firstName"] as? String
         
-        handler.complete(viewController: viewController, data: data)
+        context.complete(viewController: viewController, data: data)
     }
 }
 
-fileprivate struct MockRoute2: Route, RoutePatternsAware {
-    typealias Destination = MockViewController
+fileprivate struct MockRoute2: Destination, Routable {
+    typealias ViewControllerType = MockViewController
     
     static var patterns: [String] = [
         "2/:firstName([a-zA-Z]+).*/:lastName(.*)",
@@ -42,30 +42,30 @@ fileprivate struct MockRoute2: Route, RoutePatternsAware {
     ]
 }
 
-fileprivate struct MockRoute3: Route, RoutePatternsAware {
-    typealias Destination = MockViewController
+fileprivate struct MockRoute3: Destination, Routable {
+    typealias ViewControllerType = MockViewController
     
     static var patterns: [String] = [
         "3/:firstName([a-zA-Z]+).*/:lastName(.*)",
         "3/:firstName(.*)/:lastName(.*)"
     ]
     
-    static func route(handler: RouteHandler<MockRoute3>) {
-        handler.complete(data: handler.parameters?["firstName"] as? String)
+    static func resolve(context: Context<MockRoute3>) {
+        context.complete(data: context.parameters?["firstName"] as? String)
     }
 }
 
 class RoutingSpec: QuickSpec {
     override func spec() {
         describe("Routing") {
-            Navigation.router.registerRoute(MockRoute.self)
-            Navigation.router.registerRoute(MockRoute2.self)
-            Navigation.router.registerRoute(MockRoute3.self)
+            Navigation.router.register(MockRoute.self)
+            Navigation.router.register(MockRoute2.self)
+            Navigation.router.register(MockRoute3.self)
 
             context("when routing to registered route", {
                 var viewController: MockViewController?
                 
-                UIViewController.route(to: "1/john/doe", { (_viewController) in
+                UIViewController.resolve("1/john/doe", { (_viewController) in
                     viewController = _viewController as? MockViewController
                 })
                 
@@ -81,7 +81,7 @@ class RoutingSpec: QuickSpec {
             context("when routing to registered route", {
                 var viewController: MockViewController?
                 
-                UIViewController.route(to: "1/john-middle-name/doe?query=param", { (_viewController) in
+                UIViewController.resolve("1/john-middle-name/doe?query=param", { (_viewController) in
                     viewController = _viewController as? MockViewController
                 })
                 

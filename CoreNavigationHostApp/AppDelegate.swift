@@ -16,7 +16,7 @@ class MyVC: UIViewController {
     }
 }
 
-class OtherVC: MyVC, DataReceivingViewController {
+class OtherVC: MyVC, DataReceivable {
     func didReceiveData(_ data: [String : Any]) {
         print("Data from VC! ", data)
     }
@@ -30,8 +30,8 @@ class OtherVC: MyVC, DataReceivingViewController {
     }
 }
 
-struct MyRoute: Route, RoutePatternsAware {
-    typealias Destination = MyVC
+struct MyRoute: Destination, Routable {
+    typealias ViewControllerType = MyVC
     
     static var patterns = [
         "pattern/:firstName(.*)-something/:lastName(.*)",
@@ -54,7 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, StateRestorationDelegate 
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window?.restorationIdentifier = "MainWindow"
 
-//        Navigation.router.registerRoute(MyRoute.self)
+        MyRoute.register()
+//        Navigation.router.register(MyRoute.self)
 //
 //        UIViewController.route(to: "pattern/aron-something/balog") { (viewController: MyVC) in
 //            viewController.restorationIdentifier = "root"

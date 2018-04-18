@@ -4,7 +4,7 @@ import Nimble
 
 import CoreNavigation
 
-fileprivate class MockViewController<T>: UIViewController, DataReceivingViewController {
+fileprivate class MockViewController<T>: UIViewController, DataReceivable {
     var receivedData: T?
     
     func didReceiveData(_ data: T) {
@@ -23,10 +23,10 @@ class PresentSpec: QuickSpec {
         describe("Navigation") {
             context("when presenting", {
                 typealias DataType = String
-                typealias Destination = MockViewController<DataType>
+                typealias ViewController = MockViewController<DataType>
                 
                 let mockData: DataType = "data"
-                let mockViewController = Destination()
+                let mockViewController = ViewController()
                 let mockTransitioningDelegate = MockTransitioningDelegate()
                 
                 var completionInvokes = 0
@@ -63,9 +63,9 @@ class PresentSpec: QuickSpec {
             
             context("when presenting", {
                 typealias DataType = String
-                typealias Destination = MockViewController<DataType>
+                typealias ViewController = MockViewController<DataType>
                 
-                let mockViewController = Destination()
+                let mockViewController = ViewController()
                 
                 MockWindow().rootViewController?.present({ $0
                     .to(mockViewController)
