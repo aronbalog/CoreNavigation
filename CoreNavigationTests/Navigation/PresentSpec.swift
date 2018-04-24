@@ -30,7 +30,6 @@ class PresentSpec: QuickSpec {
                 let mockTransitioningDelegate = MockTransitioningDelegate()
                 
                 var completionInvokes = 0
-                var passedData: DataType?
                 var passedViewController: Destination?
 
                 Navigation.present({ $0
@@ -42,14 +41,8 @@ class PresentSpec: QuickSpec {
                     .on(.completion({
                         completionInvokes.invoke()
                     }))
-                    .on(NavigationEvent<MockViewController<DataType>, String>.passData({ (data) in
-                        print(data)
-                    }))
                     .on(.viewController(.viewDidLoad {
                         print($0.view)
-                    }))
-                    .on(.passData({ data in
-                        passedData = data
                     }))
                     .on(.viewController(.viewDidLoad { viewController in
                         passedViewController = viewController
@@ -61,9 +54,9 @@ class PresentSpec: QuickSpec {
                     .inWindow(MockWindow())
                 })
                 
-                fit("is presented", closure: {
+                it("is presented", closure: {
                     expect(completionInvokes).toEventually(be(2))
-                    expect(passedData).toEventually(equal(mockData))
+                    expect(mockViewController.receivedData).toEventually(equal(mockData))
                     expect(mockViewController).toEventually(equal(passedViewController))
                 })
             })

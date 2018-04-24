@@ -13,14 +13,16 @@ class Navigator {
     static func getViewController<T>(configuration: Configuration<T>, completion: @escaping ((T.ToViewController) -> Void), failure: ((Error) -> Void)? = nil) {
         switch configuration.destination {
         case .viewController(let _viewController):
-            guard let viewController = _viewController as? T.ToViewController else { break }
+            let viewController = _viewController as! T.ToViewController
             completion(viewController)
         case .viewControllerBlock(let block):
-            block { _viewController in
-                
-                guard let viewController = _viewController as? T.ToViewController else { return }
-                
-                completion(viewController)
+            block { (result: Destination<T.ToViewController>.Result<T.ToViewController>) in
+                switch result {
+                case .success(let viewController):
+                    completion(viewController)
+                case .failure(let error):
+                    failure?(error)
+                }
             }
         case .viewControllerClassBlock(let block):
             block { result in
@@ -110,19 +112,15 @@ class Navigator {
         
         configuration.successBlocks.forEach { $0(result) }
         
-        let willNavigate: () -> Void = {
-            configuration.queue.sync {
-                configuration.willNavigateBlocks.forEach({ (block) in
-                    block(viewController, data)
-                })
-            }
+        if let viewController = viewController as? DataReceiving {
+            viewController.didReceiveAbstractData(data)
         }
         
         switch type {
         case .push:
-            push(viewController, with: configuration, willNavigate: willNavigate, completion: handler)
+            push(viewController, with: configuration, completion: handler)
         case .present:
-            present(viewController, with: configuration, willNavigate: willNavigate, completion: handler)
+            present(viewController, with: configuration, completion: handler)
         }
     }
     

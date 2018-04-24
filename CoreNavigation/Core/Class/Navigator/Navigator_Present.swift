@@ -1,7 +1,7 @@
 import Foundation
 
 extension Navigator {
-    static func present<T>(_ viewController: UIViewController, with configuration: Configuration<T>, willNavigate: @escaping () -> Void, completion: @escaping () -> Void)  {
+    static func present<T>(_ viewController: UIViewController, with configuration: Configuration<T>, completion: @escaping () -> Void)  {
         let animated = configuration.transitioning.animated
         let viewControllerTransitioningDelegate = configuration.transitioning.viewControllerTransitioningDelegate
         
@@ -33,8 +33,6 @@ extension Navigator {
                                     navigationType: .present,
                                     configuration: configuration)
             History.shared.add(item)
-            
-            willNavigate()
             
             fromViewController?.present(viewControllerToPresent, animated: animated, completion: {
                 // from transitioning

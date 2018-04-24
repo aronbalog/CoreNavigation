@@ -30,15 +30,12 @@ class PushSpec: QuickSpec {
                 Navigation.push({ $0
                     .to(mockViewController)
                     .passData(mockData)
-                    .on(.passData({ data in
-                        passedData = data
-                    }))
                     .unsafely()
                     .inWindow(mockWindow)
                 })
                 
                 it("is pushed", closure: {
-                    expect(passedData).toEventually(equal(mockData))
+                    expect(mockViewController.receivedData).toEventually(equal(mockData))
                     let navigationController = mockWindow.rootViewController as? UINavigationController
                     
                     expect(navigationController?.visibleViewController).toEventually(equal(mockViewController))

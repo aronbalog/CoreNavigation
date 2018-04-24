@@ -21,8 +21,6 @@ public final class Configuration<ResultableType: Resultable> {
 
     let queue = DispatchQueue(label: "corenavigation.willNavigateBlocks.queue", attributes: .concurrent)
     
-    var willNavigateBlocks: [(UIViewController, Any?) -> Void] = []
-    
     init(destination: Destination<ResultableType.ToViewController>, from: UIViewController?) {
         self.destination = destination
         self.from = from
