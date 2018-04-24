@@ -15,7 +15,9 @@ extension Configuration: Eventable {
     /// - Parameter event: `NavigationEvent` enum case.
     /// - Returns: `Configuration` instance.
     @discardableResult public func on(_ event: NavigationEvent<ResultableType.ToViewController, ResultableType.DataType>) -> Self {
-        events.navigationEvents.append(event)
+        queue.async(flags: .barrier) {
+            self.events.navigationEvents.append(event)
+        }
         
         return self
     }

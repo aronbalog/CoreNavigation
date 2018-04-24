@@ -15,24 +15,26 @@ extension Configuration: DataPassable {
     /// - Parameter data: Data to pass.
     /// - Returns: Configuration instance.
     @discardableResult public func passData(_ data: Any?) -> Self {
-        dataPassing.data = data
-        
-        willNavigateBlocks.append { [weak self] (viewController, data) in
-            guard let `self` = self else { return }
-            guard let viewController = viewController as? DataReceiving else { return }
-            guard let data = self.dataPassing.data else { return }
-            
-            viewController.didReceiveAbstractData(data)
-            
-            self.events.navigationEvents.forEach({ (event) in
-                if case Events.NavigationEvent.passData(let block) = event {
-                    guard let data = data as? ResultableType.DataType else { return }
+        queue.async(flags: .barrier) {
+            self.dataPassing.data = data
+
+            self.willNavigateBlocks.append { [weak self] (viewController, data) in
+                guard let `self` = self else { return }
+                guard let viewController = viewController as? DataReceiving else { return }
+                guard let data = self.dataPassing.data else { return }
+                
+                viewController.didReceiveAbstractData(data)
+                
+                self.events.navigationEvents.forEach({ (event) in
+                    if case Events.NavigationEvent.passData(let block) = event {
+                        guard let data = data as? ResultableType.DataType else { return }
+                        block(data)
+                    }
+                })
+                
+                (self.events.passDataBlocks as? [(Any?) -> Void])?.forEach { block in
                     block(data)
                 }
-            })
-            
-            (self.events.passDataBlocks as? [(Any?) -> Void])?.forEach { block in
-                block(data)
             }
         }
         
@@ -47,25 +49,27 @@ extension Configuration where ResultableType.ToViewController: DataReceivingView
     /// - Parameter data: Data to pass.
     /// - Returns: Configuration instance.
     @discardableResult public func passData(_ data: ResultableType.ToViewController.DataType?) -> Configuration<Result<ResultableType.ToViewController, ResultableType.ToViewController.DataType>> {
-        dataPassing.data = data
-        
-        willNavigateBlocks.append { [weak self] (viewController, data) in
-            guard let `self` = self else { return }
-            guard let data = data as? ResultableType.ToViewController.DataType else { return }
-            guard let viewController = viewController as? ResultableType.ToViewController else { return }
-            
-            viewController.didReceiveData(data)
-            
-            self.events.navigationEvents.forEach({ (event) in
-                if case Events.NavigationEvent.passData(let block) = event {
-                    guard let data = data as? ResultableType.DataType else { return }
+        queue.async(flags: .barrier) {
+            self.dataPassing.data = data
 
+            self.willNavigateBlocks.append { [weak self] (viewController, data) in
+                guard let `self` = self else { return }
+                guard let data = data as? ResultableType.ToViewController.DataType else { return }
+                guard let viewController = viewController as? ResultableType.ToViewController else { return }
+                
+                viewController.didReceiveData(data)
+                
+                self.events.navigationEvents.forEach({ (event) in
+                    if case Events.NavigationEvent.passData(let block) = event {
+                        guard let data = data as? ResultableType.DataType else { return }
+                        
+                        block(data)
+                    }
+                })
+                
+                (self.events.passDataBlocks as? [(ResultableType.ToViewController.DataType) -> Void])?.forEach { block in
                     block(data)
                 }
-            })
-            
-            (self.events.passDataBlocks as? [(ResultableType.ToViewController.DataType) -> Void])?.forEach { block in
-                block(data)
             }
         }
         

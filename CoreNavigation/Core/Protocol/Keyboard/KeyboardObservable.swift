@@ -16,9 +16,11 @@ extension Configuration: KeyboardObservable {
             
             rise(view: window)
         case .shrink:
-            willNavigateBlocks.append({ (viewController, _) in
-                shrink(view: viewController.view)
-            })
+            queue.async(flags: .barrier) {
+                self.willNavigateBlocks.append({ (viewController, _) in
+                    shrink(view: viewController.view)
+                })
+            }
         case .default:
             ()
         }

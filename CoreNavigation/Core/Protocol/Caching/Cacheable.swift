@@ -17,7 +17,9 @@ extension Configuration: Cacheable {
     ///   - cacheIdentifier: Cache identifier string.
     /// - Returns: Configuration instance.
     @discardableResult public func keepAlive(within lifetime: Lifetime, cacheIdentifier: String) -> Self {
-        caching.configuration = (lifetime, cacheIdentifier)
+        queue.async(flags: .barrier) {
+            self.caching.configuration = (lifetime, cacheIdentifier)
+        }
         
         return self
     }

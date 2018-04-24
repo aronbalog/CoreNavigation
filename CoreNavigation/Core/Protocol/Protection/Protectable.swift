@@ -15,7 +15,9 @@ extension Configuration: Protectable {
     /// - Parameter protectionSpace: ProtectionSpace object.
     /// - Returns: Configuration instance.
     @discardableResult public func protect(with protectionSpace: ProtectionSpace) -> Self {
-        protection.protectionSpace = protectionSpace
+        queue.async(flags: .barrier) {
+            self.protection.protectionSpace = protectionSpace
+        }
         
         return self
     }

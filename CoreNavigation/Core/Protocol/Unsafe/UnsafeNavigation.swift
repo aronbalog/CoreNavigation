@@ -14,7 +14,9 @@ extension Configuration: UnsafeNavigation {
     ///
     /// - Returns: Configuration instance.
     @discardableResult public func unsafely() -> Self {
-        unsafeNavigation.isUnsafe = true
+        queue.async(flags: .barrier) {
+            self.unsafeNavigation.isUnsafe = true
+        }
         
         return self
     }

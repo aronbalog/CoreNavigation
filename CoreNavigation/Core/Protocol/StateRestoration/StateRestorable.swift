@@ -16,7 +16,9 @@ extension Configuration: StateRestorable {
     ///
     /// - Returns: Configuration instance.
     @discardableResult public func stateRestorable() -> Self {
-        stateRestoration.option = .automatically
+        queue.async(flags: .barrier) {
+            self.stateRestoration.option = .automatically
+        }
         
         return self
     }
@@ -26,7 +28,9 @@ extension Configuration: StateRestorable {
     /// - Parameter identifier: Restoration identifier.
     /// - Returns: Configuration instance.
     @discardableResult public func stateRestorable(identifier: String) -> Self {
-        stateRestoration.option = .automaticallyWithIdentifier(restorationIdentifier: identifier)
+        queue.async(flags: .barrier) {
+            self.stateRestoration.option = .automaticallyWithIdentifier(restorationIdentifier: identifier)
+        }
         
         return self
     }
@@ -38,7 +42,9 @@ extension Configuration: StateRestorable {
     ///   - class: Restoration class
     /// - Returns: Configuration instance.
     @discardableResult public func stateRestorable(identifier: String, class: UIViewControllerRestoration.Type) -> Self {
-        stateRestoration.option = .manually(restorationIdentifier: identifier, restorationClass: `class`)
+        queue.async(flags: .barrier) {
+            self.stateRestoration.option = .manually(restorationIdentifier: identifier, restorationClass: `class`)
+        }
         
         return self
     }

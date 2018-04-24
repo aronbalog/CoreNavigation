@@ -15,7 +15,9 @@ extension Configuration: WindowNavigation {
     /// - Parameter window: `Window` object.
     /// - Returns: `Configuration` instance.
     @discardableResult public func inWindow(_ window: UIWindow) -> Self {
-        windowObject.window = window
+        queue.async(flags: .barrier) {
+            self.windowObject.window = window
+        }
         
         return self
     }

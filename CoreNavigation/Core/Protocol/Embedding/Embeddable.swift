@@ -16,7 +16,9 @@ extension Configuration: Embeddable {
     /// - Parameter type: Embedding type.
     /// - Returns: Configuration instance.
     @discardableResult public func embedded(in type: EmbeddingType) -> Self {
-        embedding.embeddingType = type
+        queue.async(flags: .barrier) {
+            self.embedding.embeddingType = type
+        }
         
         return self
     }
@@ -26,7 +28,9 @@ extension Configuration: Embeddable {
     /// - Parameter embeddingProtocol: EmbeddingProtocol type.
     /// - Returns: Configuration instance.
     @discardableResult public func embedded(in embeddingProtocol: EmbeddingProtocol.Type) -> Self {
-        embedding.embeddingType = .embeddingProtocol(embeddingProtocol)
+        queue.async(flags: .barrier) {
+            self.embedding.embeddingType = .embeddingProtocol(embeddingProtocol)
+        }
         
         return self
     }
@@ -35,7 +39,9 @@ extension Configuration: Embeddable {
     ///
     /// - Returns: Configuration instance.
     @discardableResult public func embeddedInNavigationController() -> Self {
-        embedding.embeddingType = .navigationController
+        queue.async(flags: .barrier) {
+            self.embedding.embeddingType = .navigationController
+        }
         
         return self
     }

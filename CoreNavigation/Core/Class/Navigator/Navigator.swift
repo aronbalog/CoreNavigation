@@ -111,9 +111,11 @@ class Navigator {
         configuration.successBlocks.forEach { $0(result) }
         
         let willNavigate: () -> Void = {
-            configuration.willNavigateBlocks.forEach({ (block) in
-                block(viewController, data)
-            })
+            configuration.queue.sync {
+                configuration.willNavigateBlocks.forEach({ (block) in
+                    block(viewController, data)
+                })
+            }
         }
         
         switch type {
@@ -131,21 +133,23 @@ class Navigator {
     }
     
     static func viewControllerToNavigate<T>(_ viewController: UIViewController, with configuration: Configuration<T>) -> UIViewController {
-        guard let embeddingType = configuration.embedding.embeddingType else {
-            return viewController
-        }
-        
-        let viewControllerToNavigate: UIViewController = {
-            switch embeddingType {
-            case .embeddingProtocol(let aProtocol):
-                return aProtocol.embed(viewController)
-            case .navigationController:
-                return UINavigationController(rootViewController: viewController)
+        return configuration.queue.sync(execute: { () -> UIViewController in
+            guard let embeddingType = configuration.embedding.embeddingType else {
+                return viewController
             }
-        }()
-        
-        prepareForStateRestorationIfNeeded(viewController: viewControllerToNavigate, with: configuration)
-        
-        return viewControllerToNavigate
+            
+            let viewControllerToNavigate: UIViewController = {
+                switch embeddingType {
+                case .embeddingProtocol(let aProtocol):
+                    return aProtocol.embed(viewController)
+                case .navigationController:
+                    return UINavigationController(rootViewController: viewController)
+                }
+            }()
+            
+            prepareForStateRestorationIfNeeded(viewController: viewControllerToNavigate, with: configuration)
+            
+            return viewControllerToNavigate
+        })
     }
 }

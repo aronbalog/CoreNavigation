@@ -15,7 +15,9 @@ extension Configuration: Originable {
     /// - Parameter viewController: Origin view controller in navigation.
     /// - Returns: Configuration instance.
     @discardableResult public func from<T: UIViewController>(_ viewController: T) -> Self {
-        origin.fromViewController = viewController
+        queue.async(flags: .barrier) {
+            self.origin.fromViewController = viewController
+        }
         
         return self
     }

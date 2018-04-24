@@ -16,7 +16,9 @@ extension Configuration: Transitionable {
     /// - Parameter animated: Boolean stating whether navigation is transitioned with animation.
     /// - Returns: Configuration instance.
     @discardableResult public func animated(_ animated: Bool) -> Self {
-        transitioning.animated = animated
+        queue.async(flags: .barrier) {
+            self.transitioning.animated = animated
+        }
         
         return self
     }
@@ -26,7 +28,9 @@ extension Configuration: Transitionable {
     /// - Parameter completion: Completion block called after navigation transitioning.
     /// - Returns: Configuration instance.
     @discardableResult public func completion(_ completion: @escaping () -> Void) -> Self {
-        transitioning.completionBlocks.append(completion)
+        queue.async(flags: .barrier) {
+            self.transitioning.completionBlocks.append(completion)
+        }
         
         return self
     }
@@ -36,7 +40,9 @@ extension Configuration: Transitionable {
     /// - Parameter transitioningDelegate: UIViewControllerTransitioningDelegate object.
     /// - Returns: Configuration instance.
     @discardableResult public func transitioningDelegate(_ transitioningDelegate: UIViewControllerTransitioningDelegate) -> Self {
-        transitioning.viewControllerTransitioningDelegate = transitioningDelegate
+        queue.async(flags: .barrier) {
+            self.transitioning.viewControllerTransitioningDelegate = transitioningDelegate
+        }
         
         return self
     }
