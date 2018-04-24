@@ -8,44 +8,6 @@ Navigate between view controllers with ease. 💫
 [![Platform](https://img.shields.io/cocoapods/p/CoreNavigation.svg?style=flat)](https://github.com/aronbalog/CoreNavigation)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/CoreNavigation.svg)](https://img.shields.io/cocoapods/v/CoreNavigation.svg)
 
-- 📋 [Synopsis](#synopsis-)
-- ✊ [Motivation](#motivation-)
-- 🚀 [Getting Started](#getting-started-)
-- 💻 [Example Use](#example-use-)
-- ⌨️ [API Reference](#api-reference-%EF%B8%8F)
-    - [Defining destination](Documentation/API_REFERENCE.md#destination-) (view controller to navigate to)
-        - [Instance](Documentation/API_REFERENCE.md#passing-instance)
-        - [Class](Documentation/API_REFERENCE.md#passing-class)
-        - [Routing](Documentation/API_REFERENCE.md#passing-route)
-    - [Passing data between view controllers](Documentation/API_REFERENCE.md#passing-data-between-view-controllers-)
-    - [Transitioning](Documentation/API_REFERENCE.md#transitioning-)
-        - [Animation](Documentation/API_REFERENCE.md#animation)
-        - [Transitioning delegate](Documentation/API_REFERENCE.md#transitioning-delegate)
-        - [Completion](Documentation/API_REFERENCE.md#completion)
-    - [View controller events](Documentation/API_REFERENCE.md#view-controller-events-)
-    - [Caching](Documentation/API_REFERENCE.md#caching-%EF%B8%8F)
-        - [Lifetime protocol](Documentation/API_REFERENCE.md#lifetime-protocol)
-    - [Protection](Documentation/API_REFERENCE.md#protection-)
-    - [State restoration](Documentation/API_REFERENCE.md#state-restoration-%EF%B8%8F)
-        - [StateRestorationDelegate protocol](Documentation/API_REFERENCE.md#staterestorationdelegate-protocol)
-    - [Routing](Documentation/ROUTING_DOCUMENTATION.md) 
-- 🔬 [Running the tests](#running-the-tests-)
-- ☀️ [Dependencies](#dependencies-%EF%B8%8F)
-- 🤖 [Versioning](#versioning-)
-- 🛣 [Roadmap](#roadmap-)
-- 👨‍💻 [Authors](#authors-)
-- 📄 [License](#license-)
-
-### Synopsis 📋
-
-CoreNavigation is a Swift wrapper around iOS navigation.
-
-### Motivation ✊
-
-Apple provided us with simplest possible API to achive navigation between view controllers. Some apps usually use given APIs directly while other have some wraping logic around them. And that's cool.
-
-But think about the situation where your app has dozens of screens. And you have to support additional features like deep linking and state restoration. CoreNavigation is created to provide developers with cleaner and more powerful APIs to navigate. 🔌
-
 ## Getting Started 🚀
 
 These instructions will help you integrate CoreMapping into your project.
@@ -58,11 +20,10 @@ These instructions will help you integrate CoreMapping into your project.
 
 ### Installing
 
-Add following lines to your `Podfile`
+Add following line to your `Podfile`
 
 ```ruby
-pod 'CoreNavigation'
-pod 'CoreNavigation/Routing' # for routing capabilities
+pod 'CoreNavigation', '~> 1.0.0'
 ```
 
 and run 
@@ -71,34 +32,14 @@ and run
 $ pod install
 ```
 
-Cocoapods will fetch and integrate CoreNavigation.
-
 ## Example Use 💻
 
 ### Basic examples
 
-#### Presenting view controller:
+#### Defining view controller
 
 ```swift
-present { $0
-    .to(MyViewController())
-}
-```
-
-#### Pushing view controller:
-
-```swift
-push { $0
-    .to(MyViewController())
-}
-```
-
-#### Routing:
-
-##### Defining view controller
-
-```swift
-class UserProfileViewController: UIViewController, DataReceivingViewController {
+class UserProfileViewController: UIViewController, DataReceivable {
     typealias DataType = User
 
     func didReceiveData(_ data: User) {
@@ -107,108 +48,141 @@ class UserProfileViewController: UIViewController, DataReceivingViewController {
 }
 ```
 
-##### Defining route
+#### Presenting view controller:
 
 ```swift
-struct UserProfile: Route, RoutePatternsAware {
-    typealias Destination = UserProfileViewController
+Navigate.present { $0
+    .to(UserProfileViewController())
+    .withData(user)
+}
+```
 
-    let userId: String
-    
-    var parameters: [String : Any]? {
-        return [
-            "userId":self.userId
-        ]
-    }
+#### Pushing view controller:
 
-    /*-------- routing part --------*/
-    
+```swift
+Navigate.push { $0
+    .to(UserProfileViewController())
+    .withData(user)
+}
+```
+
+#### Routing & deep linking:
+
+
+- Why using destination?
+- Describe destination
+
+##### Defining `Destination`
+
+```swift
+struct UserProfile: Destination, Routable {
+    typealias ViewControllerType = UserProfileViewController
+
     static var patterns: [String] = [
         "https://myapp.com/user/:userId(.*)"
     ]
     
-    static func route(handler: RouteHandler<UserProfile>) {
-        let userId = handler.parameters?["userId"] as? String
+    let userId: String
+    
+    init(_ userId: String) {
+        self.userId = userId
+    }
+    
+    var parameters: [String : Any]? {
+        return [
+            "userId": userId
+        ]
+    }
+
+    static func resolve(context: Context<MyRoute>) {
+        guard let userId = context.parameters?["userId"] as? String else {
+            context.cancel()
+        }
         
-        // e.g. fetch user from network
-        fetchUser(userId, completion: { (user: User) in
-            // notify handler
-            handler.complete(data: user)
+        // fetch your user
+        fetchUser(userId: userId, completion: { (user: User) in
+            context.complete(data: user)
+        }, failure: { (error: Error) in
+            context.cancel(error: error)
         })
     }
 }
 ```
 
-##### Presenting route
+##### Navigating
 
-###### Using strong route
+###### Using `Destination`
+
+```swift
+Navigate.present { $0
+    .to(UserProfile("sherlock_holmes"))
+    // configure navigation
+    ...
+}
+```
+
+-----
+
+*or*
+
+```swift
+UserProfile("sherlock_holmes").present { $0
+    // configure navigation
+    ...
+}
+```
+
+-----
+
+*or*
+
+```swift
+UserProfile("sherlock_holmes").present()
+```
+
+###### Using route
 
 ```swift
 present { $0
+    .to("https://myapp.com/user/sherlock_holmes")
     // configure navigation
-    .to(UserProfile(userId: "123456")
-    .animated(false)
     ...
 }
 ```
 
+-----
+
 *or*
 
 ```swift
-UserProfile(userId: "123456").present { $0
+"https://myapp.com/user/sherlock_holmes".present { $0
     // configure navigation
-    .animated(false)
     ...
 }
 ```
 
-*or*
-
-```swift
-UserProfile(userId: "123456").present()
-```
-
-###### Using soft route
-
-```swift
-present { $0
-    // configure navigation
-    .to("https://myapp.com/user/123456")
-    .animated(false)
-    ...
-}
-```
+-----
 
 *or*
 
 ```swift
-"https://myapp.com/user/123456".present { $0
-    // configure navigation
-    .animated(false)
-    ...
-}
-```
-
-*or*
-
-```swift
-"https://myapp.com/user/123456".present()
+"https://myapp.com/user/sherlock_holmes".present()
 ```
 
 ##### Getting view controller
 
-###### Using strong route
+###### Using `Destination`
 
 ```swift
-UserProfile(userId: "123456").viewController { (viewController: UserProfileViewController) in
-    ...
+UserProfile("sherlock_holmes").viewController { vc in
+    // vc is `UserProfileViewController`
 }
 ```
 
-###### Using soft route
+###### Using route
 
 ```swift
-"https://myapp.com/user/123456".viewController { (viewController: UIViewController) in
+"https://myapp.com/user/sherlock_holmes".viewController { vc in
     ...
 }
 ```

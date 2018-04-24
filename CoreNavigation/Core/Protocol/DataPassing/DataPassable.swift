@@ -21,6 +21,14 @@ extension Configuration: DataPassable {
         
         return self
     }
+    
+    /// Prepares data for view controller.
+    ///
+    /// - Parameter data: Data to pass.
+    /// - Returns: Configuration instance.
+    @discardableResult public func withData(_ data: Any?) -> Self {
+        return passData(data)
+    }
 }
 
 // MARK: - Data receivable view controller data passing configuration
@@ -35,5 +43,13 @@ extension Configuration where ResultableType.ToViewController: DataReceivable {
         }
         
         return cast(self, to: Configuration<Result<ResultableType.ToViewController, ResultableType.ToViewController.DataType>>.self)
+    }
+    
+    /// Prepares data for data receiving view controller.
+    ///
+    /// - Parameter data: Data to pass.
+    /// - Returns: Configuration instance.
+    @discardableResult public func withData(_ data: ResultableType.ToViewController.DataType?) -> Configuration<Result<ResultableType.ToViewController, ResultableType.ToViewController.DataType>> {
+        return passData(data)
     }
 }

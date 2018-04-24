@@ -30,7 +30,7 @@ class PresentSpec: QuickSpec {
                 let mockTransitioningDelegate = MockTransitioningDelegate()
                 
                 var completionInvokes = 0
-                var passedViewController: Destination?
+                var passedViewController: ViewController?
 
                 Navigation.present({ $0
                     .to(mockViewController)

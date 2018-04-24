@@ -111,7 +111,7 @@ class Navigator {
         
         configuration.successBlocks.forEach { $0(result) }
         
-        if let viewController = viewController as? DataReceiving {
+        if let viewController = viewController as? AbstractDataReceivable {
             viewController.didReceiveAbstractData(data)
         }
         

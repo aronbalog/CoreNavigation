@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, StateRestorationDelegate 
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window?.restorationIdentifier = "MainWindow"
 
-        MyRoute.register()
+//        MyRoute.register()
 //        Navigation.router.register(MyRoute.self)
 //
 //        UIViewController.route(to: "pattern/aron-something/balog") { (viewController: MyVC) in
