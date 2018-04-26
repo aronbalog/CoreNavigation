@@ -10,7 +10,7 @@ Navigate between view controllers with ease. 💫
 
 ## Getting Started 🚀
 
-These instructions will help you integrate CoreMapping into your project.
+These instructions will help you integrate CoreNavigation into your project.
 
 ### Prerequisities
 
@@ -23,7 +23,7 @@ These instructions will help you integrate CoreMapping into your project.
 Add following line to your `Podfile`
 
 ```ruby
-pod 'CoreNavigation', '~> 1.0.0'
+pod 'CoreNavigation', '~> 1.0'
 ```
 
 and run 
@@ -39,10 +39,12 @@ $ pod install
 #### Defining view controller
 
 ```swift
-class UserProfileViewController: UIViewController, DataReceivable {
-    typealias DataType = User
+class PersonProfileViewController: UIViewController, DataReceivable {
 
-    func didReceiveData(_ data: User) {
+    // DataReceivable associatedtype
+    typealias DataType = Person
+
+    func didReceiveData(_ data: Person) {
         // configure UI with data
     }
 }
@@ -52,8 +54,8 @@ class UserProfileViewController: UIViewController, DataReceivable {
 
 ```swift
 Navigate.present { $0
-    .to(UserProfileViewController())
-    .withData(user)
+    .to(PersonProfileViewController())
+    .withData(person)
 }
 ```
 
@@ -61,48 +63,55 @@ Navigate.present { $0
 
 ```swift
 Navigate.push { $0
-    .to(UserProfileViewController())
-    .withData(user)
+    .to(PersonProfileViewController())
+    .withData(person)
 }
 ```
 
 #### Routing & deep linking:
 
 
-- Why using destination?
-- Describe destination
+- TODO: Describe why use the `Destination`?
+- TODO: Describe `Destination`
+- TODO: External `Destination` examples
 
 ##### Defining `Destination`
 
 ```swift
-struct UserProfile: Destination, Routable {
-    typealias ViewControllerType = UserProfileViewController
+struct PersonProfile: Destination, Routable {
 
+    // Destination associatedtype
+    typealias ViewControllerType = PersonProfileViewController
+
+    // Routable patterns
     static var patterns: [String] = [
-        "https://myapp.com/user/:userId(.*)"
+        "https://myapp.com/person/:personId(.*)"
     ]
     
-    let userId: String
+    let personId: String
     
-    init(_ userId: String) {
-        self.userId = userId
+    init(_ personId: String) {
+        self.personId = personId
     }
     
     var parameters: [String : Any]? {
         return [
-            "userId": userId
+            "personId": personId
         ]
     }
 
-    static func resolve(context: Context<MyRoute>) {
-        guard let userId = context.parameters?["userId"] as? String else {
-            context.cancel()
+    static func resolve(context: Context<PersonProfile>) {
+        guard let personId = context.parameters?["personId"] as? String else {
+            // cancel navigation with some error
+            context.cancel(error: NavigationError.Destination.notFound)
         }
         
-        // fetch your user
-        fetchUser(userId: userId, completion: { (user: User) in
-            context.complete(data: user)
+        // fetch person
+        fetchPerson(id: personId, completion: { (person: Person) in
+            // continue to navigation
+            context.complete(data: person)
         }, failure: { (error: Error) in
+            // cancel navigation with some error
             context.cancel(error: error)
         })
     }
@@ -114,79 +123,168 @@ struct UserProfile: Destination, Routable {
 ###### Using `Destination`
 
 ```swift
+// present
 Navigate.present { $0
-    .to(UserProfile("sherlock_holmes"))
-    // configure navigation
+    .to(PersonProfile("sherlock_holmes"))
+    ...
+}
+
+// or push
+Navigate.push { $0
+    .to(PersonProfile("sherlock_holmes"))
     ...
 }
 ```
 
------
-
-*or*
+*Additional syntax*
 
 ```swift
-UserProfile("sherlock_holmes").present { $0
-    // configure navigation
+// present
+PersonProfile("sherlock_holmes").present { $0
+    ...
+}
+
+// or push
+PersonProfile("sherlock_holmes").push { $0
     ...
 }
 ```
 
------
-
-*or*
+*Additional syntax*
 
 ```swift
-UserProfile("sherlock_holmes").present()
+// present
+PersonProfile("sherlock_holmes").present()
+
+// or push
+PersonProfile("sherlock_holmes").push()
 ```
 
 ###### Using route
 
 ```swift
-present { $0
-    .to("https://myapp.com/user/sherlock_holmes")
-    // configure navigation
+// present
+Navigate.present { $0
+    .to("https://myapp.com/person/sherlock_holmes")
+    ...
+}
+
+// or push
+Navigate.push { $0
+    .to("https://myapp.com/person/sherlock_holmes")
     ...
 }
 ```
 
------
-
-*or*
+*Additional syntax*
 
 ```swift
-"https://myapp.com/user/sherlock_holmes".present { $0
-    // configure navigation
+// present
+"https://myapp.com/person/sherlock_holmes".present { $0
+    ...
+}
+
+// or push
+"https://myapp.com/person/sherlock_holmes".push { $0
     ...
 }
 ```
 
------
-
-*or*
+*Additional syntax*
 
 ```swift
-"https://myapp.com/user/sherlock_holmes".present()
+// present
+"https://myapp.com/person/sherlock_holmes".present()
+
+// or push
+"https://myapp.com/person/sherlock_holmes".push()
 ```
 
-##### Getting view controller
+##### Getting view controller asynchronously
 
 ###### Using `Destination`
 
 ```swift
-UserProfile("sherlock_holmes").viewController { vc in
-    // vc is `UserProfileViewController`
+PersonProfile("sherlock_holmes").viewController { (viewController) in
+    // vc is `PersonProfileViewController`
 }
 ```
 
 ###### Using route
 
 ```swift
-"https://myapp.com/user/sherlock_holmes".viewController { vc in
+"https://myapp.com/person/sherlock_holmes".viewController { (viewController) in
     ...
 }
 ```
 
+##### Getting view controller synchronously
+
+Note:
+
+*If you implement custom destination resolving, **it must happen on the main thread**; otherwise, an error is thrown. Read about resolving.*
+
+- TODO: Set link to resolving
+
+###### Using `Destination`
+
+```swift
+do {
+    let viewController = try PersonProfile("sherlock_holmes").viewController()
+} catch let error {
+    // handle error
+}
+```
+
+###### Using route
+
+```swift
+do {
+    let viewController = try "https://myapp.com/person/sherlock_holmes".viewController()
+} catch let error {
+    // handle error
+}
+```
+
+-----
+
+#### Matchable protocol
+
+`URL` types can also be used to navigate or resolve view controller. Actually, any type conforming `Matchable` protocol can be used.
+
+Example:
+
+```swift
+struct Person {
+    let id: String
+    ...
+}
+
+extension Person: Matchable {
+    var uri: String {
+        return "https://myapp.com/person/" + id
+    }
+}
+```
+
+Example usage:
+
+```swift
+let person: Person = ...
+
+// getting view controller
+let personProfileViewController = try! person.viewController
+
+// or navigating
+person.present()
+
+// or more configurable syntax
+Navigate.present { $0
+    .to(person)
+    ...
+}
+```
+<!---
 ## API Reference ⌨️
 
 Read [API reference](Documentation/API_REFERENCE.md)
@@ -208,29 +306,17 @@ Read [API reference](Documentation/API_REFERENCE.md)
     - [StateRestorationDelegate protocol](Documentation/API_REFERENCE.md#staterestorationdelegate-protocol)
 - [Routing](Documentation/ROUTING_DOCUMENTATION.md) 
 
+-->
+
 ## Running the tests 🔬
 
 Available in `CoreNavigationTests` target.
-
-## Dependencies ☀️
-
-* **CoreRoute** (optional) - Routing framework written in Swift
 
 ## Versioning 🤖
 
 Current release:
 
-- 0.4.0
-
-## Roadmap 🛣
-
-- [x] CoreNavigation foundation
-- [x] State restoration handling
-- [x] Routing documentation
-- [ ] Deep & universal links handling
-- [ ] Code documentation
-- [ ] Add missing unit tests
-- [ ] Define code of conduct
+- 1.0.0
 
 ## Authors 👨‍💻
 

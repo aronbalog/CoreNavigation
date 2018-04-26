@@ -65,9 +65,9 @@ class RoutingSpec: QuickSpec {
             context("when routing to registered route", {
                 var viewController: MockViewController?
                 
-                UIViewController.resolve("1/john/doe", { (_viewController) in
+                UIViewController.resolve("1/john/doe", { (_viewController: UIViewController) in
                     viewController = _viewController as? MockViewController
-                })
+                }, failure: nil)
                 
                 it("it routes successfully", closure: {
                     expect(viewController).notTo(beNil())
@@ -81,9 +81,9 @@ class RoutingSpec: QuickSpec {
             context("when routing to registered route", {
                 var viewController: MockViewController?
                 
-                UIViewController.resolve("1/john-middle-name/doe?query=param", { (_viewController) in
+                UIViewController.resolve("1/john-middle-name/doe?query=param", { (_viewController: UIViewController) in
                     viewController = _viewController as? MockViewController
-                })
+                }, failure: nil)
                 
                 it("it routes successfully", closure: {
                     expect(viewController).notTo(beNil())

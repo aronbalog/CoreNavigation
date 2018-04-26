@@ -2,11 +2,38 @@ import Foundation
 
 // MARK: - Matchable view controller convenience
 public extension Matchable {
+    /// Resolves view controller synchronously.
+    ///
+    /// - Returns: Destination's view controller instance.
+    /// - Throws: Throws error if view controller couldn't be resolved.
+    public func viewController() throws -> UIViewController {
+        var viewController: UIViewController?
+        var error: Error?
+
+        self.viewController({ (_viewController) in
+            viewController = _viewController
+        }) { (_error) in
+            error = _error
+        }
+        
+        guard let _viewController = viewController else {
+            if let error = error {
+                throw error
+            } else {
+                throw NavigationError.unknown
+            }
+        }
+        
+        return _viewController
+    }
+    
     /// Resolves view controller.
     ///
-    /// - Parameter viewControllerBlock: Block returning UIViewController instance.
-    public func viewController<T: UIViewController>(_ viewControllerBlock: @escaping (T) -> Void) {
-        UIViewController.resolve(self, viewControllerBlock)
+    /// - Parameters:
+    ///   - viewControllerBlock: Block returning UIViewController instance.
+    ///   - failure: Block returning Error instance.
+    public func viewController<T: UIViewController>(_ viewControllerBlock: @escaping (T) -> Void, failure: ((Error) -> Void)? = nil) {
+        UIViewController.resolve(self, viewControllerBlock, failure: failure)
     }
     
     /// Presents view controller after routing to self.

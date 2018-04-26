@@ -7,8 +7,9 @@ public extension UIViewController {
     /// - Parameters:
     ///   - path: Path to resolve.
     ///   - viewControllerBlock: Block returning UIViewController instance.
-    public static func resolve<T: UIViewController>(_ path: String, _ viewControllerBlock: @escaping (T) -> Void)  {
-        _resolve(matchable: path, viewControllerBlock)
+    ///   - failure: Block returning Error instance.
+    public static func resolve<T: UIViewController>(_ path: String, _ viewControllerBlock: @escaping (T) -> Void, failure: ((Error) -> Void)?)  {
+        _resolve(matchable: path, viewControllerBlock, failure: failure)
     }
     
     /// Resolves view controller from URL.
@@ -16,8 +17,9 @@ public extension UIViewController {
     /// - Parameters:
     ///   - url: URL to resolve.
     ///   - viewControllerBlock: Block returning UIViewController instance.
-    public static func resolve<T: UIViewController>(_ url: URL, _ viewControllerBlock: @escaping (T) -> Void)  {
-        _resolve(matchable: url, viewControllerBlock)
+    ///   - failure: Block returning Error instance.
+    public static func resolve<T: UIViewController>(_ url: URL, _ viewControllerBlock: @escaping (T) -> Void, failure: ((Error) -> Void)?)  {
+        _resolve(matchable: url, viewControllerBlock, failure: failure)
     }
     
     /// Resolves view controller from `Matchable` object.
@@ -25,8 +27,9 @@ public extension UIViewController {
     /// - Parameters:
     ///   - matchable: Object conforming `Matchable` protocol.
     ///   - viewControllerBlock: Block returning UIViewController instance.
-    public static func resolve<T: UIViewController>(_ matchable: Matchable, _ viewControllerBlock: @escaping (T) -> Void)  {
-        _resolve(matchable: matchable, viewControllerBlock)
+    ///   - failure: Block returning Error instance.
+    public static func resolve<T: UIViewController>(_ matchable: Matchable, _ viewControllerBlock: @escaping (T) -> Void, failure: ((Error) -> Void)?)  {
+        _resolve(matchable: matchable, viewControllerBlock, failure: failure)
     }
     
     /// Resolves view controller from `Destination` object.
@@ -62,10 +65,10 @@ public extension UIViewController {
     }
 }
 
-private func _resolve<T: UIViewController>(matchable: Matchable, _ viewControllerBlock: @escaping (T) -> Void)  {
+private func _resolve<T: UIViewController>(matchable: Matchable, _ viewControllerBlock: @escaping (T) -> Void, failure: ((Error) -> Void)?)  {
     typealias ToType = To<Result<T, Any>>
     
     ToType.to(matchable: matchable, from: nil) { (configuration) in
-        Navigator.getViewController(configuration: configuration, completion: viewControllerBlock)
+        Navigator.getViewController(configuration: configuration, completion: viewControllerBlock, failure: failure)
     }
 }

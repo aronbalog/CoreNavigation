@@ -256,7 +256,7 @@ public class To<ResultableType: Resultable>: DestinationAware {
         let viewControllerBlock: (@escaping (Request<T>.Result<T>) -> Void) -> Void = { (handler) in
             guard let match = match else {
                 // not matched
-                handler(.failure(NavigationError.destinationNotFound))
+                handler(.failure(NavigationError.Destination.notFound))
                 return
             }
             
