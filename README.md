@@ -36,7 +36,7 @@ $ pod install
 
 ### Basic examples
 
-#### Defining view controller
+#### Defining view controller:
 
 ```swift
 class PersonProfileViewController: UIViewController, DataReceivable {
@@ -68,14 +68,14 @@ Navigate.push { $0
 }
 ```
 
-#### Routing & deep linking:
+### Routing & deep linking:
 
 
 - TODO: Describe why use the `Destination`?
 - TODO: Describe `Destination`
 - TODO: External `Destination` examples
 
-##### Defining `Destination`
+#### Defining `Destination`
 
 ```swift
 struct PersonProfile: Destination, Routable {
@@ -118,9 +118,7 @@ struct PersonProfile: Destination, Routable {
 }
 ```
 
-##### Navigating
-
-###### Using `Destination`
+#### Navigating using `Destination`
 
 ```swift
 // present
@@ -160,7 +158,7 @@ PersonProfile("sherlock_holmes").present()
 PersonProfile("sherlock_holmes").push()
 ```
 
-###### Using route
+#### Navigating using route
 
 ```swift
 // present
@@ -200,9 +198,7 @@ Navigate.push { $0
 "https://myapp.com/person/sherlock_holmes".push()
 ```
 
-##### Getting view controller asynchronously
-
-###### Using `Destination`
+#### Getting view controller asynchronously using `Destination`
 
 ```swift
 PersonProfile("sherlock_holmes").viewController { (viewController) in
@@ -210,7 +206,7 @@ PersonProfile("sherlock_holmes").viewController { (viewController) in
 }
 ```
 
-###### Using route
+#### Getting view controller asynchronously using route
 
 ```swift
 "https://myapp.com/person/sherlock_holmes".viewController { (viewController) in
@@ -218,15 +214,7 @@ PersonProfile("sherlock_holmes").viewController { (viewController) in
 }
 ```
 
-##### Getting view controller synchronously
-
-Note:
-
-*If you implement custom destination resolving, **it must happen on the main thread**; otherwise, an error is thrown. Read about resolving.*
-
-- TODO: Set link to resolving
-
-###### Using `Destination`
+#### Getting view controller synchronously using `Destination`
 
 ```swift
 do {
@@ -236,7 +224,7 @@ do {
 }
 ```
 
-###### Using route
+#### Getting view controller synchronously using route
 
 ```swift
 do {
@@ -245,6 +233,12 @@ do {
     // handle error
 }
 ```
+
+Note:
+
+*If you implement custom destination resolving, **it must happen on the main thread**; otherwise, an error is thrown. Read about resolving.*
+
+- TODO: Set link to resolving
 
 -----
 
