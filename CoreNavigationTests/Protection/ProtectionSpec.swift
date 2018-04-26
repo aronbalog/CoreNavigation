@@ -28,7 +28,7 @@ class ProtectionSpec: QuickSpec {
                 let mockProtectionSpace = MockProtectionSpace()
                 var didNavigate = false
                 
-                Navigation.present { $0
+                Navigate.present { $0
                     .to(UIViewController())
                     .protect(with: mockProtectionSpace)
                     .completion {

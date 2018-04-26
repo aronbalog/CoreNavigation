@@ -90,7 +90,7 @@
 		38D5B387204A354A005A15BC /* CoreNavigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D5B37D204A354A005A15BC /* CoreNavigation.framework */; };
 		38D5B38E204A354B005A15BC /* CoreNavigation.h in Headers */ = {isa = PBXBuildFile; fileRef = 38D5B380204A354A005A15BC /* CoreNavigation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		38D5B399204A3567005A15BC /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5B398204A3567005A15BC /* Global.swift */; };
-		38D5B39C204A35A0005A15BC /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5B39B204A35A0005A15BC /* Navigation.swift */; };
+		38D5B39C204A35A0005A15BC /* Navigate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5B39B204A35A0005A15BC /* Navigate.swift */; };
 		38D5B3A1204A36BD005A15BC /* To.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5B3A0204A36BD005A15BC /* To.swift */; };
 		38E24F74205D609C0062AE85 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E24F73205D609C0062AE85 /* Router.swift */; };
 		38E24F76205D9BC30062AE85 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CF99C204DC23500330EC7 /* ViewController.swift */; };
@@ -218,7 +218,7 @@
 		38D5B386204A354A005A15BC /* CoreNavigationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreNavigationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38D5B38D204A354A005A15BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38D5B398204A3567005A15BC /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
-		38D5B39B204A35A0005A15BC /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
+		38D5B39B204A35A0005A15BC /* Navigate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigate.swift; sourceTree = "<group>"; };
 		38D5B39D204A360D005A15BC /* CoreNavigation.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CoreNavigation.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		38D5B3A0204A36BD005A15BC /* To.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = To.swift; sourceTree = "<group>"; };
 		38E24F73205D609C0062AE85 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -282,7 +282,7 @@
 		381D744C2055986B00F1C154 /* Struct */ = {
 			isa = PBXGroup;
 			children = (
-				38D5B39B204A35A0005A15BC /* Navigation.swift */,
+				38D5B39B204A35A0005A15BC /* Navigate.swift */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -1068,7 +1068,7 @@
 				3881752720560FB80054CFBB /* TransitioningAware.swift in Sources */,
 				38222B4A2066F47300435008 /* AbstractDataReceivable.swift in Sources */,
 				38645D7A206EFF1100EF5D60 /* WindowNavigationAware.swift in Sources */,
-				38D5B39C204A35A0005A15BC /* Navigation.swift in Sources */,
+				38D5B39C204A35A0005A15BC /* Navigate.swift in Sources */,
 				38F1D8A1205B0F32001F0B0B /* ViewControllerEvent.swift in Sources */,
 				388C73172059C7A400C11EEB /* DataPassable.swift in Sources */,
 				38645D7E206F1C7D00EF5D60 /* StateRestorationBehavior.swift in Sources */,

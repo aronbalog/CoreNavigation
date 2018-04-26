@@ -32,7 +32,7 @@ class PresentSpec: QuickSpec {
                 var completionInvokes = 0
                 var passedViewController: ViewController?
 
-                Navigation.present({ $0
+                Navigate.present({ $0
                     .to(mockViewController)
                     .animated(true)
                     .transitioningDelegate(mockTransitioningDelegate)

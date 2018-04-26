@@ -24,10 +24,8 @@ class PushSpec: QuickSpec {
                 let mockData: DataType = "data"
                 let mockViewController = ViewController()
                 let mockWindow = MockWindow()
-                
-                var passedData: DataType?
-                
-                Navigation.push({ $0
+                                
+                Navigate.push({ $0
                     .to(mockViewController)
                     .passData(mockData)
                     .unsafely()

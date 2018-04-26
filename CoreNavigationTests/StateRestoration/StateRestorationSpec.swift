@@ -9,7 +9,7 @@ class StateRestorationSpec: QuickSpec {
         describe("Navigation") {
             context("when presenting view controller with automatic state restoration", {
                 let mockViewController = UIViewController()
-                Navigation.present({ $0
+                Navigate.present({ $0
                     .to(mockViewController)
                     .stateRestorable()
                     .unsafely()
@@ -26,7 +26,7 @@ class StateRestorationSpec: QuickSpec {
                 let mockViewController = UIViewController()
                 let identifier = "mock"
                 
-                Navigation.present({ $0
+                Navigate.present({ $0
                     .to(mockViewController)
                     .stateRestorable(identifier: identifier)
                     .unsafely()
@@ -49,7 +49,7 @@ class StateRestorationSpec: QuickSpec {
                 let mockViewController = UIViewController()
                 let identifier = "mock"
                 
-                Navigation.present({ $0
+                Navigate.present({ $0
                     .to(mockViewController)
                     .stateRestorable(identifier: identifier, class: MockStateRestoration.self)
                     .unsafely()

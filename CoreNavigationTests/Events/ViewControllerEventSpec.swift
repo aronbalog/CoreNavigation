@@ -29,7 +29,7 @@ class ViewControllerEventsSpec: QuickSpec {
                 var viewLayoutMarginsDidChange = 0
                 var viewSafeAreaInsetsDidChange = 0
                 
-                Navigation.present({ $0
+                Navigate.present({ $0
                     .to(mockViewController)
                     .on(.viewController(.loadView { viewController in
                         loadView.invoke()

@@ -11,7 +11,7 @@ extension Routable {
     /// Registers route.
     ///
     /// - Parameter router: Router object.
-    static public func register(router: Router = Navigation.router) {
-        Navigation.router.register(self)
+    static public func register(router: Router = Navigate.router) {
+        Navigate.router.register(self)
     }
 }

@@ -270,13 +270,14 @@ extension Person: Matchable {
 Example usage:
 
 ```swift
-let person: Person = ...
+let person: Person = Person(id: "sherlock_holmes", ...)
 
 // getting view controller
 let personProfileViewController = try! person.viewController
 
 // or navigating
 person.present()
+person.push()
 
 // or more configurable syntax
 Navigate.present { $0

@@ -9,7 +9,7 @@ public class To<ResultableType: Resultable>: DestinationAware {
     ///
     /// - Example: Simple navigation to view controller instance.
     ///     ````
-    ///     Navigation.present { $0
+    ///     Navigate.present { $0
     ///        .to(UIViewController())
     ///     }
     ///     ````
@@ -30,7 +30,7 @@ public class To<ResultableType: Resultable>: DestinationAware {
     ///     ````
     ///     let viewController: DataReceivable = ViewController()
     ///
-    ///     Navigation.present { $0
+    ///     Navigate.present { $0
     ///        .to(viewController)
     ///     }
     ///     ````
@@ -49,7 +49,7 @@ public class To<ResultableType: Resultable>: DestinationAware {
     ///
     /// - Example: Simple navigation to view controller class.
     ///     ````
-    ///     Navigation.present { $0
+    ///     Navigate.present { $0
     ///        .to(UIViewController.self)
     ///     }
     ///     ````
@@ -71,7 +71,7 @@ public class To<ResultableType: Resultable>: DestinationAware {
     ///     ````
     ///     let viewControllerClass: DataReceivable.Type = ViewController.self
     ///
-    ///     Navigation.present { $0
+    ///     Navigate.present { $0
     ///        .to(viewControllerClass)
     ///     }
     ///     ````
@@ -249,7 +249,7 @@ public class To<ResultableType: Resultable>: DestinationAware {
     
     @discardableResult static func to<T>(matchable: Matchable, from: UIViewController?, action: (Configuration<Result<T, Any>>) -> Void) -> Configuration<Result<T, Any>> {
         
-        let match = Navigation.router.match(for: matchable)
+        let match = Navigate.router.match(for: matchable)
         
         var _configuration: Configuration<Result<T, Any>>?
         

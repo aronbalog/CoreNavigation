@@ -44,14 +44,14 @@ class CachingSpec: QuickSpec {
                 let mockViewController = UndyingViewController.self
                 let cacheIdentifier = "undying"
                 
-                Navigation.present({ $0
+                Navigate.present({ $0
                     .to(mockViewController)
                     .keepAlive(within: UndyingLifetime(), cacheIdentifier: cacheIdentifier)
                     .unsafely()
                     .inWindow(mockWindow)
                     .completion {
                         mockWindow.rootViewController?.presentedViewController?.dismiss(animated: false, completion: {
-                            Navigation.present({ $0
+                            Navigate.present({ $0
                                 .to(mockViewController)
                                 .keepAlive(within: UndyingLifetime(), cacheIdentifier: cacheIdentifier)
                                 .unsafely()
@@ -71,14 +71,14 @@ class CachingSpec: QuickSpec {
                 let mockViewController = DyingViewController.self
                 let cacheIdentifier = "dying"
                 
-                Navigation.present({ $0
+                Navigate.present({ $0
                     .to(mockViewController)
                     .keepAlive(within: DyingLifetime(), cacheIdentifier: cacheIdentifier)
                     .unsafely()
                     .inWindow(mockWindow)
                     .completion {
                         mockWindow.rootViewController?.presentedViewController!.dismiss(animated: false, completion: {
-                            Navigation.present({ $0
+                            Navigate.present({ $0
                                 .to(mockViewController)
                                 .keepAlive(within: DyingLifetime(), cacheIdentifier: cacheIdentifier)
                                 .unsafely()

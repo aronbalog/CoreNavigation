@@ -11,7 +11,7 @@ class ViewController: UIViewController {
             .stateRestorable()
             .embeddedInNavigationController()
         }
-//        Navigation
+//        Navigate
 //            .present { $0
 //                .to("pattern/aron-123-something/balog")
 ////                .pass(["kurac":"od ovce"])

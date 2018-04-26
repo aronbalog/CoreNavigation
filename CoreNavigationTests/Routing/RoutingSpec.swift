@@ -58,9 +58,9 @@ fileprivate struct MockRoute3: Destination, Routable {
 class RoutingSpec: QuickSpec {
     override func spec() {
         describe("Routing") {
-            Navigation.router.register(MockRoute.self)
-            Navigation.router.register(MockRoute2.self)
-            Navigation.router.register(MockRoute3.self)
+            Navigate.router.register(MockRoute.self)
+            Navigate.router.register(MockRoute2.self)
+            Navigate.router.register(MockRoute3.self)
 
             context("when routing to registered route", {
                 var viewController: MockViewController?
@@ -111,7 +111,7 @@ class RoutingSpec: QuickSpec {
             context("when routing to registered route", {
                 let mockWindow = MockWindow()
                 
-                Navigation.present { $0
+                Navigate.present { $0
                     .to("2/john-middle-name/doe?query=param")
                     .passData("data")
                     .inWindow(mockWindow)
