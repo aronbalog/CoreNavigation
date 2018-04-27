@@ -219,9 +219,11 @@
 		38D5B38D204A354A005A15BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38D5B398204A3567005A15BC /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		38D5B39B204A35A0005A15BC /* Navigate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigate.swift; sourceTree = "<group>"; };
-		38D5B39D204A360D005A15BC /* CoreNavigation.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CoreNavigation.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		38D5B3A0204A36BD005A15BC /* To.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = To.swift; sourceTree = "<group>"; };
 		38E24F73205D609C0062AE85 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		38E3041B2093CD4A00D4B7A9 /* Presenting.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Presenting.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		38E3041C2093D5AB00D4B7A9 /* Pushing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Pushing.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		38E3041D2093D5E700D4B7A9 /* Routing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Routing.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		38F1D896205B04FB001F0B0B /* Swizzler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swizzler.swift; sourceTree = "<group>"; };
 		38F1D898205B054E001F0B0B /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		38F1D89A205B0574001F0B0B /* UIViewController+Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Events.swift"; sourceTree = "<group>"; };
@@ -560,7 +562,7 @@
 		38D5B373204A354A005A15BC = {
 			isa = PBXGroup;
 			children = (
-				38D5B39D204A360D005A15BC /* CoreNavigation.playground */,
+				38E3041A2093CC7900D4B7A9 /* Playgrounds */,
 				38D5B37F204A354A005A15BC /* CoreNavigation */,
 				38D5B38A204A354A005A15BC /* CoreNavigationTests */,
 				384CF999204DC23500330EC7 /* CoreNavigationHostApp */,
@@ -673,6 +675,16 @@
 				387B789B205E0CC60078974C /* RouteMatch.swift */,
 			);
 			path = Class;
+			sourceTree = "<group>";
+		};
+		38E3041A2093CC7900D4B7A9 /* Playgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				38E3041D2093D5E700D4B7A9 /* Routing.playground */,
+				38E3041C2093D5AB00D4B7A9 /* Pushing.playground */,
+				38E3041B2093CD4A00D4B7A9 /* Presenting.playground */,
+			);
+			path = Playgrounds;
 			sourceTree = "<group>";
 		};
 		38F1D8A2205B2F7C001F0B0B /* Caching */ = {

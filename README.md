@@ -58,6 +58,7 @@ Navigate.present { $0
     .withData(person)
 }
 ```
+[Playground example](Playgrounds/Presenting.playground)
 
 #### Pushing view controller:
 
@@ -67,6 +68,7 @@ Navigate.push { $0
     .withData(person)
 }
 ```
+[Playground example](Playgrounds/Pushing.playground)
 
 ### Routing & deep linking:
 
@@ -104,6 +106,7 @@ struct PersonProfile: Destination, Routable {
         guard let personId = context.parameters?["personId"] as? String else {
             // cancel navigation with some error
             context.cancel(error: NavigationError.Destination.notFound)
+            return
         }
         
         // fetch person
@@ -158,6 +161,8 @@ PersonProfile("sherlock_holmes").present()
 PersonProfile("sherlock_holmes").push()
 ```
 
+[Playground example](Playgrounds/Routing.playground)
+
 #### Navigating using route
 
 ```swift
@@ -198,6 +203,8 @@ Navigate.push { $0
 "https://myapp.com/person/sherlock_holmes".push()
 ```
 
+[Playground example](Playgrounds/Routing.playground)
+
 #### Getting view controller asynchronously using `Destination`
 
 ```swift
@@ -223,6 +230,8 @@ do {
     // handle error
 }
 ```
+
+[Playground example](Playgrounds/Routing.playground)
 
 #### Getting view controller synchronously using route
 
