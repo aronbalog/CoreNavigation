@@ -5,7 +5,7 @@ protocol DataPassable: class {
     
     var dataPassing: DataPassing { get set }
     
-    @discardableResult func passData(_ data: Any?) -> Self
+    @discardableResult func passData(_ data: Any) -> Self
 }
 
 // MARK: - Abstract data passing configuration
@@ -14,7 +14,7 @@ extension Configuration: DataPassable {
     ///
     /// - Parameter data: Data to pass.
     /// - Returns: Configuration instance.
-    @discardableResult public func passData(_ data: Any?) -> Self {
+    @discardableResult public func passData(_ data: Any) -> Self {
         queue.async(flags: .barrier) {
             self.dataPassing.data = data
         }
@@ -26,7 +26,7 @@ extension Configuration: DataPassable {
     ///
     /// - Parameter data: Data to pass.
     /// - Returns: Configuration instance.
-    @discardableResult public func withData(_ data: Any?) -> Self {
+    @discardableResult public func withData(_ data: Any) -> Self {
         return passData(data)
     }
 }
@@ -37,7 +37,7 @@ extension Configuration where ResultableType.ToViewController: DataReceivable {
     ///
     /// - Parameter data: Data to pass.
     /// - Returns: Configuration instance.
-    @discardableResult public func passData(_ data: ResultableType.ToViewController.DataType?) -> Configuration<Result<ResultableType.ToViewController, ResultableType.ToViewController.DataType>> {
+    @discardableResult public func passData(_ data: ResultableType.ToViewController.DataType) -> Configuration<Result<ResultableType.ToViewController, ResultableType.ToViewController.DataType>> {
         queue.async(flags: .barrier) {
             self.dataPassing.data = data
         }
@@ -49,7 +49,7 @@ extension Configuration where ResultableType.ToViewController: DataReceivable {
     ///
     /// - Parameter data: Data to pass.
     /// - Returns: Configuration instance.
-    @discardableResult public func withData(_ data: ResultableType.ToViewController.DataType?) -> Configuration<Result<ResultableType.ToViewController, ResultableType.ToViewController.DataType>> {
+    @discardableResult public func withData(_ data: ResultableType.ToViewController.DataType) -> Configuration<Result<ResultableType.ToViewController, ResultableType.ToViewController.DataType>> {
         return passData(data)
     }
 }
