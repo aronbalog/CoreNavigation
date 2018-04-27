@@ -1,5 +1,3 @@
-![](Documentation/Assets/cover-image.png)
-
 # CoreNavigation 📱📲
 
 Navigate between view controllers with ease. 💫
