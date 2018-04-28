@@ -1,6 +1,6 @@
 import Foundation
 
-import CoreNavigation
+@testable import CoreNavigation
 
 class MockWindow: UIWindow {
     override init(frame: CGRect) {

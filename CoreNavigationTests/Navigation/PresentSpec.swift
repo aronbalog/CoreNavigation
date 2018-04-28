@@ -2,7 +2,7 @@ import UIKit
 import Quick
 import Nimble
 
-import CoreNavigation
+@testable import CoreNavigation
 
 private class MockViewController<T>: UIViewController, DataReceivable {
     var receivedData: T?
