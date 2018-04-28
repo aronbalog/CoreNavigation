@@ -1,11 +1,11 @@
 import Foundation
 
 class RouteMatch {
-    let routableType: Routable.Type
+    let destinationType: AnyDestination.Type
     let parameters: [String: Any]?
     
-    init(routableType: Routable.Type, parameters: [String: Any]?) {
-        self.routableType = routableType
+    init(destinationType: AnyDestination.Type, parameters: [String: Any]?) {
+        self.destinationType = destinationType
         self.parameters = parameters
     }
 }

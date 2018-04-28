@@ -260,10 +260,10 @@ public class To<ResultableType: Resultable>: DestinationAware {
                 return
             }
             
-            let routableType = match.routableType
+            let destinationType = match.destinationType
             let parameters = match.parameters
             
-            routableType.resolve(parameters: parameters, destination: { (destination, data) in
+            destinationType.resolve(parameters: parameters, destination: { (destination, data) in
                 if let data = data {
                     _configuration?.dataPassing.data = data
                 }

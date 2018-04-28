@@ -9,9 +9,7 @@ public protocol Routable: AnyDestination {
 // MARK: - Registration extension
 extension Routable {
     /// Registers route.
-    ///
-    /// - Parameter router: Router object.
-    static public func register(router: Router = Navigate.router) {
-        Navigate.router.register(self)
+    static public func register() {
+        Navigate.router.register(routeType: self)
     }
 }

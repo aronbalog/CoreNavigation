@@ -42,13 +42,8 @@ fileprivate struct MockRoute2: Destination, Routable {
     ]
 }
 
-fileprivate struct MockRoute3: Destination, Routable {
+fileprivate struct MockRoute3: Destination {
     typealias ViewControllerType = MockViewController
-    
-    static var patterns: [String] = [
-        "3/:firstName([a-zA-Z]+).*/:lastName(.*)",
-        "3/:firstName(.*)/:lastName(.*)"
-    ]
     
     static func resolve(context: Context<MockRoute3>) {
         context.complete(data: context.parameters?["firstName"] as? String)
@@ -58,9 +53,12 @@ fileprivate struct MockRoute3: Destination, Routable {
 class RoutingSpec: QuickSpec {
     override func spec() {
         describe("Routing") {
-            Navigate.router.register(MockRoute.self)
-            Navigate.router.register(MockRoute2.self)
-            Navigate.router.register(MockRoute3.self)
+            MockRoute.register()
+            MockRoute2.register()
+            MockRoute3.self <- [
+                "3/:firstName([a-zA-Z]+).*/:lastName(.*)",
+                "3/:firstName(.*)/:lastName(.*)"
+            ]
 
             context("when routing to registered route", {
                 var viewController: MockViewController?
