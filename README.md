@@ -56,7 +56,7 @@ Navigate.present { $0
     .withData(person)
 }
 ```
-[Playground example](Playgrounds/Presenting.playground)
+[Example](Playgrounds/Presenting.playground/Contents.swift)
 
 #### Pushing view controller:
 
@@ -66,7 +66,7 @@ Navigate.push { $0
     .withData(person)
 }
 ```
-[Playground example](Playgrounds/Pushing.playground)
+[Example](Playgrounds/Pushing.playground/Contents.swift)
 
 ### Routing & deep linking:
 
@@ -85,7 +85,8 @@ struct PersonProfile: Destination, Routable {
 
     // Routable patterns
     static var patterns: [String] = [
-        "https://myapp.com/person/:personId(.*)"
+        "https://myapp.com/person/:personId(.*)",
+        "https://myapp.com/user/:personId(.*)"
     ]
     
     let personId: String
@@ -117,6 +118,42 @@ struct PersonProfile: Destination, Routable {
         })
     }
 }
+```
+
+#### Registering `Routable` types
+
+In order to use `Matchable` types (`String`, `URL`, etc.) to navigate, every `Destination` type must be registered. Think about it as internal DNS.
+
+```swift
+PersonProfile.register()
+```
+
+*Additional syntax*
+
+```swift
+Navigate.router.register(routableType: PersonProfile.self)
+```
+
+In the following examples you can register any `Destination` type, it doesn't have to conform to `Routable`. Use these if you intend to create some kind of destination manifest and/or if route patterns are fetched from an external source:
+
+```swift
+Navigate.router.register(destinationType: PersonProfile.self, patterns: [
+    "https://myapp.com/person/:personId(.*)",
+    "https://myapp.com/user/:personId(.*)"
+])
+```
+
+*Additional syntax*
+
+```swift
+PersonProfile.self <- [
+    "https://myapp.com/person/:personId(.*)",
+    "https://myapp.com/user/:personId(.*)"
+]
+
+Settings.self <- [
+    "https://myapp.com/settings"
+]
 ```
 
 #### Navigating using `Destination`
@@ -159,7 +196,7 @@ PersonProfile("sherlock_holmes").present()
 PersonProfile("sherlock_holmes").push()
 ```
 
-[Playground example](Playgrounds/Routing.playground)
+[Example](Playgrounds/Routing.playground/Contents.swift)
 
 #### Navigating using route
 
@@ -201,7 +238,7 @@ Navigate.push { $0
 "https://myapp.com/person/sherlock_holmes".push()
 ```
 
-[Playground example](Playgrounds/Routing.playground)
+[Example](Playgrounds/Routing.playground/Contents.swift)
 
 #### Getting view controller asynchronously using `Destination`
 
@@ -229,7 +266,7 @@ do {
 }
 ```
 
-[Playground example](Playgrounds/Routing.playground)
+[Example](Playgrounds/Routing.playground/Contents.swift)
 
 #### Getting view controller synchronously using route
 

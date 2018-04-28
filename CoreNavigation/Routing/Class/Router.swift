@@ -14,9 +14,9 @@ public class Router {
 
     /// Registers route.
     ///
-    /// - Parameter routeType: Route to register.
-    public func register<T: Routable>(routeType: T.Type) {
-        let registration = Registration(destinationType: routeType, patterns: routeType.patterns)
+    /// - Parameter routableType: Route to register.
+    public func register<T: Routable>(routableType: T.Type) {
+        let registration = Registration(destinationType: routableType, patterns: routableType.patterns)
         registrations.append(registration)
     }
 

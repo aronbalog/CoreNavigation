@@ -10,6 +10,6 @@ public protocol Routable: AnyDestination {
 extension Routable {
     /// Registers route.
     static public func register() {
-        Navigate.router.register(routeType: self)
+        Navigate.router.register(routableType: self)
     }
 }
