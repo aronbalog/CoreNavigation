@@ -106,13 +106,25 @@ class Navigator {
         cacheViewControllerIfNeeded(viewController: viewController, with: configuration)
         prepareForStateRestorationIfNeeded(viewController: viewController, with: configuration)
 
-        let data: T.DataType? = (configuration.dataPassing.data as? T.DataType)
-        let result = T.init(toViewController: viewController as! T.ToViewController, data: data)
-
-        configuration.successBlocks.forEach { $0(result) }
-
         if let viewController = viewController as? AbstractDataReceivable {
-            viewController.didReceiveAbstractData(data)
+            let dataPromise = DataPromise(dataPassing: configuration.dataPassing)
+
+            func passData(_ data: T.DataType?) {
+                viewController.didReceiveAbstractData(data)
+
+                let result = T.init(toViewController: viewController as! T.ToViewController, data: data)
+
+                configuration.successBlocks.forEach { $0(result) }
+            }
+
+            switch dataPromise {
+            case .sync(let data):
+                passData(data)
+            case .async(let dataBlock):
+                dataBlock(passData)
+            case .none:
+                ()
+            }
         }
 
         switch type {

@@ -25,7 +25,7 @@ class OtherViewController: UIViewController, DataReceivable {
     typealias DataType = Object
 
     let label = UILabel()
-    var data: Object!
+    var data: Object?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +37,8 @@ class OtherViewController: UIViewController, DataReceivable {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
+        guard let data = data else { return }
+        
         label.text = "Object id: \(data.id)"
         label.sizeToFit()
         label.center = view.center
@@ -44,6 +46,7 @@ class OtherViewController: UIViewController, DataReceivable {
 
     func didReceiveData(_ data: Object) {
         self.data = data
+        view.setNeedsLayout()
     }
 }
 
@@ -57,18 +60,18 @@ struct OtherDestination: Destination, Routable {
         "https://appdomain.com/other/:id(.*)"
     ]
 
-    static func resolve(context: Context<OtherDestination>) {
-        guard let id = context.parameters?["id"] as? String else {
-            context.cancel()
-            return
-        }
-
-        fetchObject(id: id, completion: { (object) in
-            context.complete(data: object)
-        }) { (error) in
-            context.cancel(error: error)
-        }
-    }
+//    static func resolve(context: Context<OtherDestination>) {
+//        guard let id = context.parameters?["id"] as? String else {
+//            context.cancel()
+//            return
+//        }
+//
+//        fetchObject(id: id, completion: { (object) in
+//            context.complete(data: object)
+//        }) { (error) in
+//            context.cancel(error: error)
+//        }
+//    }
 }
 
 OtherDestination.register()
@@ -78,7 +81,17 @@ let rootViewController = try! MyDestination().viewController()
 PlaygroundPage.current.liveView = UINavigationController(rootViewController: rootViewController)
 
 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//    Navigate.push { $0
+//        .to("https://appdomain.com/other/corenavigation")
+//    }
     Navigate.push { $0
-        .to("https://appdomain.com/other/corenavigation")
+        .to(OtherViewController())
+        .passDataInBlock({ (passData) in
+            let object = Object(id: "corenavigation")
+            passData(object)
+        })
+    }
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        
     }
 }

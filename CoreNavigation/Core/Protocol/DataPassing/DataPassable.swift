@@ -47,9 +47,29 @@ extension Configuration where ResultableType.ToViewController: DataReceivable {
 
     /// Prepares data for data receiving view controller.
     ///
+    /// - Parameter dataBlock: Block to pass data.
+    /// - Returns: Configuration instance.
+    @discardableResult public func passDataInBlock(_ dataBlock: @escaping (@escaping (ResultableType.ToViewController.DataType) -> Void) -> Void) -> Configuration<Result<ResultableType.ToViewController, ResultableType.ToViewController.DataType>> {
+        queue.async(flags: .barrier) {
+            self.dataPassing.dataBlock = dataBlock
+        }
+
+        return cast(self, to: Configuration<Result<ResultableType.ToViewController, ResultableType.ToViewController.DataType>>.self)
+    }
+
+    /// Prepares data for data receiving view controller.
+    ///
     /// - Parameter data: Data to pass.
     /// - Returns: Configuration instance.
     @discardableResult public func withData(_ data: ResultableType.ToViewController.DataType) -> Configuration<Result<ResultableType.ToViewController, ResultableType.ToViewController.DataType>> {
         return passData(data)
+    }
+    
+    /// Prepares data for data receiving view controller.
+    ///
+    /// - Parameter dataBlock: Block to pass data.
+    /// - Returns: Configuration instance.
+    @discardableResult public func withDataInBlock(_ dataBlock: @escaping (@escaping (ResultableType.ToViewController.DataType) -> Void) -> Void) -> Configuration<Result<ResultableType.ToViewController, ResultableType.ToViewController.DataType>> {
+        return passDataInBlock(dataBlock)
     }
 }

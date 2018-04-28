@@ -6,9 +6,11 @@ import CoreNavigation
 
 private class MockViewController<T>: UIViewController, DataReceivable {
     var receivedData: T?
+    var didReceiveDataInvokes = 0
 
     func didReceiveData(_ data: T) {
         receivedData = data
+        didReceiveDataInvokes += 1
     }
 
     typealias DataType = T
@@ -36,7 +38,12 @@ class PresentSpec: QuickSpec {
                     .to(mockViewController)
                     .animated(true)
                     .transitioningDelegate(mockTransitioningDelegate)
-                    .passData(mockData)
+                    .passDataInBlock({ (handler) in
+
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                            handler(mockData)
+                        })
+                    })
                     .embeddedInNavigationController()
                     .on(.completion({
                         completionInvokes.invoke()
@@ -57,6 +64,7 @@ class PresentSpec: QuickSpec {
                 it("is presented", closure: {
                     expect(completionInvokes).toEventually(be(2))
                     expect(mockViewController.receivedData).toEventually(equal(mockData))
+                    expect(mockViewController.didReceiveDataInvokes).toEventually(equal(1))
                     expect(mockViewController).toEventually(equal(passedViewController))
                 })
             })

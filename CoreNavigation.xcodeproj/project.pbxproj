@@ -94,6 +94,7 @@
 		38D5B3A1204A36BD005A15BC /* To.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D5B3A0204A36BD005A15BC /* To.swift */; };
 		38E24F74205D609C0062AE85 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E24F73205D609C0062AE85 /* Router.swift */; };
 		38E24F76205D9BC30062AE85 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384CF99C204DC23500330EC7 /* ViewController.swift */; };
+		38E3041F20941A5B00D4B7A9 /* DataPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E3041E20941A5B00D4B7A9 /* DataPromise.swift */; };
 		38F1D897205B04FB001F0B0B /* Swizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1D896205B04FB001F0B0B /* Swizzler.swift */; };
 		38F1D899205B054E001F0B0B /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1D898205B054E001F0B0B /* UIApplication.swift */; };
 		38F1D89B205B0574001F0B0B /* UIViewController+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1D89A205B0574001F0B0B /* UIViewController+Events.swift */; };
@@ -224,6 +225,7 @@
 		38E3041B2093CD4A00D4B7A9 /* Presenting.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Presenting.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		38E3041C2093D5AB00D4B7A9 /* Pushing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Pushing.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		38E3041D2093D5E700D4B7A9 /* Routing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Routing.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		38E3041E20941A5B00D4B7A9 /* DataPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPromise.swift; sourceTree = "<group>"; };
 		38F1D896205B04FB001F0B0B /* Swizzler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swizzler.swift; sourceTree = "<group>"; };
 		38F1D898205B054E001F0B0B /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		38F1D89A205B0574001F0B0B /* UIViewController+Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Events.swift"; sourceTree = "<group>"; };
@@ -630,6 +632,7 @@
 				38645D7B206F1B6300EF5D60 /* NavigationEvent.swift */,
 				38645D7D206F1C7D00EF5D60 /* StateRestorationBehavior.swift */,
 				3850CBED20756E4B0009FB57 /* NavigationError.swift */,
+				38E3041E20941A5B00D4B7A9 /* DataPromise.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -1028,6 +1031,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				388A2F192065AC66009BC5AC /* OriginAware.swift in Sources */,
+				38E3041F20941A5B00D4B7A9 /* DataPromise.swift in Sources */,
 				38F1D8A4205B2F83001F0B0B /* Lifetime.swift in Sources */,
 				38645D7C206F1B6300EF5D60 /* NavigationEvent.swift in Sources */,
 				3881752520560F390054CFBB /* EmbeddingAware.swift in Sources */,

@@ -42,6 +42,7 @@ public final class Configuration<ResultableType: Resultable> {
 
     class DataPassing: DataPassingAware {
         public var data: Any??
+        public var dataBlock: Any?
     }
 
     class Events: EventAware {
