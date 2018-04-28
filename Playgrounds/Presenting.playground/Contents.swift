@@ -5,7 +5,7 @@ import CoreNavigation
 class MyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         view.backgroundColor = .white
     }
 }
@@ -13,7 +13,7 @@ class MyViewController: UIViewController {
 class OtherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         view.backgroundColor = .orange
     }
 }
@@ -21,10 +21,9 @@ class OtherViewController: UIViewController {
 PlaygroundPage.current.liveView = MyViewController()
 
 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-    
+
     Navigate.present { $0
         .to(OtherViewController())
         .embeddedInNavigationController()
     }
 }
-

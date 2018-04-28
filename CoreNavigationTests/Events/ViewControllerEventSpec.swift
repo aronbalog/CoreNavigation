@@ -4,14 +4,14 @@ import Nimble
 
 @testable import CoreNavigation
 
-fileprivate class MockViewController: UIViewController {}
+private class MockViewController: UIViewController {}
 
 class ViewControllerEventsSpec: QuickSpec {
     override func spec() {
         describe("View controller events") {
             context("when presenting view controllers", {
                 let mockViewController = MockViewController()
-                
+
                 var loadView = 0
                 var viewDidLoad = 0
                 var viewWillAppear = 0
@@ -28,55 +28,55 @@ class ViewControllerEventsSpec: QuickSpec {
                 var applicationFinishedRestoringState = 0
                 var viewLayoutMarginsDidChange = 0
                 var viewSafeAreaInsetsDidChange = 0
-                
+
                 Navigate.present({ $0
                     .to(mockViewController)
-                    .on(.viewController(.loadView { viewController in
+                    .on(.viewController(.loadView { _ in
                         loadView.invoke()
                     }))
-                    .on(.viewController(.viewDidLoad { viewController in
+                    .on(.viewController(.viewDidLoad { _ in
                         viewDidLoad.invoke()
                     }))
-                    .on(.viewController(.viewWillAppear({ (viewController, animated) in
+                    .on(.viewController(.viewWillAppear({ (_, _) in
                         viewWillAppear.invoke()
                     })))
-                    .on(.viewController(.viewDidAppear({ (viewController, animated) in
+                    .on(.viewController(.viewDidAppear({ (_, _) in
                         viewDidAppear.invoke()
                     })))
-                    .on(.viewController(.viewWillDisappear({ (viewController, animated) in
+                    .on(.viewController(.viewWillDisappear({ (_, _) in
                         viewWillDisappear.invoke()
                     })))
-                    .on(.viewController(.viewDidDisappear({ (viewController, animated) in
+                    .on(.viewController(.viewDidDisappear({ (_, _) in
                         viewDidDisappear.invoke()
                     })))
-                    .on(.viewController(.viewWillTransition({ (viewController, size, coordinator) in
+                    .on(.viewController(.viewWillTransition({ (_, _, _) in
                         viewWillTransition.invoke()
                     })))
-                    .on(.viewController(.viewWillLayoutSubviews({ (viewController) in
+                    .on(.viewController(.viewWillLayoutSubviews({ (_) in
                         viewWillLayoutSubviews.invoke()
                     })))
-                    .on(.viewController(.viewDidLayoutSubviews({ (viewController) in
+                    .on(.viewController(.viewDidLayoutSubviews({ (_) in
                         viewDidLayoutSubviews.invoke()
                     })))
-                    .on(.viewController(.updateViewConstraints({ (viewController) in
+                    .on(.viewController(.updateViewConstraints({ (_) in
                         updateViewConstraints.invoke()
                     })))
-                    .on(.viewController(.willMoveTo({ (viewController, parentViewController) in
+                    .on(.viewController(.willMoveTo({ (_, _) in
                         willMoveTo.invoke()
                     })))
-                    .on(.viewController(.didMoveTo({ (viewController, parentViewController) in
+                    .on(.viewController(.didMoveTo({ (_, _) in
                         didMoveTo.invoke()
                     })))
-                    .on(.viewController(.didReceiveMemoryWarning({ (viewController) in
+                    .on(.viewController(.didReceiveMemoryWarning({ (_) in
                         didReceiveMemoryWarning.invoke()
                     })))
-                    .on(.viewController(.applicationFinishedRestoringState({ (viewController) in
+                    .on(.viewController(.applicationFinishedRestoringState({ (_) in
                         applicationFinishedRestoringState.invoke()
                     })))
-                    .on(.viewController(.viewLayoutMarginsDidChange({ (viewController) in
+                    .on(.viewController(.viewLayoutMarginsDidChange({ (_) in
                         viewLayoutMarginsDidChange.invoke()
                     })))
-                    .on(.viewController(.viewSafeAreaInsetsDidChange({ (viewController) in
+                    .on(.viewController(.viewSafeAreaInsetsDidChange({ (_) in
                         viewSafeAreaInsetsDidChange.invoke()
                     })))
                     .completion {
@@ -91,8 +91,7 @@ class ViewControllerEventsSpec: QuickSpec {
                     .unsafely()
                     .inWindow(MockWindow())
                 })
-                
-                
+
                 it("are called", closure: {
                     expect(loadView.isInvokedOnce).toEventually(beTrue())
                     expect(viewDidLoad.isInvokedOnce).toEventually(beTrue())
@@ -116,54 +115,53 @@ class ViewControllerEventsSpec: QuickSpec {
     }
 }
 
-fileprivate class MockCoordinator: NSObject, UIViewControllerTransitionCoordinator {
+private class MockCoordinator: NSObject, UIViewControllerTransitionCoordinator {
     var isAnimated: Bool = false
-    
+
     var presentationStyle: UIModalPresentationStyle = .fullScreen
-    
+
     var initiallyInteractive: Bool = false
-    
+
     var isInterruptible: Bool = false
-    
+
     var isInteractive: Bool = false
-    
+
     var isCancelled: Bool = false
-    
+
     var transitionDuration: TimeInterval = 0
-    
+
     var percentComplete: CGFloat = 0
-    
+
     var completionVelocity: CGFloat = 0
-    
+
     var completionCurve: UIViewAnimationCurve = .easeIn
-    
+
     func viewController(forKey key: UITransitionContextViewControllerKey) -> UIViewController? {
         return nil
     }
-    
+
     func view(forKey key: UITransitionContextViewKey) -> UIView? {
         return nil
     }
-    
+
     var containerView: UIView = UIView()
-    
+
     var targetTransform: CGAffineTransform = .init()
-    
+
     func animate(alongsideTransition animation: ((UIViewControllerTransitionCoordinatorContext) -> Void)?, completion: ((UIViewControllerTransitionCoordinatorContext) -> Void)? = nil) -> Bool {
         return false
     }
-    
+
     func animateAlongsideTransition(in view: UIView?, animation: ((UIViewControllerTransitionCoordinatorContext) -> Void)?, completion: ((UIViewControllerTransitionCoordinatorContext) -> Void)? = nil) -> Bool {
         return false
     }
-    
+
     func notifyWhenInteractionEnds(_ handler: @escaping (UIViewControllerTransitionCoordinatorContext) -> Void) {
-        
+
     }
-    
+
     func notifyWhenInteractionChanges(_ handler: @escaping (UIViewControllerTransitionCoordinatorContext) -> Void) {
-        
+
     }
-    
-    
+
 }

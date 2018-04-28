@@ -2,9 +2,9 @@ import Foundation
 
 protocol Cacheable: class {
     associatedtype Caching: CachingAware
-    
+
     var caching: Caching { get set }
-    
+
     @discardableResult func keepAlive(within lifetime: Lifetime, cacheIdentifier: String) -> Self
 }
 
@@ -20,8 +20,7 @@ extension Configuration: Cacheable {
         queue.async(flags: .barrier) {
             self.caching.configuration = (lifetime, cacheIdentifier)
         }
-        
+
         return self
     }
 }
-

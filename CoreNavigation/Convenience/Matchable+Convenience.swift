@@ -15,7 +15,7 @@ public extension Matchable {
         }) { (_error) in
             error = _error
         }
-        
+
         guard let _viewController = viewController else {
             if let error = error {
                 throw error
@@ -23,10 +23,10 @@ public extension Matchable {
                 throw NavigationError.unknown
             }
         }
-        
+
         return _viewController
     }
-    
+
     /// Resolves view controller.
     ///
     /// - Parameters:
@@ -35,25 +35,25 @@ public extension Matchable {
     public func viewController<T: UIViewController>(_ viewControllerBlock: @escaping (T) -> Void, failure: ((Error) -> Void)? = nil) {
         UIViewController.resolve(self, viewControllerBlock, failure: failure)
     }
-    
+
     /// Presents view controller after routing to self.
     ///
     /// - Parameter completion: Completion block.
     public func present(completion: (() -> Void)? = nil) {
         let configuration = To<Result<UIViewController, Any>>(.present, from: nil).to(self)
-        
+
         if let completion = completion {
             configuration.completion(completion)
         }
     }
-    
+
     /// Presents view controller after routing to self.
     ///
     /// - Parameter block: Navigation configuration block.
     public func present(_ block: @escaping (Configuration<Result<UIViewController, Any>>) -> Void) {
         block(To<Result<UIViewController, Any>>(.present, from: nil).to(self))
     }
-    
+
     /// Pushes view controller after routing to self.
     ///
     /// - Parameter block: Navigation configuration block.

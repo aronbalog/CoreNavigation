@@ -4,21 +4,20 @@ import Nimble
 
 @testable import CoreNavigation
 
-fileprivate class MockProtectionSpace: ProtectionSpace {
+private class MockProtectionSpace: ProtectionSpace {
     var isProtected = true
-    
+
     func protect(_ handler: ProtectionHandler) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.isProtected = false
             handler.unprotect()
         }
     }
-    
+
     func shouldProtect() -> Bool {
         return isProtected
     }
-    
-    
+
 }
 
 class ProtectionSpec: QuickSpec {
@@ -27,7 +26,7 @@ class ProtectionSpec: QuickSpec {
             context("when presenting protected view controller", {
                 let mockProtectionSpace = MockProtectionSpace()
                 var didNavigate = false
-                
+
                 Navigate.present { $0
                     .to(UIViewController())
                     .protect(with: mockProtectionSpace)
@@ -35,7 +34,7 @@ class ProtectionSpec: QuickSpec {
                         didNavigate = true
                     }
                 }
-                
+
                 it("", closure: {
                     expect(mockProtectionSpace.isProtected).toEventually(beFalse())
                     expect(didNavigate).toEventually(beTrue())
@@ -44,7 +43,3 @@ class ProtectionSpec: QuickSpec {
         }
     }
 }
-
-
-
-

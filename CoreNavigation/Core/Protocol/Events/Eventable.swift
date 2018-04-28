@@ -4,7 +4,7 @@ protocol Eventable {
     associatedtype Events: EventAware
 
     var events: Events { get set }
-    
+
     @discardableResult func on(_ event: Events.NavigationEvent) -> Self
 }
 
@@ -18,7 +18,7 @@ extension Configuration: Eventable {
         queue.async(flags: .barrier) {
             self.events.navigationEvents.append(event)
         }
-        
+
         return self
     }
 }

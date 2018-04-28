@@ -4,7 +4,7 @@ extension UIApplication {
     private static let runOnce: Void = {
         UIViewController.swizzleMethods
     }()
-    
+
     /// :nodoc:
     override open var next: UIResponder? {
         // Called before applicationDidFinishLaunching

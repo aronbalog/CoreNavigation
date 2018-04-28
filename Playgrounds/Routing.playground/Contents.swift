@@ -16,32 +16,32 @@ func fetchObject(id: String, completion: @escaping (Object) -> Void, failure: @e
 class MyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         view.backgroundColor = .white
     }
 }
 
 class OtherViewController: UIViewController, DataReceivable {
     typealias DataType = Object
-    
+
     let label = UILabel()
     var data: Object!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         view.backgroundColor = .orange
         view.addSubview(label)
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
+
         label.text = "Object id: \(data.id)"
         label.sizeToFit()
         label.center = view.center
     }
-    
+
     func didReceiveData(_ data: Object) {
         self.data = data
     }
@@ -56,13 +56,13 @@ struct OtherDestination: Destination, Routable {
     static var patterns: [String] = [
         "https://appdomain.com/other/:id(.*)"
     ]
-    
+
     static func resolve(context: Context<OtherDestination>) {
         guard let id = context.parameters?["id"] as? String else {
             context.cancel()
             return
         }
-        
+
         fetchObject(id: id, completion: { (object) in
             context.complete(data: object)
         }) { (error) in
@@ -82,4 +82,3 @@ DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
         .to("https://appdomain.com/other/corenavigation")
     }
 }
-

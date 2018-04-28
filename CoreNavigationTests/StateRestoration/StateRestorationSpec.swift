@@ -15,47 +15,47 @@ class StateRestorationSpec: QuickSpec {
                     .unsafely()
                     .inWindow(MockWindow())
                 })
-                
+
                 it("it has restoration data", closure: {
                     expect(mockViewController.restorationIdentifier).toEventuallyNot(beNil())
                     expect(mockViewController.restorationClass).toEventually(beAnInstanceOf(StateRestoration.Type.self))
                 })
             })
-            
+
             context("when presenting view controller with state restoration identifier", {
                 let mockViewController = UIViewController()
                 let identifier = "mock"
-                
+
                 Navigate.present({ $0
                     .to(mockViewController)
                     .stateRestorable(identifier: identifier)
                     .unsafely()
                     .inWindow(MockWindow())
                 })
-                
+
                 it("it has restoration data", closure: {
                     expect(mockViewController.restorationIdentifier).toEventually(equal(identifier))
                     expect(mockViewController.restorationClass).toEventually(beAnInstanceOf(StateRestoration.Type.self))
                 })
             })
-            
+
             context("when presenting view controller with state restoration identifier and class", {
                 class MockStateRestoration: UIViewControllerRestoration {
                     static func viewController(withRestorationIdentifierPath identifierComponents: [Any], coder: NSCoder) -> UIViewController? {
                         return nil
                     }
                 }
-                
+
                 let mockViewController = UIViewController()
                 let identifier = "mock"
-                
+
                 Navigate.present({ $0
                     .to(mockViewController)
                     .stateRestorable(identifier: identifier, class: MockStateRestoration.self)
                     .unsafely()
                     .inWindow(MockWindow())
                 })
-                
+
                 it("it has restoration data", closure: {
                     expect(mockViewController.restorationIdentifier).toEventually(equal(identifier))
                     expect(mockViewController.restorationClass).toEventually(beAnInstanceOf(MockStateRestoration.Type.self))
@@ -64,4 +64,3 @@ class StateRestorationSpec: QuickSpec {
         }
     }
 }
-

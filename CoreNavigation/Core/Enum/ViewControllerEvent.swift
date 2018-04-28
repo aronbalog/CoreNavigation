@@ -16,7 +16,7 @@ public enum ViewControllerEvent<T: UIViewController> {
     case didMoveTo((_ viewController: T, _ parentViewController: UIViewController?) -> Void)
     case didReceiveMemoryWarning((_ viewController: T) -> Void)
     case applicationFinishedRestoringState((_ viewController: T) -> Void)
-    
+
     @available(iOS 11.0, *) case viewLayoutMarginsDidChange((_ viewController: T) -> Void)
     @available(iOS 11.0, *) case viewSafeAreaInsetsDidChange((_ viewController: T) -> Void)
 }

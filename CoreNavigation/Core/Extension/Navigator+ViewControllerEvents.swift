@@ -3,7 +3,7 @@ import Foundation
 extension Navigator {
     static func bindViewControllerEvents<T>(to viewController: UIViewController, with configuration: Configuration<T>) {
         let viewControllerEvents = ViewControllerObserver()
-        
+
         configuration.events.navigationEvents.forEach { (event) in
             switch event {
             case .viewController(let viewControllerEvent):
@@ -45,7 +45,7 @@ extension Navigator {
                 ()
             }
         }
-        
+
         viewController.events = viewControllerEvents
     }
 }

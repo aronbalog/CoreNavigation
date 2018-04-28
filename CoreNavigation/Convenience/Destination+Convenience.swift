@@ -9,13 +9,13 @@ public extension Destination {
     public func viewController() throws -> ViewControllerType {
         var viewController: ViewControllerType?
         var error: Error?
-        
+
         self.viewController({ (_viewController) in
             viewController = _viewController
         }) { (_error) in
             error = _error
         }
-        
+
         guard let _viewController = viewController else {
             if let error = error {
                 throw error
@@ -23,10 +23,10 @@ public extension Destination {
                 throw NavigationError.unknown
             }
         }
-        
+
         return _viewController
     }
-    
+
     /// Resolves view controller asynchronously.
     ///
     /// - Parameters:
@@ -36,38 +36,38 @@ public extension Destination {
         let context = Context<Self>(parameters: parameters)
 
         let configuration = Configuration<Result<ViewControllerType, Any>>(request: .viewControllerBlock({ block in
-            context.destinationBlocks.append({ (viewController, data) in
+            context.destinationBlocks.append({ (viewController, _) in
                 block(.success(viewController))
             })
             context.cancelBlocks.append({ (error) in
                 block(.failure(error))
             })
-            
+
         }), from: nil)
-        
+
         Navigator.getViewController(configuration: configuration, completion: viewControllerBlock, failure: failure)
-        
+
         type(of: self).resolve(context: context)
     }
-    
+
     /// Presents view controller.
     ///
     /// - Parameter completion: Completion block.
     public func present(completion: (() -> Void)? = nil) {
         let configuration = To<Result<ViewControllerType, Any>>(.present, from: nil).to(self)
-        
+
         if let completion = completion {
             configuration.completion(completion)
         }
     }
-    
+
     /// Presents view controller.
     ///
     /// - Parameter block: Configuration object.
     public func present(_ block: @escaping (Configuration<Result<ViewControllerType, Any>>) -> Void) {
         block(To<Result<ViewControllerType, Any>>(.present, from: nil).to(self))
     }
-    
+
     /// Pushes view controller.
     ///
     /// - Parameter block: Configuration object.

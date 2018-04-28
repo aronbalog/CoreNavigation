@@ -21,10 +21,10 @@ extension AnyDestination where Self: Destination {
     ///   - failure: Call this block and pass optional error to cancel routing.
     public static func resolve(parameters: [String: Any]?, destination: @escaping (UIViewController, Any?) -> Void, failure: @escaping (Error?) -> Void) {
         let context = Context<Self>(parameters: parameters)
-        
+
         context.destinationBlocks.append(destination)
         context.cancelBlocks.append(failure)
-        
+
         resolve(context: context)
     }
 }

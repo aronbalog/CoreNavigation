@@ -4,9 +4,9 @@ import UIKit
 class Navigator {
     static var queue: OperationQueue = {
         let queue = OperationQueue()
-        
+
         queue.maxConcurrentOperationCount = 1
-        
+
         return queue
     }()
 
@@ -29,7 +29,7 @@ class Navigator {
                 switch result {
                 case .success(let viewControllerClass):
                     let viewController = viewControllerClass.init()
-                    
+
                     completion(viewController)
                 case .failure(let error):
                     failure?(error)
@@ -37,7 +37,7 @@ class Navigator {
             }
         }
     }
-    
+
     static func navigate<T>(with type: NavigationType, configuration: Configuration<T>, completion: (() -> Void)? = nil) {
         func main(handler: @escaping () -> Void) {
             func navigation() {
@@ -72,49 +72,49 @@ class Navigator {
                         }
                     }
                 }
-                
+
                 completion?()
             }
-            
+
             if
                 let protectionSpace = configuration.protection.protectionSpace,
                 protectionSpace.shouldProtect() == true
             {
                 let handler = ProtectionHandler()
-                
+
                 handler.onUnprotect {
                     navigation()
                 }
-                
+
                 protectionSpace.protect(handler)
             } else {
                 navigation()
             }
         }
-        
+
         if configuration.unsafeNavigation.isUnsafe {
             main(handler: {})
         } else {
             let operation = NavigationOperation(block: main)
-            
+
             queue.addOperation(operation)
         }
     }
-    
+
     static func action<T>(type: NavigationType, viewController: UIViewController, configuration: Configuration<T>, handler: @escaping () -> Void) {
         bindViewControllerEvents(to: viewController, with: configuration)
         cacheViewControllerIfNeeded(viewController: viewController, with: configuration)
         prepareForStateRestorationIfNeeded(viewController: viewController, with: configuration)
-        
+
         let data: T.DataType? = (configuration.dataPassing.data as? T.DataType)
         let result = T.init(toViewController: viewController as! T.ToViewController, data: data)
-        
+
         configuration.successBlocks.forEach { $0(result) }
-        
+
         if let viewController = viewController as? AbstractDataReceivable {
             viewController.didReceiveAbstractData(data)
         }
-        
+
         switch type {
         case .push:
             push(viewController, with: configuration, completion: handler)
@@ -122,19 +122,19 @@ class Navigator {
             present(viewController, with: configuration, completion: handler)
         }
     }
-    
+
     static func failure<T>(error: Error, configuration: Configuration<T>, handler: @escaping () -> Void) {
         configuration.failureBlocks.forEach { $0(error) }
-        
+
         handler()
     }
-    
+
     static func viewControllerToNavigate<T>(_ viewController: UIViewController, with configuration: Configuration<T>) -> UIViewController {
         return configuration.queue.sync(execute: { () -> UIViewController in
             guard let embeddingType = configuration.embedding.embeddingType else {
                 return viewController
             }
-            
+
             let viewControllerToNavigate: UIViewController = {
                 switch embeddingType {
                 case .embeddingProtocol(let aProtocol):
@@ -143,9 +143,9 @@ class Navigator {
                     return UINavigationController(rootViewController: viewController)
                 }
             }()
-            
+
             prepareForStateRestorationIfNeeded(viewController: viewControllerToNavigate, with: configuration)
-            
+
             return viewControllerToNavigate
         })
     }

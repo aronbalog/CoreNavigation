@@ -2,9 +2,9 @@ import Foundation
 
 protocol Protectable: class {
     associatedtype Protection: ProtectionAware
-    
+
     var protection: Protection { get set }
-    
+
     @discardableResult func protect(with protectionSpace: ProtectionSpace) -> Self
 }
 
@@ -18,7 +18,7 @@ extension Configuration: Protectable {
         queue.async(flags: .barrier) {
             self.protection.protectionSpace = protectionSpace
         }
-        
+
         return self
     }
 }

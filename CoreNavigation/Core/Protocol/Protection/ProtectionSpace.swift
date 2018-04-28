@@ -6,7 +6,7 @@ public protocol ProtectionSpace: class {
     ///
     /// - Parameter handler: `ProtectionHandler` object. Call `unprotect()` when ready to continue navigation.
     func protect(_ handler: ProtectionHandler)
-    
+
     /// Called by module before protecting.
     ///
     /// - Returns: Boolean. If `true` is returned, `protect(_:)` will be called. Returning false navigates immediately.

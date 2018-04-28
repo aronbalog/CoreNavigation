@@ -4,7 +4,7 @@ import Foundation
 public final class Configuration<ResultableType: Resultable> {
     let request: Request<ResultableType.ToViewController>
     let from: UIViewController?
-    
+
     var successBlocks: [(ResultableType) -> Void] = []
     var failureBlocks: [(Error) -> Void] = []
 
@@ -20,55 +20,55 @@ public final class Configuration<ResultableType: Resultable> {
     var windowObject = WindowObject()
 
     let queue = DispatchQueue(label: "corenavigation.configuration.queue", attributes: .concurrent)
-    
+
     var originViewController: UIViewController? {
         return from ?? origin.fromViewController
     }
-    
+
     init(request: Request<ResultableType.ToViewController>, from: UIViewController?) {
         self.request = request
         self.from = from
     }
-    
+
     class Transitioning: TransitioningAware {
         public var animated: Bool = true
         public var completionBlocks: [() -> Void] = []
         public var viewControllerTransitioningDelegate: UIViewControllerTransitioningDelegate?
     }
-    
+
     class Embedding: EmbeddingAware {
         public var embeddingType: EmbeddingType?
     }
-    
+
     class DataPassing: DataPassingAware {
         public var data: Any??
     }
-    
-    class Events: EventAware {   
+
+    class Events: EventAware {
         public var navigationEvents: [NavigationEvent<ResultableType.ToViewController, ResultableType.DataType>] = []
         var passDataBlocks: [Any] = []
     }
-    
+
     class Caching: CachingAware {
         var configuration: (lifetime: Lifetime, cacheIdentifier: String)?
     }
-    
+
     class Protection: ProtectionAware {
         var protectionSpace: ProtectionSpace?
     }
-    
+
     class UnsafeNavigationObject: UnsafeNavigationAware {
         var isUnsafe: Bool = false
     }
-    
+
     class StateRestoration: StateRestorationAware {
         var option: StateRestorationOption = .ignore
     }
-    
+
     class Origin: OriginAware {
         var fromViewController: UIViewController?
     }
-    
+
     class WindowObject: WindowNavigationAware {
         var window: UIWindow?
     }

@@ -4,18 +4,18 @@ import Nimble
 
 import CoreNavigation
 
-fileprivate class MockViewController<T>: UIViewController, DataReceivable {
+private class MockViewController<T>: UIViewController, DataReceivable {
     var receivedData: T?
-    
+
     func didReceiveData(_ data: T) {
         receivedData = data
     }
-    
+
     typealias DataType = T
 }
 
-fileprivate class MockTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
-    
+private class MockTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
+
 }
 
 class PresentSpec: QuickSpec {
@@ -24,11 +24,11 @@ class PresentSpec: QuickSpec {
             context("when presenting", {
                 typealias DataType = String
                 typealias ViewController = MockViewController<DataType>
-                
+
                 let mockData: DataType = "data"
                 let mockViewController = ViewController()
                 let mockTransitioningDelegate = MockTransitioningDelegate()
-                
+
                 var completionInvokes = 0
                 var passedViewController: ViewController?
 
@@ -53,24 +53,24 @@ class PresentSpec: QuickSpec {
                     .unsafely()
                     .inWindow(MockWindow())
                 })
-                
+
                 it("is presented", closure: {
                     expect(completionInvokes).toEventually(be(2))
                     expect(mockViewController.receivedData).toEventually(equal(mockData))
                     expect(mockViewController).toEventually(equal(passedViewController))
                 })
             })
-            
+
             context("when presenting", {
                 typealias DataType = String
                 typealias ViewController = MockViewController<DataType>
-                
+
                 let mockViewController = ViewController()
-                
+
                 MockWindow().rootViewController?.present({ $0
                     .to(mockViewController)
                 })
-                
+
                 it("is presented", closure: {
                     expect(mockViewController.isViewLoaded).toEventually(beTrue())
                 })

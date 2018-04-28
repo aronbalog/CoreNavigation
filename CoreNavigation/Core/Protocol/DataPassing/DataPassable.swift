@@ -2,9 +2,9 @@ import Foundation
 
 protocol DataPassable: class {
     associatedtype DataPassing: DataPassingAware
-    
+
     var dataPassing: DataPassing { get set }
-    
+
     @discardableResult func passData(_ data: Any) -> Self
 }
 
@@ -18,10 +18,10 @@ extension Configuration: DataPassable {
         queue.async(flags: .barrier) {
             self.dataPassing.data = data
         }
-        
+
         return self
     }
-    
+
     /// Prepares data for view controller.
     ///
     /// - Parameter data: Data to pass.
@@ -41,10 +41,10 @@ extension Configuration where ResultableType.ToViewController: DataReceivable {
         queue.async(flags: .barrier) {
             self.dataPassing.data = data
         }
-        
+
         return cast(self, to: Configuration<Result<ResultableType.ToViewController, ResultableType.ToViewController.DataType>>.self)
     }
-    
+
     /// Prepares data for data receiving view controller.
     ///
     /// - Parameter data: Data to pass.

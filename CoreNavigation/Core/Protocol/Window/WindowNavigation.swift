@@ -2,9 +2,9 @@ import Foundation
 
 protocol WindowNavigation {
     associatedtype WindowObject: WindowNavigationAware
-    
+
     var windowObject: WindowObject { get set }
-    
+
     @discardableResult func inWindow(_ window: UIWindow) -> Self
 }
 
@@ -18,7 +18,7 @@ extension Configuration: WindowNavigation {
         queue.async(flags: .barrier) {
             self.windowObject.window = window
         }
-        
+
         return self
     }
 }

@@ -8,30 +8,30 @@ public extension UIViewController {
     ///   - path: Path to resolve.
     ///   - viewControllerBlock: Block returning UIViewController instance.
     ///   - failure: Block returning Error instance.
-    public static func resolve<T: UIViewController>(_ path: String, _ viewControllerBlock: @escaping (T) -> Void, failure: ((Error) -> Void)?)  {
+    public static func resolve<T: UIViewController>(_ path: String, _ viewControllerBlock: @escaping (T) -> Void, failure: ((Error) -> Void)?) {
         _resolve(matchable: path, viewControllerBlock, failure: failure)
     }
-    
+
     /// Resolves view controller from URL.
     ///
     /// - Parameters:
     ///   - url: URL to resolve.
     ///   - viewControllerBlock: Block returning UIViewController instance.
     ///   - failure: Block returning Error instance.
-    public static func resolve<T: UIViewController>(_ url: URL, _ viewControllerBlock: @escaping (T) -> Void, failure: ((Error) -> Void)?)  {
+    public static func resolve<T: UIViewController>(_ url: URL, _ viewControllerBlock: @escaping (T) -> Void, failure: ((Error) -> Void)?) {
         _resolve(matchable: url, viewControllerBlock, failure: failure)
     }
-    
+
     /// Resolves view controller from `Matchable` object.
     ///
     /// - Parameters:
     ///   - matchable: Object conforming `Matchable` protocol.
     ///   - viewControllerBlock: Block returning UIViewController instance.
     ///   - failure: Block returning Error instance.
-    public static func resolve<T: UIViewController>(_ matchable: Matchable, _ viewControllerBlock: @escaping (T) -> Void, failure: ((Error) -> Void)?)  {
+    public static func resolve<T: UIViewController>(_ matchable: Matchable, _ viewControllerBlock: @escaping (T) -> Void, failure: ((Error) -> Void)?) {
         _resolve(matchable: matchable, viewControllerBlock, failure: failure)
     }
-    
+
     /// Resolves view controller from `Destination` object.
     ///
     /// - Parameters:
@@ -50,24 +50,24 @@ public extension UIViewController {
     /// - Returns: This instance.
     @discardableResult public func present(_ block: (To<Result<UIViewController, Any>>) -> Void) -> Self {
         block(To(.present, from: self))
-        
+
         return self
     }
-    
+
     /// Pushes view controller from this view controller.
     ///
     /// - Parameter block: Configuration block.
     /// - Returns: This instance.
     @discardableResult public func push(_ block: (To<Result<UIViewController, Any>>) -> Void) -> Self {
         block(To(.push, from: self))
-        
+
         return self
     }
 }
 
-private func _resolve<T: UIViewController>(matchable: Matchable, _ viewControllerBlock: @escaping (T) -> Void, failure: ((Error) -> Void)?)  {
+private func _resolve<T: UIViewController>(matchable: Matchable, _ viewControllerBlock: @escaping (T) -> Void, failure: ((Error) -> Void)?) {
     typealias ToType = To<Result<T, Any>>
-    
+
     ToType.to(matchable: matchable, from: nil) { (configuration) in
         Navigator.getViewController(configuration: configuration, completion: viewControllerBlock, failure: failure)
     }

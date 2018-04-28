@@ -5,7 +5,6 @@ import Foundation
 /// - unknown: Unknown error.
 /// - destinationNotFound: Destination is not found.
 
-
 /// Navigation error enum.
 ///
 /// - unknown: Unknown error.
@@ -13,7 +12,7 @@ import Foundation
 public enum NavigationError: Error {
     /// Unknown error.
     case unknown
-    
+
     /// Destination error
     ///
     /// - notFound: Destination is not found.

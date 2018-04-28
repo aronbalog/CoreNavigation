@@ -2,9 +2,9 @@ import Foundation
 
 protocol UnsafeNavigation {
     associatedtype UnsafeNavigationObject: UnsafeNavigationAware
-    
+
     var unsafeNavigation: UnsafeNavigationObject { get set }
-    
+
     @discardableResult func unsafely() -> Self
 }
 
@@ -17,8 +17,7 @@ extension Configuration: UnsafeNavigation {
         queue.async(flags: .barrier) {
             self.unsafeNavigation.isUnsafe = true
         }
-        
+
         return self
     }
 }
-

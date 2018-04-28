@@ -2,9 +2,9 @@ import Foundation
 
 protocol Transitionable: class {
     associatedtype Transitioning: TransitioningAware
-    
+
     var transitioning: Transitioning { get set }
-    
+
     @discardableResult func animated(_ animated: Bool) -> Self
     @discardableResult func completion(_ completion: @escaping () -> Void) -> Self
     @discardableResult func transitioningDelegate(_ transitioningDelegate: UIViewControllerTransitioningDelegate) -> Self
@@ -19,10 +19,10 @@ extension Configuration: Transitionable {
         queue.async(flags: .barrier) {
             self.transitioning.animated = animated
         }
-        
+
         return self
     }
-    
+
     /// Observes navigation transitioning completion.
     ///
     /// - Parameter completion: Completion block called after navigation transitioning.
@@ -31,7 +31,7 @@ extension Configuration: Transitionable {
         queue.async(flags: .barrier) {
             self.transitioning.completionBlocks.append(completion)
         }
-        
+
         return self
     }
 
@@ -43,7 +43,7 @@ extension Configuration: Transitionable {
         queue.async(flags: .barrier) {
             self.transitioning.viewControllerTransitioningDelegate = transitioningDelegate
         }
-        
+
         return self
     }
 }
