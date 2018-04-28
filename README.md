@@ -3,7 +3,9 @@
 Navigate between view controllers with ease. 💫
 
 [![Build Status](https://travis-ci.org/aronbalog/CoreNavigation.svg?branch=master)](https://travis-ci.org/aronbalog/CoreNavigation)
+[![Documentation](docs/badge.svg)](http://aronbalog.github.io/CoreNavigation)
 [![Platform](https://img.shields.io/cocoapods/p/CoreNavigation.svg?style=flat)](https://github.com/aronbalog/CoreNavigation)
+[![codecov](https://codecov.io/gh/aronbalog/CoreNavigation/branch/master/graph/badge.svg)](https://codecov.io/gh/aronbalog/CoreNavigation)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/CoreNavigation.svg)](https://img.shields.io/cocoapods/v/CoreNavigation.svg)
 
 - [Getting Started]
@@ -40,18 +42,51 @@ These instructions will help you integrate CoreNavigation into your project.
 - iOS 8 or higher
 - Cocoapods
 
-### Installing
+### Installation
 
-Add following line to your `Podfile`
+#### CocoaPods
 
-```ruby
-pod 'CoreNavigation', '~> 1.0'
+[CocoaPods](http://cocoapods.org/) is a dependency manager for Cocoa projects. You can install it with the following command:
+
+```bash
+$ gem install cocoapods
 ```
 
-and run 
+> CocoaPods 1.1+ is required to build CoreNavigation 1.0+.
+
+To integrate CoreNavigation into your Xcode project using CocoaPods, specify it in your Podfile:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '10.0'
+use_frameworks!
+
+target '<Your Target Name>' do
+    pod 'CoreNavigation', '1.0.0-beta-1'
+end
+```
+
+Then, run the following command:
 
 ```bash
 $ pod install
+```
+
+#### Carthage
+
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
+
+You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+To integrate CoreNavigation into your Xcode project using Carthage, specify it in your Cartfile:
+
+```
+github "aronbalog/CoreNavigation" == "1.0.0-beta-1"
 ```
 
 ## API Reference
@@ -419,7 +454,7 @@ Available in `CoreNavigationTests` target.
 
 Current release:
 
-- 1.0.0
+- 1.0.0-beta-1
 
 ## Authors
 
