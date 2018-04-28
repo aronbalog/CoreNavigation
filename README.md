@@ -6,7 +6,31 @@ Navigate between view controllers with ease. 💫
 [![Platform](https://img.shields.io/cocoapods/p/CoreNavigation.svg?style=flat)](https://github.com/aronbalog/CoreNavigation)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/CoreNavigation.svg)](https://img.shields.io/cocoapods/v/CoreNavigation.svg)
 
-## Getting Started 🚀
+- [Getting Started]
+- [API Reference]
+- [Example Use]
+    - [Defining view controller]
+    - [Presenting view controller]
+    - [Pushing view controller]
+    - [Routing & deep linking]
+- [Running the Tests]
+- [Versioning]
+- [Authors]
+- [License]
+
+[Getting Started]: #getting-started
+[API Reference]: #api-reference
+[Example Use]: #example-use
+[Defining view controller]: #defining-view-controller
+[Presenting view controller]: #presenting-view-controller
+[Pushing view controller]: #pushing-view-controller
+[Routing & deep linking]: #routing--deep-linking
+[Running the Tests]: #running-the-tests
+[Versioning]: #versioning
+[Authors]: #authors
+[License]: #license
+
+## Getting Started
 
 These instructions will help you integrate CoreNavigation into your project.
 
@@ -30,11 +54,13 @@ and run
 $ pod install
 ```
 
-## Example Use 💻
+## API Reference
 
-### Basic examples
+### [API reference](Documentation/API_REFERENCE.md)
 
-#### Defining view controller:
+## Example Use
+
+### Defining view controller:
 
 ```swift
 class PersonProfileViewController: UIViewController, DataReceivable {
@@ -48,7 +74,9 @@ class PersonProfileViewController: UIViewController, DataReceivable {
 }
 ```
 
-#### Presenting view controller:
+### Presenting view controller:
+
+[Code Example](Playgrounds/Presenting.playground/Contents.swift)
 
 ```swift
 Navigate.present { $0
@@ -56,9 +84,10 @@ Navigate.present { $0
     .withData(person)
 }
 ```
-[Example](Playgrounds/Presenting.playground/Contents.swift)
 
-#### Pushing view controller:
+### Pushing view controller:
+
+[Code Example](Playgrounds/Pushing.playground/Contents.swift)
 
 ```swift
 Navigate.push { $0
@@ -66,16 +95,19 @@ Navigate.push { $0
     .withData(person)
 }
 ```
-[Example](Playgrounds/Pushing.playground/Contents.swift)
 
 ### Routing & deep linking:
 
+Why use the `Destination` instead navigating directly to view controller?
 
-- TODO: Describe why use the `Destination`?
-- TODO: Describe `Destination`
-- TODO: External `Destination` examples
+Read about it on Medium:
+
+- [#1 iOS - Reinventing view controller navigation](https://medium.com/@aronbalog/1-ios-reinventing-view-controller-navigation-c2745b60bb6c)
+- [#2 iOS - Reinventing view controller navigation](https://medium.com/@aronbalog/2-ios-reinventing-view-controller-navigation-8d2adee8e424)
 
 #### Defining `Destination`
+
+[Code Example](Playgrounds/Routing.playground/Contents.swift)
 
 ```swift
 struct PersonProfile: Destination, Routable {
@@ -120,6 +152,8 @@ struct PersonProfile: Destination, Routable {
 }
 ```
 
+---
+
 #### Registering `Routable` types
 
 In order to use `Matchable` types (`String`, `URL`, etc.) to navigate, every `Destination` type must be registered. Think about it as internal DNS.
@@ -128,13 +162,18 @@ In order to use `Matchable` types (`String`, `URL`, etc.) to navigate, every `De
 PersonProfile.register()
 ```
 
-*Additional syntax*
+<details>
+<summary>Additional syntax</summary>
 
 ```swift
 Navigate.router.register(routableType: PersonProfile.self)
 ```
 
-In the following examples you can register any `Destination` type, it doesn't have to conform to `Routable`. Use these if you intend to create some kind of destination manifest and/or if route patterns are fetched from an external source:
+</details>
+
+---
+
+`Destination` type can be routable without conforming to `Routable` protocol. Use this if you intend to create some kind of destination manifest and/or if route patterns are fetched from an external source:
 
 ```swift
 Navigate.router.register(destinationType: PersonProfile.self, patterns: [
@@ -143,7 +182,8 @@ Navigate.router.register(destinationType: PersonProfile.self, patterns: [
 ])
 ```
 
-*Additional syntax*
+<details>
+<summary>Additional syntax</summary>
 
 ```swift
 PersonProfile.self <- [
@@ -155,6 +195,10 @@ Settings.self <- [
     "https://myapp.com/settings"
 ]
 ```
+
+</details>
+
+---
 
 #### Navigating using `Destination`
 
@@ -172,7 +216,8 @@ Navigate.push { $0
 }
 ```
 
-*Additional syntax*
+<details>
+<summary>Additional syntax</summary>
 
 ```swift
 // present
@@ -186,7 +231,10 @@ PersonProfile("sherlock_holmes").push { $0
 }
 ```
 
-*Additional syntax*
+</details>
+
+<details>
+<summary>Additional syntax</summary>
 
 ```swift
 // present
@@ -196,9 +244,13 @@ PersonProfile("sherlock_holmes").present()
 PersonProfile("sherlock_holmes").push()
 ```
 
-[Example](Playgrounds/Routing.playground/Contents.swift)
+</details>
+
+---
 
 #### Navigating using route
+
+[Code Example](Playgrounds/Routing.playground/Contents.swift)
 
 ```swift
 // present
@@ -214,7 +266,8 @@ Navigate.push { $0
 }
 ```
 
-*Additional syntax*
+<details>
+<summary>Additional syntax</summary>
 
 ```swift
 // present
@@ -228,7 +281,10 @@ Navigate.push { $0
 }
 ```
 
-*Additional syntax*
+</details>
+
+<details>
+<summary>Additional syntax</summary>
 
 ```swift
 // present
@@ -238,7 +294,9 @@ Navigate.push { $0
 "https://myapp.com/person/sherlock_holmes".push()
 ```
 
-[Example](Playgrounds/Routing.playground/Contents.swift)
+</details>
+
+---
 
 #### Getting view controller asynchronously using `Destination`
 
@@ -248,6 +306,8 @@ PersonProfile("sherlock_holmes").viewController { (viewController) in
 }
 ```
 
+---
+
 #### Getting view controller asynchronously using route
 
 ```swift
@@ -256,7 +316,11 @@ PersonProfile("sherlock_holmes").viewController { (viewController) in
 }
 ```
 
+---
+
 #### Getting view controller synchronously using `Destination`
+
+[Code Example](Playgrounds/Routing.playground/Contents.swift)
 
 ```swift
 do {
@@ -266,7 +330,7 @@ do {
 }
 ```
 
-[Example](Playgrounds/Routing.playground/Contents.swift)
+---
 
 #### Getting view controller synchronously using route
 
@@ -284,13 +348,13 @@ Note:
 
 - TODO: Set link to resolving
 
------
+---
 
 #### Matchable protocol
 
 `URL` types can also be used to navigate or resolve view controller. Actually, any type conforming `Matchable` protocol can be used.
 
-Example:
+##### Conforming to matchable:
 
 ```swift
 struct Person {
@@ -305,7 +369,7 @@ extension Person: Matchable {
 }
 ```
 
-Example usage:
+##### Example usage:
 
 ```swift
 let person: Person = Person(id: "sherlock_holmes", ...)
@@ -347,17 +411,17 @@ Read [API reference](Documentation/API_REFERENCE.md)
 
 -->
 
-## Running the tests 🔬
+## Running the Tests
 
 Available in `CoreNavigationTests` target.
 
-## Versioning 🤖
+## Versioning
 
 Current release:
 
 - 1.0.0
 
-## Authors 👨‍💻
+## Authors
 
 - Aron Balog ([GitHub](https://github.com/aronbalog))
 
@@ -367,6 +431,6 @@ See also the list of [contributors](CONTRIBUTORS.md) who participated in this pr
 
 Please read [Contributing](CONTRIBUTING.md) for details on code of conduct, and the process for submitting pull requests.
 
-## License 📄
+## License
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE.md) file for details.
