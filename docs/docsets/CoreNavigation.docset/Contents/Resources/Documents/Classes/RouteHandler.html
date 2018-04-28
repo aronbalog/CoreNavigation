@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>RouteHandler Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/RouteHandler" class="dashAnchor"></a>
+    <a title="RouteHandler Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">CoreNavigation Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">CoreNavigation Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        RouteHandler Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Configuration.html">Configuration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/History.html">History</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ProtectionHandler.html">ProtectionHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RouteHandler.html">RouteHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Router.html">Router</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StateRestorationContext.html">StateRestorationContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/To.html">To</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/EmbeddingType.html">EmbeddingType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/KeyboardTrackingMode.html">KeyboardTrackingMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/NavigationEvent.html">NavigationEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StateRestorationBehavior.html">StateRestorationBehavior</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UINavigationController.html">UINavigationController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIViewController.html">UIViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/URL.html">URL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyRoute.html">AnyRoute</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DataReceiving.html">DataReceiving</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DataReceivingViewController.html">DataReceivingViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/EmbeddingProtocol.html">EmbeddingProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Lifetime.html">Lifetime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Matchable.html">Matchable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ProtectionSpace.html">ProtectionSpace</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Route.html">Route</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RouteParametersAware.html">RouteParametersAware</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RoutePatternsAware.html">RoutePatternsAware</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/StateRestorationDelegate.html">StateRestorationDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Navigation.html">Navigation</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:14CoreNavigation18ConfigurationBlocka">ConfigurationBlock</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>RouteHandler</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">RouteHandler</span><span class="o">&lt;</span><span class="kt">RouteType</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Route.html">Route</a></span><span class="o">&gt;</span></code></pre>
+
+                </div>
+              </div>
+            <p>Handles route.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation12RouteHandlerC10parameterss10DictionaryVySSypGSgv"></a>
+                    <a name="//apple_ref/swift/Property/parameters" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation12RouteHandlerC10parameterss10DictionaryVySSypGSgv">parameters</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Parameters extracted from route&rsquo;s uri.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">parameters</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation12RouteHandlerC8complete11DestinationQzAF14viewController_tF"></a>
+                    <a name="//apple_ref/swift/Method/complete(viewController:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation12RouteHandlerC8complete11DestinationQzAF14viewController_tF">complete(viewController:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Notifies handler to proceed with navigation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">complete</span><span class="p">(</span><span class="nv">viewController</span><span class="p">:</span> <span class="kt">RouteType</span><span class="o">.</span><span class="kt">Destination</span> <span class="o">=</span> <span class="o">.</span><span class="nf">init</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="kt">RouteType</span><span class="o">.</span><span class="kt">Destination</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>viewController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>UIViewController instance to navigate to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>UIViewController instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation12RouteHandlerCA2A0C0RzAA27DataReceivingViewController11DestinationRpzlE8completeA2G04viewH0_AF_0E4TypeQZSg4datatF"></a>
+                    <a name="//apple_ref/swift/Method/complete(viewController:data:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation12RouteHandlerCA2A0C0RzAA27DataReceivingViewController11DestinationRpzlE8completeA2G04viewH0_AF_0E4TypeQZSg4datatF">complete(viewController:data:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Notifies handler to proceed with navigation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">complete</span><span class="p">(</span><span class="nv">viewController</span><span class="p">:</span> <span class="kt">RouteType</span><span class="o">.</span><span class="kt">Destination</span> <span class="o">=</span> <span class="o">.</span><span class="nf">init</span><span class="p">(),</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">RouteType</span><span class="o">.</span><span class="kt">Destination</span><span class="o">.</span><span class="kt">DataType</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">RouteType</span><span class="o">.</span><span class="kt">Destination</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>viewController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>UIViewController instance to navigate to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Data to pass to view controller.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>UIViewController instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation12RouteHandlerCA2A0C0RzAA27DataReceivingViewController11DestinationRpzlE8completeAgF_0E4TypeQZSg4data_tF"></a>
+                    <a name="//apple_ref/swift/Method/complete(data:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation12RouteHandlerCA2A0C0RzAA27DataReceivingViewController11DestinationRpzlE8completeAgF_0E4TypeQZSg4data_tF">complete(data:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Notifies handler to proceed with navigation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">complete</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="kt">RouteType</span><span class="o">.</span><span class="kt">Destination</span><span class="o">.</span><span class="kt">DataType</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">RouteType</span><span class="o">.</span><span class="kt">Destination</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Data to pass to view controller.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>UIViewController instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="https://github.com/aronbalog/CoreNavigation" target="_blank" rel="external">Aron Balog</a>. All rights reserved. (Last updated: 2018-03-31)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

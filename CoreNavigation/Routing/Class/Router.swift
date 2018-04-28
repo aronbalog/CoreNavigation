@@ -2,11 +2,7 @@ import Foundation
 
 infix operator <-: AdditionPrecedence
 
-/// Custom operator for assigning route patterns
-///
-/// - Parameters:
-///   - left: AnyDestination instance.
-///   - right: Array of route pattern strigns.
+/// :nodoc:
 public func <-(left: AnyDestination.Type, right: [String]) {
     Router.shared.register(destinationType: left, patterns: right)
 }

@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Configuration Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/Configuration" class="dashAnchor"></a>
+    <a title="Configuration Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">CoreNavigation Docs</a> (100% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">CoreNavigation Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Configuration Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Configuration.html">Configuration</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Context.html">Context</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/History.html">History</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ProtectionHandler.html">ProtectionHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Result.html">Result</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Router.html">Router</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StateRestorationContext.html">StateRestorationContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/To.html">To</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/EmbeddingType.html">EmbeddingType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/KeyboardTrackingMode.html">KeyboardTrackingMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/NavigationError.html">NavigationError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/NavigationError/Destination.html">– Destination</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/NavigationEvent.html">NavigationEvent</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StateRestorationBehavior.html">StateRestorationBehavior</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UINavigationController.html">UINavigationController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIViewController.html">UIViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/URL.html">URL</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/AbstractDataReceivable.html">AbstractDataReceivable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyDestination.html">AnyDestination</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DataReceivable.html">DataReceivable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Destination.html">Destination</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/EmbeddingProtocol.html">EmbeddingProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Lifetime.html">Lifetime</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Matchable.html">Matchable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ParametersAware.html">ParametersAware</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ProtectionSpace.html">ProtectionSpace</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Routable.html">Routable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/StateRestorationDelegate.html">StateRestorationDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Navigate.html">Navigate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:14CoreNavigation18ConfigurationBlocka">ConfigurationBlock</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Configuration</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">Configuration</span><span class="o">&lt;</span><span class="kt">ResultableType</span><span class="p">:</span> <span class="kt">Resultable</span><span class="o">&gt;</span></code></pre>
+
+                </div>
+              </div>
+            <p>Acts as storage for navigation parameters.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationC8embeddedACyxGXDAA13EmbeddingTypeO2in_tF"></a>
+                    <a name="//apple_ref/swift/Method/embedded(in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationC8embeddedACyxGXDAA13EmbeddingTypeO2in_tF">embedded(in:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Embeds destination view controller.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">embedded</span><span class="p">(</span><span class="k">in</span> <span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/EmbeddingType.html">EmbeddingType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>type</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Embedding type.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationC8embeddedACyxGXDAA17EmbeddingProtocol_pXp2in_tF"></a>
+                    <a name="//apple_ref/swift/Method/embedded(in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationC8embeddedACyxGXDAA17EmbeddingProtocol_pXp2in_tF">embedded(in:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Embeds destination view controller.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">embedded</span><span class="p">(</span><span class="k">in</span> <span class="nv">embeddingProtocol</span><span class="p">:</span> <span class="kt"><a href="../Protocols/EmbeddingProtocol.html">EmbeddingProtocol</a></span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>embeddingProtocol</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>EmbeddingProtocol type.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationC010embeddedInB10ControllerACyxGXDyF"></a>
+                    <a name="//apple_ref/swift/Method/embeddedInNavigationController()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationC010embeddedInB10ControllerACyxGXDyF">embeddedInNavigationController()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Embeds destination view controller.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">embeddedInNavigationController</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationC8animatedACyxGXDSbF"></a>
+                    <a name="//apple_ref/swift/Method/animated(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationC8animatedACyxGXDSbF">animated(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Animates navigation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">animated</span><span class="p">(</span><span class="n">_</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>animated</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Boolean stating whether navigation is transitioned with animation.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationC10completionACyxGXDyycF"></a>
+                    <a name="//apple_ref/swift/Method/completion(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationC10completionACyxGXDyycF">completion(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Observes navigation transitioning completion.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">completion</span><span class="p">(</span><span class="n">_</span> <span class="nv">completion</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>completion</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Completion block called after navigation transitioning.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationC21transitioningDelegateACyxGXDSo029UIViewControllerTransitioningE0_pF"></a>
+                    <a name="//apple_ref/swift/Method/transitioningDelegate(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationC21transitioningDelegateACyxGXDSo029UIViewControllerTransitioningE0_pF">transitioningDelegate(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets UIViewControllerTransitioningDelegate to destination view controller.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">transitioningDelegate</span><span class="p">(</span><span class="n">_</span> <span class="nv">transitioningDelegate</span><span class="p">:</span> <span class="kt">UIViewControllerTransitioningDelegate</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>transitioningDelegate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>UIViewControllerTransitioningDelegate object.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationC8unsafelyACyxGXDyF"></a>
+                    <a name="//apple_ref/swift/Method/unsafely()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationC8unsafelyACyxGXDyF">unsafely()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Skips queue when navigating.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">unsafely</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationC13trackKeyboardACyxGXDAA0E12TrackingModeO4with_tF"></a>
+                    <a name="//apple_ref/swift/Method/trackKeyboard(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationC13trackKeyboardACyxGXDAA0E12TrackingModeO4with_tF">trackKeyboard(with:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Tracks keyboard.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">trackKeyboard</span><span class="p">(</span><span class="n">with</span> <span class="nv">keyboardTrackingMode</span><span class="p">:</span> <span class="kt"><a href="../Enums/KeyboardTrackingMode.html">KeyboardTrackingMode</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>keyboardTrackingMode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Keyboard tracking behaviour.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationC15stateRestorableACyxGXDyF"></a>
+                    <a name="//apple_ref/swift/Method/stateRestorable()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationC15stateRestorableACyxGXDyF">stateRestorable()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Makes destination state restorable.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">stateRestorable</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationC15stateRestorableACyxGXDSS10identifier_tF"></a>
+                    <a name="//apple_ref/swift/Method/stateRestorable(identifier:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationC15stateRestorableACyxGXDSS10identifier_tF">stateRestorable(identifier:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Makes destination state restorable.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">stateRestorable</span><span class="p">(</span><span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>identifier</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Restoration identifier.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationC15stateRestorableACyxGXDSS10identifier_So27UIViewControllerRestoration_pXp5classtF"></a>
+                    <a name="//apple_ref/swift/Method/stateRestorable(identifier:class:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationC15stateRestorableACyxGXDSS10identifier_So27UIViewControllerRestoration_pXp5classtF">stateRestorable(identifier:class:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Makes destination state restorable.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">stateRestorable</span><span class="p">(</span><span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">class</span><span class="p">:</span> <span class="kt">UIViewControllerRestoration</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>identifier</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Restoration identifier.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>class</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Restoration class</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationC8passDataACyxGXDypF"></a>
+                    <a name="//apple_ref/swift/Method/passData(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationC8passDataACyxGXDypF">passData(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Prepares data for view controller.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">passData</span><span class="p">(</span><span class="n">_</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Data to pass.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationC8withDataACyxGXDypF"></a>
+                    <a name="//apple_ref/swift/Method/withData(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationC8withDataACyxGXDypF">withData(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Prepares data for view controller.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">withData</span><span class="p">(</span><span class="n">_</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Data to pass.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationCA2A10ResultableRzAA14DataReceivable16ToViewControllerRpzlE04passE0ACyAA6ResultCyAgF_0E4TypeQZGGALF"></a>
+                    <a name="//apple_ref/swift/Method/passData(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationCA2A10ResultableRzAA14DataReceivable16ToViewControllerRpzlE04passE0ACyAA6ResultCyAgF_0E4TypeQZGGALF">passData(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Prepares data for data receiving view controller.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">passData</span><span class="p">(</span><span class="n">_</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">ResultableType</span><span class="o">.</span><span class="kt">ToViewController</span><span class="o">.</span><span class="kt">DataType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Configuration</span><span class="o">&lt;</span><span class="kt"><a href="../Classes/Result.html">Result</a></span><span class="o">&lt;</span><span class="kt">ResultableType</span><span class="o">.</span><span class="kt">ToViewController</span><span class="p">,</span> <span class="kt">ResultableType</span><span class="o">.</span><span class="kt">ToViewController</span><span class="o">.</span><span class="kt">DataType</span><span class="o">&gt;&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Data to pass.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationCA2A10ResultableRzAA14DataReceivable16ToViewControllerRpzlE04passE7InBlockACyAA6ResultCyAgF_0E4TypeQZGGyyALccF"></a>
+                    <a name="//apple_ref/swift/Method/passDataInBlock(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationCA2A10ResultableRzAA14DataReceivable16ToViewControllerRpzlE04passE7InBlockACyAA6ResultCyAgF_0E4TypeQZGGyyALccF">passDataInBlock(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Prepares data for data receiving view controller.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">passDataInBlock</span><span class="p">(</span><span class="n">_</span> <span class="nv">dataBlock</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kd">@escaping</span> <span class="p">(</span><span class="kt">ResultableType</span><span class="o">.</span><span class="kt">ToViewController</span><span class="o">.</span><span class="kt">DataType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Configuration</span><span class="o">&lt;</span><span class="kt"><a href="../Classes/Result.html">Result</a></span><span class="o">&lt;</span><span class="kt">ResultableType</span><span class="o">.</span><span class="kt">ToViewController</span><span class="p">,</span> <span class="kt">ResultableType</span><span class="o">.</span><span class="kt">ToViewController</span><span class="o">.</span><span class="kt">DataType</span><span class="o">&gt;&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataBlock</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Block to pass data.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationCA2A10ResultableRzAA14DataReceivable16ToViewControllerRpzlE04withE0ACyAA6ResultCyAgF_0E4TypeQZGGALF"></a>
+                    <a name="//apple_ref/swift/Method/withData(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationCA2A10ResultableRzAA14DataReceivable16ToViewControllerRpzlE04withE0ACyAA6ResultCyAgF_0E4TypeQZGGALF">withData(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Prepares data for data receiving view controller.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">withData</span><span class="p">(</span><span class="n">_</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">ResultableType</span><span class="o">.</span><span class="kt">ToViewController</span><span class="o">.</span><span class="kt">DataType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Configuration</span><span class="o">&lt;</span><span class="kt"><a href="../Classes/Result.html">Result</a></span><span class="o">&lt;</span><span class="kt">ResultableType</span><span class="o">.</span><span class="kt">ToViewController</span><span class="p">,</span> <span class="kt">ResultableType</span><span class="o">.</span><span class="kt">ToViewController</span><span class="o">.</span><span class="kt">DataType</span><span class="o">&gt;&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>data</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Data to pass.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationCA2A10ResultableRzAA14DataReceivable16ToViewControllerRpzlE04withE7InBlockACyAA6ResultCyAgF_0E4TypeQZGGyyALccF"></a>
+                    <a name="//apple_ref/swift/Method/withDataInBlock(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationCA2A10ResultableRzAA14DataReceivable16ToViewControllerRpzlE04withE7InBlockACyAA6ResultCyAgF_0E4TypeQZGGyyALccF">withDataInBlock(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Prepares data for data receiving view controller.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">withDataInBlock</span><span class="p">(</span><span class="n">_</span> <span class="nv">dataBlock</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kd">@escaping</span> <span class="p">(</span><span class="kt">ResultableType</span><span class="o">.</span><span class="kt">ToViewController</span><span class="o">.</span><span class="kt">DataType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Configuration</span><span class="o">&lt;</span><span class="kt"><a href="../Classes/Result.html">Result</a></span><span class="o">&lt;</span><span class="kt">ResultableType</span><span class="o">.</span><span class="kt">ToViewController</span><span class="p">,</span> <span class="kt">ResultableType</span><span class="o">.</span><span class="kt">ToViewController</span><span class="o">.</span><span class="kt">DataType</span><span class="o">&gt;&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataBlock</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Block to pass data.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationC8inWindowACyxGXDSo8UIWindowCF"></a>
+                    <a name="//apple_ref/swift/Method/inWindow(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationC8inWindowACyxGXDSo8UIWindowCF">inWindow(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets window to navigate on.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">inWindow</span><span class="p">(</span><span class="n">_</span> <span class="nv">window</span><span class="p">:</span> <span class="kt">UIWindow</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>window</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code>Window</code> object.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>Configuration</code> instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationC4fromACyxGXDqd__So16UIViewControllerCRbd__lF"></a>
+                    <a name="//apple_ref/swift/Method/from(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationC4fromACyxGXDqd__So16UIViewControllerCRbd__lF">from(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Sets origin.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="n">from</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">viewController</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>viewController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Origin view controller in navigation.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationC9onSuccessACyxGXDyxcF"></a>
+                    <a name="//apple_ref/swift/Method/onSuccess(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationC9onSuccessACyxGXDyxcF">onSuccess(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Observe navigation success.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">onSuccess</span><span class="p">(</span><span class="n">_</span> <span class="nv">success</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">ResultableType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>success</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Success block.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationC9onFailureACyxGXDys5Error_pcF"></a>
+                    <a name="//apple_ref/swift/Method/onFailure(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationC9onFailureACyxGXDys5Error_pcF">onFailure(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Observe navigation failure.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">onFailure</span><span class="p">(</span><span class="n">_</span> <span class="nv">failure</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Error</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>failure</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Failure block.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationC2onACyxGXDAA0B5EventOy16ToViewControllerQz8DataTypeQzGF"></a>
+                    <a name="//apple_ref/swift/Method/on(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationC2onACyxGXDAA0B5EventOy16ToViewControllerQz8DataTypeQzGF">on(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Observe various events defined in <code><a href="../Enums/NavigationEvent.html">NavigationEvent</a></code> enum.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">on</span><span class="p">(</span><span class="n">_</span> <span class="nv">event</span><span class="p">:</span> <span class="kt"><a href="../Enums/NavigationEvent.html">NavigationEvent</a></span><span class="o">&lt;</span><span class="kt">ResultableType</span><span class="o">.</span><span class="kt">ToViewController</span><span class="p">,</span> <span class="kt">ResultableType</span><span class="o">.</span><span class="kt">DataType</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>event</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p><code><a href="../Enums/NavigationEvent.html">NavigationEvent</a></code> enum case.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>Configuration</code> instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationC9keepAliveACyxGXDAA8Lifetime_p6within_SS15cacheIdentifiertF"></a>
+                    <a name="//apple_ref/swift/Method/keepAlive(within:cacheIdentifier:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationC9keepAliveACyxGXDAA8Lifetime_p6within_SS15cacheIdentifiertF">keepAlive(within:cacheIdentifier:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Caches navigation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">keepAlive</span><span class="p">(</span><span class="n">within</span> <span class="nv">lifetime</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Lifetime.html">Lifetime</a></span><span class="p">,</span> <span class="nv">cacheIdentifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lifetime</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Lifetime object.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cacheIdentifier</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Cache identifier string.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:14CoreNavigation13ConfigurationC7protectACyxGXDAA15ProtectionSpace_p4with_tF"></a>
+                    <a name="//apple_ref/swift/Method/protect(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:14CoreNavigation13ConfigurationC7protectACyxGXDAA15ProtectionSpace_p4with_tF">protect(with:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Protects navigation by pausing it and gives an option to continue.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">protect</span><span class="p">(</span><span class="n">with</span> <span class="nv">protectionSpace</span><span class="p">:</span> <span class="kt"><a href="../Protocols/ProtectionSpace.html">ProtectionSpace</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>protectionSpace</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>ProtectionSpace object.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Configuration instance.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="https://github.com/aronbalog/CoreNavigation" target="_blank" rel="external">Aron Balog</a>. All rights reserved. (Last updated: 2018-04-29)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

@@ -7,6 +7,7 @@ Navigate between view controllers with ease. 💫
 [![Platform](https://img.shields.io/cocoapods/p/CoreNavigation.svg?style=flat)](https://github.com/aronbalog/CoreNavigation)
 [![codecov](https://codecov.io/gh/aronbalog/CoreNavigation/branch/master/graph/badge.svg)](https://codecov.io/gh/aronbalog/CoreNavigation)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/CoreNavigation.svg)](https://img.shields.io/cocoapods/v/CoreNavigation.svg)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 - [Getting Started]
 - [API Reference]
