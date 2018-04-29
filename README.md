@@ -2,9 +2,9 @@
 
 Navigate between view controllers with ease. 💫
 
+[![Platform](https://img.shields.io/cocoapods/p/CoreNavigation.svg?style=flat)](https://github.com/aronbalog/CoreNavigation)
 [![Build Status](https://travis-ci.org/aronbalog/CoreNavigation.svg?branch=master)](https://travis-ci.org/aronbalog/CoreNavigation)
 [![Documentation](docs/badge.svg)](http://aronbalog.github.io/CoreNavigation)
-[![Platform](https://img.shields.io/cocoapods/p/CoreNavigation.svg?style=flat)](https://github.com/aronbalog/CoreNavigation)
 [![codecov](https://codecov.io/gh/aronbalog/CoreNavigation/branch/master/graph/badge.svg)](https://codecov.io/gh/aronbalog/CoreNavigation)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/CoreNavigation.svg)](https://img.shields.io/cocoapods/v/CoreNavigation.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
@@ -58,11 +58,9 @@ $ gem install cocoapods
 To integrate CoreNavigation into your Xcode project using CocoaPods, specify it in your Podfile:
 
 ```ruby
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '10.0'
-use_frameworks!
-
 target '<Your Target Name>' do
+    use_frameworks!
+    
     pod 'CoreNavigation', '1.0.0-beta-1'
 end
 ```
@@ -92,7 +90,7 @@ github "aronbalog/CoreNavigation" == "1.0.0-beta-1"
 
 ## API Reference
 
-### [API reference](Documentation/API_REFERENCE.md)
+### [API reference](https://docs.corenavigation.org)
 
 ## Example Use
 
@@ -380,9 +378,7 @@ do {
 
 Note:
 
-*If you implement custom destination resolving, **it must happen on the main thread**; otherwise, an error is thrown. Read about resolving.*
-
-- TODO: Set link to resolving
+*If you implement custom destination resolving, **it must happen on the main thread**; otherwise, an error is thrown.*
 
 ---
 
@@ -459,9 +455,7 @@ Current release:
 
 ## Authors
 
-- Aron Balog ([GitHub](https://github.com/aronbalog))
-
-See also the list of [contributors](CONTRIBUTORS.md) who participated in this project.
+- Aron Balog - [GitHub](https://github.com/aronbalog) | [Twitter](https://twitter.com/Aron_Balog) | [LinkedIn](https://www.linkedin.com/in/aronbalog/) | [Medium](https://medium.com/@aronbalog)
 
 ### Contributing
 
