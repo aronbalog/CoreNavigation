@@ -16,6 +16,17 @@ Navigate between view controllers with ease. 💫
     - [Presenting view controller]
     - [Pushing view controller]
     - [Routing & deep linking]
+    - [Configuration]
+        - [Animating]
+        - [Observing completion]
+        - [Observing success]
+        - [Observing failure]
+        - [Embedding]
+        - [Passing data]
+        - [Caching]
+        - [Protection]
+        - [State restoration]
+        - [Specifying origin view controller]
 - [Running the Tests]
 - [Versioning]
 - [Authors]
@@ -28,6 +39,7 @@ Navigate between view controllers with ease. 💫
 [Presenting view controller]: #presenting-view-controller
 [Pushing view controller]: #pushing-view-controller
 [Routing & deep linking]: #routing--deep-linking
+[Configuration]: #configuration
 [Running the Tests]: #running-the-tests
 [Versioning]: #versioning
 [Authors]: #authors
@@ -419,29 +431,19 @@ Navigate.present { $0
     ...
 }
 ```
-<!---
-## API Reference ⌨️
 
-Read [API reference](Documentation/API_REFERENCE.md)
+### Configuration
 
-- [Defining destination](Documentation/API_REFERENCE.md#destination-) (view controller to navigate to)
-    - [Instance](Documentation/API_REFERENCE.md#passing-instance)
-    - [Class](Documentation/API_REFERENCE.md#passing-class)
-    - [Routing](Documentation/API_REFERENCE.md#passing-route)
-- [Passing data between view controllers](Documentation/API_REFERENCE.md#passing-data-between-view-controllers-)
-- [Transitioning](Documentation/API_REFERENCE.md#transitioning-)
-    - [Animation](Documentation/API_REFERENCE.md#animation)
-    - [Transitioning delegate](Documentation/API_REFERENCE.md#transitioning-delegate)
-    - [Completion](Documentation/API_REFERENCE.md#completion)
-- [View controller events](Documentation/API_REFERENCE.md#view-controller-events-)
-- [Caching](Documentation/API_REFERENCE.md#caching-%EF%B8%8F)
-    - [Lifetime protocol](Documentation/API_REFERENCE.md#lifetime-protocol)
-- [Protection](Documentation/API_REFERENCE.md#protection-)
-- [State restoration](Documentation/API_REFERENCE.md#state-restoration-%EF%B8%8F)
-    - [StateRestorationDelegate protocol](Documentation/API_REFERENCE.md#staterestorationdelegate-protocol)
-- [Routing](Documentation/ROUTING_DOCUMENTATION.md) 
-
--->
+- [Animating]
+- [Observing completion]
+- [Observing success]
+- [Observing failure]
+- [Embedding]
+- [Passing data]
+- [Caching]
+- [Protection]
+- [State restoration]
+- [Specifying origin view controller]
 
 ## Running the Tests
 
@@ -464,3 +466,15 @@ Please read [Contributing](CONTRIBUTING.md) for details on code of conduct, and 
 ## License
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE.md) file for details.
+
+
+[Animating]: Documentation/CONFIGURATION.md#animating
+[Observing completion]: Documentation/CONFIGURATION.md#observing-completion
+[Observing success]: Documentation/CONFIGURATION.md#observing-success
+[Observing failure]: Documentation/CONFIGURATION.md#observing-failure
+[Embedding]: Documentation/CONFIGURATION.md#embedding
+[Passing data]: Documentation/CONFIGURATION.md#passing-data
+[Caching]: Documentation/CONFIGURATION.md#caching
+[Protection]: Documentation/CONFIGURATION.md#protection
+[State restoration]: Documentation/CONFIGURATION.md#state-restoration
+[Specifying origin view controller]: Documentation/CONFIGURATION.md#specifying-origin-view-controller
