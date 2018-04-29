@@ -2,96 +2,119 @@ import UIKit
 import PlaygroundSupport
 import CoreNavigation
 
-struct Object {
-    let id: String
-}
+// Helper
 
-func fetchObject(id: String, completion: @escaping (Object) -> Void, failure: @escaping (Error) -> Void) {
-    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-        let object = Object(id: id)
-        completion(object)
+extension UIColor {
+    convenience init(hexString: String, alpha: CGFloat = 1.0) {
+        let hexString: String = hexString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let scanner = Scanner(string: hexString)
+        if (hexString.hasPrefix("#")) {
+            scanner.scanLocation = 1
+        }
+        var color: UInt32 = 0
+        scanner.scanHexInt32(&color)
+        let mask = 0x000000FF
+        let r = Int(color >> 16) & mask
+        let g = Int(color >> 8) & mask
+        let b = Int(color) & mask
+        let red   = CGFloat(r) / 255.0
+        let green = CGFloat(g) / 255.0
+        let blue  = CGFloat(b) / 255.0
+        self.init(red:red, green:green, blue:blue, alpha:alpha)
+    }
+    func toHexString() -> String {
+        var r:CGFloat = 0
+        var g:CGFloat = 0
+        var b:CGFloat = 0
+        var a:CGFloat = 0
+        getRed(&r, green: &g, blue: &b, alpha: &a)
+        let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
+        return String(format:"#%06x", rgb)
     }
 }
 
-class MyViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
+// View controllers
 
-        view.backgroundColor = .white
+class ColorViewController: UIViewController, DataReceivable {
+    typealias DataType = UIColor
+    
+    func didReceiveData(_ data: UIColor) {
+        view.backgroundColor = data
     }
 }
 
-class OtherViewController: UIViewController, DataReceivable {
-    typealias DataType = Object
+class OtherViewController: UIViewController, Routable, DataReceivable {
+    typealias DataType = [String: Any]
 
+    static var patterns: [String] = [
+        "https://appdomain.com/other/:id/:firstName/:lastName"
+    ]
+    
     let label = UILabel()
-    var data: Object?
+    var data: DataType?
 
+    func didReceiveData(_ data: [String: Any]) {
+        self.data = data
+        
+        let _data = try! JSONSerialization.data(withJSONObject: data, options: JSONSerialization.WritingOptions.prettyPrinted)
+        let string = String(data: _data, encoding: .utf8)
+        
+        label.text = string
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .orange
+        label.numberOfLines = 0
+//        label.textAlignment = .center
         view.addSubview(label)
     }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-        guard let data = data else { return }
-        
-        label.text = "Object id: \(data.id)"
-        label.sizeToFit()
-        label.center = view.center
-    }
-
-    func didReceiveData(_ data: Object) {
-        self.data = data
-        view.setNeedsLayout()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        label.frame = view.bounds
     }
 }
 
-struct MyDestination: Destination {
-    typealias ViewControllerType = MyViewController
-}
+/* ------------------------------------- */
 
-struct OtherDestination: Destination, Routable {
-    typealias ViewControllerType = OtherViewController
+// Destination
+
+struct ColorDestination: Destination, Routable {
+    typealias ViewControllerType = ColorViewController
+    
     static var patterns: [String] = [
-        "https://appdomain.com/other/:id(.*)"
+        "https://appdomain.com/color"
     ]
-
-//    static func resolve(context: Context<OtherDestination>) {
-//        guard let id = context.parameters?["id"] as? String else {
-//            context.cancel()
-//            return
-//        }
-//
-//        fetchObject(id: id, completion: { (object) in
-//            context.complete(data: object)
-//        }) { (error) in
-//            context.cancel(error: error)
-//        }
-//    }
+    
+    static func resolve(context: Context<ColorViewController>) {
+        guard
+            let rgb = context.parameters?["rgb"] as? String
+        else {
+            context.cancel()
+            return
+        }
+        
+        let color = UIColor.init(hexString: rgb)
+        
+        context.complete(data: color)
+    }
 }
 
-OtherDestination.register()
+/* ------------------------------------- */
 
-let rootViewController = try! MyDestination().viewController()
+// Register routable types
+OtherViewController.register()
+ColorDestination.register()
+
+// Get root view controller
+let rootViewController = try! "https://appdomain.com/color?rgb=239ddd".viewController()
 
 PlaygroundPage.current.liveView = UINavigationController(rootViewController: rootViewController)
 
 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//    Navigate.push { $0
-//        .to("https://appdomain.com/other/corenavigation")
-//    }
     Navigate.push { $0
-        .to(OtherViewController())
-        .passDataInBlock({ (passData) in
-            let object = Object(id: "corenavigation")
-            passData(object)
-        })
-    }
-    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-        
+        .to("https://appdomain.com/other/CoreNavigation/john/doe")
     }
 }

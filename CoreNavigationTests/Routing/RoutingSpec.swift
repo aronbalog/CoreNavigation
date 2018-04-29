@@ -23,7 +23,7 @@ private struct MockRoute: Destination, Routable {
         "1/:firstName(.*)/:lastName(.*)"
     ]
 
-    static func resolve(context: Context<MockRoute>) {
+    static func resolve(context: Context<MockViewController>) {
         let viewController = MockViewController()
         viewController.routeParameters = context.parameters
 
@@ -45,7 +45,7 @@ private struct MockRoute2: Destination, Routable {
 private struct MockRoute3: Destination {
     typealias ViewControllerType = MockViewController
 
-    static func resolve(context: Context<MockRoute3>) {
+    static func resolve(context: Context<MockViewController>) {
         context.complete(data: context.parameters?["firstName"] as? String)
     }
 }

@@ -33,7 +33,7 @@ public extension Destination {
     ///   - viewControllerBlock: Block returning UIViewController instance.
     ///   - failure: Block returning Error instance.
     public func viewController(_ viewControllerBlock: @escaping (ViewControllerType) -> Void, failure: ((Error) -> Void)? = nil) {
-        let context = Context<Self>(parameters: parameters)
+        let context = Context<ViewControllerType>(parameters: parameters)
 
         let configuration = Configuration<Result<ViewControllerType, Any>>(request: .viewControllerBlock({ block in
             context.destinationBlocks.append({ (viewController, _) in

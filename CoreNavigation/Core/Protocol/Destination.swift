@@ -8,7 +8,7 @@ public protocol Destination: AnyDestination, ParametersAware {
     /// Resolves routing.
     ///
     /// - Parameter context: `Context` object.
-    static func resolve(context: Context<Self>)
+    static func resolve(context: Context<ViewControllerType>)
 }
 
 // MARK: - Destination default implementation
@@ -16,7 +16,7 @@ extension Destination {
     /// Resolves routing.
     ///
     /// - Parameter context: `Context` object.
-    public static func resolve(context: Context<Self>) {
+    public static func resolve(context: Context<ViewControllerType>) {
         let viewController = ViewControllerType.init()
 
         context.destination(viewController, data: nil)

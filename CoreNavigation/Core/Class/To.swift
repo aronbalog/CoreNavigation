@@ -164,7 +164,7 @@ public class To<ResultableType: Resultable>: DestinationAware {
     /// - Parameter destination: Destination object resolving it's `ViewController` type to `UIViewController` class or subclass.
     /// - Returns: `Configuration` object.
     @discardableResult public func to<T: Destination>(_ destination: T) -> Configuration<Result<T.ViewControllerType, Any>> {
-        let context = Context<T>(parameters: destination.parameters)
+        let context = Context<T.ViewControllerType>(parameters: destination.parameters)
 
         let configuration = Configuration<Result<T.ViewControllerType, Any>>(request: .viewControllerBlock({ block in
             context.destinationBlocks.append({ (viewController, _) in
@@ -187,7 +187,7 @@ public class To<ResultableType: Resultable>: DestinationAware {
     /// - Parameter destination: Destination object resolving it's `ViewController` type to `UIViewController` class or subclass conforming `DataReceivable` protocol.
     /// - Returns: `Configuration` object.
     @discardableResult public func to<T: Destination>(_ destination: T) -> Configuration<Result<T.ViewControllerType, T.ViewControllerType.DataType>> where T.ViewControllerType: DataReceivable {
-        let context = Context<T>(parameters: destination.parameters)
+        let context = Context<T.ViewControllerType>(parameters: destination.parameters)
 
         let configuration = Configuration<Result<T.ViewControllerType, T.ViewControllerType.DataType>>(request: .viewControllerBlock({ block in
             context.destinationBlocks.append({ (viewController, _) in
