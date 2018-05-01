@@ -3,7 +3,7 @@ import UIKit
 /// Object containing essential informations about state restoration in progress.
 public class StateRestorationContext {
     public typealias UnprotectSuccess = (UIViewController) -> Void
-    public typealias UnprotectFailure = (Error) -> Void
+    public typealias UnprotectFailure = (Error?) -> Void
 
     /// State restoration identifier.
     public let restorationIdentifier: String

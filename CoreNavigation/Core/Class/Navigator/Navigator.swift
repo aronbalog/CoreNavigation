@@ -39,6 +39,8 @@ class Navigator {
     }
 
     static func navigate<T>(with type: NavigationType, configuration: Configuration<T>, completion: (() -> Void)? = nil) {
+        var operation: NavigationOperation?
+        
         func main(handler: @escaping () -> Void) {
             func navigation() {
                 // check if cached
@@ -80,13 +82,19 @@ class Navigator {
                 let protectionSpace = configuration.protection.protectionSpace,
                 protectionSpace.shouldProtect() == true
             {
-                let handler = ProtectionHandler()
+                let protectionHandler = ProtectionHandler()
 
-                handler.onUnprotect {
+                protectionHandler.onUnprotect {
                     navigation()
                 }
+                protectionHandler.onCancel { error in
+                    if let error = error {
+                        failure(error: error, configuration: configuration, handler: handler)
+                    }
+                    operation?.finish(true)
+                }
 
-                protectionSpace.protect(handler)
+                protectionSpace.protect(protectionHandler)
             } else {
                 navigation()
             }
@@ -95,9 +103,10 @@ class Navigator {
         if configuration.unsafeNavigation.isUnsafe {
             main(handler: {})
         } else {
-            let operation = NavigationOperation(block: main)
+            let _operation = NavigationOperation(block: main)
+            operation = _operation
 
-            queue.addOperation(operation)
+            queue.addOperation(_operation)
         }
     }
 
