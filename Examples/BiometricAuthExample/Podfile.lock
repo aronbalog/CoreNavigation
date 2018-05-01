@@ -1,0 +1,16 @@
+PODS:
+  - CoreNavigation (1.0.0-beta-4)
+
+DEPENDENCIES:
+  - CoreNavigation (= 1.0.0-beta-4)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - CoreNavigation
+
+SPEC CHECKSUMS:
+  CoreNavigation: f9239c21c6a226922c0c6c55a20822d2caee0a05
+
+PODFILE CHECKSUM: a05cc5ebc2257bdccf0577716d868e0c0dc2dee7
+
+COCOAPODS: 1.5.0

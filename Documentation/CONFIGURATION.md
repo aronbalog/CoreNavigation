@@ -183,6 +183,10 @@ Navigate.present { $0
 
 ## Protection
 
+### Example app
+
+- [BiometricAuthExample](Examples/BiometricAuthExample)
+
 ### Usage
 
 | Method             | Arguments           |

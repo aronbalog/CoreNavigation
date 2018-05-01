@@ -27,6 +27,7 @@ Navigate between view controllers with ease. 💫
         - [Protection]
         - [State restoration]
         - [Specifying origin view controller]
+- [Example Apps]
 - [Running the Tests]
 - [Versioning]
 - [Authors]
@@ -40,6 +41,7 @@ Navigate between view controllers with ease. 💫
 [Pushing view controller]: #pushing-view-controller
 [Routing & deep linking]: #routing--deep-linking
 [Configuration]: #configuration
+[Example Apps]: #example-apps
 [Running the Tests]: #running-the-tests
 [Versioning]: #versioning
 [Authors]: #authors
@@ -444,6 +446,10 @@ Navigate.present { $0
 - [Protection]
 - [State restoration]
 - [Specifying origin view controller]
+
+## Example Apps
+
+- [BiometricAuthExample](Examples/BiometricAuthExample)
 
 ## Running the Tests
 
