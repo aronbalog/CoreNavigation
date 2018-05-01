@@ -159,9 +159,9 @@
 
 <p>Navigate between view controllers with ease. 💫</p>
 
-<p><a href="https://travis-ci.org/aronbalog/CoreNavigation"><img src="https://travis-ci.org/aronbalog/CoreNavigation.svg?branch=master" alt="Build Status"></a>
+<p><a href="https://github.com/aronbalog/CoreNavigation"><img src="https://img.shields.io/cocoapods/p/CoreNavigation.svg?style=flat" alt="Platform"></a>
+<a href="https://travis-ci.org/aronbalog/CoreNavigation"><img src="https://travis-ci.org/aronbalog/CoreNavigation.svg?branch=master" alt="Build Status"></a>
 <a href="http://aronbalog.github.io/CoreNavigation"><img src="docs/badge.svg" alt="Documentation"></a>
-<a href="https://github.com/aronbalog/CoreNavigation"><img src="https://img.shields.io/cocoapods/p/CoreNavigation.svg?style=flat" alt="Platform"></a>
 <a href="https://codecov.io/gh/aronbalog/CoreNavigation"><img src="https://codecov.io/gh/aronbalog/CoreNavigation/branch/master/graph/badge.svg" alt="codecov"></a>
 <a href="https://img.shields.io/cocoapods/v/CoreNavigation.svg"><img src="https://img.shields.io/cocoapods/v/CoreNavigation.svg" alt="CocoaPods Compatible"></a>
 <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a></p>
@@ -176,6 +176,20 @@
 <li><a href="#presenting-view-controller">Presenting view controller</a></li>
 <li><a href="#pushing-view-controller">Pushing view controller</a></li>
 <li><a href="#routing--deep-linking">Routing &amp; deep linking</a></li>
+<li><a href="#configuration">Configuration</a>
+
+<ul>
+<li><a href="Documentation/CONFIGURATION.md#animating">Animating</a></li>
+<li><a href="Documentation/CONFIGURATION.md#observing-completion">Observing completion</a></li>
+<li><a href="Documentation/CONFIGURATION.md#observing-success">Observing success</a></li>
+<li><a href="Documentation/CONFIGURATION.md#observing-failure">Observing failure</a></li>
+<li><a href="Documentation/CONFIGURATION.md#embedding">Embedding</a></li>
+<li><a href="Documentation/CONFIGURATION.md#passing-data">Passing data</a></li>
+<li><a href="Documentation/CONFIGURATION.md#caching">Caching</a></li>
+<li><a href="Documentation/CONFIGURATION.md#protection">Protection</a></li>
+<li><a href="Documentation/CONFIGURATION.md#state-restoration">State restoration</a></li>
+<li><a href="Documentation/CONFIGURATION.md#specifying-origin-view-controller">Specifying origin view controller</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#running-the-tests">Running the Tests</a></li>
 <li><a href="#versioning">Versioning</a></li>
@@ -204,11 +218,9 @@
 </blockquote>
 
 <p>To integrate CoreNavigation into your Xcode project using CocoaPods, specify it in your Podfile:</p>
-<pre class="highlight ruby"><code><span class="n">source</span> <span class="s1">'https://github.com/CocoaPods/Specs.git'</span>
-<span class="n">platform</span> <span class="ss">:ios</span><span class="p">,</span> <span class="s1">'10.0'</span>
-<span class="n">use_frameworks!</span>
+<pre class="highlight ruby"><code><span class="n">target</span> <span class="s1">'&lt;Your Target Name&gt;'</span> <span class="k">do</span>
+    <span class="n">use_frameworks!</span>
 
-<span class="n">target</span> <span class="s1">'&lt;Your Target Name&gt;'</span> <span class="k">do</span>
     <span class="n">pod</span> <span class="s1">'CoreNavigation'</span><span class="p">,</span> <span class="s1">'1.0.0-beta-1'</span>
 <span class="k">end</span>
 </code></pre>
@@ -229,7 +241,7 @@
 <pre class="highlight plaintext"><code>github "aronbalog/CoreNavigation" == "1.0.0-beta-1"
 </code></pre>
 <h2 id='api-reference' class='heading'>API Reference</h2>
-<h3 id='a-href-documentation-api_reference-md-api-reference-a' class='heading'><a href="Documentation/API_REFERENCE.md">API reference</a></h3>
+<h3 id='a-href-https-docs-corenavigation-org-api-reference-a' class='heading'><a href="https://docs.corenavigation.org">API reference</a></h3>
 <h2 id='example-use' class='heading'>Example Use</h2>
 <h3 id='defining-view-controller' class='heading'>Defining view controller:</h3>
 <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">PersonProfileViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span> <span class="kt">DataReceivable</span> <span class="p">{</span>
@@ -482,12 +494,7 @@ PersonProfile(&ldquo;sherlock_holmes&rdquo;).push()
 
 <p>Note:</p>
 
-<p><em>If you implement custom destination resolving, **it must happen on the main thread</em><em>; otherwise, an error is thrown. Read about resolving.</em></p>
-<div class="aside aside-todo">
-    <p class="aside-title">Todo</p>
-    Set link to resolving
-
-</div>
+<p><em>If you implement custom destination resolving, **it must happen on the main thread</em><em>; otherwise, an error is thrown.</em></p>
 
 <hr>
 <h4 id='matchable-protocol' class='heading'>Matchable protocol</h4>
@@ -521,30 +528,20 @@ PersonProfile(&ldquo;sherlock_holmes&rdquo;).push()
     <span class="o">...</span>
 <span class="p">}</span>
 </code></pre>
+<h3 id='configuration' class='heading'>Configuration</h3>
 
-<!---
-## API Reference ⌨️
-
-Read [API reference](Documentation/API_REFERENCE.md)
-
-- [Defining destination](Documentation/API_REFERENCE.md#destination-) (view controller to navigate to)
-    - [Instance](Documentation/API_REFERENCE.md#passing-instance)
-    - [Class](Documentation/API_REFERENCE.md#passing-class)
-    - [Routing](Documentation/API_REFERENCE.md#passing-route)
-- [Passing data between view controllers](Documentation/API_REFERENCE.md#passing-data-between-view-controllers-)
-- [Transitioning](Documentation/API_REFERENCE.md#transitioning-)
-    - [Animation](Documentation/API_REFERENCE.md#animation)
-    - [Transitioning delegate](Documentation/API_REFERENCE.md#transitioning-delegate)
-    - [Completion](Documentation/API_REFERENCE.md#completion)
-- [View controller events](Documentation/API_REFERENCE.md#view-controller-events-)
-- [Caching](Documentation/API_REFERENCE.md#caching-%EF%B8%8F)
-    - [Lifetime protocol](Documentation/API_REFERENCE.md#lifetime-protocol)
-- [Protection](Documentation/API_REFERENCE.md#protection-)
-- [State restoration](Documentation/API_REFERENCE.md#state-restoration-%EF%B8%8F)
-    - [StateRestorationDelegate protocol](Documentation/API_REFERENCE.md#staterestorationdelegate-protocol)
-- [Routing](Documentation/ROUTING_DOCUMENTATION.md) 
-
--->
+<ul>
+<li><a href="Documentation/CONFIGURATION.md#animating">Animating</a></li>
+<li><a href="Documentation/CONFIGURATION.md#observing-completion">Observing completion</a></li>
+<li><a href="Documentation/CONFIGURATION.md#observing-success">Observing success</a></li>
+<li><a href="Documentation/CONFIGURATION.md#observing-failure">Observing failure</a></li>
+<li><a href="Documentation/CONFIGURATION.md#embedding">Embedding</a></li>
+<li><a href="Documentation/CONFIGURATION.md#passing-data">Passing data</a></li>
+<li><a href="Documentation/CONFIGURATION.md#caching">Caching</a></li>
+<li><a href="Documentation/CONFIGURATION.md#protection">Protection</a></li>
+<li><a href="Documentation/CONFIGURATION.md#state-restoration">State restoration</a></li>
+<li><a href="Documentation/CONFIGURATION.md#specifying-origin-view-controller">Specifying origin view controller</a></li>
+</ul>
 <h2 id='running-the-tests' class='heading'>Running the Tests</h2>
 
 <p>Available in <code>CoreNavigationTests</code> target.</p>
@@ -553,15 +550,13 @@ Read [API reference](Documentation/API_REFERENCE.md)
 <p>Current release:</p>
 
 <ul>
-<li>1.0.0-beta-1</li>
+<li>1.0.0-beta-3</li>
 </ul>
 <h2 id='authors' class='heading'>Authors</h2>
 
 <ul>
-<li>Aron Balog (<a href="https://github.com/aronbalog">GitHub</a>)</li>
+<li>Aron Balog - <a href="https://github.com/aronbalog">GitHub</a> | <a href="https://twitter.com/Aron_Balog">Twitter</a> | <a href="https://www.linkedin.com/in/aronbalog/">LinkedIn</a> | <a href="https://medium.com/@aronbalog">Medium</a></li>
 </ul>
-
-<p>See also the list of <a href="CONTRIBUTORS.md">contributors</a> who participated in this project.</p>
 <h3 id='contributing' class='heading'>Contributing</h3>
 
 <p>Please read <a href="CONTRIBUTING.md">Contributing</a> for details on code of conduct, and the process for submitting pull requests.</p>
@@ -572,7 +567,7 @@ Read [API reference](Documentation/API_REFERENCE.md)
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="https://github.com/aronbalog/CoreNavigation" target="_blank" rel="external">Aron Balog</a>. All rights reserved. (Last updated: 2018-04-29)</p>
+          <p>&copy; 2018 <a class="link" href="https://github.com/aronbalog/CoreNavigation" target="_blank" rel="external">Aron Balog</a>. All rights reserved. (Last updated: 2018-05-01)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
