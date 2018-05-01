@@ -252,7 +252,7 @@ How to achieve this?
 1. Apply `ProtectionSpace` instance to navigation:
 
     ```swift
-    Navigation.present { (navigate) in
+    Navigate.present { (navigate) in
         navigate
             .to(VC1.self)
             .protect(with: Auth())
