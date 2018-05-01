@@ -284,7 +284,7 @@ public class To<ResultableType: Resultable>: DestinationAware {
     // MARK: private
 
     private func navigate<T>(with configuration: Configuration<T>, completion: (() -> Void)? = nil) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) {
             Navigator.navigate(with: self.navigationType, configuration: configuration, completion: completion)
         }
     }

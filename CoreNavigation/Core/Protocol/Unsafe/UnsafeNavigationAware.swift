@@ -1,5 +1,5 @@
 import Foundation
 
-protocol UnsafeNavigationAware: class {
-    var isUnsafe: Bool { get set }
+protocol SafeNavigationAware: class {
+    var isSafe: Bool { get set }
 }

@@ -100,13 +100,13 @@ class Navigator {
             }
         }
 
-        if configuration.unsafeNavigation.isUnsafe {
-            main(handler: {})
-        } else {
+        if configuration.safeNavigation.isSafe {
             let _operation = NavigationOperation(block: main)
             operation = _operation
-
+            
             queue.addOperation(_operation)
+        } else {
+            main(handler: {})
         }
     }
 
@@ -134,6 +134,11 @@ class Navigator {
             case .none:
                 ()
             }
+        } else {
+            let result = T.init(toViewController: viewController as! T.ToViewController, data: nil)
+            
+            configuration.successBlocks.forEach { $0(result) }
+
         }
 
         switch type {

@@ -14,7 +14,7 @@ public final class Configuration<ResultableType: Resultable> {
     var events = Events()
     var caching = Caching()
     var protection = Protection()
-    var unsafeNavigation = UnsafeNavigationObject()
+    var safeNavigation = SafeNavigationObject()
     var stateRestoration = StateRestoration()
     var origin = Origin()
     var windowObject = WindowObject()
@@ -58,8 +58,8 @@ public final class Configuration<ResultableType: Resultable> {
         var protectionSpace: ProtectionSpace?
     }
 
-    class UnsafeNavigationObject: UnsafeNavigationAware {
-        var isUnsafe: Bool = false
+    class SafeNavigationObject: SafeNavigationAware {
+        var isSafe: Bool = false
     }
 
     class StateRestoration: StateRestorationAware {

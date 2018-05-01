@@ -1,21 +1,21 @@
 import Foundation
 
-protocol UnsafeNavigation {
-    associatedtype UnsafeNavigationObject: UnsafeNavigationAware
+protocol SafeNavigation {
+    associatedtype SafeNavigationObject: SafeNavigationAware
 
-    var unsafeNavigation: UnsafeNavigationObject { get set }
+    var safeNavigation: SafeNavigationObject { get set }
 
-    @discardableResult func unsafely() -> Self
+    @discardableResult func safely() -> Self
 }
 
 // MARK: - Unsafe navigation configuration
-extension Configuration: UnsafeNavigation {
-    /// Skips queue when navigating.
+extension Configuration: SafeNavigation {
+    /// Adds navigation to queue.
     ///
     /// - Returns: Configuration instance.
-    @discardableResult public func unsafely() -> Self {
+    @discardableResult public func safely() -> Self {
         queue.async(flags: .barrier) {
-            self.unsafeNavigation.isUnsafe = true
+            self.safeNavigation.isSafe = true
         }
 
         return self
