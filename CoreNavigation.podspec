@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
 	spec.name = 'CoreNavigation'
 	spec.ios.deployment_target = '8.0'
-	spec.version = '1.0.0-beta-2'
+	spec.version = '1.0.0-beta-3'
 	spec.license = 'MIT'
 	spec.summary = 'A Swift navigation framework'
 	spec.author = 'Aron Balog'
