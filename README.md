@@ -73,7 +73,7 @@ To integrate CoreNavigation into your Xcode project using CocoaPods, specify it 
 target '<Your Target Name>' do
     use_frameworks!
     
-    pod 'CoreNavigation', '1.0.0-beta-1'
+    pod 'CoreNavigation', '1.0.0-beta-4'
 end
 ```
 
@@ -97,7 +97,7 @@ $ brew install carthage
 To integrate CoreNavigation into your Xcode project using Carthage, specify it in your Cartfile:
 
 ```
-github "aronbalog/CoreNavigation" == "1.0.0-beta-1"
+github "aronbalog/CoreNavigation" == "1.0.0-beta-4"
 ```
 
 ## API Reference
@@ -453,7 +453,7 @@ Available in `CoreNavigationTests` target.
 
 Current release:
 
-- 1.0.0-beta-3
+- 1.0.0-beta-4
 
 ## Authors
 
