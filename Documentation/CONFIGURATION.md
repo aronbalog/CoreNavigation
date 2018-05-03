@@ -140,8 +140,6 @@ Call `kill()` to invalidate cache.
 
 Let's say following use case has to be implemented:
 
-Let's say following use case has to be implemented:
-
 > 1. When some action `A1` occurs (eg. button is tapped), `VC1` is presented
 > 1. 
 >    - If `VC1` is dismissed and `A1` action is repeated within `60` seconds, presented `VC1` should be the same instance from `step 1` of this use case

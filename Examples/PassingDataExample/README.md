@@ -2,6 +2,10 @@
 
 This is an example project which demonstrates the usage of [`CoreNavigation`]'s view controller data passing capabilities.
 
+Medium post:
+
+- [#2 - Passing data between view controllers.](https://medium.com/@aronbalog/2-ios-reinventing-view-controller-navigation-6d3499d4df73)
+
 ## Installation
 
 Clone [`CoreNavigation`] repo and:

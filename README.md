@@ -151,7 +151,7 @@ Why use the `Destination` instead navigating directly to view controller?
 Read about it on Medium:
 
 - [#1 iOS - Reinventing view controller navigation](https://medium.com/@aronbalog/1-ios-reinventing-view-controller-navigation-c2745b60bb6c)
-- [#2 iOS - Reinventing view controller navigation](https://medium.com/@aronbalog/2-ios-reinventing-view-controller-navigation-8d2adee8e424)
+- [#2 iOS - Reinventing view controller navigation](https://medium.com/@aronbalog/2-ios-reinventing-view-controller-navigation-6d3499d4df73)
 
 #### Defining `Destination`
 
@@ -450,6 +450,7 @@ Navigate.present { $0
 ## Example Apps
 
 - [BiometricAuthExample](Examples/BiometricAuthExample)
+- [PassingDataExample](Examples/PassingDataExample)
 
 ## Running the Tests
 
