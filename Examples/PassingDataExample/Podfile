@@ -1,0 +1,6 @@
+target 'PassingDataExample' do
+  use_frameworks!
+
+  pod 'CoreNavigation', '1.0.0-beta-4'
+  pod 'ChromaColorPicker'
+end
