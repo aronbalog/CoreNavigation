@@ -28,6 +28,9 @@ Navigate between view controllers with ease. 💫
         - [State restoration]
         - [Specifying origin view controller]
 - [Example Apps]
+    - [BiometricAuthExample]
+    - [PassingDataExample]
+    - [DeepLinkingExample]
 - [Running the Tests]
 - [Versioning]
 - [Authors]
@@ -449,9 +452,9 @@ Navigate.present { $0
 
 ## Example Apps
 
-- [BiometricAuthExample](Examples/BiometricAuthExample)
-- [PassingDataExample](Examples/PassingDataExample)
-- [DeepLinkingExample](Examples/DeepLinkingExample)
+- [BiometricAuthExample]
+- [PassingDataExample]
+- [DeepLinkingExample]
 
 ## Running the Tests
 
@@ -486,3 +489,9 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE.m
 [Protection]: Documentation/CONFIGURATION.md#protection
 [State restoration]: Documentation/CONFIGURATION.md#state-restoration
 [Specifying origin view controller]: Documentation/CONFIGURATION.md#specifying-origin-view-controller
+
+<!--- example apps -->
+
+[BiometricAuthExample]: Examples/BiometricAuthExample
+[PassingDataExample]: Examples/PassingDataExample
+[DeepLinkingExample]: Examples/DeepLinkingExample
