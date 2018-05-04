@@ -451,6 +451,7 @@ Navigate.present { $0
 
 - [BiometricAuthExample](Examples/BiometricAuthExample)
 - [PassingDataExample](Examples/PassingDataExample)
+- [DeepLinkingExample](Examples/DeepLinkingExample)
 
 ## Running the Tests
 

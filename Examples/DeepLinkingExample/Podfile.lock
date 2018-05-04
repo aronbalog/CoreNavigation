@@ -1,0 +1,20 @@
+PODS:
+  - ChromaColorPicker (1.7)
+  - CoreNavigation (1.0.0-beta-4)
+
+DEPENDENCIES:
+  - ChromaColorPicker
+  - CoreNavigation (= 1.0.0-beta-4)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - ChromaColorPicker
+    - CoreNavigation
+
+SPEC CHECKSUMS:
+  ChromaColorPicker: 33efa67b17cca51dd253689d18b83ac7e05642c2
+  CoreNavigation: f9239c21c6a226922c0c6c55a20822d2caee0a05
+
+PODFILE CHECKSUM: 10be913a3a7806a946c2aa1f0769fc919bb3711e
+
+COCOAPODS: 1.5.0

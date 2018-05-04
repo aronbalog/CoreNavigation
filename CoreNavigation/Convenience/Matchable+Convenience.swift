@@ -56,6 +56,17 @@ public extension Matchable {
 
     /// Pushes view controller after routing to self.
     ///
+    /// - Parameter completion: Completion block.
+    public func push(completion: (() -> Void)? = nil) {
+        let configuration = To<Result<UIViewController, Any>>(.push, from: nil).to(self)
+        
+        if let completion = completion {
+            configuration.completion(completion)
+        }
+    }
+    
+    /// Pushes view controller after routing to self.
+    ///
     /// - Parameter block: Navigation configuration block.
     public func push(_ block: @escaping (Configuration<Result<UIViewController, Any>>) -> Void) {
         block(To<Result<UIViewController, Any>>(.push, from: nil).to(self))
