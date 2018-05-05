@@ -149,6 +149,8 @@ Navigate.push { $0
 
 ### Routing & deep linking:
 
+- [DeepLinkingExample App][DeepLinkingExample]
+
 Why use the `Destination` instead navigating directly to view controller?
 
 Read about it on Medium:

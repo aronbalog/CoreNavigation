@@ -105,6 +105,11 @@ on(_:)
 
 ## Passing data
 
+### Example Apps
+
+- [PassingDataExample]
+- [DeepLinkingExample]
+
 ### Usage
 
 | Method                      | Arguments               |
@@ -181,9 +186,9 @@ Navigate.present { $0
 
 ## Protection
 
-### Example app
+### Example App
 
-- [BiometricAuthExample](Examples/BiometricAuthExample)
+- [BiometricAuthExample]
 
 ### Usage
 
@@ -426,3 +431,7 @@ View controllers restored by `CoreNavigation` state restoration engine & conform
 [`StateRestorationBehavior`]: https://docs.corenavigation.org/Enums/StateRestorationBehavior.html
 [`NSCoding`]: https://developer.apple.com/documentation/foundation/nscoding
 [`StateRestorationContext`]: https://docs.corenavigation.org/Classes/StateRestorationContext.html
+
+[BiometricAuthExample]: ../Examples/BiometricAuthExample
+[PassingDataExample]: ../Examples/PassingDataExample
+[DeepLinkingExample]: ../Examples/DeepLinkingExample

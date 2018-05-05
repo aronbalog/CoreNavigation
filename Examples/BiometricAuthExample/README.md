@@ -55,7 +55,7 @@ Navigate.present { $0
 
 `BiometricAuthentication` implementation:
 
-> [`LocalAuthentication Apple Documentation](https://developer.apple.com/documentation/localauthentication/)
+> [`LocalAuthentication` Apple Documentation](https://developer.apple.com/documentation/localauthentication/)
 
 ```swift
 import Foundation

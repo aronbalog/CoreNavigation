@@ -1,6 +1,6 @@
 # DeepLinkingExample
 
-This is an example project which demonstrates the usage of [`CoreNavigation`]'s view controller data passing & routing capabilities.
+This example project is an upgrade to [PassingDataExample](../PassingDataExample) project, and demonstrates the usage of [`CoreNavigation`]'s view controller data passing & routing capabilities.
 
 Medium post:
 
