@@ -17,9 +17,10 @@ extension NSUserActivity {
         Navigate.push { $0
             .to(url)
             .animated(false)
-            .completion {
-                print("Did open deep link url: ", url)
-            }
+            .onSuccess({ (result) in
+                let color = result.data as? UIColor
+                print("Did open deep link url: \(url), data: \(color!)")
+            })
         }
     }
     
