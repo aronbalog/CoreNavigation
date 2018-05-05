@@ -2,9 +2,10 @@
 
 This example project is an upgrade to [PassingDataExample](../PassingDataExample) project, and demonstrates the usage of [`CoreNavigation`]'s view controller data passing & routing capabilities.
 
-Medium post:
+Medium posts:
 
 - [#2 - Passing data between view controllers.](https://medium.com/@aronbalog/2-ios-reinventing-view-controller-navigation-6d3499d4df73)
+- [#3 - Handle Universal Links Like a Boss.](https://medium.com/@aronbalog/3-ios-reinventing-view-controller-navigation-c5bf972bf4b4)
 
 ## Installation
 
@@ -192,7 +193,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 ### NSUserActivity extension
 
 ```swift
-
 import Foundation
 import CoreNavigation
 
@@ -205,18 +205,20 @@ extension NSUserActivity {
         guard
             activityType == NSUserActivityTypeBrowsingWeb,
             let url = webpageURL
-        else {
-            throw Error.unprocessableEntity
-        }
+            else {
+                throw Error.unprocessableEntity
+            }
     
         Navigate.push { $0
             .to(url)
             .animated(false)
-            .completion {
-                print("Did open deep link url: ", url)
-            }
+            .onSuccess({ (result) in
+                let color = result.data as? UIColor
+                print("Did open deep link url: \(url), data: \(color!)")
+            })
         }
     }
+    
 }
 ```
 

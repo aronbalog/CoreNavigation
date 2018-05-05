@@ -155,8 +155,10 @@ Why use the `Destination` instead navigating directly to view controller?
 
 Read about it on Medium:
 
-- [#1 iOS - Reinventing view controller navigation](https://medium.com/@aronbalog/1-ios-reinventing-view-controller-navigation-c2745b60bb6c)
-- [#2 iOS - Reinventing view controller navigation](https://medium.com/@aronbalog/2-ios-reinventing-view-controller-navigation-6d3499d4df73)
+- [#0 present & push… For how long?](https://medium.com/@aronbalog/0-ios-reinventing-view-controller-navigation-c371175fbb7a)
+- [#1 Forget about segues.](https://medium.com/@aronbalog/1-ios-reinventing-view-controller-navigation-c2745b60bb6c)
+- [#2 Passing data between view controllers.](https://medium.com/@aronbalog/2-ios-reinventing-view-controller-navigation-6d3499d4df73)
+- [#3 Handle Universal Links Like a Boss.](https://medium.com/@aronbalog/3-ios-reinventing-view-controller-navigation-c5bf972bf4b4)
 
 #### Defining `Destination`
 
