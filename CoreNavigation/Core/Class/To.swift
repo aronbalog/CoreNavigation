@@ -174,7 +174,11 @@ public class To<ResultableType: Resultable>: DestinationAware {
                 block(.failure(error))
             })
         }), from: from)
-
+        
+        if let destination = destination as? Protected {
+            configuration.protection.protectionSpace = destination.protect()
+        }
+        
         navigate(with: configuration, completion: {
             type(of: destination).resolve(context: context)
         })
@@ -198,6 +202,10 @@ public class To<ResultableType: Resultable>: DestinationAware {
             })
         }), from: from)
 
+        if let destination = destination as? Protected {
+            configuration.protection.protectionSpace = destination.protect()
+        }
+        
         navigate(with: configuration, completion: {
             type(of: destination).resolve(context: context)
         })

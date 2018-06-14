@@ -99,7 +99,7 @@ class RegularExpression: NSRegularExpression {
 
         let parameterRegex = try! NSRegularExpression(pattern: ParameterPattern, options: [])
 
-        return namedGroupExpressions.flatMap({ (namedExpression) -> String? in
+        return namedGroupExpressions.compactMap({ (namedExpression) -> String? in
 
             let componentMatches = parameterRegex.matches(in: namedExpression, options: [], range: NSRange(location: 0, length: namedExpression.count))
 

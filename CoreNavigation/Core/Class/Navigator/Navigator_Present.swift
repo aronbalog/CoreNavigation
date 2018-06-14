@@ -19,7 +19,7 @@ extension Navigator {
             fromViewController?.transitioningDelegate = viewControllerTransitioningDelegate
 
             let transitioningCompletionBlocks = configuration.transitioning.completionBlocks
-            let eventBlocks: [() -> Void] = configuration.events.navigationEvents.flatMap({ (event) -> (() -> Void)? in
+            let eventBlocks: [() -> Void] = configuration.events.navigationEvents.compactMap({ (event) -> (() -> Void)? in
                 if case Configuration<T>.Events.NavigationEvent.completion(let block) = event {
                     return block
                 }
