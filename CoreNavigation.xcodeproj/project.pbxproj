@@ -96,7 +96,6 @@
 		38E24F74205D609C0062AE85 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E24F73205D609C0062AE85 /* Router.swift */; };
 		38E3041F20941A5B00D4B7A9 /* DataPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E3041E20941A5B00D4B7A9 /* DataPromise.swift */; };
 		38F1D897205B04FB001F0B0B /* Swizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1D896205B04FB001F0B0B /* Swizzler.swift */; };
-		38F1D899205B054E001F0B0B /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1D898205B054E001F0B0B /* UIApplication.swift */; };
 		38F1D89B205B0574001F0B0B /* UIViewController+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1D89A205B0574001F0B0B /* UIViewController+Events.swift */; };
 		38F1D89D205B059E001F0B0B /* ObjectAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1D89C205B059E001F0B0B /* ObjectAssociation.swift */; };
 		38F1D89F205B05CF001F0B0B /* ViewControllerObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F1D89E205B05CF001F0B0B /* ViewControllerObserver.swift */; };
@@ -227,7 +226,6 @@
 		38E3041D2093D5E700D4B7A9 /* Routing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Routing.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		38E3041E20941A5B00D4B7A9 /* DataPromise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPromise.swift; sourceTree = "<group>"; };
 		38F1D896205B04FB001F0B0B /* Swizzler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swizzler.swift; sourceTree = "<group>"; };
-		38F1D898205B054E001F0B0B /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		38F1D89A205B0574001F0B0B /* UIViewController+Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Events.swift"; sourceTree = "<group>"; };
 		38F1D89C205B059E001F0B0B /* ObjectAssociation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectAssociation.swift; sourceTree = "<group>"; };
 		38F1D89E205B05CF001F0B0B /* ViewControllerObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerObserver.swift; sourceTree = "<group>"; };
@@ -408,7 +406,6 @@
 				384CF9AD204DC35E00330EC7 /* UIViewController+CurrentViewController.swift */,
 				38222B7820681EAC00435008 /* UIView+KeyboardObserver.swift */,
 				381D744620558FF700F1C154 /* UINavigationController.swift */,
-				38F1D898205B054E001F0B0B /* UIApplication.swift */,
 				38836B532064556D007963A0 /* Navigator+ViewControllerEvents.swift */,
 				38836B5520645583007963A0 /* Navigator+StateRestoration.swift */,
 				38836B57206455AB007963A0 /* Navigator+Cache.swift */,
@@ -1033,7 +1030,6 @@
 				38577CA3205CBB4700FB4B83 /* ProtectionHandler.swift in Sources */,
 				383320D1205DE9FE008492EE /* Routable.swift in Sources */,
 				388A2F172065AC57009BC5AC /* Originable.swift in Sources */,
-				38F1D899205B054E001F0B0B /* UIApplication.swift in Sources */,
 				383320D3205DEA24008492EE /* Context.swift in Sources */,
 				38444AB3205F570F001F3F5C /* UIViewController+Convenience.swift in Sources */,
 				3850CBF2207575DA0009FB57 /* Configuration+Result.swift in Sources */,

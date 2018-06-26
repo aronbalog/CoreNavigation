@@ -5,6 +5,9 @@ public typealias ConfigurationBlock = (To<Result<UIViewController, Any>>) -> Voi
 
 /// Navigation starting point.
 public struct Navigate {
+    private static let coreNavigation_runOnce: Void = {
+        UIViewController.swizzleMethods
+    }()
 
     /// Navigation history.
     public static var history: History {
@@ -21,6 +24,8 @@ public struct Navigate {
     /// - Parameter configuration: `Configuration` block which returns object that can be used to configure push navigation.
     /// - Returns: `Navigate` class.
     @discardableResult public static func present(_ configuration: ConfigurationBlock) -> Navigate.Type {
+        coreNavigation_runOnce
+        
         configuration(To<Result<UIViewController, Any>>(.present, from: nil))
 
         return self
@@ -31,6 +36,8 @@ public struct Navigate {
     /// - Parameter configuration: `Configuration` block which returns object that can be used to configure presenting navigation.
     /// - Returns: `Navigate` class.
     @discardableResult public static func push(_ configuration: ConfigurationBlock) -> Navigate.Type {
+        coreNavigation_runOnce
+        
         configuration(To<Result<UIViewController, Any>>(.push, from: nil))
 
         return self

@@ -11,7 +11,7 @@ extension Navigator {
                     return fromViewController
                 }
 
-                let window = configuration.windowObject.window ?? UIApplication.shared.keyWindow
+                let window = configuration.windowObject.window ?? UIApplication.shared.delegate?.window ?? UIApplication.shared.keyWindow
 
                 return UIViewController.currentViewController(in: window)
             }()
