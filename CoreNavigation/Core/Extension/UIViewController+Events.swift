@@ -12,8 +12,8 @@ extension UIViewController {
         Swizzler.swizzle(UIViewController.self, #selector(viewWillLayoutSubviews), #selector(coreNavigation_viewWillLayoutSubviews))
         Swizzler.swizzle(UIViewController.self, #selector(viewDidLayoutSubviews), #selector(coreNavigation_viewDidLayoutSubviews))
         Swizzler.swizzle(UIViewController.self, #selector(updateViewConstraints), #selector(coreNavigation_updateViewConstraints))
-        Swizzler.swizzle(UIViewController.self, #selector(willMove(toParentViewController:)), #selector(coreNavigation_willMove(toParentViewController:)))
-        Swizzler.swizzle(UIViewController.self, #selector(didMove(toParentViewController:)), #selector(coreNavigation_didMove(toParentViewController:)))
+        Swizzler.swizzle(UIViewController.self, #selector(willMove), #selector(coreNavigation_willMove(toParentViewController:)))
+        Swizzler.swizzle(UIViewController.self, #selector(didMove), #selector(coreNavigation_didMove(toParentViewController:)))
         Swizzler.swizzle(UIViewController.self, #selector(didReceiveMemoryWarning), #selector(coreNavigation_didReceiveMemoryWarning))
         Swizzler.swizzle(UIViewController.self, #selector(applicationFinishedRestoringState), #selector(coreNavigation_applicationFinishedRestoringState))
 

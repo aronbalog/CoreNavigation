@@ -51,33 +51,33 @@ class StateRestoration: UIViewControllerRestoration {
 
     private static let storageIdentifier = "CoreNavigation.StateRestoration"
 
-    static func viewController(withRestorationIdentifierPath identifierComponents: [Any], coder: NSCoder) -> UIViewController? {
-        guard let identifier = identifierComponents.last as? String else { return nil }
+    static func viewController(withRestorationIdentifierPath identifierComponents: [String], coder: NSCoder) -> UIViewController? {
+        guard let identifier = identifierComponents.last else { return nil }
         guard let storageItem = find(identifier: identifier) else { return nil }
         guard let delegate = UIApplication.shared.delegate as? StateRestorationDelegate else {
             fatalError("App delegate must conform `StateRestorationDelegate`")
         }
-
+        
         var viewController: UIViewController?
-
+        
         let context = StateRestorationContext(restorationIdentifier: identifier, viewControllerClass: storageItem.viewControllerClass, protectionSpaceClass: storageItem.protectionSpaceClass, data: storageItem.data)
-
+        
         let behavior = delegate.application(UIApplication.shared, stateRestorationBehaviorForContext: context)
         switch behavior {
         case .reject:
             return nil
         case .allow:
             viewController = action(storageItem: storageItem)
-
+            
             return viewController
         case .protect(let protectionSpace, let onUnprotect, let onFailure):
             if protectionSpace.shouldProtect() {
                 let handler = ProtectionHandler()
                 protectionSpace.protect(handler)
-
+                
                 handler.onUnprotect {
                     viewController = action(storageItem: storageItem)
-
+                    
                     if let viewController = viewController {
                         context.unprotectSuccess?(viewController)
                         onUnprotect?(viewController)
@@ -90,8 +90,19 @@ class StateRestoration: UIViewControllerRestoration {
             } else {
                 viewController = action(storageItem: storageItem)
             }
-
+            
             return viewController
+        }
+    }
+    
+    static func viewController(withRestorationIdentifierPath identifierComponents: [Any], coder: NSCoder) -> UIViewController? {
+        let stringIdentifierComponents = identifierComponents.compactMap({ (component) -> String? in
+            return component as? String
+        })
+        if stringIdentifierComponents.count > 0 {
+            return StateRestoration.viewController(withRestorationIdentifierPath: stringIdentifierComponents, coder: coder)
+        } else {
+            return nil
         }
     }
 
