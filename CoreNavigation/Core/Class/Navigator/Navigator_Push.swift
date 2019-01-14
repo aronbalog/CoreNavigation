@@ -11,7 +11,7 @@ extension Navigator {
                     return fromViewController
                 }
 
-                let window = configuration.windowObject.window ?? UIApplication.shared.keyWindow
+                let window = configuration.windowObject.window ?? UIApplication.shared.delegate?.window ?? UIApplication.shared.keyWindow
 
                 return UIViewController.currentViewController(in: window)
             }()
@@ -21,7 +21,7 @@ extension Navigator {
             navigationController?.transitioningDelegate = viewControllerTransitioningDelegate
 
             let transitioningCompletionBlocks = configuration.transitioning.completionBlocks
-            let eventBlocks: [() -> Void] = configuration.events.navigationEvents.flatMap({ (event) -> (() -> Void)? in
+            let eventBlocks: [() -> Void] = configuration.events.navigationEvents.compactMap({ (event) -> (() -> Void)? in
                 if case Configuration<T>.Events.NavigationEvent.completion(let block) = event {
                     return block
                 }
