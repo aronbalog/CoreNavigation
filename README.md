@@ -2,6 +2,8 @@
 
 Navigate between view controllers with ease. 💫
 
+🔜 More stable version (written in Swift 5) coming soon.
+
 [![Platform](https://img.shields.io/cocoapods/p/CoreNavigation.svg?style=flat)](https://github.com/aronbalog/CoreNavigation)
 [![Build Status](https://travis-ci.org/aronbalog/CoreNavigation.svg?branch=master)](https://travis-ci.org/aronbalog/CoreNavigation)
 [![Documentation](docs/badge.svg)](http://aronbalog.github.io/CoreNavigation)
