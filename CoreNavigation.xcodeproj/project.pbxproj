@@ -42,7 +42,6 @@
 		38EE32E8231531EB005DEE32 /* Embedding_Helper_Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32E7231531EB005DEE32 /* Embedding_Helper_Wrapper.swift */; };
 		38EE32EB23153F85005DEE32 /* DataPassing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32EA23153F85005DEE32 /* DataPassing.swift */; };
 		38EE32ED23153F97005DEE32 /* DataPassing_Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32EC23153F97005DEE32 /* DataPassing_Context.swift */; };
-		38EE32EF2315475C005DEE32 /* DataPassingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32EE2315475C005DEE32 /* DataPassingStrategy.swift */; };
 		38EE32F32315631C005DEE32 /* Protection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32F22315631C005DEE32 /* Protection.swift */; };
 		38EE32F52315682E005DEE32 /* Protection_Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32F42315682E005DEE32 /* Protection_Chain.swift */; };
 /* End PBXBuildFile section */
@@ -111,7 +110,6 @@
 		38EE32E7231531EB005DEE32 /* Embedding_Helper_Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_Helper_Wrapper.swift; sourceTree = "<group>"; };
 		38EE32EA23153F85005DEE32 /* DataPassing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPassing.swift; sourceTree = "<group>"; };
 		38EE32EC23153F97005DEE32 /* DataPassing_Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPassing_Context.swift; sourceTree = "<group>"; };
-		38EE32EE2315475C005DEE32 /* DataPassingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPassingStrategy.swift; sourceTree = "<group>"; };
 		38EE32F22315631C005DEE32 /* Protection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protection.swift; sourceTree = "<group>"; };
 		38EE32F42315682E005DEE32 /* Protection_Chain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protection_Chain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -257,7 +255,6 @@
 			children = (
 				38EE32D623133E5E005DEE32 /* EmbeddingType.swift */,
 				386D00B322FC6748005056C1 /* NavigationType.swift */,
-				38EE32EE2315475C005DEE32 /* DataPassingStrategy.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -464,7 +461,6 @@
 				38EE32D523133E1A005DEE32 /* Embedding_Helper_NavigationController.swift in Sources */,
 				38EE32C92312EFFA005DEE32 /* Protectable.swift in Sources */,
 				386D00C022FCAC1F005056C1 /* Resolver.swift in Sources */,
-				38EE32EF2315475C005DEE32 /* DataPassingStrategy.swift in Sources */,
 				38EE32D723133E5E005DEE32 /* EmbeddingType.swift in Sources */,
 				38EE32E8231531EB005DEE32 /* Embedding_Helper_Wrapper.swift in Sources */,
 				38EE32DE231529CF005DEE32 /* Embedding.swift in Sources */,

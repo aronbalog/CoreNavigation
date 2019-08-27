@@ -6,13 +6,17 @@ public class Builder<DestinationType: Destination, FromType: UIViewController> {
         self.configuration = configuration
         self.queue = queue
     }
-
-    @discardableResult public func animated(_ isAnimated: Bool) -> Self {
+    
+    @discardableResult public func animated(_ block: @escaping () -> Bool) -> Self {
         queue.sync {
-            configuration.isAnimated = isAnimated
+            configuration.isAnimated = block
         }
         
         return self
+    }
+
+    @discardableResult public func animated(_ isAnimated: Bool) -> Self {
+        return animated { isAnimated }
     }
     
     @discardableResult public func protect(with protections: Protectable...) -> Self {
@@ -75,7 +79,9 @@ public class Builder<DestinationType: Destination, FromType: UIViewController> {
 extension Builder where DestinationType: DataReceivable {
     @discardableResult public func passData(_ data: DestinationType.DataType) -> Self {
         queue.sync {
-            configuration.dataToPass = .sync(data)
+            configuration.dataPassingBlock = { context in
+                context.passData(data)
+            }
         }
         
         return self
@@ -83,9 +89,9 @@ extension Builder where DestinationType: DataReceivable {
     
     @discardableResult public func passData(_ block: @escaping (DataPassing.Context<DestinationType.DataType>) -> Void) -> Self {
         queue.sync {
-            configuration.dataToPass = DataPassing.Strategy.async({ context in
+            configuration.dataPassingBlock = { context in
                 block(DataPassing.Context(onPassData: context.passData))
-            })
+            }
         }
         
         return self
@@ -93,19 +99,21 @@ extension Builder where DestinationType: DataReceivable {
 }
 
 extension Builder where DestinationType.ViewControllerType: DataReceivable {
-    @discardableResult public func passData(_ data: DestinationType.ViewControllerType.DataType) -> Self {
+    @discardableResult public func passDataToViewController(_ data: DestinationType.ViewControllerType.DataType) -> Self {
         queue.sync {
-            configuration.dataToPass = .sync(data)
+            configuration.dataPassingBlock = { context in
+                context.passData(data)
+            }
         }
         
         return self
     }
     
-    @discardableResult public func passData(_ block: @escaping (DataPassing.Context<DestinationType.ViewControllerType.DataType>) -> Void) -> Self {
+    @discardableResult public func passDataToViewController(_ block: @escaping (DataPassing.Context<DestinationType.ViewControllerType.DataType>) -> Void) -> Self {
         queue.sync {
-            configuration.dataToPass = DataPassing.Strategy.async({ context in
+            configuration.dataPassingBlock = { context in
                 block(DataPassing.Context(onPassData: context.passData))
-            })
+            }
         }
         
         return self

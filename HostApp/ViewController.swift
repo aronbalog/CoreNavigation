@@ -12,15 +12,15 @@ struct Other: Destination, DataReceivable {
 }
 
 class ViewController2: UIViewController, DataReceivable {
+    typealias DataType = String
     let custom = "2"
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .orange
     }
-    
     func didReceiveData(_ data: String) {
-        print("data in view controller \(data)")
+        print("Data in VC!", data)
     }
 }
 
@@ -33,6 +33,16 @@ class ViewController3: UIViewController, DataReceivable {
         
         view.backgroundColor = .green
     }
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        
+        print("Initing view controller")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError()
+    }
+    
     func didReceiveData(_ data: String) {
         print("data in view controller 3 \(data)")
     }
@@ -46,7 +56,7 @@ enum MyError: Error {
 
 class MyProtection: Protectable {
     func protect(with context: Protection.Context) throws {
-        print("Protecting 2")
+        print("Protecting 1")
         let viewController = ViewController2()
         
         Present({ $0
@@ -119,14 +129,18 @@ class ViewController: UIViewController {
     
     @objc func didTap() {
         Present { return $0
-            .to(ViewController3(), from: self)
+//            .to(ViewController3(), from: self)
+//            .to(ViewController3(), from: self)
+            .to(Other(), from: self)
             .embed(with: .tabBarController(nil))
-            .passData({ (context) in
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
-                    context.passData("Hello!")
-                })
-            })
-            .protect(with: MyProtection(), MyProtection2())
+            .passDataToViewController("Hello!!!")
+            
+//            .passData({ (context: DataPassing.Context<String>) in
+//                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
+//                    context.passData("Hello!")
+//                })
+//            })
+            .protect(with: MyProtection())
             .onSuccess({ (result) in
                 print("Success", result.fromViewController.custom, result.toViewController.custom)
             })

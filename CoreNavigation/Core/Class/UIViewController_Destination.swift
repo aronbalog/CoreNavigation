@@ -1,13 +1,13 @@
 extension UIViewController {
     final public class Destination<ViewControllerType: UIViewController>: CoreNavigation.Destination {
-        let viewController: ViewControllerType
+        let block: () -> ViewControllerType
         
-        init(viewController: ViewControllerType) {
-            self.viewController = viewController
+        init(block: @escaping () -> ViewControllerType) {
+            self.block = block
         }
         
-        public func resolve(_ resolver: Resolver<UIViewController.Destination<ViewControllerType>>) {
-            resolver.complete(viewController: viewController)
+        public func resolve(with resolver: Resolver<UIViewController.Destination<ViewControllerType>>) {
+            resolver.complete(viewController: block())
         }
     }
 }
