@@ -1,18 +1,22 @@
 class Configuration<DestinationType: Destination, FromType: UIViewController> {
     typealias OnSuccessBlock = (Result<DestinationType, FromType>) -> Void
+    typealias OnCompletionBlock = (Result<DestinationType, FromType>) -> Void
     typealias OnFailureBlock = (Error) -> Void
-
+    
     let navigationType: NavigationType
-    var to: DestinationType?
-    var fromViewController: UIViewController? = UIViewController.visibleViewController(in: UIApplication.shared.keyWindow)
+    var to: DestinationType
+    var sourceViewController: FromType
     var isAnimated: Bool = true
-    var dataToPass: Any?
+    var dataToPass: DataPassing.Strategy?
     var onSuccessBlocks: [OnSuccessBlock] = []
+    var onCompletionBlocks: [OnCompletionBlock] = []
     var onFailureBlocks: [OnFailureBlock] = []
     var protection: Protectable?
     var embeddable: Embeddable?
     
-    init(navigationType: NavigationType) {
+    init(navigationType: NavigationType, to: DestinationType, from sourceViewController: FromType) {
         self.navigationType = navigationType
+        self.to = to
+        self.sourceViewController = sourceViewController
     }
 }

@@ -21,19 +21,27 @@ class Navigator {
     func present<DestinationType: Destination, FromType: UIViewController>(with configuration: Configuration<DestinationType, FromType>) {
         queue.sync {
             viewControllerToNavigateTo(with: configuration, onComplete: { viewController, embeddingViewController in
-                self.passData(configuration.dataToPass, to: configuration.protection)
-                self.passData(configuration.dataToPass, to: configuration.to)
-                self.passData(configuration.dataToPass, to: configuration.embeddable)
-                self.passData(configuration.dataToPass, to: viewController)
-                
-                if let embeddingViewController = embeddingViewController {
-                    self.passData(configuration.dataToPass, to: embeddingViewController)
+                func passData() {
+                    var dataPassingCandidates: [Any?] = [
+                        configuration.protection,
+                        configuration.to,
+                        configuration.embeddable,
+                        viewController
+                    ]
+                    
+                    if let embeddingViewController = embeddingViewController {
+                        dataPassingCandidates.append(embeddingViewController)
+                    }
+                    
+                    self.passData(configuration.dataToPass, to: dataPassingCandidates)
                 }
                 
+                passData()
                 let destinationViewController = embeddingViewController ?? viewController
-                
-                configuration.fromViewController?.present(destinationViewController, animated: configuration.isAnimated, completion: {
-                    self.doOnNavigationCompletion(viewController: viewController, configuration: configuration)
+                let result = self.doOnNavigationSuccess(viewController: viewController, configuration: configuration)
+
+                configuration.sourceViewController.present(destinationViewController, animated: configuration.isAnimated, completion: {
+                    self.resultCompletion(with: result, configuration: configuration)
                 })
             }, onCancel: { error in
                 guard let error = error else { return }
@@ -46,7 +54,7 @@ class Navigator {
     }
     
     func push() {
-        
+        fatalError()
     }
     
     func protectNavigation<DestinationType: Destination, FromType: UIViewController>(configuration: Configuration<DestinationType, FromType>, onAllow: @escaping () -> Void, onDisallow: @escaping (Error) -> Void) {
@@ -70,16 +78,20 @@ class Navigator {
         }
     }
     
-    func doOnNavigationCompletion<DestinationType: Destination, FromType: UIViewController>(viewController: DestinationType.ViewControllerType, configuration: Configuration<DestinationType, FromType>) {
-        let result = Result<DestinationType, FromType>(toViewController: viewController, fromViewController: configuration.fromViewController as? FromType)
+    func doOnNavigationSuccess<DestinationType: Destination, FromType: UIViewController>(viewController: DestinationType.ViewControllerType, configuration: Configuration<DestinationType, FromType>) -> Result<DestinationType, FromType> {
+        let result = Result<DestinationType, FromType>(toViewController: viewController, fromViewController: configuration.sourceViewController)
         
         configuration.onSuccessBlocks.forEach { $0(result) }
+        
+        return result
+    }
+    
+    func resultCompletion<DestinationType: Destination, FromType: UIViewController>(with result: Result<DestinationType, FromType>, configuration: Configuration<DestinationType, FromType>) {
+        configuration.onCompletionBlocks.forEach { $0(result) }
     }
     
     func viewControllerToNavigateTo<DestinationType: Destination, FromType: UIViewController>(with configuration: Configuration<DestinationType, FromType>, onComplete: @escaping (DestinationType.ViewControllerType, UIViewController?) -> Void, onCancel: @escaping (Error?) -> Void) {
-        guard let to = configuration.to else { return }
-        
-        let resolver = Resolver<DestinationType>(onCompleteBlock: { viewController in
+        configuration.to.resolve(with: Resolver<DestinationType>(onCompleteBlock: { viewController in
             guard let embeddable = configuration.embeddable else {
                 onComplete(viewController, nil)
                 return
@@ -93,16 +105,25 @@ class Navigator {
             } catch let error {
                 onCancel(error)
             }
-        }, onCancelBlock: onCancel)
-        
-        to.resolve(with: resolver)
+        }, onCancelBlock: onCancel))
     }
     
-    func passData(_ data: Any?, to potentialDataReceivable: Any?) {
-        guard let dataReceivable = potentialDataReceivable as? AnyDataReceivable else { return }
+    func passData(_ dataType: DataPassing.Strategy?, to potentialDataReceivables: [Any?]) {
+        guard
+            let dataType = dataType
+        else { return }
         
-        queue.sync {
-            dataReceivable.didReceiveAnyData(data)
+        let potentialDataReceivables = potentialDataReceivables.compactMap { $0 as? AnyDataReceivable }
+
+        potentialDataReceivables.forEach { (dataReceivable) in
+            queue.sync {
+                switch dataType {
+                case .sync(let data):
+                    dataReceivable.didReceiveAnyData(data)
+                case .async(let block):
+                    block(DataPassing.Context(onPassData: dataReceivable.didReceiveAnyData))
+                }
+            }
         }
     }
 }

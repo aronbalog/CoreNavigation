@@ -40,6 +40,9 @@
 		38EE32E323152C0C005DEE32 /* Embedding_Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32E223152C0C005DEE32 /* Embedding_Helper.swift */; };
 		38EE32E623152C94005DEE32 /* Embedding_Helper_TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32E523152C94005DEE32 /* Embedding_Helper_TabBarController.swift */; };
 		38EE32E8231531EB005DEE32 /* Embedding_Helper_Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32E7231531EB005DEE32 /* Embedding_Helper_Wrapper.swift */; };
+		38EE32EB23153F85005DEE32 /* DataPassing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32EA23153F85005DEE32 /* DataPassing.swift */; };
+		38EE32ED23153F97005DEE32 /* DataPassing_Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32EC23153F97005DEE32 /* DataPassing_Context.swift */; };
+		38EE32EF2315475C005DEE32 /* DataPassingStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32EE2315475C005DEE32 /* DataPassingStrategy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +107,9 @@
 		38EE32E223152C0C005DEE32 /* Embedding_Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_Helper.swift; sourceTree = "<group>"; };
 		38EE32E523152C94005DEE32 /* Embedding_Helper_TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_Helper_TabBarController.swift; sourceTree = "<group>"; };
 		38EE32E7231531EB005DEE32 /* Embedding_Helper_Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_Helper_Wrapper.swift; sourceTree = "<group>"; };
+		38EE32EA23153F85005DEE32 /* DataPassing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPassing.swift; sourceTree = "<group>"; };
+		38EE32EC23153F97005DEE32 /* DataPassing_Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPassing_Context.swift; sourceTree = "<group>"; };
+		38EE32EE2315475C005DEE32 /* DataPassingStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPassingStrategy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +207,7 @@
 		386D009D22FC5A2D005056C1 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				38EE32E923153F77005DEE32 /* DataPassing */,
 				38EE32E0231529FC005DEE32 /* Protection */,
 				38EE32DF231529F7005DEE32 /* Embedding */,
 				386D00A022FC5A55005056C1 /* To.swift */,
@@ -248,6 +255,7 @@
 			children = (
 				38EE32D623133E5E005DEE32 /* EmbeddingType.swift */,
 				386D00B322FC6748005056C1 /* NavigationType.swift */,
+				38EE32EE2315475C005DEE32 /* DataPassingStrategy.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -257,6 +265,7 @@
 			children = (
 				38EE32DD231529CF005DEE32 /* Embedding.swift */,
 				38EE32E223152C0C005DEE32 /* Embedding_Helper.swift */,
+				38EE32EA23153F85005DEE32 /* DataPassing.swift */,
 			);
 			path = Namespace;
 			sourceTree = "<group>";
@@ -286,6 +295,14 @@
 				38EE32E7231531EB005DEE32 /* Embedding_Helper_Wrapper.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		38EE32E923153F77005DEE32 /* DataPassing */ = {
+			isa = PBXGroup;
+			children = (
+				38EE32EC23153F97005DEE32 /* DataPassing_Context.swift */,
+			);
+			path = DataPassing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -432,6 +449,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				386D00A122FC5A55005056C1 /* To.swift in Sources */,
+				38EE32ED23153F97005DEE32 /* DataPassing_Context.swift in Sources */,
 				38EE32C72312EAF0005DEE32 /* Result.swift in Sources */,
 				38EE32CF23132F8D005DEE32 /* BuilderProtection.swift in Sources */,
 				386D00B422FC6748005056C1 /* NavigationType.swift in Sources */,
@@ -439,6 +457,7 @@
 				38EE32D523133E1A005DEE32 /* Embedding_Helper_NavigationController.swift in Sources */,
 				38EE32C92312EFFA005DEE32 /* Protectable.swift in Sources */,
 				386D00C022FCAC1F005056C1 /* Resolver.swift in Sources */,
+				38EE32EF2315475C005DEE32 /* DataPassingStrategy.swift in Sources */,
 				38EE32D723133E5E005DEE32 /* EmbeddingType.swift in Sources */,
 				38EE32E8231531EB005DEE32 /* Embedding_Helper_Wrapper.swift in Sources */,
 				38EE32DE231529CF005DEE32 /* Embedding.swift in Sources */,
@@ -450,6 +469,7 @@
 				38EE32E623152C94005DEE32 /* Embedding_Helper_TabBarController.swift in Sources */,
 				386D00AD22FC616D005056C1 /* UIViewController+VisibleViewController.swift in Sources */,
 				38EE32D1231334F9005DEE32 /* Embeddable.swift in Sources */,
+				38EE32EB23153F85005DEE32 /* DataPassing.swift in Sources */,
 				38EE32E323152C0C005DEE32 /* Embedding_Helper.swift in Sources */,
 				386D00A622FC5B9C005056C1 /* Builder.swift in Sources */,
 				386D00AA22FC5F1D005056C1 /* Navigator.swift in Sources */,

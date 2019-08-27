@@ -6,15 +6,7 @@ public class Builder<DestinationType: Destination, FromType: UIViewController> {
         self.configuration = configuration
         self.queue = queue
     }
-    
-    @discardableResult public func from(_ viewController: FromType) -> Self {
-        queue.sync {
-            configuration.fromViewController = viewController
-        }
-        
-        return self
-    }
-    
+
     @discardableResult public func animated(_ isAnimated: Bool) -> Self {
         queue.sync {
             configuration.isAnimated = isAnimated
@@ -70,12 +62,30 @@ public class Builder<DestinationType: Destination, FromType: UIViewController> {
         
         return self
     }
+    
+    @discardableResult public func onComplete(_ block: @escaping (Result<DestinationType, FromType>) -> Void) -> Self {
+        queue.sync {
+            configuration.onCompletionBlocks.append(block)
+        }
+        
+        return self
+    }
 }
 
 extension Builder where DestinationType: DataReceivable {
     @discardableResult public func passData(_ data: DestinationType.DataType) -> Self {
         queue.sync {
-            configuration.dataToPass = data
+            configuration.dataToPass = .sync(data)
+        }
+        
+        return self
+    }
+    
+    @discardableResult public func passData(_ block: @escaping (DataPassing.Context<DestinationType.DataType>) -> Void) -> Self {
+        queue.sync {
+            configuration.dataToPass = DataPassing.Strategy.async({ context in
+                block(DataPassing.Context(onPassData: context.passData))
+            })
         }
         
         return self

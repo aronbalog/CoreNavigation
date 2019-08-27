@@ -53,7 +53,7 @@ class MyProtection: Protectable, DataReceivable {
 
 class MyEmbeddable: Embeddable, DataReceivable {
     func embed(with context: Embedding.Context) throws {
-        context.complete(viewController: ViewController3())
+        context.cancel(with: MyError.unknown)
     }
     typealias DataType = String
     
@@ -74,12 +74,17 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         
         Present { return $0
-            .to(Other())
-            .from(self)
-            .embed(with: .tabBarController(.navigationController(.embeddable(MyEmbeddable(), nil))))
-            .passData("Hello!")
+            .to(Other(), from: self)
+            .passData({ (context) in
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
+                    context.passData("Hello!")
+                })
+            })
             .onSuccess({ (result) in
                 print("Success", result.fromViewController?.custom, result.toViewController.custom)
+            })
+            .onComplete({ (result) in
+                print("Complete", result.fromViewController?.custom, result.toViewController.custom)
             })
             .onFailure({ (error) in
                 print("Failure", error)
