@@ -11,7 +11,7 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     var onSuccessBlocks: [OnSuccessBlock] = []
     var onCompletionBlocks: [OnCompletionBlock] = []
     var onFailureBlocks: [OnFailureBlock] = []
-    var protection: Protectable?
+    var protections: [Protectable] = []
     var embeddable: Embeddable?
     
     init(navigationType: NavigationType, to: DestinationType, from sourceViewController: FromType) {

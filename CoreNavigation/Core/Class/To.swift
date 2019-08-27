@@ -1,6 +1,6 @@
 public class To {
-    let navigationType: NavigationType
-    let queue: DispatchQueue
+    private let navigationType: NavigationType
+    private let queue: DispatchQueue
     
     init(navigationType: NavigationType, queue: DispatchQueue) {
         self.navigationType = navigationType
@@ -12,6 +12,6 @@ public class To {
     }
     
     @discardableResult public func to<ViewControllerType: UIViewController, FromType: UIViewController>(_ viewController: ViewControllerType, from sourceViewController: FromType = UIViewController.visibleViewController()) -> Builder<UIViewController.Destination<ViewControllerType>, FromType> {
-        return Builder(configuration: Configuration<UIViewController.Destination<ViewControllerType>, FromType>(navigationType: navigationType, to: UIViewController.Destination(viewController: viewController), from: sourceViewController), queue: queue)
+        return to(UIViewController.Destination(viewController: viewController), from: sourceViewController)
     }
 }

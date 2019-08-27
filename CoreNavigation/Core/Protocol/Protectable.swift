@@ -1,3 +1,3 @@
 public protocol Protectable {
-    func protect(handler: ProtectionHandler) throws
+    func protect(with context: Protection.Context) throws
 }
