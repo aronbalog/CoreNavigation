@@ -1,10 +1,23 @@
 import UIKit
 import CoreNavigation
 
-struct Other: Destination, DataReceivable {
-
+struct Other: Destination, DataReceivable, Routable {
     typealias ViewControllerType = ViewController2
     typealias DataType = String
+    
+    static func patterns() -> [String] {
+        return [
+            "hello/:personId"
+        ]
+    }
+    
+    init(parameters: [String : Any]?) {
+        
+    }
+    
+    init() {
+        
+    }
     
     func didReceiveData(_ data: String) {
         print("data in destination \(data)")
@@ -131,25 +144,29 @@ class ViewController: UIViewController {
         Present { return $0
 //            .to(ViewController3(), from: self)
 //            .to(ViewController3(), from: self)
-            .to(Other(), from: self)
-            .embed(with: .tabBarController(nil))
-            .passDataToViewController("Hello!!!")
+            .to(route: "hello/1", from: self)
+            .onSuccess({ (result) in
+                
+            })
+            
+//            .embed(with: .tabBarController(nil))
+//            .passDataToViewController("Hello!!!")
             
 //            .passData({ (context: DataPassing.Context<String>) in
 //                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
 //                    context.passData("Hello!")
 //                })
 //            })
-            .protect(with: MyProtection())
-            .onSuccess({ (result) in
-                print("Success", result.fromViewController.custom, result.toViewController.custom)
-            })
-            .onComplete({ (result) in
-                print("Complete", result.fromViewController.custom, result.toViewController.custom)
-            })
-            .onFailure({ (error) in
-                print("Failure", error)
-            })
+//            .protect(with: MyProtection())
+//            .onSuccess({ (result) in
+//                print("Success", result.fromViewController.custom, result.toViewController.custom)
+//            })
+//            .onComplete({ (result) in
+//                print("Complete", result.fromViewController.custom, result.toViewController.custom)
+//            })
+//            .onFailure({ (error) in
+//                print("Failure", error)
+//            })
         }
     }
 

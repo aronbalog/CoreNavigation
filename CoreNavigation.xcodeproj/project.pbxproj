@@ -44,6 +44,14 @@
 		38EE32ED23153F97005DEE32 /* DataPassing_Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32EC23153F97005DEE32 /* DataPassing_Context.swift */; };
 		38EE32F32315631C005DEE32 /* Protection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32F22315631C005DEE32 /* Protection.swift */; };
 		38EE32F52315682E005DEE32 /* Protection_Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32F42315682E005DEE32 /* Protection_Chain.swift */; };
+		38EE32F72315D618005DEE32 /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32F62315D618005DEE32 /* Routable.swift */; };
+		38EE32F92315D70D005DEE32 /* Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32F82315D70D005DEE32 /* Routing.swift */; };
+		38EE32FC2315D732005DEE32 /* Routing_Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32FB2315D732005DEE32 /* Routing_Router.swift */; };
+		38EE32FE2315D80C005DEE32 /* Matchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32FD2315D80C005DEE32 /* Matchable.swift */; };
+		38EE33002315D824005DEE32 /* Routing_RouteMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32FF2315D824005DEE32 /* Routing_RouteMatch.swift */; };
+		38EE33022315D8A8005DEE32 /* Routing_RegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE33012315D8A8005DEE32 /* Routing_RegularExpression.swift */; };
+		38EE33042315EE8F005DEE32 /* Routing_Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE33032315EE8F005DEE32 /* Routing_Destination.swift */; };
+		38EE33062315F337005DEE32 /* AnyDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE33052315F337005DEE32 /* AnyDestination.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +120,14 @@
 		38EE32EC23153F97005DEE32 /* DataPassing_Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPassing_Context.swift; sourceTree = "<group>"; };
 		38EE32F22315631C005DEE32 /* Protection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protection.swift; sourceTree = "<group>"; };
 		38EE32F42315682E005DEE32 /* Protection_Chain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protection_Chain.swift; sourceTree = "<group>"; };
+		38EE32F62315D618005DEE32 /* Routable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
+		38EE32F82315D70D005DEE32 /* Routing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routing.swift; sourceTree = "<group>"; };
+		38EE32FB2315D732005DEE32 /* Routing_Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routing_Router.swift; sourceTree = "<group>"; };
+		38EE32FD2315D80C005DEE32 /* Matchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matchable.swift; sourceTree = "<group>"; };
+		38EE32FF2315D824005DEE32 /* Routing_RouteMatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routing_RouteMatch.swift; sourceTree = "<group>"; };
+		38EE33012315D8A8005DEE32 /* Routing_RegularExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routing_RegularExpression.swift; sourceTree = "<group>"; };
+		38EE33032315EE8F005DEE32 /* Routing_Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routing_Destination.swift; sourceTree = "<group>"; };
+		38EE33052315F337005DEE32 /* AnyDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyDestination.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +225,7 @@
 		386D009D22FC5A2D005056C1 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				38EE32FA2315D72B005DEE32 /* Routing */,
 				38EE32E923153F77005DEE32 /* DataPassing */,
 				38EE32E0231529FC005DEE32 /* Protection */,
 				38EE32DF231529F7005DEE32 /* Embedding */,
@@ -227,10 +244,13 @@
 			isa = PBXGroup;
 			children = (
 				386D00A322FC5B6C005056C1 /* Destination.swift */,
+				38EE33052315F337005DEE32 /* AnyDestination.swift */,
+				38EE32F62315D618005DEE32 /* Routable.swift */,
 				386D00B522FC6820005056C1 /* DataReceivable.swift */,
 				386D00BD22FC7675005056C1 /* AnyDataReceivable.swift */,
 				38EE32C82312EFFA005DEE32 /* Protectable.swift */,
 				38EE32D0231334F9005DEE32 /* Embeddable.swift */,
+				38EE32FD2315D80C005DEE32 /* Matchable.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -266,6 +286,7 @@
 				38EE32E223152C0C005DEE32 /* Embedding_Helper.swift */,
 				38EE32EA23153F85005DEE32 /* DataPassing.swift */,
 				38EE32F22315631C005DEE32 /* Protection.swift */,
+				38EE32F82315D70D005DEE32 /* Routing.swift */,
 			);
 			path = Namespace;
 			sourceTree = "<group>";
@@ -306,6 +327,17 @@
 				38EE32EC23153F97005DEE32 /* DataPassing_Context.swift */,
 			);
 			path = DataPassing;
+			sourceTree = "<group>";
+		};
+		38EE32FA2315D72B005DEE32 /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				38EE32FB2315D732005DEE32 /* Routing_Router.swift */,
+				38EE32FF2315D824005DEE32 /* Routing_RouteMatch.swift */,
+				38EE33012315D8A8005DEE32 /* Routing_RegularExpression.swift */,
+				38EE33032315EE8F005DEE32 /* Routing_Destination.swift */,
+			);
+			path = Routing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -460,20 +492,28 @@
 				386D00A822FC5C1E005056C1 /* Configuration.swift in Sources */,
 				38EE32D523133E1A005DEE32 /* Embedding_Helper_NavigationController.swift in Sources */,
 				38EE32C92312EFFA005DEE32 /* Protectable.swift in Sources */,
+				38EE33042315EE8F005DEE32 /* Routing_Destination.swift in Sources */,
 				386D00C022FCAC1F005056C1 /* Resolver.swift in Sources */,
 				38EE32D723133E5E005DEE32 /* EmbeddingType.swift in Sources */,
+				38EE32F92315D70D005DEE32 /* Routing.swift in Sources */,
 				38EE32E8231531EB005DEE32 /* Embedding_Helper_Wrapper.swift in Sources */,
 				38EE32DE231529CF005DEE32 /* Embedding.swift in Sources */,
 				386D009F22FC5A3B005056C1 /* Global.swift in Sources */,
 				386D00BE22FC7675005056C1 /* AnyDataReceivable.swift in Sources */,
+				38EE33022315D8A8005DEE32 /* Routing_RegularExpression.swift in Sources */,
 				38EE32CB23132226005DEE32 /* Protection_Context.swift in Sources */,
 				386D00A422FC5B6C005056C1 /* Destination.swift in Sources */,
 				386D00B622FC6820005056C1 /* DataReceivable.swift in Sources */,
 				38EE32E623152C94005DEE32 /* Embedding_Helper_TabBarController.swift in Sources */,
+				38EE33002315D824005DEE32 /* Routing_RouteMatch.swift in Sources */,
+				38EE32F72315D618005DEE32 /* Routable.swift in Sources */,
 				386D00AD22FC616D005056C1 /* UIViewController+VisibleViewController.swift in Sources */,
 				38EE32F32315631C005DEE32 /* Protection.swift in Sources */,
+				38EE33062315F337005DEE32 /* AnyDestination.swift in Sources */,
+				38EE32FC2315D732005DEE32 /* Routing_Router.swift in Sources */,
 				38EE32D1231334F9005DEE32 /* Embeddable.swift in Sources */,
 				38EE32EB23153F85005DEE32 /* DataPassing.swift in Sources */,
+				38EE32FE2315D80C005DEE32 /* Matchable.swift in Sources */,
 				38EE32E323152C0C005DEE32 /* Embedding_Helper.swift in Sources */,
 				386D00A622FC5B9C005056C1 /* Builder.swift in Sources */,
 				386D00AA22FC5F1D005056C1 /* Navigator.swift in Sources */,
