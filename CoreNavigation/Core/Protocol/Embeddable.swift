@@ -1,3 +1,3 @@
 public protocol Embeddable {
-    func embed(rootViewController: UIViewController, handler: EmbeddingHandler) throws
+    func embed(with context: Embedding.Context) throws
 }

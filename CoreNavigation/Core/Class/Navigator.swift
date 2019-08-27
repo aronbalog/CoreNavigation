@@ -86,10 +86,10 @@ class Navigator {
             }
             
             do {
-                let handler = EmbeddingHandler(onComplete: { (embeddingViewController) in
+                let context = Embedding.Context(rootViewController: viewController, onComplete: { (embeddingViewController) in
                     onComplete(viewController, embeddingViewController)
                 }, onCancel: onCancel)
-                try embeddable.embed(rootViewController: viewController, handler: handler)
+                try embeddable.embed(with: context)
             } catch let error {
                 onCancel(error)
             }

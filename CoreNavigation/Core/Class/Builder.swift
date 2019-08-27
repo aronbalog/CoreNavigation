@@ -47,9 +47,9 @@ public class Builder<DestinationType: Destination, FromType: UIViewController> {
         return self
     }
     
-    @discardableResult public func embed(_ block: @escaping (EmbeddingHandler) -> Void) -> Self {
+    @discardableResult public func embed(_ block: @escaping (Embedding.Context) -> Void) -> Self {
         queue.sync {
-            configuration.embeddable = BuilderEmbedding(block: block)
+            configuration.embeddable = Embedding.Builder(block: block)
         }
         
         return self

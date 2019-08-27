@@ -25,6 +25,11 @@ class ViewController2: UIViewController, DataReceivable {
 }
 
 class ViewController3: UIViewController, DataReceivable {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .green
+    }
     func didReceiveData(_ data: String) {
         print("data in view controller 3 \(data)")
     }
@@ -47,10 +52,9 @@ class MyProtection: Protectable, DataReceivable {
 }
 
 class MyEmbeddable: Embeddable, DataReceivable {
-    func embed(rootViewController: UIViewController, handler: EmbeddingHandler) throws {
-        handler.complete(viewController: ViewController3())
+    func embed(with context: Embedding.Context) throws {
+        context.complete(viewController: ViewController3())
     }
-    
     typealias DataType = String
     
     func didReceiveData(_ data: String) {
@@ -72,7 +76,7 @@ class ViewController: UIViewController {
         Present { return $0
             .to(Other())
             .from(self)
-            .embed(with: .navigationController)
+            .embed(with: .tabBarController(.navigationController(.embeddable(MyEmbeddable(), nil))))
             .passData("Hello!")
             .onSuccess({ (result) in
                 print("Success", result.fromViewController?.custom, result.toViewController.custom)

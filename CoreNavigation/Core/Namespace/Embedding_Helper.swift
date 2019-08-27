@@ -1,0 +1,3 @@
+extension Embedding {
+    struct Helper {}
+}
