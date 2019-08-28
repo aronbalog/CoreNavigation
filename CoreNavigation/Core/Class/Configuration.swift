@@ -3,21 +3,23 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     typealias OnCompletionBlock = (Result<DestinationType, FromType>) -> Void
     typealias OnFailureBlock = (Error) -> Void
     typealias DataPassingBlock<T> = (DataPassing.Context<T>) -> Void
+    typealias CachingBlock = () -> (String, Cacheable)
     
     let navigationType: NavigationType
-    var to: () -> DestinationType
+    var toBlock: () -> DestinationType
     var sourceViewController: FromType
-    var isAnimated: () -> Bool = { true }
+    var isAnimatedBlock: () -> Bool = { true }
     var dataPassingBlock: DataPassingBlock<Any>?
     var onSuccessBlocks: [OnSuccessBlock] = []
     var onCompletionBlocks: [OnCompletionBlock] = []
     var onFailureBlocks: [OnFailureBlock] = []
     var protections: [Protectable] = []
     var embeddable: Embeddable?
+    var cachingBlock: CachingBlock?
     
-    init(navigationType: NavigationType, to: @escaping () -> DestinationType, from sourceViewController: FromType) {
+    init(navigationType: NavigationType, toBlock: @escaping () -> DestinationType, from sourceViewController: FromType) {
         self.navigationType = navigationType
-        self.to = to
+        self.toBlock = toBlock
         self.sourceViewController = sourceViewController
     }
 }

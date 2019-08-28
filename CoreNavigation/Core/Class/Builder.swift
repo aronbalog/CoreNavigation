@@ -9,7 +9,7 @@ public class Builder<DestinationType: Destination, FromType: UIViewController> {
     
     @discardableResult public func animated(_ block: @escaping () -> Bool) -> Self {
         queue.sync {
-            configuration.isAnimated = block
+            configuration.isAnimatedBlock = block
         }
         
         return self
@@ -51,6 +51,22 @@ public class Builder<DestinationType: Destination, FromType: UIViewController> {
         return self
     }
 
+    @discardableResult public func cache(with cacheIdentifier: String, cacheable: Cacheable) -> Self {
+        queue.sync {
+            configuration.cachingBlock = { (cacheIdentifier, cacheable) }
+        }
+        
+        return self
+    }
+
+    @discardableResult public func cache(with cacheIdentifier: String, _ block: @escaping (Caching.Context) -> Void) -> Self {
+        queue.sync {
+            configuration.cachingBlock = { (cacheIdentifier, Caching.Builder(block: block)) }
+        }
+        
+        return self
+    }
+    
     @discardableResult public func onFailure(_ block: @escaping (Error) -> Void) -> Self {
         queue.sync {
             configuration.onFailureBlocks.append(block)
@@ -114,6 +130,18 @@ extension Builder where DestinationType.ViewControllerType: DataReceivable {
             configuration.dataPassingBlock = { context in
                 block(DataPassing.Context(onPassData: context.passData))
             }
+        }
+        
+        return self
+    }
+}
+
+extension Builder where DestinationType: Routing.Destination {
+    @discardableResult public func cache(_ block: @escaping (Caching.Context) -> Void) -> Self {
+        queue.sync {
+            let cacheIdentifier = configuration.toBlock().route.uri
+            
+            configuration.cachingBlock = { (cacheIdentifier, Caching.Builder(block: block)) }
         }
         
         return self

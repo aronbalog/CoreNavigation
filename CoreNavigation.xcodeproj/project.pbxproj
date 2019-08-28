@@ -52,6 +52,11 @@
 		38EE33022315D8A8005DEE32 /* Routing_RegularExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE33012315D8A8005DEE32 /* Routing_RegularExpression.swift */; };
 		38EE33042315EE8F005DEE32 /* Routing_Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE33032315EE8F005DEE32 /* Routing_Destination.swift */; };
 		38EE33062315F337005DEE32 /* AnyDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE33052315F337005DEE32 /* AnyDestination.swift */; };
+		38EE3308231691EB005DEE32 /* Cacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE3307231691EB005DEE32 /* Cacheable.swift */; };
+		38EE330B2316948B005DEE32 /* Caching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE330A2316948B005DEE32 /* Caching.swift */; };
+		38EE330D2316949A005DEE32 /* Caching_Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE330C2316949A005DEE32 /* Caching_Context.swift */; };
+		38EE330F231698E8005DEE32 /* Caching_Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE330E231698E8005DEE32 /* Caching_Cache.swift */; };
+		38EE33112316D201005DEE32 /* Caching_Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE33102316D201005DEE32 /* Caching_Builder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +133,11 @@
 		38EE33012315D8A8005DEE32 /* Routing_RegularExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routing_RegularExpression.swift; sourceTree = "<group>"; };
 		38EE33032315EE8F005DEE32 /* Routing_Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routing_Destination.swift; sourceTree = "<group>"; };
 		38EE33052315F337005DEE32 /* AnyDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyDestination.swift; sourceTree = "<group>"; };
+		38EE3307231691EB005DEE32 /* Cacheable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cacheable.swift; sourceTree = "<group>"; };
+		38EE330A2316948B005DEE32 /* Caching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caching.swift; sourceTree = "<group>"; };
+		38EE330C2316949A005DEE32 /* Caching_Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caching_Context.swift; sourceTree = "<group>"; };
+		38EE330E231698E8005DEE32 /* Caching_Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caching_Cache.swift; sourceTree = "<group>"; };
+		38EE33102316D201005DEE32 /* Caching_Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caching_Builder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +235,7 @@
 		386D009D22FC5A2D005056C1 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				38EE3309231693B2005DEE32 /* Caching */,
 				38EE32FA2315D72B005DEE32 /* Routing */,
 				38EE32E923153F77005DEE32 /* DataPassing */,
 				38EE32E0231529FC005DEE32 /* Protection */,
@@ -251,6 +262,7 @@
 				38EE32C82312EFFA005DEE32 /* Protectable.swift */,
 				38EE32D0231334F9005DEE32 /* Embeddable.swift */,
 				38EE32FD2315D80C005DEE32 /* Matchable.swift */,
+				38EE3307231691EB005DEE32 /* Cacheable.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -286,6 +298,7 @@
 				38EE32E223152C0C005DEE32 /* Embedding_Helper.swift */,
 				38EE32EA23153F85005DEE32 /* DataPassing.swift */,
 				38EE32F22315631C005DEE32 /* Protection.swift */,
+				38EE330A2316948B005DEE32 /* Caching.swift */,
 				38EE32F82315D70D005DEE32 /* Routing.swift */,
 			);
 			path = Namespace;
@@ -338,6 +351,16 @@
 				38EE33032315EE8F005DEE32 /* Routing_Destination.swift */,
 			);
 			path = Routing;
+			sourceTree = "<group>";
+		};
+		38EE3309231693B2005DEE32 /* Caching */ = {
+			isa = PBXGroup;
+			children = (
+				38EE330C2316949A005DEE32 /* Caching_Context.swift */,
+				38EE330E231698E8005DEE32 /* Caching_Cache.swift */,
+				38EE33102316D201005DEE32 /* Caching_Builder.swift */,
+			);
+			path = Caching;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -483,6 +506,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38EE3308231691EB005DEE32 /* Cacheable.swift in Sources */,
 				386D00A122FC5A55005056C1 /* To.swift in Sources */,
 				38EE32ED23153F97005DEE32 /* DataPassing_Context.swift in Sources */,
 				38EE32F52315682E005DEE32 /* Protection_Chain.swift in Sources */,
@@ -515,9 +539,13 @@
 				38EE32EB23153F85005DEE32 /* DataPassing.swift in Sources */,
 				38EE32FE2315D80C005DEE32 /* Matchable.swift in Sources */,
 				38EE32E323152C0C005DEE32 /* Embedding_Helper.swift in Sources */,
+				38EE330D2316949A005DEE32 /* Caching_Context.swift in Sources */,
 				386D00A622FC5B9C005056C1 /* Builder.swift in Sources */,
 				386D00AA22FC5F1D005056C1 /* Navigator.swift in Sources */,
 				38EE32DB23134906005DEE32 /* Embedding_Builder.swift in Sources */,
+				38EE33112316D201005DEE32 /* Caching_Builder.swift in Sources */,
+				38EE330F231698E8005DEE32 /* Caching_Cache.swift in Sources */,
+				38EE330B2316948B005DEE32 /* Caching.swift in Sources */,
 				38EE32D9231348D9005DEE32 /* Embedding_Context.swift in Sources */,
 				38EE32C52312BED4005DEE32 /* UIViewController_Destination.swift in Sources */,
 			);
