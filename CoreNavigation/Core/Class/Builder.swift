@@ -35,7 +35,7 @@ public class Builder<DestinationType: Destination, FromType: UIViewController> {
         return self
     }
     
-    @discardableResult public func embed(with embeddingType: EmbeddingType) -> Self {
+    @discardableResult public func embed(with embeddingType: Embedding.EmbeddingType) -> Self {
         queue.sync {
             configuration.embeddable = embeddingType.embeddable()
         }
@@ -54,6 +54,14 @@ public class Builder<DestinationType: Destination, FromType: UIViewController> {
     @discardableResult public func cache(with cacheIdentifier: String, cacheable: Cacheable) -> Self {
         queue.sync {
             configuration.cachingBlock = { (cacheIdentifier, cacheable) }
+        }
+        
+        return self
+    }
+    
+    @discardableResult public func cache(with cacheIdentifier: String, cachingType: Caching.CachingType) -> Self {
+        queue.sync {
+            configuration.cachingBlock = { (cacheIdentifier, Caching.Builder(cachingType: cachingType)) }
         }
         
         return self

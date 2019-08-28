@@ -74,24 +74,16 @@ class ViewController: UIViewController {
     }
     
     @objc func didTap() {
-        Present { return $0
+        Present { $0
             .to("hello/1", from: self)
             .passData("Hello!")
             .onSuccess({ (result) in
                 print("Success!")
             })
-//            .cache(with: "hello", { (context) in
-//                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
-//                    context.invalidateCache()
-//                })
-//            })
-            .cache({ (context) in
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3, execute: {
-                    context.invalidateCache()
-                })
-            })
-//            .cache(with: "hello", cacheable: MyCacheable())
+            .cache(with: "hello", cachingType: .time(3))
             .embed(with: .navigationController(nil))
+//            .cache(with: "hello", cacheable: MyCacheable())
+            
         }
     }
 

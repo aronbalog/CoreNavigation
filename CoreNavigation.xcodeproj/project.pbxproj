@@ -33,7 +33,7 @@
 		38EE32CF23132F8D005DEE32 /* Protection_Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32CE23132F8D005DEE32 /* Protection_Builder.swift */; };
 		38EE32D1231334F9005DEE32 /* Embeddable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32D0231334F9005DEE32 /* Embeddable.swift */; };
 		38EE32D523133E1A005DEE32 /* Embedding_Helper_NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32D423133E1A005DEE32 /* Embedding_Helper_NavigationController.swift */; };
-		38EE32D723133E5E005DEE32 /* EmbeddingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32D623133E5E005DEE32 /* EmbeddingType.swift */; };
+		38EE32D723133E5E005DEE32 /* Embedding_EmbeddingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32D623133E5E005DEE32 /* Embedding_EmbeddingType.swift */; };
 		38EE32D9231348D9005DEE32 /* Embedding_Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32D8231348D9005DEE32 /* Embedding_Context.swift */; };
 		38EE32DB23134906005DEE32 /* Embedding_Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32DA23134906005DEE32 /* Embedding_Builder.swift */; };
 		38EE32DE231529CF005DEE32 /* Embedding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32DD231529CF005DEE32 /* Embedding.swift */; };
@@ -57,6 +57,7 @@
 		38EE330D2316949A005DEE32 /* Caching_Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE330C2316949A005DEE32 /* Caching_Context.swift */; };
 		38EE330F231698E8005DEE32 /* Caching_Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE330E231698E8005DEE32 /* Caching_Cache.swift */; };
 		38EE33112316D201005DEE32 /* Caching_Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE33102316D201005DEE32 /* Caching_Builder.swift */; };
+		38EE33132316E7B5005DEE32 /* Caching_CachingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE33122316E7B5005DEE32 /* Caching_CachingType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,7 +115,7 @@
 		38EE32CE23132F8D005DEE32 /* Protection_Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protection_Builder.swift; sourceTree = "<group>"; };
 		38EE32D0231334F9005DEE32 /* Embeddable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embeddable.swift; sourceTree = "<group>"; };
 		38EE32D423133E1A005DEE32 /* Embedding_Helper_NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_Helper_NavigationController.swift; sourceTree = "<group>"; };
-		38EE32D623133E5E005DEE32 /* EmbeddingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddingType.swift; sourceTree = "<group>"; };
+		38EE32D623133E5E005DEE32 /* Embedding_EmbeddingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_EmbeddingType.swift; sourceTree = "<group>"; };
 		38EE32D8231348D9005DEE32 /* Embedding_Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_Context.swift; sourceTree = "<group>"; };
 		38EE32DA23134906005DEE32 /* Embedding_Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_Builder.swift; sourceTree = "<group>"; };
 		38EE32DD231529CF005DEE32 /* Embedding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding.swift; sourceTree = "<group>"; };
@@ -138,6 +139,7 @@
 		38EE330C2316949A005DEE32 /* Caching_Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caching_Context.swift; sourceTree = "<group>"; };
 		38EE330E231698E8005DEE32 /* Caching_Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caching_Cache.swift; sourceTree = "<group>"; };
 		38EE33102316D201005DEE32 /* Caching_Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caching_Builder.swift; sourceTree = "<group>"; };
+		38EE33122316E7B5005DEE32 /* Caching_CachingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caching_CachingType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,8 +287,9 @@
 		386D00B222FC6743005056C1 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
-				38EE32D623133E5E005DEE32 /* EmbeddingType.swift */,
+				38EE32D623133E5E005DEE32 /* Embedding_EmbeddingType.swift */,
 				386D00B322FC6748005056C1 /* NavigationType.swift */,
+				38EE33122316E7B5005DEE32 /* Caching_CachingType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -518,7 +521,7 @@
 				38EE32C92312EFFA005DEE32 /* Protectable.swift in Sources */,
 				38EE33042315EE8F005DEE32 /* Routing_Destination.swift in Sources */,
 				386D00C022FCAC1F005056C1 /* Resolver.swift in Sources */,
-				38EE32D723133E5E005DEE32 /* EmbeddingType.swift in Sources */,
+				38EE32D723133E5E005DEE32 /* Embedding_EmbeddingType.swift in Sources */,
 				38EE32F92315D70D005DEE32 /* Routing.swift in Sources */,
 				38EE32E8231531EB005DEE32 /* Embedding_Helper_Wrapper.swift in Sources */,
 				38EE32DE231529CF005DEE32 /* Embedding.swift in Sources */,
@@ -547,6 +550,7 @@
 				38EE330F231698E8005DEE32 /* Caching_Cache.swift in Sources */,
 				38EE330B2316948B005DEE32 /* Caching.swift in Sources */,
 				38EE32D9231348D9005DEE32 /* Embedding_Context.swift in Sources */,
+				38EE33132316E7B5005DEE32 /* Caching_CachingType.swift in Sources */,
 				38EE32C52312BED4005DEE32 /* UIViewController_Destination.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
