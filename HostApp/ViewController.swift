@@ -144,7 +144,8 @@ class ViewController: UIViewController {
         Present { return $0
 //            .to(ViewController3(), from: self)
 //            .to(ViewController3(), from: self)
-            .to(route: "hello/1", from: self)
+            .to("hello/1", from: self)
+            .passData("Hello!")
             .onSuccess({ (result) in
                 
             })
