@@ -13,6 +13,7 @@ class Navigator {
             case .present: self.present(with: configuration)
             case .push: self.push()
             case .childViewController: self.childViewController(with: configuration)
+            case .dismiss: self.dismiss(with: configuration)
             }
         }) { (error) in
             configuration.onFailureBlocks.forEach({ (block) in
@@ -56,6 +57,18 @@ class Navigator {
     
     private func push() {
         fatalError()
+    }
+    
+    private func dismiss<DestinationType: Destination, FromType: UIViewController>(with configuration: Configuration<DestinationType, FromType>) {
+        queue.sync {
+            let sourceViewController = configuration.sourceViewController as! DestinationType.ViewControllerType
+            
+            let result = self.doOnNavigationSuccess(viewController: sourceViewController, configuration: configuration)
+
+            sourceViewController.dismiss(animated: configuration.isAnimatedBlock(), completion: {
+                self.resultCompletion(with: result, configuration: configuration)
+            })
+        }
     }
     
     private func childViewController<DestinationType: Destination, FromType: UIViewController>(

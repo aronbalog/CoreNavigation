@@ -30,4 +30,8 @@ public class To {
     @discardableResult public func to<ViewControllerType: UIViewController, FromType: UIViewController>(_ block: @escaping () -> ViewControllerType, from sourceViewController: FromType = UIViewController.visibleViewController()) -> Builder<UIViewController.Destination<ViewControllerType>, FromType> {
         return to(UIViewController.Destination(block: block), from: sourceViewController)
     }
+    
+    @discardableResult func dismiss<FromType: UIViewController>(viewController: FromType = UIViewController.visibleViewController()) -> Builder<UIViewController.Destination<UIViewController>.None, FromType> {
+        return to(UIViewController.Destination.None(), from: viewController)
+    }
 }

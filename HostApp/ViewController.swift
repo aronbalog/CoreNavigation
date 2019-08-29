@@ -42,7 +42,9 @@ class ViewController2: UIViewController {
     }
         
     @objc func didTap() {
-        dismiss(animated: true, completion: nil)
+        Dismiss(animated: false) {
+            print("Dismissed")
+        }
     }
 }
 
@@ -74,12 +76,13 @@ class ViewController: UIViewController {
     }
     
     @objc func didTap() {
-        AddChildViewController { $0
+        Present { $0
             .to("hello/1", from: self)
             .passData("Hello!")
             .onSuccess({ (result) in
                 print("Success!")
             })
+            .embed(with: .navigationController(nil))
         }
     }
 

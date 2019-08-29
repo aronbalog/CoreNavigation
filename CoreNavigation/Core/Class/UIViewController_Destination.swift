@@ -15,3 +15,11 @@ extension UIViewController {
         }
     }
 }
+
+extension UIViewController.Destination {
+    final public class None: CoreNavigation.Destination {
+        public static func resolve(parameters: [String : Any]?, destination: @escaping (UIViewController) -> Void, failure: @escaping (Error?) -> Void) throws {
+            failure(nil)
+        }
+    }
+}
