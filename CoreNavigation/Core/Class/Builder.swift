@@ -145,13 +145,17 @@ extension Builder where DestinationType.ViewControllerType: DataReceivable {
 }
 
 extension Builder where DestinationType: Routing.Destination {
-    @discardableResult public func cache(_ block: @escaping (Caching.Context) -> Void) -> Self {
-        queue.sync {
-            let cacheIdentifier = configuration.toBlock().route.uri
-            
-            configuration.cachingBlock = { (cacheIdentifier, Caching.Builder(block: block)) }
-        }
+    @discardableResult public func cache(with cacheable: Cacheable) -> Self {
+        let cacheIdentifier = configuration.toBlock().route.uri
         
-        return self
+        return cache(with: cacheIdentifier, cacheable: cacheable)
+    }
+    
+    @discardableResult public func cache(with cachingType: Caching.CachingType) -> Self {
+        return cache(with: Caching.Builder(cachingType: cachingType))
+    }
+    
+    @discardableResult public func cache(_ block: @escaping (Caching.Context) -> Void) -> Self {
+        return cache(with: Caching.Builder(block: block))
     }
 }
