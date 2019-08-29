@@ -137,10 +137,14 @@ class Navigator {
     }
     
     private func cache(cacheIdentifier: String, cacheable: Cacheable, viewController: UIViewController, embeddingViewController: UIViewController?) {
-        self.cache.addItem(with: cacheIdentifier, viewController: viewController, embeddingViewController: embeddingViewController)
+        queue.sync {
+            self.cache.addItem(with: cacheIdentifier, viewController: viewController, embeddingViewController: embeddingViewController)
+        }
 
         cacheable.cache(with: Caching.Context(cacheIdentifier: cacheIdentifier, onInvalidateBlock: {
-            self.cache.removeItem(with: cacheIdentifier)
+            self.queue.sync {
+                self.cache.removeItem(with: cacheIdentifier)
+            }
         }))
     }
     
