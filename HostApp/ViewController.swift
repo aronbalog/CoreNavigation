@@ -74,16 +74,12 @@ class ViewController: UIViewController {
     }
     
     @objc func didTap() {
-        Present { $0
+        AddChildViewController { $0
             .to("hello/1", from: self)
             .passData("Hello!")
             .onSuccess({ (result) in
                 print("Success!")
             })
-            .cache(with: "hello", cachingType: .time(3))
-            .embed(with: .navigationController(nil))
-//            .cache(with: "hello", cacheable: MyCacheable())
-            
         }
     }
 

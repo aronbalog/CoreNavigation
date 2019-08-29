@@ -8,6 +8,10 @@ public func Push<DestinationType: Destination, FromType: UIViewController>(_ to:
     Navigate(.push, to)
 }
 
+public func AddChildViewController<DestinationType: Destination, FromType: UIViewController>(_ to: (To) -> Builder<DestinationType, FromType>) {
+    Navigate(.childViewController, to)
+}
+    
 public func Navigate<DestinationType: Destination, FromType: UIViewController>(_ navigationType: NavigationType, _ to: (To) -> Builder<DestinationType, FromType>) {
     Navigator(queue: queue, cache: Caching.Cache.instance).navigate(with: to(To(navigationType: navigationType, queue: queue)).configuration)
 }
