@@ -122,7 +122,7 @@ class Navigator {
         
         if !configuration.protections.isEmpty {            
             handleProtection(with: Protection.Chain(protectables: configuration.protections), onAllow: onAllow, onDisallow: onDisallow)
-        } else if let protectable = configuration.toBlock as? Protectable {
+        } else if let protectable = configuration.destination as? Protectable {
             handleProtection(with: protectable, onAllow: onAllow, onDisallow: onDisallow)
         } else if let protectable = configuration.embeddable as? Protectable {
             handleProtection(with: protectable, onAllow: onAllow, onDisallow: onDisallow)
@@ -155,7 +155,7 @@ class Navigator {
         onCancel: @escaping (Error?) -> Void)
     {
         let caching = configuration.cachingBlock?()
-        let destination = configuration.toBlock()
+        let destination = configuration.destination
         
         func resolveNew() {
             resolve(destination, embeddable: configuration.embeddable, onComplete: { destination, viewController, embeddingViewController in
@@ -222,7 +222,7 @@ class Navigator {
             self.cache.addItem(with: cacheIdentifier, viewController: viewController, embeddingViewController: embeddingViewController)
         }
 
-        cacheable.cache(with: Caching.Context(cacheIdentifier: cacheIdentifier, onInvalidateBlock: {
+        cacheable.didCache(with: Caching.Context(cacheIdentifier: cacheIdentifier, onInvalidateBlock: {
             self.queue.sync {
                 self.cache.removeItem(with: cacheIdentifier)
             }
@@ -241,7 +241,11 @@ class Navigator {
 
         potentialDataReceivables.forEach { (dataReceivable) in
             queue.sync {
-                block(DataPassing.Context<Any>(onPassData: dataReceivable.didReceiveAnyData))
+                block(DataPassing.Context<Any>(onPassData: { data in
+                    self.queue.sync {
+                        dataReceivable.didReceiveAnyData(data)
+                    }
+                }))
             }
         }
     }

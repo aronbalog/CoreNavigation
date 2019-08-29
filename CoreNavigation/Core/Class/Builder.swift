@@ -51,7 +51,7 @@ public class Builder<DestinationType: Destination, FromType: UIViewController> {
         return self
     }
 
-    @discardableResult public func cache(with cacheIdentifier: String, cacheable: Cacheable) -> Self {
+    @discardableResult public func cache(cacheIdentifier: String, cacheable: Cacheable) -> Self {
         queue.sync {
             configuration.cachingBlock = { (cacheIdentifier, cacheable) }
         }
@@ -59,7 +59,7 @@ public class Builder<DestinationType: Destination, FromType: UIViewController> {
         return self
     }
     
-    @discardableResult public func cache(with cacheIdentifier: String, cachingType: Caching.CachingType) -> Self {
+    @discardableResult public func cache(cacheIdentifier: String, cachingType: Caching.CachingType) -> Self {
         queue.sync {
             configuration.cachingBlock = { (cacheIdentifier, Caching.Builder(cachingType: cachingType)) }
         }
@@ -67,7 +67,7 @@ public class Builder<DestinationType: Destination, FromType: UIViewController> {
         return self
     }
 
-    @discardableResult public func cache(with cacheIdentifier: String, _ block: @escaping (Caching.Context) -> Void) -> Self {
+    @discardableResult public func cache(cacheIdentifier: String, _ block: @escaping (Caching.Context) -> Void) -> Self {
         queue.sync {
             configuration.cachingBlock = { (cacheIdentifier, Caching.Builder(block: block)) }
         }
@@ -145,10 +145,8 @@ extension Builder where DestinationType.ViewControllerType: DataReceivable {
 }
 
 extension Builder where DestinationType: Routing.Destination {
-    @discardableResult public func cache(with cacheable: Cacheable) -> Self {
-        let cacheIdentifier = configuration.toBlock().route.uri
-        
-        return cache(with: cacheIdentifier, cacheable: cacheable)
+    @discardableResult public func cache(with cacheable: Cacheable) -> Self {        
+        return cache(cacheIdentifier: configuration.destination.route.uri, cacheable: cacheable)
     }
     
     @discardableResult public func cache(with cachingType: Caching.CachingType) -> Self {

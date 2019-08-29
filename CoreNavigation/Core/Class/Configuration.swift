@@ -6,7 +6,11 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     typealias CachingBlock = () -> (String, Cacheable)
     
     let navigationType: NavigationType
-    var toBlock: () -> DestinationType
+    private var toBlock: () -> DestinationType
+    lazy var destination: DestinationType = {
+        return toBlock()
+    }()
+    
     var sourceViewController: FromType
     var isAnimatedBlock: () -> Bool = { true }
     var dataPassingBlock: DataPassingBlock<Any>?

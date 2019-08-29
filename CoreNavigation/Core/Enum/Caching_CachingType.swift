@@ -1,5 +1,5 @@
 extension Caching {
     public enum CachingType {
-        case time(TimeInterval)
+        case timeInterval(TimeInterval)
     }
 }

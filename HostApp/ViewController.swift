@@ -5,7 +5,7 @@ struct Other: Destination, DataReceivable, Routable {
     typealias ViewControllerType = ViewController2
     typealias DataType = String
     
-    static func patterns() -> [String] {
+    static func routePatterns() -> [String] {
         return [
             "hello/:personId"
         ]
@@ -49,7 +49,7 @@ class ViewController2: UIViewController {
 }
 
 class MyCacheable: Cacheable {
-    func cache(with context: Caching.Context) {
+    func didCache(with context: Caching.Context) {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 10) {
             print("Invalidating cache!")
             context.invalidateCache()

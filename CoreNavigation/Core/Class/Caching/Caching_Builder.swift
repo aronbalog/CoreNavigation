@@ -9,13 +9,13 @@ extension Caching {
         init(cachingType: Caching.CachingType) {
             self.block = { context in
                 switch cachingType {
-                case .time(let timeInterval):
+                case .timeInterval(let timeInterval):
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: context.invalidateCache)
                 }
             }
         }
         
-        func cache(with context: Caching.Context) {
+        func didCache(with context: Caching.Context) {
             block(context)
         }
     }

@@ -1,3 +1,3 @@
 public protocol Cacheable {
-    func cache(with context: Caching.Context)
+    func didCache(with context: Caching.Context)
 }
