@@ -1,20 +1,18 @@
 extension Routing {
     final public class Destination: CoreNavigation.Destination, DataReceivable {
-        public static func resolve(parameters: [String : Any]?, destination: @escaping (UIViewController) -> Void, failure: @escaping (Error?) -> Void) throws {
-            fatalError()
-        }
-        
         public typealias ViewControllerType = UIViewController
-        public typealias DataType = Any
+        public typealias DataType = Any?
         
-        public func didReceiveData(_ data: Any) {
-            
-        }
+        var potentialDataReceivable: AnyDataReceivable?
         
-        let route: Matchable
+        public let route: Matchable
         
         init(route: Matchable) {
             self.route = route
+        }
+        
+        public func didReceiveData(_ data: Any?) {
+            potentialDataReceivable?.didReceiveAnyData(data)
         }
         
         public func resolve(with resolver: Resolver<Routing.Destination>) {
@@ -24,8 +22,10 @@ extension Routing {
             }
             
             do {
-                try match.destinationType.resolve(parameters: match.parameters, destination: { (viewController) in
-                    resolver.complete(viewController: viewController)
+                try match.destinationType.resolveDestination(parameters: match.parameters, destination: { (destination) in
+                    self.potentialDataReceivable = destination as? AnyDataReceivable
+                    
+                    destination.resolveRouting(with: resolver)
                 }) { (error) in
                     if let error = error {
                         resolver.cancel(with: error)
@@ -36,5 +36,14 @@ extension Routing {
                 resolver.cancel(with: error)
             }
         }
+        
+        public func resolveRouting(with resolver: Resolver<Routing.Destination>) {
+            // never gonna happen
+        }
+        
+        public static func resolveDestination(parameters: [String : Any]?, destination: @escaping (Routing.Destination) -> Void, failure: @escaping (Error?) -> Void) throws {
+            // never gonna happen
+        }
+        
     }
 }

@@ -12,11 +12,7 @@ struct Other: Destination, DataReceivable, Routable {
     }
     
     init(parameters: [String : Any]?) {
-        
-    }
-    
-    init() {
-        
+        print("Parameters", parameters)
     }
     
     func didReceiveData(_ data: String) {
@@ -24,7 +20,7 @@ struct Other: Destination, DataReceivable, Routable {
     }
 }
 
-class ViewController2: UIViewController {
+class ViewController2: UIViewController, DataReceivable {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
@@ -46,7 +42,12 @@ class ViewController2: UIViewController {
             print("Dismissed")
         }
     }
+    
+    func didReceiveData(_ data: String) {
+        print("data in VC \(data)")
+    }
 }
+
 
 class MyCacheable: Cacheable {
     func didCache(with context: Caching.Context) {
