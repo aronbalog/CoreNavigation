@@ -16,7 +16,7 @@ extension Routing {
         }
         
         public func resolve(with resolver: Resolver<Routing.Destination>) {
-            guard let match = Router.shared.match(for: route) else {
+            guard let match = Router.instance.match(for: route) else {
                 resolver.cancel()
                 return
             }

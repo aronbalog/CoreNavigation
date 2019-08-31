@@ -2,12 +2,12 @@ infix operator <-: AdditionPrecedence
 
 /// :nodoc:
 public func <-(left: AnyDestination.Type, right: [String]) {
-    Router.shared.register(destinationType: left, patterns: right)
+    Router.instance.register(destinationType: left, patterns: right)
 }
 
 /// Handles routing.
 public class Router {
-    public static let shared = Router()
+    public static let instance = Router()
     
     private var registrations: [Registration] = []
     

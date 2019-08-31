@@ -17,7 +17,7 @@
 		386D009F22FC5A3B005056C1 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D009E22FC5A3B005056C1 /* Global.swift */; };
 		386D00A122FC5A55005056C1 /* To.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D00A022FC5A55005056C1 /* To.swift */; };
 		386D00A422FC5B6C005056C1 /* Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D00A322FC5B6C005056C1 /* Destination.swift */; };
-		386D00A622FC5B9C005056C1 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D00A522FC5B9C005056C1 /* Builder.swift */; };
+		386D00A622FC5B9C005056C1 /* To_Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D00A522FC5B9C005056C1 /* To_Builder.swift */; };
 		386D00A822FC5C1E005056C1 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D00A722FC5C1E005056C1 /* Configuration.swift */; };
 		386D00AA22FC5F1D005056C1 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D00A922FC5F1D005056C1 /* Navigator.swift */; };
 		386D00AD22FC616D005056C1 /* UIViewController+VisibleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D00AC22FC616D005056C1 /* UIViewController+VisibleViewController.swift */; };
@@ -26,6 +26,10 @@
 		386D00B622FC6820005056C1 /* DataReceivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D00B522FC6820005056C1 /* DataReceivable.swift */; };
 		386D00BE22FC7675005056C1 /* AnyDataReceivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D00BD22FC7675005056C1 /* AnyDataReceivable.swift */; };
 		386D00C022FCAC1F005056C1 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D00BF22FCAC1F005056C1 /* Resolver.swift */; };
+		38B5F95C2318A53300FEB14A /* NavigationDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F95B2318A53300FEB14A /* NavigationDirection.swift */; };
+		38B5F9602318A89D00FEB14A /* Back.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F95F2318A89D00FEB14A /* Back.swift */; };
+		38B5F9622318A92C00FEB14A /* Back_Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F9612318A92C00FEB14A /* Back_Builder.swift */; };
+		38B5F9652319497700FEB14A /* Global_Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F9642319497700FEB14A /* Global_Operators.swift */; };
 		38EE32C52312BED4005DEE32 /* UIViewController_Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32C42312BED4005DEE32 /* UIViewController_Destination.swift */; };
 		38EE32C72312EAF0005DEE32 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32C62312EAF0005DEE32 /* Result.swift */; };
 		38EE32C92312EFFA005DEE32 /* Protectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32C82312EFFA005DEE32 /* Protectable.swift */; };
@@ -100,7 +104,7 @@
 		386D009E22FC5A3B005056C1 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		386D00A022FC5A55005056C1 /* To.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = To.swift; sourceTree = "<group>"; };
 		386D00A322FC5B6C005056C1 /* Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Destination.swift; sourceTree = "<group>"; };
-		386D00A522FC5B9C005056C1 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		386D00A522FC5B9C005056C1 /* To_Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = To_Builder.swift; sourceTree = "<group>"; };
 		386D00A722FC5C1E005056C1 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		386D00A922FC5F1D005056C1 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		386D00AC22FC616D005056C1 /* UIViewController+VisibleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+VisibleViewController.swift"; sourceTree = "<group>"; };
@@ -108,6 +112,10 @@
 		386D00B522FC6820005056C1 /* DataReceivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReceivable.swift; sourceTree = "<group>"; };
 		386D00BD22FC7675005056C1 /* AnyDataReceivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyDataReceivable.swift; sourceTree = "<group>"; };
 		386D00BF22FCAC1F005056C1 /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
+		38B5F95B2318A53300FEB14A /* NavigationDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDirection.swift; sourceTree = "<group>"; };
+		38B5F95F2318A89D00FEB14A /* Back.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Back.swift; sourceTree = "<group>"; };
+		38B5F9612318A92C00FEB14A /* Back_Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Back_Builder.swift; sourceTree = "<group>"; };
+		38B5F9642319497700FEB14A /* Global_Operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global_Operators.swift; sourceTree = "<group>"; };
 		38EE32C42312BED4005DEE32 /* UIViewController_Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController_Destination.swift; sourceTree = "<group>"; };
 		38EE32C62312EAF0005DEE32 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		38EE32C82312EFFA005DEE32 /* Protectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protectable.swift; sourceTree = "<group>"; };
@@ -230,6 +238,7 @@
 				386D00A222FC5B67005056C1 /* Protocol */,
 				386D009D22FC5A2D005056C1 /* Class */,
 				386D009E22FC5A3B005056C1 /* Global.swift */,
+				38B5F9642319497700FEB14A /* Global_Operators.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -243,7 +252,9 @@
 				38EE32E0231529FC005DEE32 /* Protection */,
 				38EE32DF231529F7005DEE32 /* Embedding */,
 				386D00A022FC5A55005056C1 /* To.swift */,
-				386D00A522FC5B9C005056C1 /* Builder.swift */,
+				38B5F95F2318A89D00FEB14A /* Back.swift */,
+				386D00A522FC5B9C005056C1 /* To_Builder.swift */,
+				38B5F9612318A92C00FEB14A /* Back_Builder.swift */,
 				386D00A722FC5C1E005056C1 /* Configuration.swift */,
 				38EE32C42312BED4005DEE32 /* UIViewController_Destination.swift */,
 				386D00A922FC5F1D005056C1 /* Navigator.swift */,
@@ -289,6 +300,7 @@
 			children = (
 				38EE32D623133E5E005DEE32 /* Embedding_EmbeddingType.swift */,
 				386D00B322FC6748005056C1 /* NavigationType.swift */,
+				38B5F95B2318A53300FEB14A /* NavigationDirection.swift */,
 				38EE33122316E7B5005DEE32 /* Caching_CachingType.swift */,
 			);
 			path = Enum;
@@ -531,19 +543,23 @@
 				38EE32CB23132226005DEE32 /* Protection_Context.swift in Sources */,
 				386D00A422FC5B6C005056C1 /* Destination.swift in Sources */,
 				386D00B622FC6820005056C1 /* DataReceivable.swift in Sources */,
+				38B5F9652319497700FEB14A /* Global_Operators.swift in Sources */,
 				38EE32E623152C94005DEE32 /* Embedding_Helper_TabBarController.swift in Sources */,
 				38EE33002315D824005DEE32 /* Routing_RouteMatch.swift in Sources */,
 				38EE32F72315D618005DEE32 /* Routable.swift in Sources */,
+				38B5F95C2318A53300FEB14A /* NavigationDirection.swift in Sources */,
 				386D00AD22FC616D005056C1 /* UIViewController+VisibleViewController.swift in Sources */,
 				38EE32F32315631C005DEE32 /* Protection.swift in Sources */,
+				38B5F9622318A92C00FEB14A /* Back_Builder.swift in Sources */,
 				38EE33062315F337005DEE32 /* AnyDestination.swift in Sources */,
 				38EE32FC2315D732005DEE32 /* Routing_Router.swift in Sources */,
 				38EE32D1231334F9005DEE32 /* Embeddable.swift in Sources */,
 				38EE32EB23153F85005DEE32 /* DataPassing.swift in Sources */,
 				38EE32FE2315D80C005DEE32 /* Matchable.swift in Sources */,
+				38B5F9602318A89D00FEB14A /* Back.swift in Sources */,
 				38EE32E323152C0C005DEE32 /* Embedding_Helper.swift in Sources */,
 				38EE330D2316949A005DEE32 /* Caching_Context.swift in Sources */,
-				386D00A622FC5B9C005056C1 /* Builder.swift in Sources */,
+				386D00A622FC5B9C005056C1 /* To_Builder.swift in Sources */,
 				386D00AA22FC5F1D005056C1 /* Navigator.swift in Sources */,
 				38EE32DB23134906005DEE32 /* Embedding_Builder.swift in Sources */,
 				38EE33112316D201005DEE32 /* Caching_Builder.swift in Sources */,

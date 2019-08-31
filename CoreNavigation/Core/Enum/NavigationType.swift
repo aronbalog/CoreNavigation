@@ -1,6 +1,5 @@
-public enum NavigationType {
-    case present
-    case push
-    case childViewController
-    case dismiss
-}
+//public enum NavigationType {
+//    case present
+//    case push
+//    case childViewController
+//}

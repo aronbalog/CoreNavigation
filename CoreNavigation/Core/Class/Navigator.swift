@@ -9,16 +9,37 @@ class Navigator {
     
     func navigate<DestinationType: Destination, FromType: UIViewController>(with configuration: Configuration<DestinationType, FromType>) {
         protectNavigation(configuration: configuration, onAllow: {
-            switch configuration.navigationType {
-            case .present: self.present(with: configuration)
-            case .push: self.push()
-            case .childViewController: self.childViewController(with: configuration)
-            case .dismiss: self.dismiss(with: configuration)
+            switch configuration.navigationDirection {
+            case .forward(let forward):
+                switch forward {
+                    case .present: self.present(with: configuration)
+                    case .push: self.push()
+                    case .childViewController: self.childViewController(with: configuration)
+                }
+            case .backward(let backward):
+                switch backward {
+                case .dismiss: self.dismiss(with: configuration)
+                case .pop: fatalError()
+                }
             }
         }) { (error) in
             configuration.onFailureBlocks.forEach({ (block) in
                 block(error)
             })
+        }
+    }
+    
+    private func dismiss<DestinationType: Destination, FromType: UIViewController>(with configuration: Configuration<DestinationType, FromType>) {
+        queue.sync {
+            let sourceViewController = configuration.sourceViewController as! DestinationType.ViewControllerType
+            
+            let result = self.doOnNavigationSuccess(viewController: sourceViewController, configuration: configuration)
+            
+            DispatchQueue.main.async {
+                sourceViewController.dismiss(animated: configuration.isAnimatedBlock(), completion: {
+                    self.resultCompletion(with: result, configuration: configuration)
+                })
+            }
         }
     }
     
@@ -41,9 +62,11 @@ class Navigator {
                 let destinationViewController = embeddingViewController ?? viewController
                 let result = self.doOnNavigationSuccess(viewController: viewController, configuration: configuration)
 
-                configuration.sourceViewController.present(destinationViewController, animated: configuration.isAnimatedBlock(), completion: {
-                    self.resultCompletion(with: result, configuration: configuration)
-                })
+                DispatchQueue.main.async {
+                    configuration.sourceViewController.present(destinationViewController, animated: configuration.isAnimatedBlock(), completion: {
+                        self.resultCompletion(with: result, configuration: configuration)
+                    })
+                }
             }, onCancel: { error in
                 // won't execute failure blocks if no error is returned
                 guard let error = error else { return }
@@ -57,18 +80,6 @@ class Navigator {
     
     private func push() {
         fatalError()
-    }
-    
-    private func dismiss<DestinationType: Destination, FromType: UIViewController>(with configuration: Configuration<DestinationType, FromType>) {
-        queue.sync {
-            let sourceViewController = configuration.sourceViewController as! DestinationType.ViewControllerType
-            
-            let result = self.doOnNavigationSuccess(viewController: sourceViewController, configuration: configuration)
-
-            sourceViewController.dismiss(animated: configuration.isAnimatedBlock(), completion: {
-                self.resultCompletion(with: result, configuration: configuration)
-            })
-        }
     }
     
     private func childViewController<DestinationType: Destination, FromType: UIViewController>(
@@ -90,10 +101,12 @@ class Navigator {
                 let result = self.doOnNavigationSuccess(viewController: viewController, configuration: configuration)
                 let sourceViewController = configuration.sourceViewController
                 
-                sourceViewController.addChild(destinationViewController)
-                destinationViewController.view.frame = sourceViewController.view.bounds
-                sourceViewController.view.addSubview(destinationViewController.view)
-                destinationViewController.didMove(toParent: sourceViewController)
+                DispatchQueue.main.async {
+                    sourceViewController.addChild(destinationViewController)
+                    destinationViewController.view.frame = sourceViewController.view.bounds
+                    sourceViewController.view.addSubview(destinationViewController.view)
+                    destinationViewController.didMove(toParent: sourceViewController)
+                }
                 
                 self.resultCompletion(with: result, configuration: configuration)
             }, onCancel: { (error) in

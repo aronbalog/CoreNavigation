@@ -5,7 +5,7 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     typealias DataPassingBlock<T> = (DataPassing.Context<T>) -> Void
     typealias CachingBlock = () -> (String, Cacheable)
     
-    let navigationType: NavigationType
+    let navigationDirection: NavigationDirection
     private var toBlock: () -> DestinationType
     lazy var destination: DestinationType = {
         return toBlock()
@@ -21,8 +21,8 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     var embeddable: Embeddable?
     var cachingBlock: CachingBlock?
     
-    init(navigationType: NavigationType, toBlock: @escaping () -> DestinationType, from sourceViewController: FromType) {
-        self.navigationType = navigationType
+    init(navigationDirection: NavigationDirection, toBlock: @escaping () -> DestinationType, from sourceViewController: FromType) {
+        self.navigationDirection = navigationDirection
         self.toBlock = toBlock
         self.sourceViewController = sourceViewController
     }

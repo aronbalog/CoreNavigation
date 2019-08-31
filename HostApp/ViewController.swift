@@ -11,6 +11,10 @@ struct Other: Destination, DataReceivable, Routable {
         ]
     }
     
+    init() {
+        
+    }
+    
     init(parameters: [String : Any]?) {
         print("Parameters", parameters)
     }
@@ -38,9 +42,8 @@ class ViewController2: UIViewController, DataReceivable {
     }
         
     @objc func didTap() {
-        Dismiss(animated: false) {
-            print("Dismissed")
-        }
+//        Dismiss(viewController: self)
+        Dismiss()
     }
     
     func didReceiveData(_ data: String) {
@@ -48,6 +51,8 @@ class ViewController2: UIViewController, DataReceivable {
     }
 }
 
+
+//probat globalne metode za navigaciju tipa vc1 -> vc2 
 
 class MyCacheable: Cacheable {
     func didCache(with context: Caching.Context) {
@@ -77,13 +82,14 @@ class ViewController: UIViewController {
     }
     
     @objc func didTap() {
+//        self => Other()
         Present { $0
             .to("hello/1", from: self)
             .passData("Hello!")
             .onSuccess({ (result) in
                 print("Success!")
             })
-            .embed(with: .navigationController(nil))
+            .embed(with: .tabBarController(.navigationController(nil)))
         }
     }
 

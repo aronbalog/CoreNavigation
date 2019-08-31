@@ -1,10 +1,18 @@
 extension UIViewController {
     
     /// Returns the current application's top most view controller.
-    public static func visibleViewController<T: UIViewController>(in window: UIWindow = UIApplication.shared.keyWindow ?? UIApplication.shared.windows[0]) -> T {
-        guard let rootViewController = window.rootViewController else {
-            fatalError()
-        }
+    public static func visibleViewController<T: UIViewController>(in window: UIWindow = UIApplication.shared.keyWindow ?? {
+        let window = UIWindow()
+        
+        window.makeKeyAndVisible()
+        
+        return window
+    }()) -> T {
+        let rootViewController = window.rootViewController ?? {
+            let viewController = UIViewController()
+            window.rootViewController = viewController
+            return viewController
+        }()
         
         return self.visibleViewController(of: rootViewController)
     }
