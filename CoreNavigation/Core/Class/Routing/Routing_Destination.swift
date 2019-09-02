@@ -25,7 +25,11 @@ extension Routing {
                 try match.destinationType.resolveDestination(parameters: match.parameters, destination: { (destination) in
                     self.potentialDataReceivable = destination as? AnyDataReceivable
                     
-                    destination.resolveRouting(with: resolver)
+                    do {
+                        try destination.resolveRouting(with: resolver)
+                    } catch let error {
+                        resolver.cancel(with: error)
+                    }
                 }) { (error) in
                     if let error = error {
                         resolver.cancel(with: error)
@@ -36,14 +40,5 @@ extension Routing {
                 resolver.cancel(with: error)
             }
         }
-        
-        public func resolveRouting(with resolver: Resolver<Routing.Destination>) {
-            // never gonna happen
-        }
-        
-        public static func resolveDestination(parameters: [String : Any]?, destination: @escaping (Routing.Destination) -> Void, failure: @escaping (Error?) -> Void) throws {
-            // never gonna happen
-        }
-        
     }
 }

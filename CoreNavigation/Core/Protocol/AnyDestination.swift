@@ -1,6 +1,6 @@
 public protocol AnyDestination {
     static func resolveDestination(parameters: [String: Any]?, destination: @escaping (Self) -> Void, failure: @escaping (Error?) -> Void) throws
-    func resolveRouting(with resolver: Resolver<Routing.Destination>)
+    func resolveRouting(with resolver: Resolver<Routing.Destination>) throws
 }
 
 // MARK: - Default implementation of AnyDestination
