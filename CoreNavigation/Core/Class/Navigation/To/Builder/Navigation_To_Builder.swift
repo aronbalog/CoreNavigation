@@ -84,7 +84,7 @@ extension Navigation.To {
             return self
         }
         
-        @discardableResult public func onSuccess(_ block: @escaping (Result<DestinationType, FromType>) -> Void) -> Self {
+        @discardableResult public func onSuccess(_ block: @escaping (Navigation.Result<DestinationType, FromType>) -> Void) -> Self {
             queue.sync {
                 configuration.onSuccessBlocks.append(block)
             }
@@ -92,7 +92,7 @@ extension Navigation.To {
             return self
         }
         
-        @discardableResult public func onComplete(_ block: @escaping (Result<DestinationType, FromType>) -> Void) -> Self {
+        @discardableResult public func onComplete(_ block: @escaping (Navigation.Result<DestinationType, FromType>) -> Void) -> Self {
             queue.sync {
                 configuration.onCompletionBlocks.append(block)
             }

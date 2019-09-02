@@ -1,1 +1,2 @@
+/// :nodoc:
 public struct Caching {}

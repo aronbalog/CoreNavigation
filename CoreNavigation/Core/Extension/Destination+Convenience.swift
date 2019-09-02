@@ -16,11 +16,7 @@ extension Destination {
         
         Navigator(queue: queue, cache: Caching.Cache.instance).viewControllerToNavigateTo(with: builder.configuration, onComplete: { (_, viewController, _) in
             block(viewController)
-        }) { (error) in
-            if let error = error {
-                failure?(error)
-            }
-        }
+        }) { failure?($0) }
     }
     
     public func viewController() throws -> Self.ViewControllerType {

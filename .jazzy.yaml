@@ -1,0 +1,30 @@
+custom_categories:
+  - name: Global Functions
+    children:
+    - AddChildViewController(_:)
+    - Close(_:_:)
+    - Close(_:animated:completion:)
+    - Close(_:viewController:animated:completion:)
+    - Dismiss(animated:completion:)
+    - Dismiss(viewController:animated:completion:)
+    - Navigate(_:_:)
+    - Pop(animated:completion:)
+    - Pop(viewController:animated:completion:)
+    - Present(_:)
+    - Push(_:)
+    - Register(_:)
+    - Register(_:patterns:)
+  - name: Protocols 
+    children:
+    - AnyDestination
+    - AnyDataReceivable
+    - Cacheable
+    - DataReceivable
+    - Destination
+    - Embeddable
+    - Matchable
+    - Protectable
+    - Routable
+  - name: Classes 
+    children:
+    - Caching

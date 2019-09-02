@@ -20,9 +20,9 @@ extension Navigation.Back {
             return animated { isAnimated }
         }
         
-        @discardableResult public func onComplete(_ block: @escaping (Result<UIViewController.Destination<UIViewController>.None, ViewControllerType>) -> Void) -> Self {
+        @discardableResult public func onComplete(_ block: @escaping (ViewControllerType) -> Void) -> Self {
             queue.sync {
-                configuration.onCompletionBlocks.append(block)
+                configuration.onCompletionBlocks.append { block($0.fromViewController) } 
             }
             
             return self

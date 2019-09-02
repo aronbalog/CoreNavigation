@@ -51,3 +51,19 @@ public func Pop(animated: Bool = true, completion: (() -> Void)? = nil) {
 public func Pop<ViewControllerType: UIViewController>(viewController: ViewControllerType, animated: Bool = true, completion: (() -> Void)? = nil) {
     Close(.pop, viewController: viewController, animated: animated, completion: completion)
 }
+
+public func Register<RoutableType: Routable>(_ routableType: RoutableType.Type) {
+    Routing.Router.instance.register(routableType: routableType)
+}
+
+public func Register(_ destinationType: AnyDestination.Type, patterns: [String]) {
+    Routing.Router.instance.register(destinationType: destinationType, patterns: patterns)
+}
+
+public func Unregister(_ destinationType: AnyDestination.Type) {
+    Routing.Router.instance.unregister(destinationType: destinationType)
+}
+
+public func Unregister(matching pattern: String) {
+    Routing.Router.instance.unregister(pattern: pattern)
+}

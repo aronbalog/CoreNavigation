@@ -1,8 +1,8 @@
 public class Resolver<DestinationType: Destination> {
     let onCompleteBlock: (DestinationType.ViewControllerType) -> Void
-    let onCancelBlock: (Error?) -> Void
+    let onCancelBlock: (Error) -> Void
 
-    init(onCompleteBlock: @escaping (DestinationType.ViewControllerType) -> Void, onCancelBlock: @escaping (Error?) -> Void) {
+    init(onCompleteBlock: @escaping (DestinationType.ViewControllerType) -> Void, onCancelBlock: @escaping (Error) -> Void) {
         self.onCompleteBlock = onCompleteBlock
         self.onCancelBlock = onCancelBlock
     }
@@ -16,6 +16,6 @@ public class Resolver<DestinationType: Destination> {
     }
     
     public func cancel() {
-        self.onCancelBlock(nil)
+        self.onCancelBlock(Navigation.Error.canceled)
     }
 }

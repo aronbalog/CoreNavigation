@@ -1,44 +1,46 @@
-infix operator <-: AdditionPrecedence
-
-/// :nodoc:
-public func <-(left: AnyDestination.Type, right: [String]) {
-    Router.instance.register(destinationType: left, patterns: right)
-}
-
-/// Handles routing.
-public class Router {
-    public static let instance = Router()
-    
-    private var registrations: [Registration] = []
-    
-    /// Registers route.
-    ///
-    /// - Parameter routableType: Route to register.
-    public func register<T: Routable>(routableType: T.Type) {
-        registrations.append(Registration(destinationType: routableType, patterns: routableType.routePatterns()))
-    }
-    
-    /// Registers destination with patterns.
-    ///
-    /// - Parameters:
-    ///   - destinationType: `Destination` type.
-    ///   - patterns: Route patterns.
-    public func register(destinationType: AnyDestination.Type, patterns: [String]) {
-        registrations.append(Registration(destinationType: destinationType, patterns: patterns))
-    }
-    
-    func match(for matchable: Matchable) -> Routing.RouteMatch? {
-        var parameters: [String: Any]?
+extension Routing {
+    class Router {
+        static let instance = Router()
         
-        guard let registration = (registrations.first { return $0.matches(matchable, &parameters) }) else {
-            return nil
+        private var registrations: [String: Registration] = [:]
+        
+        func register<T: Routable>(routableType: T.Type) {
+            registrations[routableType.identifier()] = Registration(destinationType: routableType, patterns: routableType.routePatterns())
         }
         
-        return Routing.RouteMatch(destinationType: registration.destinationType, parameters: parameters)
+        func register(destinationType: AnyDestination.Type, patterns: [String]) {
+            registrations[destinationType.identifier()] =  Registration(destinationType: destinationType, patterns: patterns)
+        }
+        
+        func unregister(destinationType: AnyDestination.Type) {
+            registrations[destinationType.identifier()] = nil
+        }
+        
+        func unregister(pattern: String) {
+            registrations = registrations.filter({ (registration) -> Bool in
+                return !registration.value.patterns.contains(pattern)
+            })
+        }
+        
+        func match(for matchable: Matchable) -> Routing.RouteMatch? {
+            var parameters: [String: Any]?
+            
+            guard let registration = (registrations.first { return $0.value.matches(matchable, &parameters) })?.value else {
+                return nil
+            }
+            
+            return Routing.RouteMatch(destinationType: registration.destinationType, parameters: parameters)
+        }
     }
 }
 
-private extension Router {
+private extension AnyDestination {
+    static func identifier() -> String {
+        return String(describing: self)
+    }
+}
+
+private extension Routing.Router {
     struct Registration {
         let destinationType: AnyDestination.Type
         let patterns: [String]

@@ -1,6 +1,6 @@
 class Configuration<DestinationType: Destination, FromType: UIViewController> {
-    typealias OnSuccessBlock = (Result<DestinationType, FromType>) -> Void
-    typealias OnCompletionBlock = (Result<DestinationType, FromType>) -> Void
+    typealias OnSuccessBlock = (Navigation.Result<DestinationType, FromType>) -> Void
+    typealias OnCompletionBlock = (Navigation.Result<DestinationType, FromType>) -> Void
     typealias OnFailureBlock = (Error) -> Void
     typealias DataPassingBlock<T> = (DataPassing.Context<T>) -> Void
     typealias CachingBlock = () -> (String, Cacheable)

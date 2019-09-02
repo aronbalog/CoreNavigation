@@ -37,7 +37,7 @@ class Navigator {
         queue.sync {
             let sourceViewController = configuration.sourceViewController as! DestinationType.ViewControllerType
             
-            let result = self.doOnNavigationSuccess(viewController: sourceViewController, configuration: configuration)
+            let result = self.doOnNavigationSuccess(destination: configuration.destination, viewController: sourceViewController, configuration: configuration)
             
             DispatchQueue.main.async {
                 sourceViewController.dismiss(animated: configuration.isAnimatedBlock(), completion: {
@@ -64,7 +64,7 @@ class Navigator {
                 self.passData(configuration.dataPassingBlock, to: dataPassingCandidates)
                 
                 let destinationViewController = embeddingViewController ?? viewController
-                let result = self.doOnNavigationSuccess(viewController: viewController, configuration: configuration)
+                let result = self.doOnNavigationSuccess(destination: destination, viewController: viewController, configuration: configuration)
 
                 DispatchQueue.main.async {
                     configuration.sourceViewController.present(destinationViewController, animated: configuration.isAnimatedBlock(), completion: {
@@ -72,9 +72,6 @@ class Navigator {
                     })
                 }
             }, onCancel: { error in
-                // won't execute failure blocks if no error is returned
-                guard let error = error else { return }
-                
                 configuration.onFailureBlocks.forEach({ (block) in
                     block(error)
                 })
@@ -102,7 +99,7 @@ class Navigator {
                 
                 self.passData(configuration.dataPassingBlock, to: dataPassingCandidates)
                 let destinationViewController = embeddingViewController ?? viewController
-                let result = self.doOnNavigationSuccess(viewController: viewController, configuration: configuration)
+                let result = self.doOnNavigationSuccess(destination: destination, viewController: viewController, configuration: configuration)
                 let sourceViewController = configuration.sourceViewController
                 
                 DispatchQueue.main.async {
@@ -113,10 +110,7 @@ class Navigator {
                 }
                 
                 self.resultCompletion(with: result, configuration: configuration)
-            }, onCancel: { (error) in
-                // won't execute failure blocks if no error is returned
-                guard let error = error else { return }
-                
+            }, onCancel: { (error) in                
                 configuration.onFailureBlocks.forEach({ (block) in
                     block(error)
                 })
@@ -149,10 +143,11 @@ class Navigator {
     }
     
     private func doOnNavigationSuccess<DestinationType: Destination, FromType: UIViewController>(
+        destination: DestinationType,
         viewController: DestinationType.ViewControllerType,
-        configuration: Configuration<DestinationType, FromType>) -> Result<DestinationType, FromType>
+        configuration: Configuration<DestinationType, FromType>) -> Navigation.Result<DestinationType, FromType>
     {
-        let result = Result<DestinationType, FromType>(toViewController: viewController, fromViewController: configuration.sourceViewController)
+        let result = Navigation.Result<DestinationType, FromType>(destination: destination, toViewController: viewController, fromViewController: configuration.sourceViewController)
         
         configuration.onSuccessBlocks.forEach { $0(result) }
         
@@ -160,7 +155,7 @@ class Navigator {
     }
     
     private func resultCompletion<DestinationType: Destination, FromType: UIViewController>(
-        with result: Result<DestinationType, FromType>,
+        with result: Navigation.Result<DestinationType, FromType>,
         configuration: Configuration<DestinationType, FromType>)
     {
         configuration.onCompletionBlocks.forEach { $0(result) }
@@ -169,7 +164,7 @@ class Navigator {
     func viewControllerToNavigateTo<DestinationType: Destination, FromType: UIViewController>(
         with configuration: Configuration<DestinationType, FromType>,
         onComplete: @escaping (DestinationType, DestinationType.ViewControllerType, UIViewController?) -> Void,
-        onCancel: @escaping (Error?) -> Void)
+        onCancel: @escaping (Error) -> Void)
     {
         let caching = configuration.cachingBlock?()
         let destination = configuration.destination
@@ -194,7 +189,7 @@ class Navigator {
         _ destination: DestinationType,
         embeddable: Embeddable?,
         onComplete: @escaping (DestinationType, DestinationType.ViewControllerType, UIViewController?) -> Void,
-        onCancel: @escaping (Error?) -> Void)
+        onCancel: @escaping (Error) -> Void)
     {
         destination.resolve(with: Resolver<DestinationType>(onCompleteBlock: { viewController in
             guard let embeddable = embeddable else {

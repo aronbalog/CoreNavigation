@@ -1,7 +1,13 @@
 infix operator =>: AdditionPrecedence
 infix operator +>: AdditionPrecedence
+infix operator <-: AdditionPrecedence
 
 // MARK: present
+
+/// :nodoc:
+public func <-(left: AnyDestination.Type, right: [String]) {
+    Register(left, patterns: right)
+}
 
 /// :nodoc:
 public func +> <DestinationType: Destination, FromType: UIViewController>(left: FromType, right: DestinationType) {

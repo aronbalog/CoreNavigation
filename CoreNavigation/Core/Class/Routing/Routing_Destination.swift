@@ -3,7 +3,7 @@ extension Routing {
         public typealias ViewControllerType = UIViewController
         public typealias DataType = Any?
         
-        var potentialDataReceivable: AnyDataReceivable?
+        public internal(set) var resolvedDestination: AnyDestination?
         
         public let route: Matchable
         
@@ -12,18 +12,18 @@ extension Routing {
         }
         
         public func didReceiveData(_ data: Any?) {
-            potentialDataReceivable?.didReceiveAnyData(data)
+            (resolvedDestination as? AnyDataReceivable)?.didReceiveAnyData(data)
         }
         
         public func resolve(with resolver: Resolver<Routing.Destination>) {
             guard let match = Router.instance.match(for: route) else {
-                resolver.cancel()
+                resolver.cancel(with: Navigation.Error.routeNotFound)
                 return
             }
             
             do {
                 try match.destinationType.resolveDestination(parameters: match.parameters, destination: { (destination) in
-                    self.potentialDataReceivable = destination as? AnyDataReceivable
+                    self.resolvedDestination = destination
                     
                     do {
                         try destination.resolveRouting(with: resolver)
@@ -31,10 +31,7 @@ extension Routing {
                         resolver.cancel(with: error)
                     }
                 }) { (error) in
-                    if let error = error {
-                        resolver.cancel(with: error)
-                    }
-                    resolver.cancel()
+                    resolver.cancel(with: error)
                 }
             } catch let error {
                 resolver.cancel(with: error)

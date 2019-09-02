@@ -13,5 +13,5 @@ extension UIViewController {
 }
 
 extension UIViewController.Destination {
-    final public class None: CoreNavigation.Destination {}
+    final class None: CoreNavigation.Destination {}
 }
