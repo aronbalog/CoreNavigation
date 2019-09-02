@@ -9,7 +9,7 @@ public func +> <DestinationType: Destination, FromType: UIViewController>(left: 
 }
 
 /// :nodoc:
-public func +> <DestinationType: Destination, FromType: UIViewController>(left: FromType, right: @escaping (To) -> To.Builder<DestinationType, FromType>) {
+public func +> <DestinationType: Destination, FromType: UIViewController>(left: FromType, right: @escaping (Navigation.To) -> Navigation.To.Builder<DestinationType, FromType>) {
     Present(right)
 }
 
@@ -26,7 +26,7 @@ public func => <DestinationType: Destination, FromType: UIViewController>(left: 
 }
 
 /// :nodoc:
-public func => <DestinationType: Destination, FromType: UIViewController>(left: FromType, right: @escaping (To) -> To.Builder<DestinationType, FromType>) {
+public func => <DestinationType: Destination, FromType: UIViewController>(left: FromType, right: @escaping (Navigation.To) -> Navigation.To.Builder<DestinationType, FromType>) {
     Push(right)
 }
 

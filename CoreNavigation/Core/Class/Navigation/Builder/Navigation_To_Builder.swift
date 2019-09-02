@@ -1,4 +1,4 @@
-extension To {
+extension Navigation.To {
     public class Builder<DestinationType: Destination, FromType: UIViewController> {
         let configuration: Configuration<DestinationType, FromType>
         private let queue: DispatchQueue
@@ -102,13 +102,13 @@ extension To {
     }
 }
 
-extension To.Builder where DestinationType: DataReceivable {
+extension Navigation.To.Builder where DestinationType: DataReceivable {
     @discardableResult public func passData(_ data: DestinationType.DataType) -> Self {
         queue.sync {
             configuration.dataPassingBlock = { context in
                 context.passData(data)
             }
-        }kj
+        }
         
         return self
     }
@@ -124,7 +124,7 @@ extension To.Builder where DestinationType: DataReceivable {
     }
 }
 
-extension To.Builder where DestinationType.ViewControllerType: DataReceivable {
+extension Navigation.To.Builder where DestinationType.ViewControllerType: DataReceivable {
     @discardableResult public func passDataToViewController(_ data: DestinationType.ViewControllerType.DataType) -> Self {
         queue.sync {
             configuration.dataPassingBlock = { context in
@@ -146,7 +146,7 @@ extension To.Builder where DestinationType.ViewControllerType: DataReceivable {
     }
 }
 
-extension To.Builder where DestinationType: Routing.Destination {
+extension Navigation.To.Builder where DestinationType: Routing.Destination {
     @discardableResult public func cache(with cacheable: Cacheable) -> Self {
         return cache(cacheIdentifier: configuration.destination.route.uri, cacheable: cacheable)
     }

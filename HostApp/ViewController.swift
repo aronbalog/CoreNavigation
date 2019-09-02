@@ -16,7 +16,7 @@ struct Other: Destination, DataReceivable, Routable {
     }
     
     init(parameters: [String : Any]?) {
-        print("Parameters", parameters)
+        print("Parameters", parameters!)
     }
     
     func didReceiveData(_ data: String) {
@@ -83,6 +83,8 @@ class ViewController: UIViewController {
     
     @objc func didTap() {
 //        self => Other()
+        
+        /*
         Present { $0
             .to("hello/1", from: self)
             .passData("Hello!")
@@ -91,6 +93,18 @@ class ViewController: UIViewController {
             })
             .embed(with: .tabBarController(.navigationController(nil)))
         }
+        */
+
+        do {
+            let vc = try "hello/1?data=1".viewController()
+        } catch let error {
+            print("Error: ", error)
+        }
+        
+        
+//        Other().present { $0
+//            .embed(with: .tabBarController(.navigationController(nil)))
+//        }
     }
 
 

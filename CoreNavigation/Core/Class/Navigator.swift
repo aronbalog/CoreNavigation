@@ -9,18 +9,22 @@ class Navigator {
     
     func navigate<DestinationType: Destination, FromType: UIViewController>(with configuration: Configuration<DestinationType, FromType>) {
         protectNavigation(configuration: configuration, onAllow: {
-            switch configuration.navigationDirection {
-            case .forward(let forward):
-                switch forward {
+            switch configuration.directive {
+            case .direction(let direction):
+                switch direction {
+                case .forward(let forward):
+                    switch forward {
                     case .present: self.present(with: configuration)
                     case .push: self.push()
                     case .childViewController: self.childViewController(with: configuration)
+                    }
+                case .backward(let backward):
+                    switch backward {
+                    case .dismiss: self.dismiss(with: configuration)
+                    case .pop: fatalError()
+                    }
                 }
-            case .backward(let backward):
-                switch backward {
-                case .dismiss: self.dismiss(with: configuration)
-                case .pop: fatalError()
-                }
+            case .none: break
             }
         }) { (error) in
             configuration.onFailureBlocks.forEach({ (block) in
@@ -162,7 +166,7 @@ class Navigator {
         configuration.onCompletionBlocks.forEach { $0(result) }
     }
     
-    private func viewControllerToNavigateTo<DestinationType: Destination, FromType: UIViewController>(
+    func viewControllerToNavigateTo<DestinationType: Destination, FromType: UIViewController>(
         with configuration: Configuration<DestinationType, FromType>,
         onComplete: @escaping (DestinationType, DestinationType.ViewControllerType, UIViewController?) -> Void,
         onCancel: @escaping (Error?) -> Void)

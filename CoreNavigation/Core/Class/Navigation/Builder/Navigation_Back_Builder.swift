@@ -1,4 +1,4 @@
-extension Back {
+extension Navigation.Back {
     public class Builder<ViewControllerType: UIViewController> {
         let configuration: Configuration<UIViewController.Destination<UIViewController>.None, ViewControllerType>
         private let queue: DispatchQueue
@@ -28,5 +28,4 @@ extension Back {
             return self
         }
     }
-
 }
