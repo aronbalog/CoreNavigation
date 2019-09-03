@@ -2,6 +2,7 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     typealias OnSuccessBlock = (Navigation.Result<DestinationType, FromType>) -> Void
     typealias OnCompletionBlock = (Navigation.Result<DestinationType, FromType>) -> Void
     typealias OnFailureBlock = (Error) -> Void
+    typealias ViewControllerEventBlock = () -> [UIViewController.Event<DestinationType.ViewControllerType>]
     typealias DataPassingBlock<T> = (DataPassing.Context<T>) -> Void
     typealias CachingBlock = () -> (String, Cacheable)
     
@@ -17,6 +18,7 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     var onSuccessBlocks: [OnSuccessBlock] = []
     var onCompletionBlocks: [OnCompletionBlock] = []
     var onFailureBlocks: [OnFailureBlock] = []
+    var viewControllerEventBlocks: [ViewControllerEventBlock] = []
     var protections: [Protectable] = []
     var embeddable: Embeddable?
     var cachingBlock: CachingBlock?

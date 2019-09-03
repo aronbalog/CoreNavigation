@@ -99,6 +99,14 @@ extension Navigation.To {
             
             return self
         }
+        
+        @discardableResult public func onViewControllerEvents(_ events: UIViewController.Event<DestinationType.ViewControllerType>...) -> Self {
+            queue.sync {
+                configuration.viewControllerEventBlocks.append { events }
+            }
+            
+            return self
+        }
     }
 }
 

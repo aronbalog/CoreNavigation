@@ -1,5 +1,9 @@
 let queue = DispatchQueue(label: "corenavigation.queue", attributes: .concurrent)
 
+let initFramework: Void = {
+    UIViewController.swizzleMethods
+}()
+
 public func Navigate<DestinationType: Destination, FromType: UIViewController>(_ direction: Navigation.Direction.Forward, _ to: (Navigation.To) -> Navigation.To.Builder<DestinationType, FromType>) {
     Navigator(queue: queue, cache: Caching.Cache.instance).navigate(with: to(Navigation.To(direction: direction, queue: queue)).configuration)
 }

@@ -47,6 +47,11 @@
 		38B5F987231D9CB100FEB14A /* Test_Destination_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F986231D9CB100FEB14A /* Test_Destination_ViewController.swift */; };
 		38B5F989231D9D7400FEB14A /* Test_Route_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F988231D9D7400FEB14A /* Test_Route_ViewController.swift */; };
 		38B5F992231DDDB300FEB14A /* Test_Route_ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F991231DDDB300FEB14A /* Test_Route_ViewController2.swift */; };
+		38B5F995231DE6EE00FEB14A /* UIViewController_Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F994231DE6EE00FEB14A /* UIViewController_Event.swift */; };
+		38B5F997231DEA5300FEB14A /* Swizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F996231DEA5300FEB14A /* Swizzler.swift */; };
+		38B5F999231DEA8700FEB14A /* UIViewController+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F998231DEA8700FEB14A /* UIViewController+Events.swift */; };
+		38B5F99B231DEAB300FEB14A /* UIViewController_Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F99A231DEAB300FEB14A /* UIViewController_Observer.swift */; };
+		38B5F99D231DEAE800FEB14A /* ObjectAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F99C231DEAE800FEB14A /* ObjectAssociation.swift */; };
 		38EE32C52312BED4005DEE32 /* UIViewController_Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32C42312BED4005DEE32 /* UIViewController_Destination.swift */; };
 		38EE32C72312EAF0005DEE32 /* Navigation_Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32C62312EAF0005DEE32 /* Navigation_Result.swift */; };
 		38EE32C92312EFFA005DEE32 /* Protectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32C82312EFFA005DEE32 /* Protectable.swift */; };
@@ -150,6 +155,11 @@
 		38B5F986231D9CB100FEB14A /* Test_Destination_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_Destination_ViewController.swift; sourceTree = "<group>"; };
 		38B5F988231D9D7400FEB14A /* Test_Route_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_Route_ViewController.swift; sourceTree = "<group>"; };
 		38B5F991231DDDB300FEB14A /* Test_Route_ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_Route_ViewController2.swift; sourceTree = "<group>"; };
+		38B5F994231DE6EE00FEB14A /* UIViewController_Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController_Event.swift; sourceTree = "<group>"; };
+		38B5F996231DEA5300FEB14A /* Swizzler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swizzler.swift; sourceTree = "<group>"; };
+		38B5F998231DEA8700FEB14A /* UIViewController+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Events.swift"; sourceTree = "<group>"; };
+		38B5F99A231DEAB300FEB14A /* UIViewController_Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController_Observer.swift; sourceTree = "<group>"; };
+		38B5F99C231DEAE800FEB14A /* ObjectAssociation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectAssociation.swift; sourceTree = "<group>"; };
 		38EE32C42312BED4005DEE32 /* UIViewController_Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController_Destination.swift; sourceTree = "<group>"; };
 		38EE32C62312EAF0005DEE32 /* Navigation_Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation_Result.swift; sourceTree = "<group>"; };
 		38EE32C82312EFFA005DEE32 /* Protectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protectable.swift; sourceTree = "<group>"; };
@@ -298,6 +308,7 @@
 		386D009D22FC5A2D005056C1 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				38B5F993231DE6DE00FEB14A /* UIViewController */,
 				38B5F96E231AAA8A00FEB14A /* Navigation */,
 				38EE3309231693B2005DEE32 /* Caching */,
 				38EE32FA2315D72B005DEE32 /* Routing */,
@@ -305,9 +316,10 @@
 				38EE32E0231529FC005DEE32 /* Protection */,
 				38EE32DF231529F7005DEE32 /* Embedding */,
 				386D00A722FC5C1E005056C1 /* Configuration.swift */,
-				38EE32C42312BED4005DEE32 /* UIViewController_Destination.swift */,
 				386D00A922FC5F1D005056C1 /* Navigator.swift */,
 				386D00BF22FCAC1F005056C1 /* Resolver.swift */,
+				38B5F996231DEA5300FEB14A /* Swizzler.swift */,
+				38B5F99C231DEAE800FEB14A /* ObjectAssociation.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -338,6 +350,7 @@
 				38B5F96A231A7FA600FEB14A /* Destination+Convenience.swift */,
 				38B5F978231C8F7E00FEB14A /* UIViewController+Convenience.swift */,
 				38B5F97A231C92C600FEB14A /* Matchable+Convenience.swift */,
+				38B5F998231DEA8700FEB14A /* UIViewController+Events.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -355,6 +368,7 @@
 		386D00B222FC6743005056C1 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
+				38B5F994231DE6EE00FEB14A /* UIViewController_Event.swift */,
 				38EE32D623133E5E005DEE32 /* Embedding_EmbeddingType.swift */,
 				38B5F95B2318A53300FEB14A /* Navigation_Direction.swift */,
 				38EE33122316E7B5005DEE32 /* Caching_CachingType.swift */,
@@ -439,6 +453,15 @@
 				38B5F97E231D2EC700FEB14A /* Utilities_TestingCanvas.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		38B5F993231DE6DE00FEB14A /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				38EE32C42312BED4005DEE32 /* UIViewController_Destination.swift */,
+				38B5F99A231DEAB300FEB14A /* UIViewController_Observer.swift */,
+			);
+			path = UIViewController;
 			sourceTree = "<group>";
 		};
 		38EE32DC231529C4005DEE32 /* Namespace */ = {
@@ -766,6 +789,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38B5F99D231DEAE800FEB14A /* ObjectAssociation.swift in Sources */,
 				38B5F977231C88A700FEB14A /* Direcive.swift in Sources */,
 				38EE3308231691EB005DEE32 /* Cacheable.swift in Sources */,
 				386D00A122FC5A55005056C1 /* Navigation_To.swift in Sources */,
@@ -773,12 +797,14 @@
 				38EE32F52315682E005DEE32 /* Protection_Chain.swift in Sources */,
 				38EE32C72312EAF0005DEE32 /* Navigation_Result.swift in Sources */,
 				38B5F96D231AAA7A00FEB14A /* Navigation.swift in Sources */,
+				38B5F995231DE6EE00FEB14A /* UIViewController_Event.swift in Sources */,
 				38EE32CF23132F8D005DEE32 /* Protection_Builder.swift in Sources */,
 				38B5F973231AABB300FEB14A /* Navigation_ViewController_Builder.swift in Sources */,
 				386D00A822FC5C1E005056C1 /* Configuration.swift in Sources */,
 				38EE32D523133E1A005DEE32 /* Embedding_Helper_NavigationController.swift in Sources */,
 				38EE32C92312EFFA005DEE32 /* Protectable.swift in Sources */,
 				38EE33042315EE8F005DEE32 /* Routing_Destination.swift in Sources */,
+				38B5F99B231DEAB300FEB14A /* UIViewController_Observer.swift in Sources */,
 				386D00C022FCAC1F005056C1 /* Resolver.swift in Sources */,
 				38EE32D723133E5E005DEE32 /* Embedding_EmbeddingType.swift in Sources */,
 				38B5F979231C8F7E00FEB14A /* UIViewController+Convenience.swift in Sources */,
@@ -790,12 +816,14 @@
 				38EE33022315D8A8005DEE32 /* Routing_RegularExpression.swift in Sources */,
 				38EE32CB23132226005DEE32 /* Protection_Context.swift in Sources */,
 				386D00A422FC5B6C005056C1 /* Destination.swift in Sources */,
+				38B5F997231DEA5300FEB14A /* Swizzler.swift in Sources */,
 				386D00B622FC6820005056C1 /* DataReceivable.swift in Sources */,
 				38B5F9652319497700FEB14A /* Global_Operators.swift in Sources */,
 				38EE32E623152C94005DEE32 /* Embedding_Helper_TabBarController.swift in Sources */,
 				38EE33002315D824005DEE32 /* Routing_RouteMatch.swift in Sources */,
 				38EE32F72315D618005DEE32 /* Routable.swift in Sources */,
 				38B5F969231A7DB400FEB14A /* URL+Matchable.swift in Sources */,
+				38B5F999231DEA8700FEB14A /* UIViewController+Events.swift in Sources */,
 				38B5F95C2318A53300FEB14A /* Navigation_Direction.swift in Sources */,
 				386D00AD22FC616D005056C1 /* UIViewController+VisibleViewController.swift in Sources */,
 				38EE32F32315631C005DEE32 /* Protection.swift in Sources */,

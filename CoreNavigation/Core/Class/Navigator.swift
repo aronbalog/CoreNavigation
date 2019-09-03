@@ -3,6 +3,8 @@ class Navigator {
     let cache: Caching.Cache
     
     init(queue: DispatchQueue, cache: Caching.Cache) {
+        initFramework
+        
         self.queue = queue
         self.cache = cache
     }
@@ -174,6 +176,11 @@ class Navigator {
                 if let caching = caching {
                     self.cache(cacheIdentifier: caching.0, cacheable: caching.1, viewController: viewController, embeddingViewController: embeddingViewController)
                 }
+                
+                configuration.viewControllerEventBlocks.forEach({ (block) in
+                    self.bindEvents(to: viewController, navigationEvents: block())
+                })
+                
                 onComplete(destination, viewController, embeddingViewController)
             }, onCancel: onCancel)
         }
@@ -183,6 +190,50 @@ class Navigator {
         } else {
             resolveNew()
         }
+    }
+    
+    private func bindEvents<ViewControllerType: UIViewController>(to viewController: ViewControllerType, navigationEvents: [UIViewController.Event<ViewControllerType>]) {
+        let viewControllerEvents = UIViewController.Observer()
+        
+        navigationEvents.forEach { (event) in
+            switch event {
+            case .loadView(let block):
+                viewControllerEvents.onLoadView { block($0 as! ViewControllerType) }
+            case .viewDidLoad(let block):
+                viewControllerEvents.onViewDidLoad { block($0 as! ViewControllerType) }
+            case .viewWillAppear(let block):
+                viewControllerEvents.onViewWillAppear { block($0 as! ViewControllerType, $1) }
+            case .viewDidAppear(let block):
+                viewControllerEvents.onViewDidAppear { block($0 as! ViewControllerType, $1) }
+            case .viewWillDisappear(let block):
+                viewControllerEvents.onViewWillDisappear { block($0 as! ViewControllerType, $1) }
+            case .viewDidDisappear(let block):
+                viewControllerEvents.onViewDidDisappear { block($0 as! ViewControllerType, $1) }
+            case .viewWillTransition(let block):
+                viewControllerEvents.onViewWillTransition { block($0 as! ViewControllerType, $1, $2) }
+            case .viewWillLayoutSubviews(let block):
+                viewControllerEvents.onViewWillLayoutSubviews { block($0 as! ViewControllerType) }
+            case .viewDidLayoutSubviews(let block):
+                viewControllerEvents.onViewDidLayoutSubviews { block($0 as! ViewControllerType) }
+            case .viewLayoutMarginsDidChange(let block):
+                viewControllerEvents.onViewLayoutMarginsDidChange { block($0 as! ViewControllerType) }
+            case .viewSafeAreaInsetsDidChange(let block):
+                viewControllerEvents.onViewSafeAreaInsetsDidChange { block($0 as! ViewControllerType) }
+            case .updateViewConstraints(let block):
+                viewControllerEvents.onUpdateViewConstraints { block($0 as! ViewControllerType) }
+            case .willMoveTo(let block):
+                viewControllerEvents.onWillMoveTo { block($0 as! ViewControllerType, $1) }
+            case .didMoveTo(let block):
+                viewControllerEvents.onDidMoveTo { block($0 as! ViewControllerType, $1) }
+            case .didReceiveMemoryWarning(let block):
+                viewControllerEvents.onDidReceiveMemoryWarning { block($0 as! ViewControllerType) }
+            case .applicationFinishedRestoringState(let block):
+                viewControllerEvents.onApplicationFinishedRestoringState { block($0 as! ViewControllerType) }
+            }
+        }
+        
+        viewController.events = viewControllerEvents
+        
     }
     
     private func resolve<DestinationType: Destination>(
