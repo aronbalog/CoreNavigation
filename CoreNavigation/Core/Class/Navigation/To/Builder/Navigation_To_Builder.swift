@@ -70,7 +70,7 @@ extension Navigation.To {
         
         @discardableResult public func cache(cacheIdentifier: String, _ block: @escaping (Caching.Context) -> Void) -> Self {
             queue.sync {
-                configuration.cachingBlock = { (cacheIdentifier, Caching.Builder(block: block)) }
+                configuration.cachingBlock = { (cacheIdentifier, Caching.Builder(cachingType: .block(block))) }
             }
             
             return self
@@ -164,6 +164,6 @@ extension Navigation.To.Builder where DestinationType: Routing.Destination {
     }
     
     @discardableResult public func cache(_ block: @escaping (Caching.Context) -> Void) -> Self {
-        return cache(with: Caching.Builder(block: block))
+        return cache(with: Caching.Builder(cachingType: .block(block)))
     }
 }

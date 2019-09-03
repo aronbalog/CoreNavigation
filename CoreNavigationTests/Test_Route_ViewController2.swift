@@ -25,6 +25,7 @@ class TestRouteViewController2: QuickSpec {
         describe("When resolving UIViewController from") {
             context("route", {
                 Register(MockViewController.self)
+                
                 let viewController = try? "TestRouteViewController2/one/two?parameter3=three".viewController() as? MockViewController
                 
                 it("resolved view controller", closure: {
@@ -40,8 +41,6 @@ class TestRouteViewController2: QuickSpec {
                     
                     expect(viewController?.parameters as NSDictionary?).toEventually(equal(expectedParameters))
                 })
-                
-                
             })
         }
     }

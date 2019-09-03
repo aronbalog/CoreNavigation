@@ -24,11 +24,11 @@ public func Close<ViewControllerType: UIViewController>(_ direction: Navigation.
     Navigator(queue: queue, cache: Caching.Cache.instance).navigate(with: back(Navigation.Back(direction: direction, queue: queue)).configuration)
 }
 
-public func Close(_ direction: Navigation.Direction.Backward, animated: Bool = true, completion: (() -> Void)? = nil) {
+public func Close(_ direction: Navigation.Direction.Backward, animated: Bool = true, completion: ((UIViewController) -> Void)? = nil) {
     Close(direction) { $0
         .visibleViewController()
         .animated(animated)
-        .onComplete { _ in completion?() }
+        .onComplete { completion?($0) }
     }
 }
 
@@ -40,7 +40,7 @@ public func Close<ViewControllerType: UIViewController>(_ direction: Navigation.
     }
 }
 
-public func Dismiss(animated: Bool = true, completion: (() -> Void)? = nil) {
+public func Dismiss(animated: Bool = true, completion: ((UIViewController) -> Void)? = nil) {
     Close(.dismiss, animated: animated, completion: completion)
 }
 
@@ -48,8 +48,8 @@ public func Dismiss<ViewControllerType: UIViewController>(viewController: ViewCo
     Close(.dismiss, viewController: viewController, animated: animated, completion: completion)
 }
 
-public func Pop(animated: Bool = true, completion: (() -> Void)? = nil) {
-    Close(.pop, animated: animated, completion: completion)
+public func Pop(animated: Bool = true, completion: ((UIViewController) -> Void)? = nil) {
+    Close(.pop, animated: animated, completion: { completion?($0) })
 }
 
 public func Pop<ViewControllerType: UIViewController>(viewController: ViewControllerType, animated: Bool = true, completion: (() -> Void)? = nil) {

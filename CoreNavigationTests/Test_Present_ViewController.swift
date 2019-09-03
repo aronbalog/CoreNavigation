@@ -3,17 +3,17 @@ import Nimble
 
 import CoreNavigation
 
-private class MockViewController: UIViewController, DataReceivable {
-    typealias DataType = String
-    
-    var receivedData: String?
-    
-    func didReceiveData(_ data: String) {
-        receivedData = data
-    }
-}
-
 class TestPresentViewController: QuickSpec {
+    private class MockViewController: UIViewController, DataReceivable {
+        typealias DataType = String
+        
+        var receivedData: String?
+        
+        func didReceiveData(_ data: String) {
+            receivedData = data
+        }
+    }
+    
     let canvas = Utilities.TestingCanvas()
     private let viewController = MockViewController()
     let passingData = "mock-data"
