@@ -38,9 +38,9 @@ class TestPresentViewControllerCached: QuickSpec {
     override func spec() {
         describe("When presenting") {
             context("cached UIViewController instance", {
-                func present(repeatOnce: Bool) {
+                func present(onComplete: @escaping (UIViewController) -> Void) {
                     Present { $0
-                        .to(MockViewController.self, from: self.canvas.rootViewController)
+                        .to(MockViewController.self)
                         .passDataToViewController(self.passingData)
                         .cache(cacheIdentifier: "mock-identifier", { (context) in
                             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
@@ -50,16 +50,16 @@ class TestPresentViewControllerCached: QuickSpec {
                         .onComplete({ (result) in
                             self.viewController = result.toViewController
                             
-                            if repeatOnce {
-                                Dismiss(viewController: result.toViewController, animated: false, completion: {
-                                    present(repeatOnce: false)
-                                })
-                            }
+                            onComplete(result.toViewController)
                         })
                     }
                 }
                 
-                present(repeatOnce: true)
+                present(onComplete: { vc in
+                    Dismiss(viewController: vc, animated: false, completion: {
+                        present { _ in }
+                    })
+                })
                 
                 it("is presented", closure: {
                     expect(self.viewController?.isViewLoaded).toEventually(beTrue())
@@ -73,11 +73,8 @@ class TestPresentViewControllerCached: QuickSpec {
                     expect(MockViewController.appearCount).toEventually(equal(2))
                 })
                 
-                it("view controller received data", closure: {
+                it("received correct data twice", closure: {
                     expect(self.viewController?.receivedData).toEventually(equal(self.passingData))
-                })
-                
-                it("view controller received data twice", closure: {
                     expect(MockViewController.receivedDataCount).toEventually(equal(2))
                 })
             })

@@ -54,6 +54,10 @@
 		38B5F99D231DEAE800FEB14A /* ObjectAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F99C231DEAE800FEB14A /* ObjectAssociation.swift */; };
 		38B5F9A3231E954900FEB14A /* Test_Present_ViewController_Cached.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F9A2231E954900FEB14A /* Test_Present_ViewController_Cached.swift */; };
 		38B5F9A5231EA3A200FEB14A /* Test_Present_ViewController_Protected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F9A4231EA3A200FEB14A /* Test_Present_ViewController_Protected.swift */; };
+		38B5F9A7231EAC9A00FEB14A /* Test_Present_ViewController_Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F9A6231EAC9A00FEB14A /* Test_Present_ViewController_Events.swift */; };
+		38B5F9AB231EE1F900FEB14A /* Test_Present_ViewController_Embedding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F9AA231EE1F900FEB14A /* Test_Present_ViewController_Embedding.swift */; };
+		38B5F9AD231EE53D00FEB14A /* Test_Push_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F9AC231EE53D00FEB14A /* Test_Push_ViewController.swift */; };
+		38B5F9AF231EE78900FEB14A /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F9AE231EE78900FEB14A /* UINavigationController.swift */; };
 		38EE32C52312BED4005DEE32 /* UIViewController_Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32C42312BED4005DEE32 /* UIViewController_Destination.swift */; };
 		38EE32C72312EAF0005DEE32 /* Navigation_Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32C62312EAF0005DEE32 /* Navigation_Result.swift */; };
 		38EE32C92312EFFA005DEE32 /* Protectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32C82312EFFA005DEE32 /* Protectable.swift */; };
@@ -164,6 +168,10 @@
 		38B5F99C231DEAE800FEB14A /* ObjectAssociation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectAssociation.swift; sourceTree = "<group>"; };
 		38B5F9A2231E954900FEB14A /* Test_Present_ViewController_Cached.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_Present_ViewController_Cached.swift; sourceTree = "<group>"; };
 		38B5F9A4231EA3A200FEB14A /* Test_Present_ViewController_Protected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_Present_ViewController_Protected.swift; sourceTree = "<group>"; };
+		38B5F9A6231EAC9A00FEB14A /* Test_Present_ViewController_Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_Present_ViewController_Events.swift; sourceTree = "<group>"; };
+		38B5F9AA231EE1F900FEB14A /* Test_Present_ViewController_Embedding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_Present_ViewController_Embedding.swift; sourceTree = "<group>"; };
+		38B5F9AC231EE53D00FEB14A /* Test_Push_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_Push_ViewController.swift; sourceTree = "<group>"; };
+		38B5F9AE231EE78900FEB14A /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		38EE32C42312BED4005DEE32 /* UIViewController_Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController_Destination.swift; sourceTree = "<group>"; };
 		38EE32C62312EAF0005DEE32 /* Navigation_Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation_Result.swift; sourceTree = "<group>"; };
 		38EE32C82312EFFA005DEE32 /* Protectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protectable.swift; sourceTree = "<group>"; };
@@ -274,6 +282,9 @@
 				386D007822FC449C005056C1 /* CoreNavigationTests.swift */,
 				386D007A22FC449C005056C1 /* Info.plist */,
 				38B5F97C231D2B8300FEB14A /* Test_Present_ViewController.swift */,
+				38B5F9AC231EE53D00FEB14A /* Test_Push_ViewController.swift */,
+				38B5F9AA231EE1F900FEB14A /* Test_Present_ViewController_Embedding.swift */,
+				38B5F9A6231EAC9A00FEB14A /* Test_Present_ViewController_Events.swift */,
 				38B5F9A2231E954900FEB14A /* Test_Present_ViewController_Cached.swift */,
 				38B5F9A4231EA3A200FEB14A /* Test_Present_ViewController_Protected.swift */,
 				38B5F986231D9CB100FEB14A /* Test_Destination_ViewController.swift */,
@@ -357,6 +368,7 @@
 				38B5F978231C8F7E00FEB14A /* UIViewController+Convenience.swift */,
 				38B5F97A231C92C600FEB14A /* Matchable+Convenience.swift */,
 				38B5F998231DEA8700FEB14A /* UIViewController+Events.swift */,
+				38B5F9AE231EE78900FEB14A /* UINavigationController.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -800,6 +812,7 @@
 				38EE3308231691EB005DEE32 /* Cacheable.swift in Sources */,
 				386D00A122FC5A55005056C1 /* Navigation_To.swift in Sources */,
 				38EE32ED23153F97005DEE32 /* DataPassing_Context.swift in Sources */,
+				38B5F9AF231EE78900FEB14A /* UINavigationController.swift in Sources */,
 				38EE32F52315682E005DEE32 /* Protection_Chain.swift in Sources */,
 				38EE32C72312EAF0005DEE32 /* Navigation_Result.swift in Sources */,
 				38B5F96D231AAA7A00FEB14A /* Navigation.swift in Sources */,
@@ -865,9 +878,12 @@
 			files = (
 				38B5F989231D9D7400FEB14A /* Test_Route_ViewController.swift in Sources */,
 				386D007922FC449C005056C1 /* CoreNavigationTests.swift in Sources */,
+				38B5F9AB231EE1F900FEB14A /* Test_Present_ViewController_Embedding.swift in Sources */,
 				38B5F992231DDDB300FEB14A /* Test_Route_ViewController2.swift in Sources */,
 				38B5F9A5231EA3A200FEB14A /* Test_Present_ViewController_Protected.swift in Sources */,
 				38B5F9A3231E954900FEB14A /* Test_Present_ViewController_Cached.swift in Sources */,
+				38B5F9AD231EE53D00FEB14A /* Test_Push_ViewController.swift in Sources */,
+				38B5F9A7231EAC9A00FEB14A /* Test_Present_ViewController_Events.swift in Sources */,
 				38B5F987231D9CB100FEB14A /* Test_Destination_ViewController.swift in Sources */,
 				38B5F97F231D2EC700FEB14A /* Utilities_TestingCanvas.swift in Sources */,
 				38B5F981231D321100FEB14A /* Test_Present_Destination.swift in Sources */,

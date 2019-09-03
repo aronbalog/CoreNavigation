@@ -40,7 +40,7 @@ class TestRouteViewController: QuickSpec {
         describe("When resolving UIViewController from") {
             context("route", {
                 Register(MockDestination.self)
-                let viewController = try? "TestRouteViewController/one?parameter2=two".viewController() as? MockViewController
+                let viewController = try? UIViewController.from(matchable: "TestRouteViewController/one?parameter2=two") as? MockViewController
                 
                 it("resolved view controller", closure: {
                     expect(viewController).toEventuallyNot(beNil())

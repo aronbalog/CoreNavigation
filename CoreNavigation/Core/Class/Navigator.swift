@@ -17,7 +17,7 @@ class Navigator {
                 case .forward(let forward):
                     switch forward {
                     case .present: self.present(with: configuration)
-                    case .push: self.push()
+                    case .push: self.push(with: configuration)
                     case .childViewController: self.childViewController(with: configuration)
                     }
                 case .backward(let backward):
@@ -29,9 +29,7 @@ class Navigator {
             case .none: break
             }
         }) { (error) in
-            configuration.onFailureBlocks.forEach({ (block) in
-                block(error)
-            })
+            self.resultFailure(with: error, configuration: configuration)
         }
     }
     
@@ -74,15 +72,42 @@ class Navigator {
                     })
                 }
             }, onCancel: { error in
-                configuration.onFailureBlocks.forEach({ (block) in
-                    block(error)
-                })
+                self.resultFailure(with: error, configuration: configuration)
             })
         }
     }
     
-    private func push() {
-        fatalError()
+    private func push<DestinationType: Destination, FromType: UIViewController>(
+        with configuration: Configuration<DestinationType, FromType>)
+    {
+        queue.sync {
+            viewControllerToNavigateTo(with: configuration, onComplete: { (destination, viewController, embeddingViewController) in
+                let navigationController: UINavigationController? = {
+                    return configuration.sourceViewController.navigationController ?? configuration.sourceViewController as? UINavigationController
+                }()
+                let dataPassingCandidates: [Any?] =
+                    configuration.protections +
+                        [
+                            destination,
+                            configuration.embeddable,
+                            viewController,
+                            embeddingViewController
+                ]
+                
+                self.passData(configuration.dataPassingBlock, to: dataPassingCandidates)
+                
+                let destinationViewController = embeddingViewController ?? viewController
+                let result = self.doOnNavigationSuccess(destination: destination, viewController: viewController, configuration: configuration)
+
+                DispatchQueue.main.async {
+                    navigationController?.pushViewController(destinationViewController, animated: configuration.isAnimatedBlock(), completion: {
+                        self.resultCompletion(with: result, configuration: configuration)
+                    })
+                }
+            }, onCancel: { (error) in
+                self.resultFailure(with: error, configuration: configuration)
+            })
+        }
     }
     
     private func childViewController<DestinationType: Destination, FromType: UIViewController>(
@@ -154,6 +179,13 @@ class Navigator {
         configuration.onSuccessBlocks.forEach { $0(result) }
         
         return result
+    }
+    
+    private func resultFailure<DestinationType: Destination, FromType: UIViewController>(
+        with error: Error,
+        configuration: Configuration<DestinationType, FromType>)
+    {
+        configuration.onFailureBlocks.forEach { $0(error) }
     }
     
     private func resultCompletion<DestinationType: Destination, FromType: UIViewController>(

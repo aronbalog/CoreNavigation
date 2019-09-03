@@ -11,7 +11,7 @@ class TestDestinationViewController: QuickSpec {
     override func spec() {
         describe("When resolving UIViewController from") {
             context("Destination instance", {
-                let viewController = try? MockDestination().viewController()
+                let viewController = try? UIViewController.from(destination: MockDestination())
                 
                 it("is resolved", closure: {
                     expect(viewController).toEventuallyNot(beNil())
