@@ -39,15 +39,12 @@ class TestPresentDestination: QuickSpec {
                 Present { $0
                     .to(mockDestination, from: self.canvas.rootViewController)
                     .passData(passingData)
-//                    .embed(with: Embedding.EmbeddingType.navigationController(nil))
                     .onComplete({ (result) in
                         print("👿 Mocked!", result.toViewController)
 
                         mockViewController = result.toViewController
                     })
-                    .onFailure({ (error) in
-                        print("👿 Error!")
-                    })
+
                 }
                 
                 it("is presented", closure: {

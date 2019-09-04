@@ -1,7 +1,13 @@
 extension Embedding.Helper {
     class TabBarController: Embeddable {
+        let tabBarControllerType: UITabBarController.Type
+        
+        init(tabBarControllerType: UITabBarController.Type) {
+            self.tabBarControllerType = tabBarControllerType
+        }
+        
         func embed(with context: Embedding.Context) throws {
-            let tabBarController = UITabBarController()
+            let tabBarController = tabBarControllerType.init()
             
             tabBarController.viewControllers = [context.rootViewController]
             

@@ -65,10 +65,13 @@ class Navigator {
                 
                 let destinationViewController = embeddingViewController ?? viewController
                 let result = self.doOnNavigationSuccess(destination: destination, viewController: viewController, configuration: configuration)
-
+                var transitioningDelegate = configuration.transitioningDelegateBlock?()
+                
                 DispatchQueue.main.async {
+                    destinationViewController.transitioningDelegate = transitioningDelegate
                     configuration.sourceViewController.present(destinationViewController, animated: configuration.isAnimatedBlock(), completion: {
                         self.resultCompletion(with: result, configuration: configuration)
+                        transitioningDelegate = nil
                     })
                 }
             }, onCancel: { error in
@@ -85,6 +88,7 @@ class Navigator {
                 let navigationController: UINavigationController? = {
                     return configuration.sourceViewController.navigationController ?? configuration.sourceViewController as? UINavigationController
                 }()
+                
                 let dataPassingCandidates: [Any?] =
                     configuration.protections +
                         [
@@ -98,10 +102,14 @@ class Navigator {
                 
                 let destinationViewController = embeddingViewController ?? viewController
                 let result = self.doOnNavigationSuccess(destination: destination, viewController: viewController, configuration: configuration)
+                var transitioningDelegate = configuration.transitioningDelegateBlock?()
 
                 DispatchQueue.main.async {
+                    navigationController?.transitioningDelegate = transitioningDelegate
+                    
                     navigationController?.pushViewController(destinationViewController, animated: configuration.isAnimatedBlock(), completion: {
                         self.resultCompletion(with: result, configuration: configuration)
+                        transitioningDelegate = nil
                     })
                 }
             }, onCancel: { (error) in

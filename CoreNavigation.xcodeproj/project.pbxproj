@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		2A727EA23937DCB007E5252D /* Pods_CoreNavigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8966256E92B3D80043C77C6C /* Pods_CoreNavigation.framework */; };
 		31764FB78515905258D67A90 /* Pods_HostApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE61BC786DE09B771206DC5E /* Pods_HostApp.framework */; };
+		3803EA45231FE9DF0081B126 /* Transitioning_Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3803EA44231FE9DF0081B126 /* Transitioning_Context.swift */; };
+		3803EA47231FFBBF0081B126 /* Embedding_Helper_None.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3803EA46231FFBBF0081B126 /* Embedding_Helper_None.swift */; };
 		386D007422FC449C005056C1 /* CoreNavigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 386D006A22FC449C005056C1 /* CoreNavigation.framework */; };
 		386D007922FC449C005056C1 /* CoreNavigationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D007822FC449C005056C1 /* CoreNavigationTests.swift */; };
 		386D007B22FC449C005056C1 /* CoreNavigation.h in Headers */ = {isa = PBXBuildFile; fileRef = 386D006D22FC449C005056C1 /* CoreNavigation.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -58,6 +60,9 @@
 		38B5F9AB231EE1F900FEB14A /* Test_Present_ViewController_Embedding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F9AA231EE1F900FEB14A /* Test_Present_ViewController_Embedding.swift */; };
 		38B5F9AD231EE53D00FEB14A /* Test_Push_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F9AC231EE53D00FEB14A /* Test_Push_ViewController.swift */; };
 		38B5F9AF231EE78900FEB14A /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F9AE231EE78900FEB14A /* UINavigationController.swift */; };
+		38B5F9B3231FE12200FEB14A /* Transitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F9B2231FE12200FEB14A /* Transitioning.swift */; };
+		38B5F9B6231FE13700FEB14A /* Transitioning_TransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F9B5231FE13700FEB14A /* Transitioning_TransitioningDelegate.swift */; };
+		38B5F9B8231FE31700FEB14A /* Transitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F9B7231FE31700FEB14A /* Transitions.swift */; };
 		38EE32C52312BED4005DEE32 /* UIViewController_Destination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32C42312BED4005DEE32 /* UIViewController_Destination.swift */; };
 		38EE32C72312EAF0005DEE32 /* Navigation_Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32C62312EAF0005DEE32 /* Navigation_Result.swift */; };
 		38EE32C92312EFFA005DEE32 /* Protectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32C82312EFFA005DEE32 /* Protectable.swift */; };
@@ -119,6 +124,8 @@
 
 /* Begin PBXFileReference section */
 		0C88E4D12876EA6B9EC4AF56 /* Pods-CoreNavigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreNavigation.release.xcconfig"; path = "Target Support Files/Pods-CoreNavigation/Pods-CoreNavigation.release.xcconfig"; sourceTree = "<group>"; };
+		3803EA44231FE9DF0081B126 /* Transitioning_Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transitioning_Context.swift; sourceTree = "<group>"; };
+		3803EA46231FFBBF0081B126 /* Embedding_Helper_None.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_Helper_None.swift; sourceTree = "<group>"; };
 		386D006A22FC449C005056C1 /* CoreNavigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreNavigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		386D006D22FC449C005056C1 /* CoreNavigation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreNavigation.h; sourceTree = "<group>"; };
 		386D006E22FC449C005056C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -172,6 +179,9 @@
 		38B5F9AA231EE1F900FEB14A /* Test_Present_ViewController_Embedding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_Present_ViewController_Embedding.swift; sourceTree = "<group>"; };
 		38B5F9AC231EE53D00FEB14A /* Test_Push_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_Push_ViewController.swift; sourceTree = "<group>"; };
 		38B5F9AE231EE78900FEB14A /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
+		38B5F9B2231FE12200FEB14A /* Transitioning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transitioning.swift; sourceTree = "<group>"; };
+		38B5F9B5231FE13700FEB14A /* Transitioning_TransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transitioning_TransitioningDelegate.swift; sourceTree = "<group>"; };
+		38B5F9B7231FE31700FEB14A /* Transitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transitions.swift; sourceTree = "<group>"; };
 		38EE32C42312BED4005DEE32 /* UIViewController_Destination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController_Destination.swift; sourceTree = "<group>"; };
 		38EE32C62312EAF0005DEE32 /* Navigation_Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation_Result.swift; sourceTree = "<group>"; };
 		38EE32C82312EFFA005DEE32 /* Protectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protectable.swift; sourceTree = "<group>"; };
@@ -302,6 +312,7 @@
 			children = (
 				386D008A22FC44DB005056C1 /* AppDelegate.swift */,
 				386D008C22FC44DB005056C1 /* ViewController.swift */,
+				38B5F9B7231FE31700FEB14A /* Transitions.swift */,
 				386D009122FC44DD005056C1 /* Assets.xcassets */,
 				386D009622FC44DD005056C1 /* Info.plist */,
 			);
@@ -325,6 +336,7 @@
 		386D009D22FC5A2D005056C1 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				38B5F9B4231FE12B00FEB14A /* Transitioning */,
 				38B5F993231DE6DE00FEB14A /* UIViewController */,
 				38B5F96E231AAA8A00FEB14A /* Navigation */,
 				38EE3309231693B2005DEE32 /* Caching */,
@@ -482,6 +494,15 @@
 			path = UIViewController;
 			sourceTree = "<group>";
 		};
+		38B5F9B4231FE12B00FEB14A /* Transitioning */ = {
+			isa = PBXGroup;
+			children = (
+				38B5F9B5231FE13700FEB14A /* Transitioning_TransitioningDelegate.swift */,
+				3803EA44231FE9DF0081B126 /* Transitioning_Context.swift */,
+			);
+			path = Transitioning;
+			sourceTree = "<group>";
+		};
 		38EE32DC231529C4005DEE32 /* Namespace */ = {
 			isa = PBXGroup;
 			children = (
@@ -492,6 +513,7 @@
 				38B5F96C231AAA7A00FEB14A /* Navigation.swift */,
 				38EE330A2316948B005DEE32 /* Caching.swift */,
 				38EE32F82315D70D005DEE32 /* Routing.swift */,
+				38B5F9B2231FE12200FEB14A /* Transitioning.swift */,
 			);
 			path = Namespace;
 			sourceTree = "<group>";
@@ -521,6 +543,7 @@
 			children = (
 				38EE32D423133E1A005DEE32 /* Embedding_Helper_NavigationController.swift */,
 				38EE32E523152C94005DEE32 /* Embedding_Helper_TabBarController.swift */,
+				3803EA46231FFBBF0081B126 /* Embedding_Helper_None.swift */,
 				38EE32E7231531EB005DEE32 /* Embedding_Helper_Wrapper.swift */,
 			);
 			path = Helper;
@@ -821,6 +844,7 @@
 				38B5F973231AABB300FEB14A /* Navigation_ViewController_Builder.swift in Sources */,
 				386D00A822FC5C1E005056C1 /* Configuration.swift in Sources */,
 				38EE32D523133E1A005DEE32 /* Embedding_Helper_NavigationController.swift in Sources */,
+				3803EA45231FE9DF0081B126 /* Transitioning_Context.swift in Sources */,
 				38EE32C92312EFFA005DEE32 /* Protectable.swift in Sources */,
 				38EE33042315EE8F005DEE32 /* Routing_Destination.swift in Sources */,
 				38B5F99B231DEAB300FEB14A /* UIViewController_Observer.swift in Sources */,
@@ -830,15 +854,18 @@
 				38EE32F92315D70D005DEE32 /* Routing.swift in Sources */,
 				38EE32E8231531EB005DEE32 /* Embedding_Helper_Wrapper.swift in Sources */,
 				38EE32DE231529CF005DEE32 /* Embedding.swift in Sources */,
+				38B5F9B3231FE12200FEB14A /* Transitioning.swift in Sources */,
 				386D009F22FC5A3B005056C1 /* Global.swift in Sources */,
 				386D00BE22FC7675005056C1 /* AnyDataReceivable.swift in Sources */,
 				38EE33022315D8A8005DEE32 /* Routing_RegularExpression.swift in Sources */,
 				38EE32CB23132226005DEE32 /* Protection_Context.swift in Sources */,
+				3803EA47231FFBBF0081B126 /* Embedding_Helper_None.swift in Sources */,
 				386D00A422FC5B6C005056C1 /* Destination.swift in Sources */,
 				38B5F997231DEA5300FEB14A /* Swizzler.swift in Sources */,
 				386D00B622FC6820005056C1 /* DataReceivable.swift in Sources */,
 				38B5F9652319497700FEB14A /* Global_Operators.swift in Sources */,
 				38EE32E623152C94005DEE32 /* Embedding_Helper_TabBarController.swift in Sources */,
+				38B5F9B6231FE13700FEB14A /* Transitioning_TransitioningDelegate.swift in Sources */,
 				38EE33002315D824005DEE32 /* Routing_RouteMatch.swift in Sources */,
 				38EE32F72315D618005DEE32 /* Routable.swift in Sources */,
 				38B5F969231A7DB400FEB14A /* URL+Matchable.swift in Sources */,
@@ -896,6 +923,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38B5F9B8231FE31700FEB14A /* Transitions.swift in Sources */,
 				386D008D22FC44DB005056C1 /* ViewController.swift in Sources */,
 				386D008B22FC44DB005056C1 /* AppDelegate.swift in Sources */,
 			);

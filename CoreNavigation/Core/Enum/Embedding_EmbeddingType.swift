@@ -1,29 +1,26 @@
 extension Embedding {
     public indirect enum EmbeddingType {
-        case navigationController(EmbeddingType?)
-        case tabBarController(EmbeddingType?)
-        case embeddable(Embeddable, EmbeddingType?)
+        case navigationController(UINavigationController.Type, () -> EmbeddingType)
+        case tabBarController(UITabBarController.Type, () -> EmbeddingType)
+        case embeddable(Embeddable, () -> EmbeddingType)
+        case none
         
         func embeddable() -> Embeddable {
             switch self {
-            case .navigationController(let newEmbedding):
-                let rootEmbeddable = Embedding.Helper.NavigationController()
-                if let newEmbedding = newEmbedding {
-                    return Embedding.Helper.Wrapper(rootEmbeddable: rootEmbeddable, wrappingEmbeddable: newEmbedding.embeddable())
-                }
-                return rootEmbeddable
-            case .tabBarController(let newEmbedding):
-                let rootEmbeddable = Embedding.Helper.TabBarController()
-                if let newEmbedding = newEmbedding {
-                    return Embedding.Helper.Wrapper(rootEmbeddable: rootEmbeddable, wrappingEmbeddable: newEmbedding.embeddable())
-                }
-                return rootEmbeddable
-            case .embeddable(let aProtocol, let newEmbedding):
+            case .navigationController(let controllerType, let embedding):
+                let rootEmbeddable = Embedding.Helper.NavigationController(navigationControllerType: controllerType)
+
+                return Embedding.Helper.Wrapper(rootEmbeddable: rootEmbeddable, wrappingEmbeddable: embedding().embeddable())
+            case .tabBarController(let controllerType, let embedding):
+                let rootEmbeddable = Embedding.Helper.TabBarController(tabBarControllerType: controllerType)
+
+                return Embedding.Helper.Wrapper(rootEmbeddable: rootEmbeddable, wrappingEmbeddable: embedding().embeddable())
+            case .embeddable(let aProtocol, let embedding):
                 let rootEmbeddable = aProtocol
-                if let newEmbedding = newEmbedding {
-                    return Embedding.Helper.Wrapper(rootEmbeddable: rootEmbeddable, wrappingEmbeddable: newEmbedding.embeddable())
-                }
-                return rootEmbeddable
+
+                return Embedding.Helper.Wrapper(rootEmbeddable: rootEmbeddable, wrappingEmbeddable: embedding().embeddable())
+            case .none:
+                return Embedding.Helper.None()
             }
         }
     }

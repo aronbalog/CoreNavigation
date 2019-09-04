@@ -14,7 +14,11 @@ class TestPresentEmbeddedViewController: QuickSpec {
             context("UIViewController instance", {
                 Present { $0
                     .to(self.viewController, from: self.canvas.rootViewController)
-                    .embed(with: .tabBarController(.navigationController(nil)))
+                    .embed(inside:
+                        .tabBarController(UITabBarController.self, {
+                            .navigationController(UINavigationController.self, { .none })
+                        })
+                    )
                 }
                 
                 it("is presented", closure: {

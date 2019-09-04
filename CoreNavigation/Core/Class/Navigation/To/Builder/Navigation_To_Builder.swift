@@ -20,6 +20,30 @@ extension Navigation.To {
             return animated { isAnimated }
         }
         
+        @discardableResult public func transitioningDelegate(_ transitioningDelegate: UIViewControllerTransitioningDelegate) -> Self {
+            queue.sync {
+                configuration.transitioningDelegateBlock = { transitioningDelegate }
+            }
+            
+            return self
+        }
+        
+        @discardableResult public func transitioningDelegate(_ block: @escaping () -> UIViewControllerTransitioningDelegate) -> Self {
+            queue.sync {
+                configuration.transitioningDelegateBlock = block
+            }
+            
+            return self
+        }
+        
+        @discardableResult public func transition<ToType: UIViewController>(with transitionDuration: TimeInterval, _ block: @escaping (Transitioning.Context<FromType, ToType>) -> Void) -> Self {
+            queue.sync {
+                configuration.transitioningDelegateBlock = { Transitioning.Delegate(transitionDuration: transitionDuration, transitionAnimation: block) }
+            }
+            
+            return self
+        }
+        
         @discardableResult public func protect(with protections: Protectable...) -> Self {
             queue.sync {
                 configuration.protections.append(contentsOf: protections)
@@ -36,7 +60,7 @@ extension Navigation.To {
             return self
         }
         
-        @discardableResult public func embed(with embeddingType: Embedding.EmbeddingType) -> Self {
+        @discardableResult public func embed(inside embeddingType: Embedding.EmbeddingType) -> Self {
             queue.sync {
                 configuration.embeddable = embeddingType.embeddable()
             }
@@ -76,7 +100,7 @@ extension Navigation.To {
             return self
         }
         
-        @discardableResult public func onFailure(_ block: @escaping (Error) -> Void) -> Self {
+        @discardableResult public func `catch`(_ block: @escaping (Error) -> Void) -> Self {
             queue.sync {
                 configuration.onFailureBlocks.append(block)
             }

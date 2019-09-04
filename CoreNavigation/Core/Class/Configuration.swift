@@ -5,7 +5,8 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     typealias ViewControllerEventBlock = () -> [UIViewController.Event<DestinationType.ViewControllerType>]
     typealias DataPassingBlock<T> = (DataPassing.Context<T>) -> Void
     typealias CachingBlock = () -> (String, Cacheable)
-    
+    typealias TransitioningDelegateBlock = () -> UIViewControllerTransitioningDelegate?
+    typealias IsAnimatedBlock = () -> Bool
     let directive: Directive
     private var toBlock: () -> DestinationType
     lazy var destination: DestinationType = {
@@ -13,7 +14,8 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     }()
     
     var sourceViewController: FromType
-    var isAnimatedBlock: () -> Bool = { true }
+    var isAnimatedBlock: IsAnimatedBlock = { true }
+    var transitioningDelegateBlock: TransitioningDelegateBlock?
     var dataPassingBlock: DataPassingBlock<Any>?
     var onSuccessBlocks: [OnSuccessBlock] = []
     var onCompletionBlocks: [OnCompletionBlock] = []

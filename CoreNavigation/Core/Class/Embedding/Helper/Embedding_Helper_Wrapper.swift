@@ -10,11 +10,8 @@ extension Embedding.Helper {
         
         func embed(with context: Embedding.Context) throws {
             try wrappingEmbeddable.embed(with: Embedding.Context(rootViewController: context.rootViewController, onComplete: { (embeddingViewController) in
-                let rootContext = Embedding.Context(rootViewController: embeddingViewController, onComplete: { (rootEmbeddingViewController) in
-                    context.complete(viewController: rootEmbeddingViewController)
-                }, onCancel: { (error) in
-                    context.cancel(with: error)
-                })
+                let rootContext = Embedding.Context(rootViewController: embeddingViewController, onComplete: context.complete, onCancel: context.cancel)
+                
                 do {
                     try self.rootEmbeddable.embed(with: rootContext)
                 } catch let error {

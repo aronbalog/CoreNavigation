@@ -52,7 +52,7 @@ class TestPresentRoute: QuickSpec {
                 Present { $0
                     .to(route, from: self.canvas.rootViewController)
                     .passData(passingData)
-                    .embed(with: Embedding.EmbeddingType.tabBarController(nil))
+                    .embed(inside: .tabBarController(UITabBarController.self, { .none }))
                     .onComplete({ (result) in
                         print("Completed")
                         mockDestination = result.destination.resolvedDestination as? MockDestination
