@@ -1,4 +1,4 @@
-extension Embedding.Helper {
+extension Embedding.Embedder {
     class TabBarController: Embeddable {
         let tabBarControllerType: UITabBarController.Type
         

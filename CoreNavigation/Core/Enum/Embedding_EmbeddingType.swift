@@ -8,19 +8,19 @@ extension Embedding {
         func embeddable() -> Embeddable {
             switch self {
             case .navigationController(let controllerType, let embedding):
-                let rootEmbeddable = Embedding.Helper.NavigationController(navigationControllerType: controllerType)
+                let rootEmbeddable = Embedding.Embedder.NavigationController(navigationControllerType: controllerType)
 
-                return Embedding.Helper.Wrapper(rootEmbeddable: rootEmbeddable, wrappingEmbeddable: embedding().embeddable())
+                return Embedding.Embedder.Wrapper(rootEmbeddable: rootEmbeddable, wrappingEmbeddable: embedding().embeddable())
             case .tabBarController(let controllerType, let embedding):
-                let rootEmbeddable = Embedding.Helper.TabBarController(tabBarControllerType: controllerType)
+                let rootEmbeddable = Embedding.Embedder.TabBarController(tabBarControllerType: controllerType)
 
-                return Embedding.Helper.Wrapper(rootEmbeddable: rootEmbeddable, wrappingEmbeddable: embedding().embeddable())
+                return Embedding.Embedder.Wrapper(rootEmbeddable: rootEmbeddable, wrappingEmbeddable: embedding().embeddable())
             case .embeddable(let aProtocol, let embedding):
                 let rootEmbeddable = aProtocol
 
-                return Embedding.Helper.Wrapper(rootEmbeddable: rootEmbeddable, wrappingEmbeddable: embedding().embeddable())
+                return Embedding.Embedder.Wrapper(rootEmbeddable: rootEmbeddable, wrappingEmbeddable: embedding().embeddable())
             case .none:
-                return Embedding.Helper.None()
+                return Embedding.Embedder.None()
             }
         }
     }

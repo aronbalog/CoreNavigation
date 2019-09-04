@@ -37,6 +37,7 @@ class ViewController: UIViewController {
         let button = UIButton(type: .system)
         
         button.addTarget(self, action: #selector(didTap), for: UIControl.Event.touchUpInside)
+        
         button.setTitle("Navigate", for: UIControl.State.normal)
         button.backgroundColor = .gray
         return button
@@ -45,6 +46,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .orange
+        
         var frame = CGRect.zero
         frame.size.width = 200
         frame.size.height = 200
@@ -52,11 +55,16 @@ class ViewController: UIViewController {
         button.frame = frame
         button.center = view.center
         view.addSubview(button)
+        navigationItem.setRightBarButton(UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.stop, target: self, action: #selector(close)), animated: false)
+    }
+    
+    @objc func close() {
+        Dismiss()
     }
     
     @objc func didTap() {
         Present { $0
-            .to(ViewController2(), from: self)
+            .to(ViewController(), from: self)
             .embed(inside:
                 .tabBarController(UITabBarController.self, {
                     .navigationController(UINavigationController.self, {
@@ -67,4 +75,3 @@ class ViewController: UIViewController {
         }
     }
 }
-//            .transition(with: 0.3, viewController_ViewController2)

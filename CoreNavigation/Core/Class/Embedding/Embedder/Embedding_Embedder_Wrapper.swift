@@ -1,4 +1,4 @@
-extension Embedding.Helper {
+extension Embedding.Embedder {
     class Wrapper: Embeddable {
         let rootEmbeddable: Embeddable
         let wrappingEmbeddable: Embeddable

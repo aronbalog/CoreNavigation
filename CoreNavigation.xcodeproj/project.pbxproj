@@ -10,7 +10,7 @@
 		2A727EA23937DCB007E5252D /* Pods_CoreNavigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8966256E92B3D80043C77C6C /* Pods_CoreNavigation.framework */; };
 		31764FB78515905258D67A90 /* Pods_HostApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE61BC786DE09B771206DC5E /* Pods_HostApp.framework */; };
 		3803EA45231FE9DF0081B126 /* Transitioning_Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3803EA44231FE9DF0081B126 /* Transitioning_Context.swift */; };
-		3803EA47231FFBBF0081B126 /* Embedding_Helper_None.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3803EA46231FFBBF0081B126 /* Embedding_Helper_None.swift */; };
+		3803EA47231FFBBF0081B126 /* Embedding_Embedder_None.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3803EA46231FFBBF0081B126 /* Embedding_Embedder_None.swift */; };
 		386D007422FC449C005056C1 /* CoreNavigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 386D006A22FC449C005056C1 /* CoreNavigation.framework */; };
 		386D007922FC449C005056C1 /* CoreNavigationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D007822FC449C005056C1 /* CoreNavigationTests.swift */; };
 		386D007B22FC449C005056C1 /* CoreNavigation.h in Headers */ = {isa = PBXBuildFile; fileRef = 386D006D22FC449C005056C1 /* CoreNavigation.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -69,14 +69,14 @@
 		38EE32CB23132226005DEE32 /* Protection_Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32CA23132226005DEE32 /* Protection_Context.swift */; };
 		38EE32CF23132F8D005DEE32 /* Protection_Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32CE23132F8D005DEE32 /* Protection_Builder.swift */; };
 		38EE32D1231334F9005DEE32 /* Embeddable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32D0231334F9005DEE32 /* Embeddable.swift */; };
-		38EE32D523133E1A005DEE32 /* Embedding_Helper_NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32D423133E1A005DEE32 /* Embedding_Helper_NavigationController.swift */; };
+		38EE32D523133E1A005DEE32 /* Embedding_Embedder_NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32D423133E1A005DEE32 /* Embedding_Embedder_NavigationController.swift */; };
 		38EE32D723133E5E005DEE32 /* Embedding_EmbeddingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32D623133E5E005DEE32 /* Embedding_EmbeddingType.swift */; };
 		38EE32D9231348D9005DEE32 /* Embedding_Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32D8231348D9005DEE32 /* Embedding_Context.swift */; };
 		38EE32DB23134906005DEE32 /* Embedding_Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32DA23134906005DEE32 /* Embedding_Builder.swift */; };
 		38EE32DE231529CF005DEE32 /* Embedding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32DD231529CF005DEE32 /* Embedding.swift */; };
 		38EE32E323152C0C005DEE32 /* Embedding_Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32E223152C0C005DEE32 /* Embedding_Helper.swift */; };
-		38EE32E623152C94005DEE32 /* Embedding_Helper_TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32E523152C94005DEE32 /* Embedding_Helper_TabBarController.swift */; };
-		38EE32E8231531EB005DEE32 /* Embedding_Helper_Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32E7231531EB005DEE32 /* Embedding_Helper_Wrapper.swift */; };
+		38EE32E623152C94005DEE32 /* Embedding_Embedder_TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32E523152C94005DEE32 /* Embedding_Embedder_TabBarController.swift */; };
+		38EE32E8231531EB005DEE32 /* Embedding_Embedder_Wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32E7231531EB005DEE32 /* Embedding_Embedder_Wrapper.swift */; };
 		38EE32EB23153F85005DEE32 /* DataPassing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32EA23153F85005DEE32 /* DataPassing.swift */; };
 		38EE32ED23153F97005DEE32 /* DataPassing_Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32EC23153F97005DEE32 /* DataPassing_Context.swift */; };
 		38EE32F32315631C005DEE32 /* Protection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE32F22315631C005DEE32 /* Protection.swift */; };
@@ -125,7 +125,7 @@
 /* Begin PBXFileReference section */
 		0C88E4D12876EA6B9EC4AF56 /* Pods-CoreNavigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreNavigation.release.xcconfig"; path = "Target Support Files/Pods-CoreNavigation/Pods-CoreNavigation.release.xcconfig"; sourceTree = "<group>"; };
 		3803EA44231FE9DF0081B126 /* Transitioning_Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transitioning_Context.swift; sourceTree = "<group>"; };
-		3803EA46231FFBBF0081B126 /* Embedding_Helper_None.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_Helper_None.swift; sourceTree = "<group>"; };
+		3803EA46231FFBBF0081B126 /* Embedding_Embedder_None.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_Embedder_None.swift; sourceTree = "<group>"; };
 		386D006A22FC449C005056C1 /* CoreNavigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreNavigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		386D006D22FC449C005056C1 /* CoreNavigation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreNavigation.h; sourceTree = "<group>"; };
 		386D006E22FC449C005056C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -188,14 +188,14 @@
 		38EE32CA23132226005DEE32 /* Protection_Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protection_Context.swift; sourceTree = "<group>"; };
 		38EE32CE23132F8D005DEE32 /* Protection_Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protection_Builder.swift; sourceTree = "<group>"; };
 		38EE32D0231334F9005DEE32 /* Embeddable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embeddable.swift; sourceTree = "<group>"; };
-		38EE32D423133E1A005DEE32 /* Embedding_Helper_NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_Helper_NavigationController.swift; sourceTree = "<group>"; };
+		38EE32D423133E1A005DEE32 /* Embedding_Embedder_NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_Embedder_NavigationController.swift; sourceTree = "<group>"; };
 		38EE32D623133E5E005DEE32 /* Embedding_EmbeddingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_EmbeddingType.swift; sourceTree = "<group>"; };
 		38EE32D8231348D9005DEE32 /* Embedding_Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_Context.swift; sourceTree = "<group>"; };
 		38EE32DA23134906005DEE32 /* Embedding_Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_Builder.swift; sourceTree = "<group>"; };
 		38EE32DD231529CF005DEE32 /* Embedding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding.swift; sourceTree = "<group>"; };
 		38EE32E223152C0C005DEE32 /* Embedding_Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_Helper.swift; sourceTree = "<group>"; };
-		38EE32E523152C94005DEE32 /* Embedding_Helper_TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_Helper_TabBarController.swift; sourceTree = "<group>"; };
-		38EE32E7231531EB005DEE32 /* Embedding_Helper_Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_Helper_Wrapper.swift; sourceTree = "<group>"; };
+		38EE32E523152C94005DEE32 /* Embedding_Embedder_TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_Embedder_TabBarController.swift; sourceTree = "<group>"; };
+		38EE32E7231531EB005DEE32 /* Embedding_Embedder_Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_Embedder_Wrapper.swift; sourceTree = "<group>"; };
 		38EE32EA23153F85005DEE32 /* DataPassing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPassing.swift; sourceTree = "<group>"; };
 		38EE32EC23153F97005DEE32 /* DataPassing_Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPassing_Context.swift; sourceTree = "<group>"; };
 		38EE32F22315631C005DEE32 /* Protection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protection.swift; sourceTree = "<group>"; };
@@ -521,7 +521,7 @@
 		38EE32DF231529F7005DEE32 /* Embedding */ = {
 			isa = PBXGroup;
 			children = (
-				38EE32E423152C2C005DEE32 /* Helper */,
+				38EE32E423152C2C005DEE32 /* Embedder */,
 				38EE32D8231348D9005DEE32 /* Embedding_Context.swift */,
 				38EE32DA23134906005DEE32 /* Embedding_Builder.swift */,
 			);
@@ -538,15 +538,15 @@
 			path = Protection;
 			sourceTree = "<group>";
 		};
-		38EE32E423152C2C005DEE32 /* Helper */ = {
+		38EE32E423152C2C005DEE32 /* Embedder */ = {
 			isa = PBXGroup;
 			children = (
-				38EE32D423133E1A005DEE32 /* Embedding_Helper_NavigationController.swift */,
-				38EE32E523152C94005DEE32 /* Embedding_Helper_TabBarController.swift */,
-				3803EA46231FFBBF0081B126 /* Embedding_Helper_None.swift */,
-				38EE32E7231531EB005DEE32 /* Embedding_Helper_Wrapper.swift */,
+				38EE32D423133E1A005DEE32 /* Embedding_Embedder_NavigationController.swift */,
+				38EE32E523152C94005DEE32 /* Embedding_Embedder_TabBarController.swift */,
+				3803EA46231FFBBF0081B126 /* Embedding_Embedder_None.swift */,
+				38EE32E7231531EB005DEE32 /* Embedding_Embedder_Wrapper.swift */,
 			);
-			path = Helper;
+			path = Embedder;
 			sourceTree = "<group>";
 		};
 		38EE32E923153F77005DEE32 /* DataPassing */ = {
@@ -843,7 +843,7 @@
 				38EE32CF23132F8D005DEE32 /* Protection_Builder.swift in Sources */,
 				38B5F973231AABB300FEB14A /* Navigation_ViewController_Builder.swift in Sources */,
 				386D00A822FC5C1E005056C1 /* Configuration.swift in Sources */,
-				38EE32D523133E1A005DEE32 /* Embedding_Helper_NavigationController.swift in Sources */,
+				38EE32D523133E1A005DEE32 /* Embedding_Embedder_NavigationController.swift in Sources */,
 				3803EA45231FE9DF0081B126 /* Transitioning_Context.swift in Sources */,
 				38EE32C92312EFFA005DEE32 /* Protectable.swift in Sources */,
 				38EE33042315EE8F005DEE32 /* Routing_Destination.swift in Sources */,
@@ -852,19 +852,19 @@
 				38EE32D723133E5E005DEE32 /* Embedding_EmbeddingType.swift in Sources */,
 				38B5F979231C8F7E00FEB14A /* UIViewController+Convenience.swift in Sources */,
 				38EE32F92315D70D005DEE32 /* Routing.swift in Sources */,
-				38EE32E8231531EB005DEE32 /* Embedding_Helper_Wrapper.swift in Sources */,
+				38EE32E8231531EB005DEE32 /* Embedding_Embedder_Wrapper.swift in Sources */,
 				38EE32DE231529CF005DEE32 /* Embedding.swift in Sources */,
 				38B5F9B3231FE12200FEB14A /* Transitioning.swift in Sources */,
 				386D009F22FC5A3B005056C1 /* Global.swift in Sources */,
 				386D00BE22FC7675005056C1 /* AnyDataReceivable.swift in Sources */,
 				38EE33022315D8A8005DEE32 /* Routing_RegularExpression.swift in Sources */,
 				38EE32CB23132226005DEE32 /* Protection_Context.swift in Sources */,
-				3803EA47231FFBBF0081B126 /* Embedding_Helper_None.swift in Sources */,
+				3803EA47231FFBBF0081B126 /* Embedding_Embedder_None.swift in Sources */,
 				386D00A422FC5B6C005056C1 /* Destination.swift in Sources */,
 				38B5F997231DEA5300FEB14A /* Swizzler.swift in Sources */,
 				386D00B622FC6820005056C1 /* DataReceivable.swift in Sources */,
 				38B5F9652319497700FEB14A /* Global_Operators.swift in Sources */,
-				38EE32E623152C94005DEE32 /* Embedding_Helper_TabBarController.swift in Sources */,
+				38EE32E623152C94005DEE32 /* Embedding_Embedder_TabBarController.swift in Sources */,
 				38B5F9B6231FE13700FEB14A /* Transitioning_TransitioningDelegate.swift in Sources */,
 				38EE33002315D824005DEE32 /* Routing_RouteMatch.swift in Sources */,
 				38EE32F72315D618005DEE32 /* Routable.swift in Sources */,

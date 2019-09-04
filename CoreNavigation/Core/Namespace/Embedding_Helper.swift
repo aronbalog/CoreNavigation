@@ -1,3 +1,3 @@
 extension Embedding {
-    struct Helper {}
+    struct Embedder {}
 }
