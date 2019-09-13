@@ -6,10 +6,10 @@ extension Navigation {
             self.queue = queue
         }
         
-        @discardableResult public func viewController<DestinationType: Destination>(for destination: DestinationType) -> Builder<DestinationType, UIViewController> {            
+        @discardableResult public func viewController<DestinationType: Destination>(for destination: DestinationType) -> Builder<DestinationType> {
             return Builder(configuration: Configuration(directive: .none, toBlock: {
                 return destination
-            }, from: UIViewController()), queue: queue)
+            }, from: UIViewController.visibleViewController()), queue: queue)
         }
     }
     

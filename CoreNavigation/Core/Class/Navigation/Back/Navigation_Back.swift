@@ -3,8 +3,8 @@ extension Navigation {
         private let direction: Navigation.Direction
         private let queue: DispatchQueue
         
-        init(direction: Navigation.Direction.Backward, queue: DispatchQueue) {
-            self.direction = .backward(direction)
+        init(direction: Navigation.Direction.Back, queue: DispatchQueue) {
+            self.direction = .back(direction)
             self.queue = queue
         }
         

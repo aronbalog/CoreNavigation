@@ -7,6 +7,7 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     typealias CachingBlock = () -> (String, Cacheable)
     typealias TransitioningDelegateBlock = () -> UIViewControllerTransitioningDelegate?
     typealias IsAnimatedBlock = () -> Bool
+    
     let directive: Directive
     private var toBlock: () -> DestinationType
     lazy var destination: DestinationType = {

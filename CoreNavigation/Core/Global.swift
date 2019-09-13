@@ -20,11 +20,11 @@ public func AddChildViewController<DestinationType: Destination, FromType: UIVie
     Navigate(.childViewController, to)
 }
 
-public func Close<FromViewControllerType: UIViewController, ToiewControllerType: UIViewController>(_ direction: Navigation.Direction.Backward, _ back: (Navigation.Back) -> Navigation.Back.Builder<FromViewControllerType, ToiewControllerType>) {
+public func Close<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(_ direction: Navigation.Direction.Back, _ back: (Navigation.Back) -> Navigation.Back.Builder<FromViewControllerType, ToViewControllerType>) {
     Navigator(queue: queue, cache: Caching.Cache.instance).navigate(with: back(Navigation.Back(direction: direction, queue: queue)).configuration)
 }
 
-public func Close<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(_ direction: Navigation.Direction.Backward, animated: Bool = true, completion: ((FromViewControllerType, ToViewControllerType) -> Void)? = nil) {
+public func Close<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(_ direction: Navigation.Direction.Back, animated: Bool = true, completion: ((FromViewControllerType, ToViewControllerType) -> Void)? = nil) {
     Close(direction) { $0
         .visibleViewController()
         .animated(animated)
@@ -34,7 +34,7 @@ public func Close<FromViewControllerType: UIViewController, ToViewControllerType
     }
 }
 
-public func Close<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(_ direction: Navigation.Direction.Backward, viewController: FromViewControllerType, animated: Bool = true, completion: ((FromViewControllerType, ToViewControllerType) -> Void)? = nil) {
+public func Close<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(_ direction: Navigation.Direction.Back, viewController: FromViewControllerType, animated: Bool = true, completion: ((FromViewControllerType, ToViewControllerType) -> Void)? = nil) {
     Close(direction) { $0
         .viewController(viewController)
         .animated(animated)

@@ -5,11 +5,11 @@ extension Navigation {
             case push
             case childViewController
         }
-        public enum Backward {
+        public enum Back {
             case dismiss
             case pop
         }
         case forward(Forward)
-        case backward(Backward)
+        case back(Back)
     }
 }

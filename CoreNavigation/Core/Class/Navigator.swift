@@ -20,8 +20,8 @@ class Navigator {
                     case .push: self.push(with: configuration)
                     case .childViewController: self.childViewController(with: configuration)
                     }
-                case .backward(let backward):
-                    switch backward {
+                case .back(let back):
+                    switch back {
                     case .dismiss: self.dismiss(with: configuration)
                     case .pop: fatalError()
                     }

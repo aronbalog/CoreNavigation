@@ -1,12 +1,12 @@
 extension DataPassing {
-    public class Context<T> {
-        let onPassData: (T) -> Void
+    public class Context<DataType> {
+        let onPassData: (DataType) -> Void
         
-        init(onPassData: @escaping (T) -> Void) {
+        init(onPassData: @escaping (DataType) -> Void) {
             self.onPassData = onPassData
         }
         
-        public func passData(_ data: T) {
+        public func passData(_ data: DataType) {
             onPassData(data)
         }
     }
