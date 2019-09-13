@@ -51,7 +51,7 @@ class Navigator {
         with configuration: Configuration<DestinationType, FromType>)
     {
         queue.sync {
-            viewControllerToNavigateTo(with: configuration, onComplete: { destination, viewController, embeddingViewController in
+            resolve(with: configuration, onComplete: { destination, viewController, embeddingViewController in
                 let dataPassingCandidates: [Any?] =
                     configuration.protections +
                         [
@@ -84,7 +84,7 @@ class Navigator {
         with configuration: Configuration<DestinationType, FromType>)
     {
         queue.sync {
-            viewControllerToNavigateTo(with: configuration, onComplete: { (destination, viewController, embeddingViewController) in
+            resolve(with: configuration, onComplete: { (destination, viewController, embeddingViewController) in
                 let navigationController: UINavigationController? = {
                     return configuration.sourceViewController.navigationController ?? configuration.sourceViewController as? UINavigationController
                 }()
@@ -122,7 +122,7 @@ class Navigator {
         with configuration: Configuration<DestinationType, FromType>)
     {
         queue.sync {
-            viewControllerToNavigateTo(with: configuration, onComplete: { (destination, viewController, embeddingViewController) in
+            resolve(with: configuration, onComplete: { (destination, viewController, embeddingViewController) in
                 let dataPassingCandidates: [Any?] =
                     configuration.protections +
                         [
@@ -203,7 +203,7 @@ class Navigator {
         configuration.onCompletionBlocks.forEach { $0(result) }
     }
     
-    func viewControllerToNavigateTo<DestinationType: Destination, FromType: UIViewController>(
+    func resolve<DestinationType: Destination, FromType: UIViewController>(
         with configuration: Configuration<DestinationType, FromType>,
         onComplete: @escaping (DestinationType, DestinationType.ViewControllerType, UIViewController?) -> Void,
         onCancel: @escaping (Error) -> Void)

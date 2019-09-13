@@ -48,7 +48,7 @@
 		38B5F983231D3A5500FEB14A /* Test_Present_Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F982231D3A5500FEB14A /* Test_Present_Route.swift */; };
 		38B5F987231D9CB100FEB14A /* Test_Destination_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F986231D9CB100FEB14A /* Test_Destination_ViewController.swift */; };
 		38B5F989231D9D7400FEB14A /* Test_Route_ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F988231D9D7400FEB14A /* Test_Route_ViewController.swift */; };
-		38B5F992231DDDB300FEB14A /* Test_Route_ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F991231DDDB300FEB14A /* Test_Route_ViewController2.swift */; };
+		38B5F992231DDDB300FEB14A /* Test_Route_ViewController_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F991231DDDB300FEB14A /* Test_Route_ViewController_2.swift */; };
 		38B5F995231DE6EE00FEB14A /* UIViewController_Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F994231DE6EE00FEB14A /* UIViewController_Event.swift */; };
 		38B5F997231DEA5300FEB14A /* Swizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F996231DEA5300FEB14A /* Swizzler.swift */; };
 		38B5F999231DEA8700FEB14A /* UIViewController+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F998231DEA8700FEB14A /* UIViewController+Events.swift */; };
@@ -95,6 +95,11 @@
 		38EE330F231698E8005DEE32 /* Caching_Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE330E231698E8005DEE32 /* Caching_Cache.swift */; };
 		38EE33112316D201005DEE32 /* Caching_Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE33102316D201005DEE32 /* Caching_Builder.swift */; };
 		38EE33132316E7B5005DEE32 /* Caching_CachingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE33122316E7B5005DEE32 /* Caching_CachingType.swift */; };
+		38F73B2D232C1C60000747D2 /* Test_Route_Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F73B2C232C1C60000747D2 /* Test_Route_Registration.swift */; };
+		38F73B31232C2CCC000747D2 /* Test_Route_Registration_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F73B30232C2CCC000747D2 /* Test_Route_Registration_2.swift */; };
+		38F73B33232C3D01000747D2 /* Test_Present_ViewController_Completion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F73B32232C3D01000747D2 /* Test_Present_ViewController_Completion.swift */; };
+		38F73B35232C3E89000747D2 /* Test_Present_ViewController_Embedding_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F73B34232C3E89000747D2 /* Test_Present_ViewController_Embedding_2.swift */; };
+		38F73B37232C405E000747D2 /* Test_Present_ViewController_TransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F73B36232C405E000747D2 /* Test_Present_ViewController_TransitioningDelegate.swift */; };
 		BF5FB6558643722C497F89DF /* Pods_CoreNavigationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47BA07FBCD98A64E4907D5E /* Pods_CoreNavigationTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -167,7 +172,7 @@
 		38B5F982231D3A5500FEB14A /* Test_Present_Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_Present_Route.swift; sourceTree = "<group>"; };
 		38B5F986231D9CB100FEB14A /* Test_Destination_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_Destination_ViewController.swift; sourceTree = "<group>"; };
 		38B5F988231D9D7400FEB14A /* Test_Route_ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_Route_ViewController.swift; sourceTree = "<group>"; };
-		38B5F991231DDDB300FEB14A /* Test_Route_ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_Route_ViewController2.swift; sourceTree = "<group>"; };
+		38B5F991231DDDB300FEB14A /* Test_Route_ViewController_2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_Route_ViewController_2.swift; sourceTree = "<group>"; };
 		38B5F994231DE6EE00FEB14A /* UIViewController_Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController_Event.swift; sourceTree = "<group>"; };
 		38B5F996231DEA5300FEB14A /* Swizzler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swizzler.swift; sourceTree = "<group>"; };
 		38B5F998231DEA8700FEB14A /* UIViewController+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Events.swift"; sourceTree = "<group>"; };
@@ -214,6 +219,11 @@
 		38EE330E231698E8005DEE32 /* Caching_Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caching_Cache.swift; sourceTree = "<group>"; };
 		38EE33102316D201005DEE32 /* Caching_Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caching_Builder.swift; sourceTree = "<group>"; };
 		38EE33122316E7B5005DEE32 /* Caching_CachingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caching_CachingType.swift; sourceTree = "<group>"; };
+		38F73B2C232C1C60000747D2 /* Test_Route_Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_Route_Registration.swift; sourceTree = "<group>"; };
+		38F73B30232C2CCC000747D2 /* Test_Route_Registration_2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_Route_Registration_2.swift; sourceTree = "<group>"; };
+		38F73B32232C3D01000747D2 /* Test_Present_ViewController_Completion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_Present_ViewController_Completion.swift; sourceTree = "<group>"; };
+		38F73B34232C3E89000747D2 /* Test_Present_ViewController_Embedding_2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_Present_ViewController_Embedding_2.swift; sourceTree = "<group>"; };
+		38F73B36232C405E000747D2 /* Test_Present_ViewController_TransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_Present_ViewController_TransitioningDelegate.swift; sourceTree = "<group>"; };
 		6E5267350728866E9A2AAB72 /* Pods-CoreNavigationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreNavigationTests.release.xcconfig"; path = "Target Support Files/Pods-CoreNavigationTests/Pods-CoreNavigationTests.release.xcconfig"; sourceTree = "<group>"; };
 		8966256E92B3D80043C77C6C /* Pods_CoreNavigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreNavigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A933DEFFA760088B09E63517 /* Pods-CoreNavigationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreNavigationTests.debug.xcconfig"; path = "Target Support Files/Pods-CoreNavigationTests/Pods-CoreNavigationTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -294,12 +304,17 @@
 				38B5F97C231D2B8300FEB14A /* Test_Present_ViewController.swift */,
 				38B5F9AC231EE53D00FEB14A /* Test_Push_ViewController.swift */,
 				38B5F9AA231EE1F900FEB14A /* Test_Present_ViewController_Embedding.swift */,
+				38F73B34232C3E89000747D2 /* Test_Present_ViewController_Embedding_2.swift */,
 				38B5F9A6231EAC9A00FEB14A /* Test_Present_ViewController_Events.swift */,
+				38F73B36232C405E000747D2 /* Test_Present_ViewController_TransitioningDelegate.swift */,
+				38F73B32232C3D01000747D2 /* Test_Present_ViewController_Completion.swift */,
 				38B5F9A2231E954900FEB14A /* Test_Present_ViewController_Cached.swift */,
 				38B5F9A4231EA3A200FEB14A /* Test_Present_ViewController_Protected.swift */,
 				38B5F986231D9CB100FEB14A /* Test_Destination_ViewController.swift */,
 				38B5F988231D9D7400FEB14A /* Test_Route_ViewController.swift */,
-				38B5F991231DDDB300FEB14A /* Test_Route_ViewController2.swift */,
+				38F73B2C232C1C60000747D2 /* Test_Route_Registration.swift */,
+				38F73B30232C2CCC000747D2 /* Test_Route_Registration_2.swift */,
+				38B5F991231DDDB300FEB14A /* Test_Route_ViewController_2.swift */,
 				38B5F980231D321100FEB14A /* Test_Present_Destination.swift */,
 				38B5F982231D3A5500FEB14A /* Test_Present_Route.swift */,
 				38B5F990231DD58400FEB14A /* Utilities */,
@@ -903,18 +918,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38F73B31232C2CCC000747D2 /* Test_Route_Registration_2.swift in Sources */,
 				38B5F989231D9D7400FEB14A /* Test_Route_ViewController.swift in Sources */,
 				386D007922FC449C005056C1 /* CoreNavigationTests.swift in Sources */,
+				38F73B2D232C1C60000747D2 /* Test_Route_Registration.swift in Sources */,
 				38B5F9AB231EE1F900FEB14A /* Test_Present_ViewController_Embedding.swift in Sources */,
-				38B5F992231DDDB300FEB14A /* Test_Route_ViewController2.swift in Sources */,
+				38B5F992231DDDB300FEB14A /* Test_Route_ViewController_2.swift in Sources */,
 				38B5F9A5231EA3A200FEB14A /* Test_Present_ViewController_Protected.swift in Sources */,
+				38F73B37232C405E000747D2 /* Test_Present_ViewController_TransitioningDelegate.swift in Sources */,
 				38B5F9A3231E954900FEB14A /* Test_Present_ViewController_Cached.swift in Sources */,
+				38F73B35232C3E89000747D2 /* Test_Present_ViewController_Embedding_2.swift in Sources */,
 				38B5F9AD231EE53D00FEB14A /* Test_Push_ViewController.swift in Sources */,
 				38B5F9A7231EAC9A00FEB14A /* Test_Present_ViewController_Events.swift in Sources */,
 				38B5F987231D9CB100FEB14A /* Test_Destination_ViewController.swift in Sources */,
 				38B5F97F231D2EC700FEB14A /* Utilities_TestingCanvas.swift in Sources */,
 				38B5F981231D321100FEB14A /* Test_Present_Destination.swift in Sources */,
 				38B5F97D231D2B8300FEB14A /* Test_Present_ViewController.swift in Sources */,
+				38F73B33232C3D01000747D2 /* Test_Present_ViewController_Completion.swift in Sources */,
 				38B5F983231D3A5500FEB14A /* Test_Present_Route.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
