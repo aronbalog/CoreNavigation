@@ -49,12 +49,12 @@ public func <= <FromType: UIViewController>(left: FromType, right: Bool) {
 }
 
 /// :nodoc:
-public func <= <FromType: UIViewController>(left: FromType, right: (Bool, () -> Void)) {
+public func <= <FromType: UIViewController, ToType: UIViewController>(left: FromType, right: (Bool, (FromType, ToType) -> Void)) {
     Pop(viewController: left, animated: right.0, completion: right.1)
 }
 
 /// :nodoc:
-public func <= <FromType: UIViewController>(left: FromType, right: @escaping (() -> Void)) {
+public func <= <FromType: UIViewController, ToType: UIViewController>(left: FromType, right: @escaping ((FromType, ToType) -> Void)) {
     Pop(viewController: left, completion: right)
 }
 
@@ -66,11 +66,11 @@ public func <- <FromType: UIViewController>(left: FromType, right: Bool) {
 }
 
 /// :nodoc:
-public func <- <FromType: UIViewController>(left: FromType, right: (Bool, () -> Void)) {
+public func <- <FromType: UIViewController, ToType: UIViewController>(left: FromType, right: (Bool, (FromType, ToType) -> Void)) {
     Dismiss(viewController: left, animated: right.0, completion: right.1)
 }
 
 /// :nodoc:
-public func <- <FromType: UIViewController>(left: FromType, right: @escaping (() -> Void)) {
+public func <- <FromType: UIViewController, ToType: UIViewController>(left: FromType, right: @escaping ((FromType, ToType) -> Void)) {
     Dismiss(viewController: left, completion: right)
 }

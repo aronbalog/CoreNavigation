@@ -1,9 +1,9 @@
 extension Navigation.Back {
-    public class Builder<ViewControllerType: UIViewController> {
-        let configuration: Configuration<UIViewController.Destination<UIViewController>.None, ViewControllerType>
+    public class Builder<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController> {
+        let configuration: Configuration<UIViewController.Destination<UIViewController>.None, FromViewControllerType>
         private let queue: DispatchQueue
         
-        init(configuration: Configuration<UIViewController.Destination<UIViewController>.None, ViewControllerType>, queue: DispatchQueue) {
+        init(configuration: Configuration<UIViewController.Destination<UIViewController>.None, FromViewControllerType>, queue: DispatchQueue) {
             self.configuration = configuration
             self.queue = queue
         }
@@ -20,9 +20,9 @@ extension Navigation.Back {
             return animated { isAnimated }
         }
         
-        @discardableResult public func onComplete(_ block: @escaping (ViewControllerType) -> Void) -> Self {
+        @discardableResult public func onComplete(_ block: @escaping (FromViewControllerType, ToViewControllerType) -> Void) -> Self {
             queue.sync {
-                configuration.onCompletionBlocks.append { block($0.fromViewController) } 
+                configuration.onCompletionBlocks.append { block($0.fromViewController, $0.toViewController as! ToViewControllerType) } 
             }
             
             return self

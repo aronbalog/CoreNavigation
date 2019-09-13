@@ -37,10 +37,10 @@ class Navigator {
         queue.sync {
             let sourceViewController = configuration.sourceViewController as! DestinationType.ViewControllerType
             
-            let result = self.doOnNavigationSuccess(destination: configuration.destination, viewController: sourceViewController, configuration: configuration)
-            
             DispatchQueue.main.async {
                 sourceViewController.dismiss(animated: configuration.isAnimatedBlock(), completion: {
+                    let result = self.doOnNavigationSuccess(destination: configuration.destination, viewController: UIViewController.visibleViewController(), configuration: configuration)
+
                     self.resultCompletion(with: result, configuration: configuration)
                 })
             }

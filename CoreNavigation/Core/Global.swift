@@ -20,39 +20,43 @@ public func AddChildViewController<DestinationType: Destination, FromType: UIVie
     Navigate(.childViewController, to)
 }
 
-public func Close<ViewControllerType: UIViewController>(_ direction: Navigation.Direction.Backward, _ back: (Navigation.Back) -> Navigation.Back.Builder<ViewControllerType>) {
+public func Close<FromViewControllerType: UIViewController, ToiewControllerType: UIViewController>(_ direction: Navigation.Direction.Backward, _ back: (Navigation.Back) -> Navigation.Back.Builder<FromViewControllerType, ToiewControllerType>) {
     Navigator(queue: queue, cache: Caching.Cache.instance).navigate(with: back(Navigation.Back(direction: direction, queue: queue)).configuration)
 }
 
-public func Close(_ direction: Navigation.Direction.Backward, animated: Bool = true, completion: ((UIViewController) -> Void)? = nil) {
+public func Close<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(_ direction: Navigation.Direction.Backward, animated: Bool = true, completion: ((FromViewControllerType, ToViewControllerType) -> Void)? = nil) {
     Close(direction) { $0
         .visibleViewController()
         .animated(animated)
-        .onComplete { completion?($0) }
+        .onComplete({ (fromViewController, toViewController) in
+            completion?(fromViewController as! FromViewControllerType, toViewController as! ToViewControllerType)
+        })
     }
 }
 
-public func Close<ViewControllerType: UIViewController>(_ direction: Navigation.Direction.Backward, viewController: ViewControllerType, animated: Bool = true, completion: (() -> Void)? = nil) {
+public func Close<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(_ direction: Navigation.Direction.Backward, viewController: FromViewControllerType, animated: Bool = true, completion: ((FromViewControllerType, ToViewControllerType) -> Void)? = nil) {
     Close(direction) { $0
         .viewController(viewController)
         .animated(animated)
-        .onComplete { _ in completion?() }
+        .onComplete({ (fromViewController, toViewController) in
+            completion?(fromViewController, toViewController as! ToViewControllerType)
+        })
     }
 }
 
-public func Dismiss(animated: Bool = true, completion: ((UIViewController) -> Void)? = nil) {
+public func Dismiss<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(animated: Bool = true, completion: ((FromViewControllerType, ToViewControllerType) -> Void)? = nil) {
     Close(.dismiss, animated: animated, completion: completion)
 }
 
-public func Dismiss<ViewControllerType: UIViewController>(viewController: ViewControllerType, animated: Bool = true, completion: (() -> Void)? = nil) {
+public func Dismiss<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(viewController: FromViewControllerType, animated: Bool = true, completion: ((FromViewControllerType, ToViewControllerType) -> Void)? = nil) {
     Close(.dismiss, viewController: viewController, animated: animated, completion: completion)
 }
 
-public func Pop(animated: Bool = true, completion: ((UIViewController) -> Void)? = nil) {
-    Close(.pop, animated: animated, completion: { completion?($0) })
+public func Pop<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(animated: Bool = true, completion: ((FromViewControllerType, ToViewControllerType) -> Void)? = nil) {
+    Close(.pop, animated: animated, completion: completion)
 }
 
-public func Pop<ViewControllerType: UIViewController>(viewController: ViewControllerType, animated: Bool = true, completion: (() -> Void)? = nil) {
+public func Pop<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(viewController: FromViewControllerType, animated: Bool = true, completion: ((FromViewControllerType, ToViewControllerType) -> Void)? = nil) {
     Close(.pop, viewController: viewController, animated: animated, completion: completion)
 }
 
