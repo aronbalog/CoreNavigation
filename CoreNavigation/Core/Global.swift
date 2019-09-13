@@ -8,14 +8,6 @@ public func Navigate<DestinationType: Destination, FromType: UIViewController>(_
     Navigator(queue: queue, cache: Caching.Cache.instance).navigate(with: to(Navigation.To(direction: direction, queue: queue)).configuration)
 }
 
-public func Present<DestinationType: Destination, FromType: UIViewController>(_ to: (Navigation.To) -> Navigation.To.Builder<DestinationType, FromType>) {
-    Navigate(.present, to)
-}
-
-public func Push<DestinationType: Destination, FromType: UIViewController>(_ to: (Navigation.To) -> Navigation.To.Builder<DestinationType, FromType>) {
-    Navigate(.push, to)
-}
-
 public func AddChildViewController<DestinationType: Destination, FromType: UIViewController>(_ to: (Navigation.To) -> Navigation.To.Builder<DestinationType, FromType>) {
     Navigate(.childViewController, to)
 }
@@ -42,22 +34,6 @@ public func Close<FromViewControllerType: UIViewController, ToViewControllerType
             completion?(fromViewController, toViewController as! ToViewControllerType)
         })
     }
-}
-
-public func Dismiss<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(animated: Bool = true, completion: ((FromViewControllerType, ToViewControllerType) -> Void)? = nil) {
-    Close(.dismiss, animated: animated, completion: completion)
-}
-
-public func Dismiss<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(viewController: FromViewControllerType, animated: Bool = true, completion: ((FromViewControllerType, ToViewControllerType) -> Void)? = nil) {
-    Close(.dismiss, viewController: viewController, animated: animated, completion: completion)
-}
-
-public func Pop<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(animated: Bool = true, completion: ((FromViewControllerType, ToViewControllerType) -> Void)? = nil) {
-    Close(.pop, animated: animated, completion: completion)
-}
-
-public func Pop<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(viewController: FromViewControllerType, animated: Bool = true, completion: ((FromViewControllerType, ToViewControllerType) -> Void)? = nil) {
-    Close(.pop, viewController: viewController, animated: animated, completion: completion)
 }
 
 public func Register<RoutableType: Routable>(_ routableType: RoutableType.Type) {
