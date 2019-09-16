@@ -14,7 +14,7 @@ extension Destination {
     public func viewController(_ block: @escaping (Self.ViewControllerType) -> Void, _ failure: ((Error) -> Void)? = nil) {
         let builder = Navigation.ViewController.Builder(configuration: Navigation.ViewController(queue: queue).viewController(for: self).configuration, queue: queue)
         
-        Navigator(queue: queue, cache: Caching.Cache.instance).resolve(with: builder.configuration, onComplete: { (_, viewController, _) in
+        Navigator(queue: queue).resolve(with: builder.configuration, onComplete: { (_, viewController, _) in
             block(viewController)
         }) { failure?($0) }
     }
@@ -43,7 +43,7 @@ extension Destination {
     func resolvedDestination(_ block: @escaping (Self) -> Void, _ failure: ((Error) -> Void)? = nil) {
         let builder = Navigation.ViewController.Builder(configuration: Navigation.ViewController(queue: queue).viewController(for: self).configuration, queue: queue)
         
-        Navigator(queue: queue, cache: Caching.Cache.instance).resolve(with: builder.configuration, onComplete: { (destination, _, _) in
+        Navigator(queue: queue).resolve(with: builder.configuration, onComplete: { (destination, _, _) in
             block(destination)
         }) { failure?($0) }
     }

@@ -1,12 +1,11 @@
 class Navigator {
     let queue: DispatchQueue
-    let cache: Caching.Cache
+    let cache = Caching.Cache.instance
     
-    init(queue: DispatchQueue, cache: Caching.Cache) {
+    init(queue: DispatchQueue) {
         initFramework
         
         self.queue = queue
-        self.cache = cache
     }
     
     func navigate<DestinationType: Destination, FromType: UIViewController>(with configuration: Configuration<DestinationType, FromType>) {

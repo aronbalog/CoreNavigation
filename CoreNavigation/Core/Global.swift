@@ -5,7 +5,7 @@ let initFramework: Void = {
 }()
 
 public func Navigate<DestinationType: Destination, FromType: UIViewController>(_ direction: Navigation.Direction.Forward, _ to: (Navigation.To) -> Navigation.To.Builder<DestinationType, FromType>) {
-    Navigator(queue: queue, cache: Caching.Cache.instance).navigate(with: to(Navigation.To(direction: direction, queue: queue)).configuration)
+    Navigator(queue: queue).navigate(with: to(Navigation.To(direction: direction, queue: queue)).configuration)
 }
 
 public func AddChildViewController<DestinationType: Destination, FromType: UIViewController>(_ to: (Navigation.To) -> Navigation.To.Builder<DestinationType, FromType>) {
@@ -13,7 +13,7 @@ public func AddChildViewController<DestinationType: Destination, FromType: UIVie
 }
 
 public func Close<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(_ direction: Navigation.Direction.Back, _ back: (Navigation.Back) -> Navigation.Back.Builder<FromViewControllerType, ToViewControllerType>) {
-    Navigator(queue: queue, cache: Caching.Cache.instance).navigate(with: back(Navigation.Back(direction: direction, queue: queue)).configuration)
+    Navigator(queue: queue).navigate(with: back(Navigation.Back(direction: direction, queue: queue)).configuration)
 }
 
 public func Close<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(_ direction: Navigation.Direction.Back, animated: Bool = true, completion: ((FromViewControllerType, ToViewControllerType) -> Void)? = nil) {

@@ -40,8 +40,6 @@ class TestPresentDestination: QuickSpec {
                     .to(mockDestination, from: self.canvas.rootViewController)
                     .passData(passingData)
                     .onComplete({ (result) in
-                        print("👿 Mocked!", result.toViewController)
-
                         mockViewController = result.toViewController
                     })
 

@@ -8,8 +8,6 @@ struct VC2Dest: Destination {
 class ViewController2: UIViewController, DataReceivable {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
-        print("Init!")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -28,7 +26,7 @@ class ViewController2: UIViewController, DataReceivable {
     }
     
     func didReceiveData(_ data: String) {
-        print("data in VC \(data)")
+
     }
 }
 

@@ -48,6 +48,56 @@
                BlueprintName = "CoreNavigationTests"
                ReferencedContainer = "container:CoreNavigation.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "CoreNavigationTests">
+               </Test>
+               <Test
+                  Identifier = "TestDestinationViewController">
+               </Test>
+               <Test
+                  Identifier = "TestPresentDestination">
+               </Test>
+               <Test
+                  Identifier = "TestPresentEmbeddedViewController">
+               </Test>
+               <Test
+                  Identifier = "TestPresentEmbeddedViewController2">
+               </Test>
+               <Test
+                  Identifier = "TestPresentRoute">
+               </Test>
+               <Test
+                  Identifier = "TestPresentViewController">
+               </Test>
+               <Test
+                  Identifier = "TestPresentViewControllerCompletion">
+               </Test>
+               <Test
+                  Identifier = "TestPresentViewControllerEvents">
+               </Test>
+               <Test
+                  Identifier = "TestPresentViewControllerProtected">
+               </Test>
+               <Test
+                  Identifier = "TestPresentViewControllerTransitioningDelegate">
+               </Test>
+               <Test
+                  Identifier = "TestPushViewController">
+               </Test>
+               <Test
+                  Identifier = "TestRouteRegistration">
+               </Test>
+               <Test
+                  Identifier = "TestRouteRegistration2">
+               </Test>
+               <Test
+                  Identifier = "TestRouteViewController">
+               </Test>
+               <Test
+                  Identifier = "TestRouteViewController2">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
