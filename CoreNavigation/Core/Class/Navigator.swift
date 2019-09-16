@@ -22,7 +22,8 @@ class Navigator {
                 case .back(let back):
                     switch back {
                     case .dismiss: self.dismiss(with: configuration)
-                    case .pop: fatalError()
+                    case .pop: self.pop(with: configuration)
+                    case .popToRootViewController: self.popToRootViewController(with: configuration)
                     }
                 }
             case .none: break
@@ -40,6 +41,42 @@ class Navigator {
                 sourceViewController.dismiss(animated: configuration.isAnimatedBlock(), completion: {
                     let result = self.doOnNavigationSuccess(destination: configuration.destination, viewController: UIViewController.visibleViewController(), configuration: configuration)
 
+                    self.resultCompletion(with: result, configuration: configuration)
+                })
+            }
+        }
+    }
+    
+    private func popToRootViewController<DestinationType: Destination, FromType: UIViewController>(
+        with configuration: Configuration<DestinationType, FromType>)
+    {
+        queue.sync {
+            let navigationController: UINavigationController? = {
+                return configuration.sourceViewController.navigationController ?? configuration.sourceViewController as? UINavigationController
+            }()
+
+            DispatchQueue.main.async {
+                navigationController?.popToRootViewController(animated: configuration.isAnimatedBlock(), completion: {
+                    let result = self.doOnNavigationSuccess(destination: configuration.destination, viewController: UIViewController.visibleViewController(), configuration: configuration)
+                    
+                    self.resultCompletion(with: result, configuration: configuration)
+                })
+            }
+        }
+    }
+    
+    private func pop<DestinationType: Destination, FromType: UIViewController>(
+        with configuration: Configuration<DestinationType, FromType>)
+    {
+        queue.sync {
+            let navigationController: UINavigationController? = {
+                return configuration.sourceViewController.navigationController ?? configuration.sourceViewController as? UINavigationController
+            }()
+            
+            DispatchQueue.main.async {
+                navigationController?.popViewController(animated: configuration.isAnimatedBlock(), completion: {
+                    let result = self.doOnNavigationSuccess(destination: configuration.destination, viewController: UIViewController.visibleViewController(), configuration: configuration)
+                    
                     self.resultCompletion(with: result, configuration: configuration)
                 })
             }

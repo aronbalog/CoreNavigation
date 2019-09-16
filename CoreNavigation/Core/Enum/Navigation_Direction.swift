@@ -8,6 +8,7 @@ extension Navigation {
         public enum Back {
             case dismiss
             case pop
+            case popToRootViewController
         }
         case forward(Forward)
         case back(Back)

@@ -5,3 +5,11 @@ public func Pop<FromViewControllerType: UIViewController, ToViewControllerType: 
 public func Pop<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(viewController: FromViewControllerType, animated: Bool = true, completion: ((FromViewControllerType, ToViewControllerType) -> Void)? = nil) {
     Close(.pop, viewController: viewController, animated: animated, completion: completion)
 }
+
+public func PopToRootViewController<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(animated: Bool = true, completion: ((FromViewControllerType, ToViewControllerType) -> Void)? = nil) {
+    Close(.popToRootViewController, animated: animated, completion: completion)
+}
+
+public func PopToRootViewController<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(viewController: FromViewControllerType, animated: Bool = true, completion: ((FromViewControllerType, ToViewControllerType) -> Void)? = nil) {
+    Close(.popToRootViewController, viewController: viewController, animated: animated, completion: completion)
+}
