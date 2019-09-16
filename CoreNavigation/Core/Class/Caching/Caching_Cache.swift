@@ -7,7 +7,7 @@ extension Caching {
         private var items: [String: (UIViewController, UIViewController?)] = [:]
         
         func removeItem(with cacheIdentifier: String) {
-            items[cacheIdentifier] = nil
+            items.removeValue(forKey: cacheIdentifier)
         }
         
         func addItem(with cacheIdentifier: String, viewController: UIViewController, embeddingViewController: UIViewController?) {
@@ -16,6 +16,10 @@ extension Caching {
         
         func find(with cacheIdentifier: String) -> (UIViewController, UIViewController?)? {
             return items[cacheIdentifier]
+        }
+        
+        func removeAllItems() {
+            items = [:]
         }
     }
 }

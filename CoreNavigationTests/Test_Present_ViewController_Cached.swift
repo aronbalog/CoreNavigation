@@ -57,7 +57,6 @@ class TestPresentViewControllerCached: QuickSpec {
                 
                 present(onComplete: { vc in
                     Dismiss(viewController: vc, animated: false, completion: { (v1, vc2) in
-                        
                         present { _ in }
                     })
                 })

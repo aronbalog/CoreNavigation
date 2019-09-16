@@ -51,3 +51,11 @@ public func Unregister(_ destinationType: AnyDestination.Type) {
 public func Unregister(matching pattern: String) {
     Routing.Router.instance.unregister(pattern: pattern)
 }
+
+public func ClearCache() {
+    Caching.Cache.instance.removeAllItems()
+}
+
+public func RemoveFromCache(with identifier: String) {
+    Caching.Cache.instance.removeItem(with: identifier)
+}
