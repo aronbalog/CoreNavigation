@@ -27,3 +27,10 @@ public func Unregister(_ destinationType: AnyDestination.Type) {
 public func Unregister(matching pattern: String) {
     Routing.Router.instance.unregister(pattern: pattern)
 }
+
+// MARK: Operators
+
+/// :nodoc:
+public func <- (left: AnyDestination.Type, right: [String]) {
+    Register(left, patterns: right)
+}

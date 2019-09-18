@@ -19,3 +19,9 @@ target 'HostApp' do
 
 
 end
+
+target 'StoryboardApp' do
+  use_frameworks!
+  
+  
+end

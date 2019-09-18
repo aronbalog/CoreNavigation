@@ -36,3 +36,20 @@ public func Push<DestinationType: Destination>(destination: DestinationType, ani
         })
     }
 }
+
+// MARK: Operators
+
+/// :nodoc:
+public func > <DestinationType: Destination, FromType: UIViewController>(left: FromType, right: DestinationType) {
+    Push { $0.to(right, from: left) }
+}
+
+/// :nodoc:
+public func > <DestinationType: Destination, FromType: UIViewController>(left: FromType, right: @escaping (Navigation.To) -> Navigation.To.Builder<DestinationType, FromType>) {
+    Push(right)
+}
+
+/// :nodoc:
+public func > <ViewControllerType: UIViewController, FromViewController: UIViewController>(left: FromViewController, right: ViewControllerType) {
+    Push { $0.to(right, from: left) }
+}

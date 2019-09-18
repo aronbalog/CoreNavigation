@@ -12,5 +12,6 @@ extension Navigation {
         }
         case forward(Forward)
         case back(Back)
+        case segue(String)
     }
 }

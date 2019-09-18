@@ -27,6 +27,7 @@ class Navigator {
                         case .pop: self.pop(with: configuration)
                         case .popToRootViewController: self.popToRootViewController(with: configuration)
                         }
+                    case .segue(let identifier): self.performSegue(with: identifier, configuration: configuration)
                     }
                 case .none: break
                 }
