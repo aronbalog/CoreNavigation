@@ -2,4 +2,4 @@
 public protocol Matchable {
     /// Route string.
     var uri: String { get }
-}   
+}

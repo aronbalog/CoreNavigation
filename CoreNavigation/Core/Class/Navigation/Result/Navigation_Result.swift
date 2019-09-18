@@ -3,7 +3,7 @@ extension Navigation {
         public let destination: DestinationType
         public let toViewController: DestinationType.ViewControllerType
         public let fromViewController: FromType
-        
+
         init(destination: DestinationType, toViewController: DestinationType.ViewControllerType, fromViewController: FromType) {
             self.destination = destination
             self.toViewController = toViewController

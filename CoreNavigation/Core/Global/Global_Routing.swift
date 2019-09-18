@@ -14,14 +14,12 @@ public func Register(_ destinationType: AnyDestination.Type, patterns: [String])
     Routing.Router.instance.register(destinationType: destinationType, patterns: patterns)
 }
 
-
 /// Unregisters `AnyDestination` type from the router.
 ///
 /// - Parameter destinationType: A type conforming `AnyDestination` protocol
 public func Unregister(_ destinationType: AnyDestination.Type) {
     Routing.Router.instance.unregister(destinationType: destinationType)
 }
-
 
 /// Unregisters all destinations matching route pattern string from the router.
 ///

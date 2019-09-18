@@ -7,7 +7,6 @@ public func Dismiss<FromViewControllerType: UIViewController, ToViewControllerTy
     Close(.dismiss, animated: animated, completion: completion)
 }
 
-
 /// Dismisses given `UIViewController` instance.
 ///
 /// - Parameters:

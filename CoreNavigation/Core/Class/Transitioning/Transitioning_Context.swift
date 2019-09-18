@@ -5,7 +5,7 @@ extension Transitioning {
         public let presentingViewController: UIViewController
         public let transitionContext: UIViewControllerContextTransitioning
         public let duration: TimeInterval
-        
+
         init(
             fromViewController: FromViewControllerType,
             toViewController: ToViewControllerType,

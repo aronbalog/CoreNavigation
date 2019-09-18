@@ -3,10 +3,10 @@ extension Embedding {
     public class Context {
         let onComplete: (UIViewController) -> Void
         let onCancel: (Error) -> Void
-        
+
         /// View controller that is going to be embedded.
         public let rootViewController: UIViewController
-        
+
         init(
             rootViewController: UIViewController,
             onComplete: @escaping (UIViewController) -> Void,
@@ -16,7 +16,7 @@ extension Embedding {
             self.onComplete = onComplete
             self.onCancel = onCancel
         }
-        
+
         /// Completes embedding with new view controller.
         /// Call this method with `UIViewController` object as an argument.
         ///
@@ -24,7 +24,7 @@ extension Embedding {
         public func complete(viewController: UIViewController) {
             onComplete(viewController)
         }
-        
+
         /// Cancels embedding with error.
         /// Call this method with `Error` object as an argument.
         ///

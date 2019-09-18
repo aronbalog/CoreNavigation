@@ -6,15 +6,15 @@ public class Resolver<DestinationType: Destination> {
         self.onCompleteBlock = onCompleteBlock
         self.onCancelBlock = onCancelBlock
     }
-    
+
     public func complete(viewController: DestinationType.ViewControllerType) {
         self.onCompleteBlock(viewController)
     }
-    
+
     public func cancel(with error: Error) {
         self.onCancelBlock(error)
     }
-    
+
     public func cancel() {
         self.onCancelBlock(Navigation.Error.canceled)
     }

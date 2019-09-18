@@ -21,7 +21,6 @@ public func Push<ViewControllerType: UIViewController>(viewController: ViewContr
     }
 }
 
-
 /// Pushes resolved `UIViewController` instance to currently presented `UINavigationController` using an object conforming `Destination` protocol.
 ///
 /// - Parameters:
@@ -37,4 +36,3 @@ public func Push<DestinationType: Destination>(destination: DestinationType, ani
         })
     }
 }
-

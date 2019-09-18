@@ -5,7 +5,7 @@ public protocol AnyDataReceivable {
 extension AnyDataReceivable where Self: DataReceivable {
     public func didReceiveAnyData(_ data: Any?) {
         guard let data = data as? Self.DataType else { return }
-        
+
         didReceiveData(data)
     }
 }

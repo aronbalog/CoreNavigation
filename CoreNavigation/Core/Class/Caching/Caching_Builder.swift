@@ -1,7 +1,7 @@
 extension Caching {
     class Builder: Cacheable {
         let block: (Caching.Context) -> Void
-        
+
         init(cachingType: Caching.CachingType) {
             self.block = { context in
                 switch cachingType {
@@ -12,7 +12,7 @@ extension Caching {
                 }
             }
         }
-        
+
         func didCache(with context: Caching.Context) {
             block(context)
         }

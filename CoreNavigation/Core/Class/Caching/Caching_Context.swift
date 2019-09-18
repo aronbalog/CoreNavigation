@@ -4,12 +4,12 @@ extension Caching {
         /// Cache identifier provided upon the navigation.
         public let cacheIdentifier: String
         private let onInvalidateBlock: () -> Void
-        
+
         init(cacheIdentifier: String, onInvalidateBlock: @escaping () -> Void) {
             self.cacheIdentifier = cacheIdentifier
             self.onInvalidateBlock = onInvalidateBlock
         }
-        
+
         /// Invalidates cache.
         public func invalidateCache() {
             onInvalidateBlock()

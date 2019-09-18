@@ -36,4 +36,3 @@ public func Present<DestinationType: Destination>(destination: DestinationType, 
         })
     }
 }
-

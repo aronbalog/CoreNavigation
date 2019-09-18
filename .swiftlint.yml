@@ -1,0 +1,26 @@
+disabled_rules:
+  - force_cast
+  - line_length
+  - force_try
+opt_in_rules:
+  - multiline_arguments
+  - vertical_parameter_alignment_on_call
+  - multiline_parameters
+excluded:
+  - CoreNavigation/Core/Global
+included:
+  - CoreNavigation/Core
+identifier_name:
+  validates_start_with_lowercase: false
+  excluded:
+    - to
+nesting:
+  type_level: 2
+type_name:
+  excluded:
+    - To
+generic_type_name:
+  max_length:
+    warning: 25
+cyclomatic_complexity:
+  ignores_case_statements: true

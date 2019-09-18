@@ -7,13 +7,13 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     typealias CachingBlock = () -> (String, Cacheable)
     typealias TransitioningDelegateBlock = () -> UIViewControllerTransitioningDelegate?
     typealias IsAnimatedBlock = () -> Bool
-    
+
     let directive: Directive
     private var toBlock: () -> DestinationType
     lazy var destination: DestinationType = {
         return toBlock()
     }()
-    
+
     var sourceViewController: FromType
     var isAnimatedBlock: IsAnimatedBlock = { true }
     var transitioningDelegateBlock: TransitioningDelegateBlock?
@@ -25,7 +25,7 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     var protections: [Protectable] = []
     var embeddable: Embeddable?
     var cachingBlock: CachingBlock?
-    
+
     init(directive: Directive, toBlock: @escaping () -> DestinationType, from sourceViewController: FromType) {
         self.directive = directive
         self.toBlock = toBlock

@@ -4,7 +4,7 @@ extension Embedding {
         case tabBarController(UITabBarController.Type, () -> EmbeddingType)
         case embeddable(Embeddable, () -> EmbeddingType)
         case none
-        
+
         func embeddable() -> Embeddable {
             switch self {
             case .navigationController(let controllerType, let embedding):
