@@ -1,6 +1,6 @@
 extension Destination {
-    public func navigate<FromType: UIViewController>(_ direction: Navigation.Direction.Forward, _ to: (Navigation.To.Builder<Self, FromType>) -> Navigation.To.Builder<Self, FromType>) {
-        Navigate(direction, { to($0.to(self)) })
+    public func navigate<FromType: UIViewController>(_ navigationType: Navigation.Direction.Forward, _ to: (Navigation.To.Builder<Self, FromType>) -> Navigation.To.Builder<Self, FromType>) {
+        Navigate(navigationType, { to($0.to(self)) })
     }
     
     public func present<FromType: UIViewController>(_ to: (Navigation.To.Builder<Self, FromType>) -> Navigation.To.Builder<Self, FromType>) {

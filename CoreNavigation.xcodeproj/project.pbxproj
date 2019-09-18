@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,6 +28,11 @@
 		386D00B622FC6820005056C1 /* DataReceivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D00B522FC6820005056C1 /* DataReceivable.swift */; };
 		386D00BE22FC7675005056C1 /* AnyDataReceivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D00BD22FC7675005056C1 /* AnyDataReceivable.swift */; };
 		386D00C022FCAC1F005056C1 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D00BF22FCAC1F005056C1 /* Resolver.swift */; };
+		388AC6432330F8170071F37D /* Global_Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388AC6422330F8170071F37D /* Global_Routing.swift */; };
+		388AC646233112EA0071F37D /* Global_Close.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388AC645233112EA0071F37D /* Global_Close.swift */; };
+		388AC648233114D90071F37D /* Global_Caching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388AC647233114D90071F37D /* Global_Caching.swift */; };
+		388AC64A233115720071F37D /* Global_AddChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388AC649233115720071F37D /* Global_AddChildViewController.swift */; };
+		388AC64C233115E20071F37D /* Global_Navigate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388AC64B233115E20071F37D /* Global_Navigate.swift */; };
 		38B5F95C2318A53300FEB14A /* Navigation_Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F95B2318A53300FEB14A /* Navigation_Direction.swift */; };
 		38B5F9602318A89D00FEB14A /* Navigation_Back.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F95F2318A89D00FEB14A /* Navigation_Back.swift */; };
 		38B5F9622318A92C00FEB14A /* Navigation_Back_Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F9612318A92C00FEB14A /* Navigation_Back_Builder.swift */; };
@@ -156,6 +161,11 @@
 		386D00B522FC6820005056C1 /* DataReceivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReceivable.swift; sourceTree = "<group>"; };
 		386D00BD22FC7675005056C1 /* AnyDataReceivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyDataReceivable.swift; sourceTree = "<group>"; };
 		386D00BF22FCAC1F005056C1 /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
+		388AC6422330F8170071F37D /* Global_Routing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global_Routing.swift; sourceTree = "<group>"; };
+		388AC645233112EA0071F37D /* Global_Close.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global_Close.swift; sourceTree = "<group>"; };
+		388AC647233114D90071F37D /* Global_Caching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global_Caching.swift; sourceTree = "<group>"; };
+		388AC649233115720071F37D /* Global_AddChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global_AddChildViewController.swift; sourceTree = "<group>"; };
+		388AC64B233115E20071F37D /* Global_Navigate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global_Navigate.swift; sourceTree = "<group>"; };
 		38B5F95B2318A53300FEB14A /* Navigation_Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation_Direction.swift; sourceTree = "<group>"; };
 		38B5F95F2318A89D00FEB14A /* Navigation_Back.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation_Back.swift; sourceTree = "<group>"; };
 		38B5F9612318A92C00FEB14A /* Navigation_Back_Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation_Back_Builder.swift; sourceTree = "<group>"; };
@@ -345,17 +355,12 @@
 		386D009C22FC5A29005056C1 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				388AC6442330FBB90071F37D /* Global */,
 				38EE32DC231529C4005DEE32 /* Namespace */,
 				386D00B222FC6743005056C1 /* Enum */,
 				386D00AB22FC6142005056C1 /* Extension */,
 				386D00A222FC5B67005056C1 /* Protocol */,
 				386D009D22FC5A2D005056C1 /* Class */,
-				386D009E22FC5A3B005056C1 /* Global.swift */,
-				38F73B3A232C51B6000747D2 /* Global_Present.swift */,
-				38F73B3E232C5413000747D2 /* Global_Dismiss.swift */,
-				38F73B40232C54A5000747D2 /* Global_Pop.swift */,
-				38F73B3C232C5381000747D2 /* Global_Push.swift */,
-				38B5F9642319497700FEB14A /* Global_Operators.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -432,6 +437,24 @@
 				38B5F974231C874400FEB14A /* Navigation_Error.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		388AC6442330FBB90071F37D /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				386D009E22FC5A3B005056C1 /* Global.swift */,
+				388AC64B233115E20071F37D /* Global_Navigate.swift */,
+				388AC649233115720071F37D /* Global_AddChildViewController.swift */,
+				388AC645233112EA0071F37D /* Global_Close.swift */,
+				38F73B3A232C51B6000747D2 /* Global_Present.swift */,
+				388AC6422330F8170071F37D /* Global_Routing.swift */,
+				388AC647233114D90071F37D /* Global_Caching.swift */,
+				38F73B3E232C5413000747D2 /* Global_Dismiss.swift */,
+				38F73B40232C54A5000747D2 /* Global_Pop.swift */,
+				38F73B3C232C5381000747D2 /* Global_Push.swift */,
+				38B5F9642319497700FEB14A /* Global_Operators.swift */,
+			);
+			path = Global;
 			sourceTree = "<group>";
 		};
 		38B5F96E231AAA8A00FEB14A /* Navigation */ = {
@@ -788,18 +811,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CoreNavigationTests/Pods-CoreNavigationTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-CoreNavigationTests/Pods-CoreNavigationTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-CoreNavigationTests/Pods-CoreNavigationTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -875,6 +891,7 @@
 				38EE32C92312EFFA005DEE32 /* Protectable.swift in Sources */,
 				38EE33042315EE8F005DEE32 /* Routing_Destination.swift in Sources */,
 				38B5F99B231DEAB300FEB14A /* UIViewController_Observer.swift in Sources */,
+				388AC64C233115E20071F37D /* Global_Navigate.swift in Sources */,
 				386D00C022FCAC1F005056C1 /* Resolver.swift in Sources */,
 				38EE32D723133E5E005DEE32 /* Embedding_EmbeddingType.swift in Sources */,
 				38B5F979231C8F7E00FEB14A /* UIViewController+Convenience.swift in Sources */,
@@ -892,6 +909,7 @@
 				38F73B3D232C5381000747D2 /* Global_Push.swift in Sources */,
 				386D00B622FC6820005056C1 /* DataReceivable.swift in Sources */,
 				38B5F9652319497700FEB14A /* Global_Operators.swift in Sources */,
+				388AC6432330F8170071F37D /* Global_Routing.swift in Sources */,
 				38EE32E623152C94005DEE32 /* Embedding_Embedder_TabBarController.swift in Sources */,
 				38B5F9B6231FE13700FEB14A /* Transitioning_TransitioningDelegate.swift in Sources */,
 				38EE33002315D824005DEE32 /* Routing_RouteMatch.swift in Sources */,
@@ -899,6 +917,7 @@
 				38B5F969231A7DB400FEB14A /* URL+Matchable.swift in Sources */,
 				38B5F999231DEA8700FEB14A /* UIViewController+Events.swift in Sources */,
 				38B5F95C2318A53300FEB14A /* Navigation_Direction.swift in Sources */,
+				388AC646233112EA0071F37D /* Global_Close.swift in Sources */,
 				38F73B41232C54A5000747D2 /* Global_Pop.swift in Sources */,
 				386D00AD22FC616D005056C1 /* UIViewController+VisibleViewController.swift in Sources */,
 				38EE32F32315631C005DEE32 /* Protection.swift in Sources */,
@@ -913,6 +932,7 @@
 				38B5F9602318A89D00FEB14A /* Navigation_Back.swift in Sources */,
 				38B5F967231A7DA700FEB14A /* String+Matchable.swift in Sources */,
 				38EE32E323152C0C005DEE32 /* Embedding_Helper.swift in Sources */,
+				388AC648233114D90071F37D /* Global_Caching.swift in Sources */,
 				38EE330D2316949A005DEE32 /* Caching_Context.swift in Sources */,
 				38F73B3F232C5413000747D2 /* Global_Dismiss.swift in Sources */,
 				38B5F971231AAB7F00FEB14A /* Navigation_ViewController.swift in Sources */,
@@ -922,6 +942,7 @@
 				38EE33112316D201005DEE32 /* Caching_Builder.swift in Sources */,
 				38EE330F231698E8005DEE32 /* Caching_Cache.swift in Sources */,
 				38EE330B2316948B005DEE32 /* Caching.swift in Sources */,
+				388AC64A233115720071F37D /* Global_AddChildViewController.swift in Sources */,
 				38EE32D9231348D9005DEE32 /* Embedding_Context.swift in Sources */,
 				38EE33132316E7B5005DEE32 /* Caching_CachingType.swift in Sources */,
 				38B5F975231C874400FEB14A /* Navigation_Error.swift in Sources */,
@@ -1165,7 +1186,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A933DEFFA760088B09E63517 /* Pods-CoreNavigationTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CoreNavigationTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1185,7 +1205,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6E5267350728866E9A2AAB72 /* Pods-CoreNavigationTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CoreNavigationTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

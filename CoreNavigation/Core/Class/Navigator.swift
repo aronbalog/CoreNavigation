@@ -11,8 +11,8 @@ class Navigator {
     func navigate<DestinationType: Destination, FromType: UIViewController>(with configuration: Configuration<DestinationType, FromType>) {
         protectNavigation(configuration: configuration, onAllow: {
             switch configuration.directive {
-            case .direction(let direction):
-                switch direction {
+            case .direction(let navigationType):
+                switch navigationType {
                 case .forward(let forward):
                     switch forward {
                     case .present: self.present(with: configuration)

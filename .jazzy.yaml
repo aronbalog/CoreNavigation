@@ -1,17 +1,35 @@
 custom_categories:
-  - name: Global Functions
+  - name: Presenting view controller
+    children:
+    - Present(_:)
+    - Present(destination:animated:completion:)
+    - Present(viewController:animated:completion:)
+  - name: Pushing view controller
+    children:
+    - Push(_:)
+    - Push(destination:animated:completion:)
+    - Push(viewController:animated:completion:)
+  - name: Adding child view controller
     children:
     - AddChildViewController(_:)
+  - name: Dismissing view controller
+    children:
+    - Dismiss(animated:completion:)
+    - Dismiss(viewController:animated:completion:)
+  - name: Popping view controller
+    children:
+    - Pop(animated:completion:)
+    - Pop(viewController:animated:completion:)
+  - name: Closing view controller
+    children:
     - Close(_:_:)
     - Close(_:animated:completion:)
     - Close(_:viewController:animated:completion:)
-    - Dismiss(animated:completion:)
-    - Dismiss(viewController:animated:completion:)
+  - name: Other Navigation Functions
+    children:
     - Navigate(_:_:)
-    - Pop(animated:completion:)
-    - Pop(viewController:animated:completion:)
-    - Present(_:)
-    - Push(_:)
+  - name: Route Registration
+    children:
     - Register(_:)
     - Register(_:patterns:)
   - name: Protocols 
@@ -25,6 +43,6 @@ custom_categories:
     - Matchable
     - Protectable
     - Routable
-  - name: Classes 
-    children:
-    - Caching
+author: Aron Balog
+author_url: https://github.com/aronbalog
+theme: jony

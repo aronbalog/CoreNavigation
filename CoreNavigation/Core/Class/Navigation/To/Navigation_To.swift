@@ -1,15 +1,15 @@
 extension Navigation {
     public class To {
-        private let direction: Navigation.Direction
+        private let navigationType: Navigation.Direction
         private let queue: DispatchQueue
         
-        init(direction: Navigation.Direction.Forward, queue: DispatchQueue) {
-            self.direction = .forward(direction)
+        init(navigationType: Navigation.Direction.Forward, queue: DispatchQueue) {
+            self.navigationType = .forward(navigationType)
             self.queue = queue
         }
         
         @discardableResult public func to<DestinationType: Destination, FromType: UIViewController>(_ block: @escaping () -> DestinationType, from sourceViewController: FromType = UIViewController.visibleViewController()) -> Builder<DestinationType, FromType> {
-            return Builder(configuration: Configuration<DestinationType, FromType>(directive: .direction(direction), toBlock: block, from: sourceViewController), queue: queue)
+            return Builder(configuration: Configuration<DestinationType, FromType>(directive: .direction(navigationType), toBlock: block, from: sourceViewController), queue: queue)
         }
         
         @discardableResult public func to<DestinationType: Destination, FromType: UIViewController>(_ destination: DestinationType, from sourceViewController: FromType = UIViewController.visibleViewController()) -> Builder<DestinationType, FromType> {
