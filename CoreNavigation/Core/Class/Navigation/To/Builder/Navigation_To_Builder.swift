@@ -100,13 +100,13 @@ extension Navigation.To {
             return self
         }
         
-        @discardableResult public func stateRestorable(with identifier: String) -> Self {
-            return stateRestorable(with: identifier, restorationClass: StateRestoration.self)
+        @discardableResult public func stateRestorable(with identifier: String, expirationDate: Date = Date.distantFuture) -> Self {
+            return stateRestorable(with: identifier, restorationClass: StateRestoration.self, expirationDate: expirationDate)
         }
         
-        @discardableResult public func stateRestorable(with identifier: String, restorationClass: UIViewControllerRestoration.Type) -> Self {
+        @discardableResult public func stateRestorable(with identifier: String, restorationClass: UIViewControllerRestoration.Type, expirationDate: Date = Date.distantFuture) -> Self {
             queue.sync {
-                configuration.stateRestorationBlock = { (identifier, restorationClass) }
+                configuration.stateRestorationBlock = { (identifier, restorationClass, expirationDate) }
             }
             
             return self

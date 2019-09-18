@@ -3,7 +3,8 @@ class StateRestoration {
         viewController: UIViewController,
         identifier: String,
         restorationClass: UIViewControllerRestoration.Type,
-        viewControllerData: Any?
+        viewControllerData: Any?,
+        expirationDate: Date
     ) {
         viewController.restorationIdentifier = identifier
         viewController.restorationClass = restorationClass
@@ -11,7 +12,8 @@ class StateRestoration {
         let item = Item(
             identifier: identifier,
             viewControllerClass: type(of: viewController),
-            viewControllerData: viewControllerData
+            viewControllerData: viewControllerData,
+            expirationDate: expirationDate
             )
         
         store(item)
@@ -39,14 +41,25 @@ extension StateRestoration: UIViewControllerRestoration {
             dataReceivable.didReceiveAnyData(item.viewControllerData)
         }
         
-        prepare(viewController: viewController, identifier: item.identifier, restorationClass: self, viewControllerData: item.viewControllerData)
+        prepare(viewController: viewController, identifier: item.identifier, restorationClass: self, viewControllerData: item.viewControllerData, expirationDate: item.expirationDate)
         
         return viewController
     }
     
     private static func find(identifier: String) -> Item? {
-        guard let data = UserDefaults.standard.object(forKey: storageIdentifier(for: identifier)) as? Data else { return nil }
+        let key = storageIdentifier(for: identifier)
+        guard
+            let data = UserDefaults.standard.object(forKey: key) as? Data,
+            let item = NSKeyedUnarchiver.unarchiveObject(with: data) as? Item
+            else { return nil }
         
-        return NSKeyedUnarchiver.unarchiveObject(with: data) as? Item
+        if Date() > item.expirationDate {
+            UserDefaults.standard.removeObject(forKey: key)
+            UserDefaults.standard.synchronize()
+            
+            return nil
+        }
+        
+        return item
     }
 }

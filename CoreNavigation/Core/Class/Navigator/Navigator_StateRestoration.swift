@@ -6,6 +6,6 @@ extension Navigator {
     ) {
         guard let stateRestoration = configuration.stateRestorationBlock?() else { return }
         
-        StateRestoration.prepare(viewController: viewController, identifier: stateRestoration.identifier, restorationClass: stateRestoration.restorationClass, viewControllerData: viewControllerData)
+        StateRestoration.prepare(viewController: viewController, identifier: stateRestoration.identifier, restorationClass: stateRestoration.restorationClass, viewControllerData: viewControllerData, expirationDate: stateRestoration.expirationDate)
     }
 }
