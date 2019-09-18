@@ -49,6 +49,11 @@
 		388AC67B23325BF10071F37D /* Navigation_Segue_Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388AC67A23325BF10071F37D /* Navigation_Segue_Builder.swift */; };
 		388AC67C233260710071F37D /* CoreNavigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 386D006A22FC449C005056C1 /* CoreNavigation.framework */; };
 		388AC68023326DCB0071F37D /* Navigator_Segue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388AC67F23326DCB0071F37D /* Navigator_Segue.swift */; };
+		388AC682233278EF0071F37D /* StateRestoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388AC681233278EF0071F37D /* StateRestoration.swift */; };
+		388AC68523327AE10071F37D /* StateRestoration_Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388AC68423327AE10071F37D /* StateRestoration_Item.swift */; };
+		388AC68723327DB70071F37D /* Navigator_StateRestoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388AC68623327DB70071F37D /* Navigator_StateRestoration.swift */; };
+		388AC68923327FF30071F37D /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388AC68823327FF30071F37D /* ViewController2.swift */; };
+		388AC68B2332A9A40071F37D /* StateRestorationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388AC68A2332A9A40071F37D /* StateRestorationDelegate.swift */; };
 		38B5F95C2318A53300FEB14A /* Navigation_Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F95B2318A53300FEB14A /* Navigation_Direction.swift */; };
 		38B5F9602318A89D00FEB14A /* Navigation_Back.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F95F2318A89D00FEB14A /* Navigation_Back.swift */; };
 		38B5F9622318A92C00FEB14A /* Navigation_Back_Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B5F9612318A92C00FEB14A /* Navigation_Back_Builder.swift */; };
@@ -209,6 +214,11 @@
 		388AC67723325B0F0071F37D /* Navigation_Segue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation_Segue.swift; sourceTree = "<group>"; };
 		388AC67A23325BF10071F37D /* Navigation_Segue_Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation_Segue_Builder.swift; sourceTree = "<group>"; };
 		388AC67F23326DCB0071F37D /* Navigator_Segue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator_Segue.swift; sourceTree = "<group>"; };
+		388AC681233278EF0071F37D /* StateRestoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateRestoration.swift; sourceTree = "<group>"; };
+		388AC68423327AE10071F37D /* StateRestoration_Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateRestoration_Item.swift; sourceTree = "<group>"; };
+		388AC68623327DB70071F37D /* Navigator_StateRestoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator_StateRestoration.swift; sourceTree = "<group>"; };
+		388AC68823327FF30071F37D /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
+		388AC68A2332A9A40071F37D /* StateRestorationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateRestorationDelegate.swift; sourceTree = "<group>"; };
 		38B5F95B2318A53300FEB14A /* Navigation_Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation_Direction.swift; sourceTree = "<group>"; };
 		38B5F95F2318A89D00FEB14A /* Navigation_Back.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation_Back.swift; sourceTree = "<group>"; };
 		38B5F9612318A92C00FEB14A /* Navigation_Back_Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation_Back_Builder.swift; sourceTree = "<group>"; };
@@ -436,6 +446,7 @@
 		386D009D22FC5A2D005056C1 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				388AC68323327ACF0071F37D /* StateRestoration */,
 				388AC655233237D40071F37D /* Navigator */,
 				38B5F9B4231FE12B00FEB14A /* Transitioning */,
 				38B5F993231DE6DE00FEB14A /* UIViewController */,
@@ -466,6 +477,7 @@
 				38EE32FD2315D80C005DEE32 /* Matchable.swift */,
 				38EE3307231691EB005DEE32 /* Cacheable.swift */,
 				38B5F976231C88A700FEB14A /* Direcive.swift */,
+				388AC68A2332A9A40071F37D /* StateRestorationDelegate.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -528,6 +540,7 @@
 				388AC65A233238E90071F37D /* Navigator_Push.swift */,
 				388AC65C233239360071F37D /* Navigator_Caching.swift */,
 				388AC67F23326DCB0071F37D /* Navigator_Segue.swift */,
+				388AC68623327DB70071F37D /* Navigator_StateRestoration.swift */,
 			);
 			path = Navigator;
 			sourceTree = "<group>";
@@ -537,6 +550,7 @@
 			children = (
 				388AC66423324EA70071F37D /* AppDelegate.swift */,
 				388AC66623324EA70071F37D /* ViewController1.swift */,
+				388AC68823327FF30071F37D /* ViewController2.swift */,
 				388AC66823324EA70071F37D /* Main.storyboard */,
 				388AC66B23324EA80071F37D /* Assets.xcassets */,
 				388AC66D23324EA80071F37D /* LaunchScreen.storyboard */,
@@ -560,6 +574,15 @@
 				388AC67A23325BF10071F37D /* Navigation_Segue_Builder.swift */,
 			);
 			path = Builder;
+			sourceTree = "<group>";
+		};
+		388AC68323327ACF0071F37D /* StateRestoration */ = {
+			isa = PBXGroup;
+			children = (
+				388AC681233278EF0071F37D /* StateRestoration.swift */,
+				388AC68423327AE10071F37D /* StateRestoration_Item.swift */,
+			);
+			path = StateRestoration;
 			sourceTree = "<group>";
 		};
 		38B5F96E231AAA8A00FEB14A /* Navigation */ = {
@@ -1085,6 +1108,7 @@
 				38EE32F92315D70D005DEE32 /* Routing.swift in Sources */,
 				38EE32E8231531EB005DEE32 /* Embedding_Embedder_Wrapper.swift in Sources */,
 				38EE32DE231529CF005DEE32 /* Embedding.swift in Sources */,
+				388AC68523327AE10071F37D /* StateRestoration_Item.swift in Sources */,
 				38B5F9B3231FE12200FEB14A /* Transitioning.swift in Sources */,
 				386D009F22FC5A3B005056C1 /* Global.swift in Sources */,
 				386D00BE22FC7675005056C1 /* AnyDataReceivable.swift in Sources */,
@@ -1100,7 +1124,9 @@
 				38EE32E623152C94005DEE32 /* Embedding_Embedder_TabBarController.swift in Sources */,
 				38B5F9B6231FE13700FEB14A /* Transitioning_TransitioningDelegate.swift in Sources */,
 				38EE33002315D824005DEE32 /* Routing_RouteMatch.swift in Sources */,
+				388AC682233278EF0071F37D /* StateRestoration.swift in Sources */,
 				38EE32F72315D618005DEE32 /* Routable.swift in Sources */,
+				388AC68723327DB70071F37D /* Navigator_StateRestoration.swift in Sources */,
 				38B5F969231A7DB400FEB14A /* URL+Matchable.swift in Sources */,
 				38B5F999231DEA8700FEB14A /* UIViewController+Events.swift in Sources */,
 				38B5F95C2318A53300FEB14A /* Navigation_Direction.swift in Sources */,
@@ -1118,6 +1144,7 @@
 				38B5F97B231C92C600FEB14A /* Matchable+Convenience.swift in Sources */,
 				38B5F9602318A89D00FEB14A /* Navigation_Back.swift in Sources */,
 				388AC65D233239360071F37D /* Navigator_Caching.swift in Sources */,
+				388AC68B2332A9A40071F37D /* StateRestorationDelegate.swift in Sources */,
 				38B5F967231A7DA700FEB14A /* String+Matchable.swift in Sources */,
 				388AC65B233238E90071F37D /* Navigator_Push.swift in Sources */,
 				38EE32E323152C0C005DEE32 /* Embedding_Helper.swift in Sources */,
@@ -1184,6 +1211,7 @@
 			files = (
 				388AC66723324EA70071F37D /* ViewController1.swift in Sources */,
 				388AC66523324EA70071F37D /* AppDelegate.swift in Sources */,
+				388AC68923327FF30071F37D /* ViewController2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

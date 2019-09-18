@@ -7,7 +7,9 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     typealias CachingBlock = () -> (String, Cacheable)
     typealias TransitioningDelegateBlock = () -> UIViewControllerTransitioningDelegate?
     typealias IsAnimatedBlock = () -> Bool
-
+    typealias StateRestorationBlock = () -> (identifier: String, restorationClass: UIViewControllerRestoration.Type)
+    typealias PrepareForSegueBlock = (UIStoryboardSegue, Any?) -> Void
+    
     let directive: Directive
     private var toBlock: () -> DestinationType
     lazy var destination: DestinationType = {
@@ -25,6 +27,8 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     var protections: [Protectable] = []
     var embeddable: Embeddable?
     var cachingBlock: CachingBlock?
+    var stateRestorationBlock: StateRestorationBlock?
+    var prepareForSegueBlock: PrepareForSegueBlock?
 
     init(directive: Directive, toBlock: @escaping () -> DestinationType, from sourceViewController: FromType) {
         self.directive = directive

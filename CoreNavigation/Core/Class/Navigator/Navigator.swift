@@ -53,7 +53,7 @@ class Navigator {
                                 embeddingViewController
                     ]
 
-                    self.passData(configuration.dataPassingBlock, to: dataPassingCandidates)
+                    self.passData(configuration.dataPassingBlock, to: dataPassingCandidates, configuration: configuration)
                     let destinationViewController = embeddingViewController ?? viewController
                     let result = self.doOnNavigationSuccess(destination: destination, viewController: viewController, configuration: configuration)
                     let sourceViewController = configuration.sourceViewController
@@ -115,9 +115,11 @@ class Navigator {
                         self.cache(cacheIdentifier: caching.0, cacheable: caching.1, viewController: viewController, embeddingViewController: embeddingViewController)
                     }
 
-                    configuration.viewControllerEventBlocks.forEach({ (block) in
-                        self.bindEvents(to: viewController, navigationEvents: block())
-                    })
+                    configuration.viewControllerEventBlocks.forEach { self.bindEvents(to: viewController, navigationEvents: $0()) }
+                    
+                    if configuration.dataPassingBlock == nil {
+                        self.prepareForStateRestorationIfNeeded(viewController: viewController, with: configuration, viewControllerData: nil)
+                    }
 
                     onComplete(destination, viewController, embeddingViewController)
                 },
@@ -132,7 +134,7 @@ class Navigator {
         }
     }
 
-    private func bindEvents<ViewControllerType: UIViewController>(to viewController: ViewControllerType, navigationEvents: [UIViewController.Event<ViewControllerType>]) {
+    func bindEvents<ViewControllerType: UIViewController>(to viewController: ViewControllerType, navigationEvents: [UIViewController.Event<ViewControllerType>]) {
         let viewControllerEvents = UIViewController.Observer()
 
         navigationEvents.forEach { (event) in
@@ -172,7 +174,7 @@ class Navigator {
             }
         }
 
-        viewController.events = viewControllerEvents
+        viewController.coreNavigationEvents = viewControllerEvents
     }
 
     private func resolve<DestinationType: Destination>(

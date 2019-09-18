@@ -99,6 +99,18 @@ extension Navigation.To {
 
             return self
         }
+        
+        @discardableResult public func stateRestorable(with identifier: String) -> Self {
+            return stateRestorable(with: identifier, restorationClass: StateRestoration.self)
+        }
+        
+        @discardableResult public func stateRestorable(with identifier: String, restorationClass: UIViewControllerRestoration.Type) -> Self {
+            queue.sync {
+                configuration.stateRestorationBlock = { (identifier, restorationClass) }
+            }
+            
+            return self
+        }
 
         @discardableResult public func `catch`(_ block: @escaping (Error) -> Void) -> Self {
             queue.sync {

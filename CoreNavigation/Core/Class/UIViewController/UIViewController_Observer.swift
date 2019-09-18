@@ -16,6 +16,7 @@ extension UIViewController {
         var didMoveToBlocks: [(UIViewController, UIViewController?) -> Void] = []
         var didReceiveMemoryWarningBlocks: [(UIViewController) -> Void] = []
         var applicationFinishedRestoringStateBlocks: [(UIViewController) -> Void] = []
+        var prepareForSegueBlocks: [(UIStoryboardSegue, Any?) -> Void] = []
 
         func onLoadView(_ loadView: @escaping (UIViewController) -> Void) {
             loadViewBlocks.append(loadView)
@@ -79,6 +80,10 @@ extension UIViewController {
 
         func onApplicationFinishedRestoringState(_ applicationFinishedRestoringState: @escaping (UIViewController) -> Void) {
             applicationFinishedRestoringStateBlocks.append(applicationFinishedRestoringState)
+        }
+        
+        func onPrepareForSegue(_ prepareForSegue: @escaping (UIStoryboardSegue, Any?) -> Void) {
+            prepareForSegueBlocks.append(prepareForSegue)
         }
     }
 

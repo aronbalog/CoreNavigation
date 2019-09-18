@@ -16,6 +16,7 @@ extension UIViewController {
         Swizzler.swizzle(UIViewController.self, #selector(didMove), #selector(coreNavigation_didMove(toParentViewController:)))
         Swizzler.swizzle(UIViewController.self, #selector(didReceiveMemoryWarning), #selector(coreNavigation_didReceiveMemoryWarning))
         Swizzler.swizzle(UIViewController.self, #selector(applicationFinishedRestoringState), #selector(coreNavigation_applicationFinishedRestoringState))
+        Swizzler.swizzle(UIViewController.self, #selector(prepare(for:sender:)), #selector(coreNavigation_prepareForSegue))
 
         // iOS 11
         if #available(iOS 11.0, *) {
@@ -27,7 +28,7 @@ extension UIViewController {
     @objc func coreNavigation_loadView() {
         coreNavigation_loadView()
 
-        events?.loadViewBlocks.forEach({ [weak self] in
+        coreNavigationEvents?.loadViewBlocks.forEach({ [weak self] in
             guard let `self` = self else { return }
 
             $0(self)
@@ -37,7 +38,7 @@ extension UIViewController {
     @objc func coreNavigation_viewDidLoad() {
         coreNavigation_viewDidLoad()
 
-        events?.viewDidLoadBlocks.forEach({ [weak self] in
+        coreNavigationEvents?.viewDidLoadBlocks.forEach({ [weak self] in
             guard let `self` = self else { return }
 
             $0(self)
@@ -47,7 +48,7 @@ extension UIViewController {
     @objc func coreNavigation_viewWillAppear(_ animated: Bool) {
         coreNavigation_viewWillAppear(animated)
 
-        events?.viewWillAppearBlocks.forEach({ [weak self] in
+        coreNavigationEvents?.viewWillAppearBlocks.forEach({ [weak self] in
             guard let `self` = self else { return }
 
             $0(self, animated)
@@ -57,7 +58,7 @@ extension UIViewController {
     @objc func coreNavigation_viewDidAppear(_ animated: Bool) {
         coreNavigation_viewDidAppear(animated)
 
-        events?.viewDidAppearBlocks.forEach({ [weak self] in
+        coreNavigationEvents?.viewDidAppearBlocks.forEach({ [weak self] in
             guard let `self` = self else { return }
 
             $0(self, animated)
@@ -67,7 +68,7 @@ extension UIViewController {
     @objc func coreNavigation_viewWillDisappear(_ animated: Bool) {
         coreNavigation_viewWillDisappear(animated)
 
-        events?.viewWillDisappearBlocks.forEach({ [weak self] in
+        coreNavigationEvents?.viewWillDisappearBlocks.forEach({ [weak self] in
             guard let `self` = self else { return }
 
             $0(self, animated)
@@ -77,7 +78,7 @@ extension UIViewController {
     @objc func coreNavigation_viewDidDisappear(_ animated: Bool) {
         coreNavigation_viewDidDisappear(animated)
 
-        events?.viewDidDisappearBlocks.forEach({ [weak self] in
+        coreNavigationEvents?.viewDidDisappearBlocks.forEach({ [weak self] in
             guard let `self` = self else { return }
 
             $0(self, animated)
@@ -87,7 +88,7 @@ extension UIViewController {
     @objc func coreNavigation_viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         coreNavigation_viewWillTransition(to: size, with: coordinator)
 
-        events?.viewWillTransitionBlocks.forEach({ [weak self] in
+        coreNavigationEvents?.viewWillTransitionBlocks.forEach({ [weak self] in
             guard let `self` = self else { return }
 
             $0(self, size, coordinator)
@@ -97,7 +98,7 @@ extension UIViewController {
     @objc func coreNavigation_viewWillLayoutSubviews() {
         coreNavigation_viewWillLayoutSubviews()
 
-        events?.viewWillLayoutSubviewsBlocks.forEach({ [weak self] in
+        coreNavigationEvents?.viewWillLayoutSubviewsBlocks.forEach({ [weak self] in
             guard let `self` = self else { return }
 
             $0(self)
@@ -107,7 +108,7 @@ extension UIViewController {
     @objc func coreNavigation_viewDidLayoutSubviews() {
         coreNavigation_viewDidLayoutSubviews()
 
-        events?.viewDidLayoutSubviewsBlocks.forEach({ [weak self] in
+        coreNavigationEvents?.viewDidLayoutSubviewsBlocks.forEach({ [weak self] in
             guard let `self` = self else { return }
 
             $0(self)
@@ -117,7 +118,7 @@ extension UIViewController {
     @objc func coreNavigation_updateViewConstraints() {
         coreNavigation_updateViewConstraints()
 
-        events?.updateViewConstraintsBlocks.forEach({ [weak self] in
+        coreNavigationEvents?.updateViewConstraintsBlocks.forEach({ [weak self] in
             guard let `self` = self else { return }
 
             $0(self)
@@ -127,7 +128,7 @@ extension UIViewController {
     @objc func coreNavigation_willMove(toParentViewController: UIViewController?) {
         coreNavigation_willMove(toParentViewController: toParentViewController)
 
-        events?.willMoveToBlocks.forEach({ [weak self] in
+        coreNavigationEvents?.willMoveToBlocks.forEach({ [weak self] in
             guard let `self` = self else { return }
 
             $0(self, toParentViewController)
@@ -137,7 +138,7 @@ extension UIViewController {
     @objc func coreNavigation_didMove(toParentViewController: UIViewController?) {
         coreNavigation_didMove(toParentViewController: toParentViewController)
 
-        events?.didMoveToBlocks.forEach({ [weak self] in
+        coreNavigationEvents?.didMoveToBlocks.forEach({ [weak self] in
             guard let `self` = self else { return }
 
             $0(self, toParentViewController)
@@ -147,7 +148,7 @@ extension UIViewController {
     @objc func coreNavigation_didReceiveMemoryWarning() {
         coreNavigation_didReceiveMemoryWarning()
 
-        events?.didReceiveMemoryWarningBlocks.forEach({ [weak self] in
+        coreNavigationEvents?.didReceiveMemoryWarningBlocks.forEach({ [weak self] in
             guard let `self` = self else { return }
 
             $0(self)
@@ -157,10 +158,18 @@ extension UIViewController {
     @objc func coreNavigation_applicationFinishedRestoringState() {
         coreNavigation_applicationFinishedRestoringState()
 
-        events?.applicationFinishedRestoringStateBlocks.forEach({ [weak self] in
+        coreNavigationEvents?.applicationFinishedRestoringStateBlocks.forEach({ [weak self] in
             guard let `self` = self else { return }
 
             $0(self)
+        })
+    }
+    
+    @objc func coreNavigation_prepareForSegue(for segue: UIStoryboardSegue, sender: Any?) {
+        coreNavigation_prepareForSegue(for: segue, sender: sender)
+        
+        coreNavigationEvents?.prepareForSegueBlocks.forEach({
+            $0(segue, sender)
         })
     }
 
@@ -168,7 +177,7 @@ extension UIViewController {
     @objc func coreNavigation_viewLayoutMarginsDidChange() {
         coreNavigation_viewLayoutMarginsDidChange()
 
-        events?.viewLayoutMarginsDidChangeBlocks.forEach({ [weak self] in
+        coreNavigationEvents?.viewLayoutMarginsDidChangeBlocks.forEach({ [weak self] in
             guard let `self` = self else { return }
 
             $0(self)
@@ -179,7 +188,7 @@ extension UIViewController {
     @objc func coreNavigation_viewSafeAreaInsetsDidChange() {
         coreNavigation_viewSafeAreaInsetsDidChange()
 
-        events?.viewSafeAreaInsetsDidChangeBlocks.forEach({ [weak self] in
+        coreNavigationEvents?.viewSafeAreaInsetsDidChangeBlocks.forEach({ [weak self] in
             guard let `self` = self else { return }
 
             $0(self)
@@ -190,7 +199,7 @@ extension UIViewController {
 extension UIViewController {
     private static let association = ObjectAssociation<UIViewController.Observer>()
 
-    var events: UIViewController.Observer? {
+    var coreNavigationEvents: UIViewController.Observer? {
         get { return UIViewController.association[self] }
         set { UIViewController.association[self] = newValue }
     }

@@ -16,7 +16,7 @@ extension Navigator {
                                 viewController,
                                 embeddingViewController
                     ]
-                    self.passData(configuration.dataPassingBlock, to: dataPassingCandidates)
+                    self.passData(configuration.dataPassingBlock, to: dataPassingCandidates, configuration: configuration)
                     let destinationViewController = embeddingViewController ?? viewController
                     let result = self.doOnNavigationSuccess(destination: destination, viewController: viewController, configuration: configuration)
                     var transitioningDelegate = configuration.transitioningDelegateBlock?()
