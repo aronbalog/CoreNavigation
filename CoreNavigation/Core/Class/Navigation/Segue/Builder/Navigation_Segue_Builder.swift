@@ -43,23 +43,17 @@ extension Navigation.Segue {
             return self
         }
         
-        @discardableResult public func passDataToViewController(_ data: Any) -> Self {
+        @discardableResult public func passDataToViewController(_ data: Any?) -> Self {
             queue.sync {
-                configuration.dataPassingBlock = { context in
-                    context.passData(data)
-                }
+                configuration.dataPassingBlock = { $0.passData(data) }
             }
             
             return self
         }
         
-        @discardableResult public func stateRestorable(with identifier: String, expirationDate: Date = Date.distantFuture) -> Self {
-            return stateRestorable(with: identifier, restorationClass: StateRestoration.self, expirationDate: expirationDate)
-        }
-        
-        @discardableResult public func stateRestorable(with identifier: String, restorationClass: UIViewControllerRestoration.Type, expirationDate: Date = Date.distantFuture) -> Self {
+        @discardableResult public func stateRestorable(with identifier: String, until expirationDate: Date = Date.distantFuture) -> Self {
             queue.sync {
-                configuration.stateRestorationBlock = { (identifier, restorationClass, expirationDate) }
+                configuration.stateRestorationBlock = { (identifier, expirationDate) }
             }
             
             return self

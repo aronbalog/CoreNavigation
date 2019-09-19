@@ -2,12 +2,11 @@ class StateRestoration {
     static func prepare(
         viewController: UIViewController,
         identifier: String,
-        restorationClass: UIViewControllerRestoration.Type,
         viewControllerData: Any?,
         expirationDate: Date
     ) {
         viewController.restorationIdentifier = identifier
-        viewController.restorationClass = restorationClass
+        viewController.restorationClass = StateRestoration.self
         
         let item = Item(
             identifier: identifier,
@@ -41,7 +40,11 @@ extension StateRestoration: UIViewControllerRestoration {
             dataReceivable.didReceiveAnyData(item.viewControllerData)
         }
         
-        prepare(viewController: viewController, identifier: item.identifier, restorationClass: self, viewControllerData: item.viewControllerData, expirationDate: item.expirationDate)
+        prepare(
+            viewController: viewController,
+            identifier: item.identifier,
+            viewControllerData: item.viewControllerData,
+            expirationDate: item.expirationDate)
         
         return viewController
     }

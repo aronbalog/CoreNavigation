@@ -16,7 +16,7 @@ class ViewController1: UIViewController {
             .prepare({ (segue, sender) in
                 
             })
-            .stateRestorable(with: "RestId", expirationDate: Date().addingTimeInterval(10))
+            .stateRestorable(with: "RestId", until: Date().addingTimeInterval(20))
             .passDataToViewController("Data!")
             .onViewControllerEvents(.viewDidLoad({ (viewController) in
                 print("Did load!")

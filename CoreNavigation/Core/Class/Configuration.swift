@@ -7,7 +7,7 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     typealias CachingBlock = () -> (String, Cacheable)
     typealias TransitioningDelegateBlock = () -> UIViewControllerTransitioningDelegate?
     typealias IsAnimatedBlock = () -> Bool
-    typealias StateRestorationBlock = () -> (identifier: String, restorationClass: UIViewControllerRestoration.Type, expirationDate: Date)
+    typealias StateRestorationBlock = () -> (identifier: String, expirationDate: Date)
     typealias PrepareForSegueBlock = (UIStoryboardSegue, Any?) -> Void
     
     let directive: Directive
@@ -19,7 +19,7 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     var sourceViewController: FromType
     var isAnimatedBlock: IsAnimatedBlock = { true }
     var transitioningDelegateBlock: TransitioningDelegateBlock?
-    var dataPassingBlock: DataPassingBlock<Any>?
+    var dataPassingBlock: DataPassingBlock<Any?>?
     var onSuccessBlocks: [OnSuccessBlock] = []
     var onCompletionBlocks: [OnCompletionBlock] = []
     var onFailureBlocks: [OnFailureBlock] = []

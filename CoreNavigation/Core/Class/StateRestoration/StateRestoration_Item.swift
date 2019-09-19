@@ -6,7 +6,10 @@ extension StateRestoration {
         let viewControllerData: Any?
         let expirationDate: Date
         
-        init(identifier: String, viewControllerClass: UIViewController.Type, viewControllerData: Any?, expirationDate: Date) {
+        init(identifier: String,
+             viewControllerClass: UIViewController.Type,
+             viewControllerData: Any?,
+             expirationDate: Date) {
             self.identifier = identifier
             self.viewControllerClass = viewControllerClass
             self.viewControllerData = viewControllerData
@@ -23,8 +26,6 @@ extension StateRestoration {
         }
         
         required init?(coder aDecoder: NSCoder) {
-            
-            
             guard
                 let identifier = aDecoder.decodeObject(forKey: "identifier") as? String,
                 let viewControllerClassString = aDecoder.decodeObject(forKey: "viewControllerClass") as? String,
