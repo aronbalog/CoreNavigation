@@ -1,7 +1,6 @@
 extension Navigator {
-    func prepareForStateRestorationIfNeeded<DestinationType: Destination, FromType: UIViewController>(
+    func prepareForStateRestorationIfNeeded(
         viewController: UIViewController,
-        with configuration: Configuration<DestinationType, FromType>,
         viewControllerData: Any?
     ) {
         guard let stateRestoration = configuration.stateRestorationBlock?() else { return }

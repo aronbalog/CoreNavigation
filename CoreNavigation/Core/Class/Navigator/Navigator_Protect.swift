@@ -1,6 +1,5 @@
 extension Navigator {
-    func protectNavigation<DestinationType: Destination, FromType: UIViewController>(
-        configuration: Configuration<DestinationType, FromType>,
+    func protectNavigation(
         onAllow: @escaping () -> Void,
         onDisallow: @escaping (Error) -> Void) {
         if !configuration.protections.isEmpty {

@@ -7,11 +7,13 @@ extension Embedding.Embedder {
         }
 
         func embed(with context: Embedding.Context) throws {
-            let tabBarController = tabBarControllerType.init()
-
-            tabBarController.viewControllers = [context.rootViewController]
-
-            context.complete(viewController: tabBarController)
+            DispatchQueue.main.async {
+                let tabBarController = self.tabBarControllerType.init()
+                
+                tabBarController.viewControllers = [context.rootViewController]
+                
+                context.complete(viewController: tabBarController)
+            }
         }
     }
 }

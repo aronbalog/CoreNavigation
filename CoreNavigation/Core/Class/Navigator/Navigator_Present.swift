@@ -1,32 +1,32 @@
 extension Navigator {
-    func present<DestinationType: Destination, FromType: UIViewController>(
-        with configuration: Configuration<DestinationType, FromType>) {
+    func present(
+        operation: Navigation.Operation
+        ) {
         queue.sync {
             resolve(
-                with: configuration,
                 onComplete: { destination, viewController, embeddingViewController in
                     let dataPassingCandidates: [Any?] =
-                        configuration.protections +
+                        self.configuration.protections +
                             [
                                 destination,
-                                configuration.embeddable,
+                                self.configuration.embeddable,
                                 viewController,
                                 embeddingViewController
                     ]
-                    self.passData(configuration.dataPassingBlock, to: dataPassingCandidates, configuration: configuration)
+                    self.passData(self.configuration.dataPassingBlock, to: dataPassingCandidates)
                     let destinationViewController = embeddingViewController ?? viewController
-                    let result = self.doOnNavigationSuccess(destination: destination, viewController: viewController, configuration: configuration)
-                    var transitioningDelegate = configuration.transitioningDelegateBlock?()
+                    let result = self.doOnNavigationSuccess(destination: destination, viewController: viewController)
+                    var transitioningDelegate = self.configuration.transitioningDelegateBlock?()
                     DispatchQueue.main.async {
                         destinationViewController.transitioningDelegate = transitioningDelegate
-                        configuration.sourceViewController.present(destinationViewController, animated: configuration.isAnimatedBlock(), completion: {
-                            self.resultCompletion(with: result, configuration: configuration)
+                        self.configuration.sourceViewController.present(destinationViewController, animated: self.configuration.isAnimatedBlock(), completion: {
+                            self.resultCompletion(with: result, operation: operation)
                             transitioningDelegate = nil
                         })
                     }
                 },
                 onCancel: { error in
-                    self.resultFailure(with: error, configuration: configuration)
+                    self.resultFailure(with: error, operation: operation)
                 }
             )
         }

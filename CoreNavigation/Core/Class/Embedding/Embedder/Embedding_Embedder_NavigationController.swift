@@ -7,9 +7,11 @@ extension Embedding.Embedder {
         }
 
         func embed(with context: Embedding.Context) throws {
-            let navigationController = navigationControllerType.init(rootViewController: context.rootViewController)
-
-            context.complete(viewController: navigationController)
+            DispatchQueue.main.async {
+                let navigationController = self.navigationControllerType.init(rootViewController: context.rootViewController)
+                
+                context.complete(viewController: navigationController)
+            }
         }
     }
 }

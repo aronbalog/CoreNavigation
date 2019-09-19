@@ -1,8 +1,8 @@
 extension Navigator {
-    func passData<DestinationType: Destination, FromType: UIViewController>(
+    func passData(
         _ block: ((DataPassing.Context<Any?>) -> Void)?,
-        to potentialDataReceivables: [Any?],
-        configuration: Configuration<DestinationType, FromType>) {
+        to potentialDataReceivables: [Any?]) {
+        
         guard let block = block else { return }
         let potentialDataReceivables = potentialDataReceivables.compactMap { $0 as? AnyDataReceivable }
         potentialDataReceivables.forEach { (dataReceivable) in
@@ -11,7 +11,7 @@ extension Navigator {
                     self.queue.sync {
                         dataReceivable.didReceiveAnyData(data)
                         if let viewController = dataReceivable as? UIViewController {
-                            self.prepareForStateRestorationIfNeeded(viewController: viewController, with: configuration, viewControllerData: data)
+                            self.prepareForStateRestorationIfNeeded(viewController: viewController, viewControllerData: data)
                         }
                     }
                 }))

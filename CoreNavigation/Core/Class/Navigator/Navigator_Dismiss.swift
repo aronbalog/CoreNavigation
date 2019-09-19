@@ -1,17 +1,17 @@
 extension Navigator {
-    func dismiss<DestinationType: Destination, FromType: UIViewController>(with configuration: Configuration<DestinationType, FromType>) {
+    func dismiss(
+        operation: Navigation.Operation) {
         queue.sync {
             DispatchQueue.main.async {
-                let sourceViewController = configuration.sourceViewController as! DestinationType.ViewControllerType
+                let sourceViewController = self.configuration.sourceViewController as! DestinationType.ViewControllerType
 
-                sourceViewController.dismiss(animated: configuration.isAnimatedBlock(), completion: {
+                sourceViewController.dismiss(animated: self.configuration.isAnimatedBlock(), completion: {
                     self.resultCompletion(
                         with: self.doOnNavigationSuccess(
-                            destination: configuration.destination,
-                            viewController: UIViewController.visibleViewController(),
-                            configuration: configuration
+                            destination: self.configuration.destination,
+                            viewController: UIViewController.visibleViewController()
                         ),
-                        configuration: configuration
+                        operation: operation
                     )
                 })
             }

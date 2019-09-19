@@ -1,19 +1,19 @@
 extension Navigator {
-    func performSegue<DestinationType: Destination, FromType: UIViewController>(
+    func performSegue(
         with segueIdentifier: String,
-        configuration: Configuration<DestinationType, FromType>
+        operation: Navigation.Operation
         ) {
         let sourceViewController = configuration.sourceViewController
         sourceViewController.coreNavigationEvents = UIViewController.Observer()
 
         sourceViewController.coreNavigationEvents?.onPrepareForSegue({ [weak self] (segue, sender) in
-            configuration.prepareForSegueBlock?(segue, sender)
-            self?.passData(configuration.dataPassingBlock, to: [segue.destination], configuration: configuration)
-            configuration.viewControllerEventBlocks.forEach({ (block) in
+            self?.configuration.prepareForSegueBlock?(segue, sender)
+            self?.passData(self?.configuration.dataPassingBlock, to: [segue.destination])
+            self?.configuration.viewControllerEventBlocks.forEach({ (block) in
                 self?.bindEvents(to: segue.destination as! DestinationType.ViewControllerType, navigationEvents: block())
             })
-            if configuration.dataPassingBlock == nil {
-                self?.prepareForStateRestorationIfNeeded(viewController: segue.destination, with: configuration, viewControllerData: nil)
+            if self?.configuration.dataPassingBlock == nil {
+                self?.prepareForStateRestorationIfNeeded(viewController: segue.destination, viewControllerData: nil)
             }
         })
                 

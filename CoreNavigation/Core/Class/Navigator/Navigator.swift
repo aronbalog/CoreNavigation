@@ -1,62 +1,77 @@
-class Navigator {
+let operationQueue: OperationQueue = {
+    let queue = OperationQueue()
+    queue.maxConcurrentOperationCount = 1
+    return queue
+}()
+
+class Navigator<DestinationType: Destination, FromType: UIViewController> {
     let queue: DispatchQueue
+    let configuration: Configuration<DestinationType, FromType>
+    
     let cache = Caching.Cache.instance
 
-    init(queue: DispatchQueue) {
+    init(queue: DispatchQueue, configuration: Configuration<DestinationType, FromType>) {
         initFramework
 
         self.queue = queue
+        self.configuration = configuration
     }
 
-    func navigate<DestinationType: Destination, FromType: UIViewController>(with configuration: Configuration<DestinationType, FromType>) {
-        protectNavigation(
-            configuration: configuration,
-            onAllow: {
-                switch configuration.directive {
-                case .direction(let navigationType):
-                    switch navigationType {
-                    case .forward(let forward):
-                        switch forward {
-                        case .present: self.present(with: configuration)
-                        case .push: self.push(with: configuration)
-                        case .childViewController: self.childViewController(with: configuration)
-                        }
-                    case .back(let back):
-                        switch back {
-                        case .dismiss: self.dismiss(with: configuration)
-                        case .pop: self.pop(with: configuration)
-                        case .popToRootViewController: self.popToRootViewController(with: configuration)
-                        }
-                    case .segue(let identifier): self.performSegue(with: identifier, configuration: configuration)
-                    }
-                case .none: break
-                }
-            },
-            onDisallow: { (error) in
-                self.resultFailure(with: error, configuration: configuration)
+    func navigate() -> Navigation.Operation {
+        let operation = Navigation.Operation { (operation) in
+            if let dependency = operation.dependencies.first as? Navigation.Operation {
+                self.configuration.sourceViewController = dependency.presentedViewController as! FromType
             }
-        )
+            
+            self.protectNavigation(
+                onAllow: {
+                    switch self.configuration.directive {
+                    case .direction(let navigationType):
+                        switch navigationType {
+                        case .forward(let forward):
+                            switch forward {
+                            case .present: self.present(operation: operation)
+                            case .push: self.push(operation: operation)
+                            case .childViewController: self.childViewController(operation: operation)
+                            }
+                        case .back(let back):
+                            switch back {
+                            case .dismiss: self.dismiss(operation: operation)
+                            case .pop: self.pop(operation: operation)
+                            case .popToRootViewController: self.popToRootViewController(operation: operation)
+                            }
+                        case .segue(let identifier): self.performSegue(with: identifier, operation: operation)
+                        }
+                    case .none: break
+                    }
+                },
+                onDisallow: { (error) in
+                    self.resultFailure(with: error, operation: operation)
+            })
+        }
+        
+        operationQueue.addOperation(operation)
+        
+        return operation
     }
 
-    private func childViewController<DestinationType: Destination, FromType: UIViewController>(
-        with configuration: Configuration<DestinationType, FromType>) {
+    private func childViewController(operation: Navigation.Operation) {
         queue.sync {
             resolve(
-                with: configuration,
                 onComplete: { (destination, viewController, embeddingViewController) in
                     let dataPassingCandidates: [Any?] =
-                        configuration.protections +
+                        self.configuration.protections +
                             [
                                 destination,
-                                configuration.embeddable,
+                                self.configuration.embeddable,
                                 viewController,
                                 embeddingViewController
                     ]
 
-                    self.passData(configuration.dataPassingBlock, to: dataPassingCandidates, configuration: configuration)
+                    self.passData(self.configuration.dataPassingBlock, to: dataPassingCandidates)
                     let destinationViewController = embeddingViewController ?? viewController
-                    let result = self.doOnNavigationSuccess(destination: destination, viewController: viewController, configuration: configuration)
-                    let sourceViewController = configuration.sourceViewController
+                    let result = self.doOnNavigationSuccess(destination: destination, viewController: viewController)
+                    let sourceViewController = self.configuration.sourceViewController
 
                     DispatchQueue.main.async {
                         sourceViewController.addChild(destinationViewController)
@@ -65,21 +80,18 @@ class Navigator {
                         destinationViewController.didMove(toParent: sourceViewController)
                     }
 
-                    self.resultCompletion(with: result, configuration: configuration)
+                    self.resultCompletion(with: result, operation: operation)
                 },
                 onCancel: { (error) in
-                    configuration.onFailureBlocks.forEach({ (block) in
-                        block(error)
-                    })
+                    self.resultFailure(with: error, operation: operation)
                 }
             )
         }
     }
 
-    func doOnNavigationSuccess<DestinationType: Destination, FromType: UIViewController>(
+    func doOnNavigationSuccess(
         destination: DestinationType,
-        viewController: DestinationType.ViewControllerType,
-        configuration: Configuration<DestinationType, FromType>) -> Navigation.Result<DestinationType, FromType> {
+        viewController: DestinationType.ViewControllerType) -> Navigation.Result<DestinationType, FromType> {
         let result = Navigation.Result<DestinationType, FromType>(destination: destination, toViewController: viewController, fromViewController: configuration.sourceViewController)
 
         configuration.onSuccessBlocks.forEach { $0(result) }
@@ -87,22 +99,18 @@ class Navigator {
         return result
     }
 
-    func resultFailure<DestinationType: Destination, FromType: UIViewController>(
-        with error: Error,
-        configuration: Configuration<DestinationType, FromType>) {
+    func resultFailure(with error: Error, operation: Navigation.Operation) {
         configuration.onFailureBlocks.forEach { $0(error) }
+        operation.cancel()
     }
 
-    func resultCompletion<DestinationType: Destination, FromType: UIViewController>(
-        with result: Navigation.Result<DestinationType, FromType>,
-        configuration: Configuration<DestinationType, FromType>) {
+    func resultCompletion(with result: Navigation.Result<DestinationType, FromType>, operation: Navigation.Operation) {
         configuration.onCompletionBlocks.forEach { $0(result) }
+        operation.presentedViewController = result.toViewController
+        operation.finish()
     }
 
-    func resolve<DestinationType: Destination, FromType: UIViewController>(
-        with configuration: Configuration<DestinationType, FromType>,
-        onComplete: @escaping (DestinationType, DestinationType.ViewControllerType, UIViewController?) -> Void,
-        onCancel: @escaping (Error) -> Void) {
+    func resolve(onComplete: @escaping (DestinationType, DestinationType.ViewControllerType, UIViewController?) -> Void, onCancel: @escaping (Error) -> Void) {
         let caching = configuration.cachingBlock?()
         let destination = configuration.destination
 
@@ -115,10 +123,10 @@ class Navigator {
                         self.cache(cacheIdentifier: caching.0, cacheable: caching.1, viewController: viewController, embeddingViewController: embeddingViewController)
                     }
 
-                    configuration.viewControllerEventBlocks.forEach { self.bindEvents(to: viewController, navigationEvents: $0()) }
+                    self.configuration.viewControllerEventBlocks.forEach { self.bindEvents(to: viewController, navigationEvents: $0()) }
                     
-                    if configuration.dataPassingBlock == nil {
-                        self.prepareForStateRestorationIfNeeded(viewController: viewController, with: configuration, viewControllerData: nil)
+                    if self.configuration.dataPassingBlock == nil {
+                        self.prepareForStateRestorationIfNeeded(viewController: viewController, viewControllerData: nil)
                     }
 
                     onComplete(destination, viewController, embeddingViewController)

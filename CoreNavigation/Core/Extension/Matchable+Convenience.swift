@@ -16,4 +16,24 @@ extension Matchable {
     public func destination<DestinationType: Destination>() throws -> DestinationType {
         return try Routing.Destination(route: self).resolvedDestination().resolvedDestination as! DestinationType
     }
+    
+    public func present(animated: Bool, completion: ((Navigation.Result<Routing.Destination, UIViewController>) -> Void)? = nil) -> Navigation.Operation {
+        return Present { $0
+            .to(self)
+            .animated(animated)
+            .onComplete({ (result) in
+                completion?(result)
+            })
+        }
+    }
+    
+    public func push(animated: Bool, completion: ((Navigation.Result<Routing.Destination, UIViewController>) -> Void)? = nil) -> Navigation.Operation {
+        return Push { $0
+            .to(self)
+            .animated(animated)
+            .onComplete({ (result) in
+                completion?(result)
+            })
+        }
+    }
 }

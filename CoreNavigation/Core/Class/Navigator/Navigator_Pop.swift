@@ -1,28 +1,28 @@
 extension Navigator {
-    func pop<DestinationType: Destination, FromType: UIViewController>(
-        with configuration: Configuration<DestinationType, FromType>) {
+    func pop(
+        operation: Navigation.Operation) {
         queue.sync {
             DispatchQueue.main.async {
                 let navigationController: UINavigationController? = {
-                    return configuration.sourceViewController.navigationController ?? configuration.sourceViewController as? UINavigationController
+                    return self.configuration.sourceViewController.navigationController ?? self.configuration.sourceViewController as? UINavigationController
                 }()
-                navigationController?.popViewController(animated: configuration.isAnimatedBlock(), completion: {
-                    let result = self.doOnNavigationSuccess(destination: configuration.destination, viewController: UIViewController.visibleViewController(), configuration: configuration)
-                    self.resultCompletion(with: result, configuration: configuration)
+                navigationController?.popViewController(animated: self.configuration.isAnimatedBlock(), completion: {
+                    let result = self.doOnNavigationSuccess(destination: self.configuration.destination, viewController: UIViewController.visibleViewController())
+                    self.resultCompletion(with: result, operation: operation)
                 })
             }
         }
     }
-    func popToRootViewController<DestinationType: Destination, FromType: UIViewController>(
-        with configuration: Configuration<DestinationType, FromType>) {
+    func popToRootViewController(
+        operation: Navigation.Operation) {
         queue.sync {
             DispatchQueue.main.async {
                 let navigationController: UINavigationController? = {
-                    return configuration.sourceViewController.navigationController ?? configuration.sourceViewController as? UINavigationController
+                    return self.configuration.sourceViewController.navigationController ?? self.configuration.sourceViewController as? UINavigationController
                 }()
-                navigationController?.popToRootViewController(animated: configuration.isAnimatedBlock(), completion: {
-                    let result = self.doOnNavigationSuccess(destination: configuration.destination, viewController: UIViewController.visibleViewController(), configuration: configuration)
-                    self.resultCompletion(with: result, configuration: configuration)
+                navigationController?.popToRootViewController(animated: self.configuration.isAnimatedBlock(), completion: {
+                    let result = self.doOnNavigationSuccess(destination: self.configuration.destination, viewController: UIViewController.visibleViewController())
+                    self.resultCompletion(with: result, operation: operation)
                 })
             }
         }
