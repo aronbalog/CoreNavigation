@@ -50,6 +50,7 @@ extension Navigation {
         
         func execute() {
             if isCancelled {
+                isFinished = true
                 return
             }
             
@@ -60,12 +61,20 @@ extension Navigation {
         
         public override func start() {
             isExecuting = true
+            isFinished = false
             execute()
         }
         
         func finish() {
             isExecuting = false
             isFinished = true
+        }
+        
+        public override func cancel() {
+            super.cancel()
+            
+            isFinished = true
+            isExecuting = false
         }
     }
 }

@@ -23,30 +23,28 @@ class Navigator<DestinationType: Destination, FromType: UIViewController> {
                 self.configuration.sourceViewController = dependency.presentedViewController as! FromType
             }
             
-            self.protectNavigation(
-                onAllow: {
-                    switch self.configuration.directive {
-                    case .direction(let navigationType):
-                        switch navigationType {
-                        case .forward(let forward):
-                            switch forward {
-                            case .present: self.present(operation: operation)
-                            case .push: self.push(operation: operation)
-                            case .childViewController: self.childViewController(operation: operation)
-                            }
-                        case .back(let back):
-                            switch back {
-                            case .dismiss: self.dismiss(operation: operation)
-                            case .pop: self.pop(operation: operation)
-                            case .popToRootViewController: self.popToRootViewController(operation: operation)
-                            }
-                        case .segue(let identifier): self.performSegue(with: identifier, operation: operation)
+            self.protectNavigation(onAllow: {
+                switch self.configuration.directive {
+                case .direction(let navigationType):
+                    switch navigationType {
+                    case .forward(let forward):
+                        switch forward {
+                        case .present: self.present(operation: operation)
+                        case .push: self.push(operation: operation)
+                        case .childViewController: self.childViewController(operation: operation)
                         }
-                    case .none: break
+                    case .back(let back):
+                        switch back {
+                        case .dismiss: self.dismiss(operation: operation)
+                        case .pop: self.pop(operation: operation)
+                        case .popToRootViewController: self.popToRootViewController(operation: operation)
+                        }
+                    case .segue(let identifier): self.performSegue(with: identifier, operation: operation)
                     }
-                },
-                onDisallow: { (error) in
-                    self.resultFailure(with: error, operation: operation)
+                case .none: break
+                }
+            }, onDisallow: { (error) in
+                self.resultFailure(with: error, operation: operation)
             })
         }
         
@@ -56,44 +54,42 @@ class Navigator<DestinationType: Destination, FromType: UIViewController> {
     }
 
     private func childViewController(operation: Navigation.Operation) {
-        queue.sync {
-            resolve(
-                onComplete: { (destination, viewController, embeddingViewController) in
-                    let dataPassingCandidates: [Any?] =
-                        self.configuration.protections +
-                            [
-                                destination,
-                                self.configuration.embeddable,
-                                viewController,
-                                embeddingViewController
-                    ]
-
-                    self.passData(self.configuration.dataPassingBlock, to: dataPassingCandidates)
-                    let destinationViewController = embeddingViewController ?? viewController
-                    let result = self.doOnNavigationSuccess(destination: destination, viewController: viewController)
-                    let sourceViewController = self.configuration.sourceViewController
-
-                    func action() {
-                        sourceViewController.addChild(destinationViewController)
-                        destinationViewController.view.frame = sourceViewController.view.bounds
-                        sourceViewController.view.addSubview(destinationViewController.view)
-                        destinationViewController.didMove(toParent: sourceViewController)
-                        self.resultCompletion(with: result, operation: operation)
-                    }
-                    
-                    if let delayBlock = self.configuration.delayBlock {
-                        let timeInterval = delayBlock()
-                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: action)
-                    } else {
-                        DispatchQueue.main.async(execute: action)
-                    }
-
-                },
-                onCancel: { (error) in
-                    self.resultFailure(with: error, operation: operation)
+        resolve(
+            onComplete: { (destination, viewController, embeddingViewController) in
+                let dataPassingCandidates: [Any?] =
+                    self.configuration.protections +
+                        [
+                            destination,
+                            self.configuration.embeddable,
+                            viewController,
+                            embeddingViewController
+                ]
+                
+                self.passData(self.configuration.dataPassingBlock, to: dataPassingCandidates)
+                let destinationViewController = embeddingViewController ?? viewController
+                let result = self.doOnNavigationSuccess(destination: destination, viewController: viewController)
+                let sourceViewController = self.configuration.sourceViewController
+                
+                func action() {
+                    sourceViewController.addChild(destinationViewController)
+                    destinationViewController.view.frame = sourceViewController.view.bounds
+                    sourceViewController.view.addSubview(destinationViewController.view)
+                    destinationViewController.didMove(toParent: sourceViewController)
+                    self.resultCompletion(with: result, operation: operation)
                 }
-            )
+                
+                if let delayBlock = self.configuration.delayBlock {
+                    let timeInterval = delayBlock()
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: action)
+                } else {
+                    DispatchQueue.main.async(execute: action)
+                }
+                
+        },
+            onCancel: { (error) in
+                self.resultFailure(with: error, operation: operation)
         }
+        )
     }
 
     func doOnNavigationSuccess(

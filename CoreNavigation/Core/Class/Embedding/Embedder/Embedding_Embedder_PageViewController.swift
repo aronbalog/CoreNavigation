@@ -11,10 +11,8 @@ extension Embedding.Embedder {
                 let pageViewController = self.pageViewControllerType.init()
                 
                 pageViewController.setViewControllers([context.rootViewController], direction: UIPageViewController.NavigationDirection.forward, animated: false, completion: { (isCompleted) in
-                    print(isCompleted)
+                    context.complete(viewController: pageViewController)
                 })
-                
-                context.complete(viewController: pageViewController)
             }
         }
     }
