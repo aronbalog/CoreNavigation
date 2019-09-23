@@ -13,14 +13,20 @@ struct VC2Dest: Destination, Protectable {
 }
 
 struct VC3Dest: Destination, Routable {
+    let id: String!
+    
     init(parameters: [String : Any]?) {
-        
+        self.id = parameters?["id"] as? String
     }
     
     typealias ViewControllerType = ViewController3
     
     static func routePatterns() -> [String] {
-        return ["some"]
+        return ["some/:id"]
+    }
+    
+    func resolve(with resolver: Resolver<VC3Dest>) {
+        resolver.complete(viewController: ViewController3.init(id: id))
     }
 }
 
@@ -38,9 +44,21 @@ class ViewController2: UIViewController {
 }
 
 class ViewController3: UIViewController {
+    init(id: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.title = id
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Title"
         view.backgroundColor = .orange
         navigationItem.setRightBarButton(UIBarButtonItem.init(barButtonSystemItem: UIBarButtonItem.SystemItem.stop, target: self, action: #selector(didTap)), animated: false)
     }
@@ -83,13 +101,20 @@ class ViewController: UIViewController {
     }
     
     @objc func didTap() {
-        VC2Dest().present { $0
+        "some/1".present { $0
+            .animated(false)
             .embed(inside:
-                .navigationController(UINavigationController.self, {
-                    .none
+                .navigationController(UINavigationController.self, { () -> Embedding.EmbeddingType in
+                    .pageViewController(UIPageViewController.self, {
+                        .none
+                    })
                 })
             )
         }
-        ==> "some".push() ==> "some".push()
+//        ==> "some/1".push(animated: false)
+//        ==> "some/2".push(animated: false)
+//        ==> "some/3".push(animated: false)
+//        ==> "some/4".push(animated: false)
+//        ==> "some/5".push(animated: false)
     }
 }

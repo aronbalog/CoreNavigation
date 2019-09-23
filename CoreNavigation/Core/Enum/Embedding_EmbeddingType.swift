@@ -2,6 +2,7 @@ extension Embedding {
     public indirect enum EmbeddingType {
         case navigationController(UINavigationController.Type, () -> EmbeddingType)
         case tabBarController(UITabBarController.Type, () -> EmbeddingType)
+        case pageViewController(UIPageViewController.Type, () -> EmbeddingType)
         case embeddable(Embeddable, () -> EmbeddingType)
         case none
 
@@ -14,6 +15,10 @@ extension Embedding {
             case .tabBarController(let controllerType, let embedding):
                 let rootEmbeddable = Embedding.Embedder.TabBarController(tabBarControllerType: controllerType)
 
+                return Embedding.Embedder.Wrapper(rootEmbeddable: rootEmbeddable, wrappingEmbeddable: embedding().embeddable())
+            case .pageViewController(let controllerType, let embedding):
+                let rootEmbeddable = Embedding.Embedder.PageViewController(pageViewControllerType: controllerType)
+                
                 return Embedding.Embedder.Wrapper(rootEmbeddable: rootEmbeddable, wrappingEmbeddable: embedding().embeddable())
             case .embeddable(let aProtocol, let embedding):
                 let rootEmbeddable = aProtocol
