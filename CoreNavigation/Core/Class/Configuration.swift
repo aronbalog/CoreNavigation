@@ -8,6 +8,7 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     typealias TransitioningDelegateBlock = () -> UIViewControllerTransitioningDelegate?
     typealias IsAnimatedBlock = () -> Bool
     typealias StateRestorationBlock = () -> (identifier: String, expirationDate: Date)
+    typealias DelayBlock = () -> TimeInterval
     typealias PrepareForSegueBlock = (UIStoryboardSegue, Any?) -> Void
     
     let directive: Directive
@@ -29,6 +30,7 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     var cachingBlock: CachingBlock?
     var stateRestorationBlock: StateRestorationBlock?
     var prepareForSegueBlock: PrepareForSegueBlock?
+    var delayBlock: DelayBlock?
 
     init(directive: Directive, toBlock: @escaping () -> DestinationType, from sourceViewController: FromType) {
         self.directive = directive

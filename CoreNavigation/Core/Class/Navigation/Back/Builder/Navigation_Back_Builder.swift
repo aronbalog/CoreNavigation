@@ -20,6 +20,18 @@ extension Navigation.Back {
             return animated { isAnimated }
         }
 
+        @discardableResult public func delay(_ block: @escaping () -> TimeInterval) -> Self {
+            queue.sync {
+                configuration.delayBlock = block
+            }
+            
+            return self
+        }
+        
+        @discardableResult public func delay(_ seconds: TimeInterval) -> Self {
+            return delay { seconds }
+        }
+        
         @discardableResult public func onComplete(_ block: @escaping (FromViewControllerType, ToViewControllerType) -> Void) -> Self {
             queue.sync {
                 configuration.onCompletionBlocks.append { block($0.fromViewController, $0.toViewController as! ToViewControllerType) }

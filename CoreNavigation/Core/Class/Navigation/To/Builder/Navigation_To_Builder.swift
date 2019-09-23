@@ -107,6 +107,18 @@ extension Navigation.To {
             
             return self
         }
+        
+        @discardableResult public func delay(_ block: @escaping () -> TimeInterval) -> Self {
+            queue.sync {
+                configuration.delayBlock = block
+            }
+            
+            return self
+        }
+        
+        @discardableResult public func delay(_ seconds: TimeInterval) -> Self {
+            return delay { seconds }
+        }
 
         @discardableResult public func `catch`(_ block: @escaping (Error) -> Void) -> Self {
             queue.sync {

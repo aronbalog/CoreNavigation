@@ -83,17 +83,13 @@ class ViewController: UIViewController {
     }
     
     @objc func didTap() {
-        Present { $0
-            .to(VC2Dest())
+        VC2Dest().present { $0
             .embed(inside:
                 .navigationController(UINavigationController.self, {
                     .none
                 })
             )
-            .animated(true)
         }
-//        VC2Dest().present(animated: false)
-        ==>
-        "some".push(animated: true)
+        ==> "some".push() ==> "some".push()
     }
 }

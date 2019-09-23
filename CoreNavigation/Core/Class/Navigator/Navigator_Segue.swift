@@ -16,9 +16,18 @@ extension Navigator {
                 self?.prepareForStateRestorationIfNeeded(viewController: segue.destination, viewControllerData: nil)
             }
         })
-                
-        sourceViewController.performSegue(withIdentifier: segueIdentifier, sender: sourceViewController)
         
-        sourceViewController.coreNavigationEvents = nil
+        func action() {
+            sourceViewController.performSegue(withIdentifier: segueIdentifier, sender: sourceViewController)
+            
+            sourceViewController.coreNavigationEvents = nil
+        }
+        
+        if let delayBlock = self.configuration.delayBlock {
+            let timeInterval = delayBlock()
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: action)
+        } else {
+            DispatchQueue.main.async(execute: action)
+        }
     }
 }

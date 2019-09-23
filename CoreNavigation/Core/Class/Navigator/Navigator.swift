@@ -73,14 +73,21 @@ class Navigator<DestinationType: Destination, FromType: UIViewController> {
                     let result = self.doOnNavigationSuccess(destination: destination, viewController: viewController)
                     let sourceViewController = self.configuration.sourceViewController
 
-                    DispatchQueue.main.async {
+                    func action() {
                         sourceViewController.addChild(destinationViewController)
                         destinationViewController.view.frame = sourceViewController.view.bounds
                         sourceViewController.view.addSubview(destinationViewController.view)
                         destinationViewController.didMove(toParent: sourceViewController)
+                        self.resultCompletion(with: result, operation: operation)
+                    }
+                    
+                    if let delayBlock = self.configuration.delayBlock {
+                        let timeInterval = delayBlock()
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: action)
+                    } else {
+                        DispatchQueue.main.async(execute: action)
                     }
 
-                    self.resultCompletion(with: result, operation: operation)
                 },
                 onCancel: { (error) in
                     self.resultFailure(with: error, operation: operation)

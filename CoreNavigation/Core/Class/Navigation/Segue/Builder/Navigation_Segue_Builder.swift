@@ -59,6 +59,18 @@ extension Navigation.Segue {
             return self
         }
         
+        @discardableResult public func delay(_ block: @escaping () -> TimeInterval) -> Self {
+            queue.sync {
+                configuration.delayBlock = block
+            }
+            
+            return self
+        }
+        
+        @discardableResult public func delay(_ seconds: TimeInterval) -> Self {
+            return delay { seconds }
+        }
+        
         @discardableResult public func onViewControllerEvents(_ events: UIViewController.Event<UIViewController>...) -> Self {
             queue.sync {
                 configuration.viewControllerEventBlocks.append { events }

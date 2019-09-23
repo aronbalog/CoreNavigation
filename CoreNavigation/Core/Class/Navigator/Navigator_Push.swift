@@ -1,6 +1,5 @@
 extension Navigator {
-    func push(
-        operation: Navigation.Operation) {
+    func push(operation: Navigation.Operation) {
         queue.sync {
             resolve(
                 onComplete: { (destination, viewController, embeddingViewController) in
@@ -19,12 +18,20 @@ extension Navigator {
                     let destinationViewController = embeddingViewController ?? viewController
                     let result = self.doOnNavigationSuccess(destination: destination, viewController: viewController)
                     var transitioningDelegate = self.configuration.transitioningDelegateBlock?()
-                    DispatchQueue.main.async {
+                    
+                    func action() {
                         navigationController?.transitioningDelegate = transitioningDelegate
                         navigationController?.pushViewController(destinationViewController, animated: self.configuration.isAnimatedBlock(), completion: {
                             self.resultCompletion(with: result, operation: operation)
                             transitioningDelegate = nil
                         })
+                    }
+                    
+                    if let delayBlock = self.configuration.delayBlock {
+                        let timeInterval = delayBlock()
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: action)
+                    } else {
+                        DispatchQueue.main.async(execute: action)
                     }
                 },
                 onCancel: { (error) in
