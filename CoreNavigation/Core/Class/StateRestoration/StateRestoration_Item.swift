@@ -30,10 +30,11 @@ extension StateRestoration {
                 let identifier = aDecoder.decodeObject(forKey: "identifier") as? String,
                 let viewControllerClassString = aDecoder.decodeObject(forKey: "viewControllerClass") as? String,
                 let viewControllerClass = NSClassFromString(viewControllerClassString) as? UIViewController.Type,
-                let viewControllerData = aDecoder.decodeObject(forKey: "viewControllerData"),
                 let expirationDate = aDecoder.decodeObject(forKey: "expirationDate") as? Date else {
                     return nil
             }
+            
+            let viewControllerData = aDecoder.decodeObject(forKey: "viewControllerData")
             
             self.identifier = identifier
             self.viewControllerClass = viewControllerClass

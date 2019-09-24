@@ -37,6 +37,16 @@
     }
 }
 
+@discardableResult public func Push(matchable: Matchable, animated: Bool = true, completion: ((Navigation.Result<Routing.Destination, UIViewController>) -> Void)? = nil) -> Navigation.Operation {
+    return Push { $0
+        .to(matchable)
+        .animated(animated)
+        .onComplete({ (result) in
+            completion?(result)
+        })
+    }
+}
+
 // MARK: Operators
 
 /// :nodoc:

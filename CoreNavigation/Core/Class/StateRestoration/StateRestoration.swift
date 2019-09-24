@@ -1,3 +1,5 @@
+import SafariServices
+
 class StateRestoration {
     static func prepare(
         viewController: UIViewController,
@@ -6,7 +8,14 @@ class StateRestoration {
         expirationDate: Date
     ) {
         viewController.restorationIdentifier = identifier
-        viewController.restorationClass = StateRestoration.self
+        
+        if #available(iOS 9.0, *) {
+            if !(viewController is SFSafariViewController) {
+                viewController.restorationClass = StateRestoration.self
+            }
+        } else {
+            viewController.restorationClass = StateRestoration.self
+        }
         
         let item = Item(
             identifier: identifier,
@@ -34,7 +43,9 @@ extension StateRestoration: UIViewControllerRestoration {
     static func viewController(withRestorationIdentifierPath identifierComponents: [String], coder: NSCoder) -> UIViewController? {
         guard let identifier = identifierComponents.last else { return nil }
         guard let item = find(identifier: identifier) else { return nil }
-        guard let viewController = item.viewControllerClass.init(coder: coder) else { return nil }
+        let viewController: UIViewController = {
+            return item.viewControllerClass.init(coder: coder) ?? item.viewControllerClass.init()
+        }()
         
         if let dataReceivable = viewController as? AnyDataReceivable {
             dataReceivable.didReceiveAnyData(item.viewControllerData)

@@ -7,6 +7,9 @@ extension Caching {
                 switch cachingType {
                 case .timeInterval(let timeInterval):
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: context.invalidateCache)
+                case .expirationDate(let date):
+                    let timeInterval = date.timeIntervalSinceNow
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeInterval, execute: context.invalidateCache)
                 case .block(let block):
                     block(context)
                 }
