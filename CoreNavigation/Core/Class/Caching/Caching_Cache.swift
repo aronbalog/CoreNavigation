@@ -15,7 +15,7 @@ extension Caching {
         }
 
         func find(with cacheIdentifier: String) -> (UIViewController, UIViewController?)? {
-            return items[cacheIdentifier]
+            items[cacheIdentifier]
         }
 
         func removeAllItems() {

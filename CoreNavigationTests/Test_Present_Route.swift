@@ -8,7 +8,7 @@ class TestPresentRoute: QuickSpec {
         var parameters: [String: Any]?
         
         static func routePatterns() -> [String] {
-            return ["TestPresentRoute/:parameter1"]
+            ["TestPresentRoute/:parameter1"]
         }
         
         init(parameters: [String : Any]?) {

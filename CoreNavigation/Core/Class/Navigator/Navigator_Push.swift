@@ -4,7 +4,7 @@ extension Navigator {
             resolve(
                 onComplete: { (destination, viewController, embeddingViewController) in
                     let navigationController: UINavigationController? = {
-                        return self.configuration.sourceViewController.navigationController ?? self.configuration.sourceViewController as? UINavigationController
+                        self.configuration.sourceViewController.navigationController ?? self.configuration.sourceViewController as? UINavigationController
                     }()
                     let dataPassingCandidates: [Any?] =
                         self.configuration.protections +

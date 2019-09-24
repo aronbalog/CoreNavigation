@@ -1,11 +1,9 @@
 @discardableResult public func PerformSegue<FromViewControllerType: UIViewController>(_ segue: (Navigation.Segue) -> Navigation.Segue.Builder<FromViewControllerType>) -> Navigation.Operation {
-    let builder = segue(Navigation.Segue(queue: queue))
-    
-    return Navigator(queue: queue, configuration: builder.configuration).navigate()
+    Navigator(queue: queue, configuration: segue(Navigation.Segue(queue: queue)).configuration).navigate()
 }
 
 @discardableResult public func PerformSegue(with identifier: String) -> Navigation.Operation {
-    return PerformSegue { $0
+    PerformSegue { $0
         .segue(identifier: identifier)
     }
 }

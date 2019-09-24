@@ -2,7 +2,7 @@ extension Navigator {
     func pop(operation: Navigation.Operation) {
         func action() {
             let navigationController: UINavigationController? = {
-                return self.configuration.sourceViewController.navigationController ?? self.configuration.sourceViewController as? UINavigationController
+                self.configuration.sourceViewController.navigationController ?? self.configuration.sourceViewController as? UINavigationController
             }()
             navigationController?.popViewController(animated: self.configuration.isAnimatedBlock(), completion: {
                 let result = self.doOnNavigationSuccess(destination: self.configuration.destination, viewController: UIViewController.visibleViewController())
@@ -21,7 +21,7 @@ extension Navigator {
     func popToRootViewController(operation: Navigation.Operation) {
         func action() {
             let navigationController: UINavigationController? = {
-                return self.configuration.sourceViewController.navigationController ?? self.configuration.sourceViewController as? UINavigationController
+                self.configuration.sourceViewController.navigationController ?? self.configuration.sourceViewController as? UINavigationController
             }()
             navigationController?.popToRootViewController(animated: self.configuration.isAnimatedBlock(), completion: {
                 let result = self.doOnNavigationSuccess(destination: self.configuration.destination, viewController: UIViewController.visibleViewController())

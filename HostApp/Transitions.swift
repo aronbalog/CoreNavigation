@@ -3,7 +3,7 @@ import CoreNavigation
 
 struct AnimationHelper {
     static func yRotation(_ angle: Double) -> CATransform3D {
-        return CATransform3DMakeRotation(CGFloat(angle), 0.0, 1.0, 0.0)
+        CATransform3DMakeRotation(CGFloat(angle), 0.0, 1.0, 0.0)
     }
     
     static func perspectiveTransform(for containerView: UIView) {

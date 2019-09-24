@@ -2,5 +2,5 @@
 ///
 /// - Parameter to: Configuration block
 @discardableResult public func AddChildViewController<DestinationType: Destination, FromType: UIViewController>(_ to: (Navigation.To) -> Navigation.To.Builder<DestinationType, FromType>) -> Navigation.Operation {
-    return Navigate(.childViewController, to)
+    Navigate(.childViewController, to)
 }

@@ -19,7 +19,7 @@ extension Navigation {
         }
         
         public override var isAsynchronous: Bool {
-            return true
+            true
         }
         
         private var _isFinished: Bool = false
@@ -31,7 +31,7 @@ extension Navigation {
             }
             
             get {
-                return _isFinished
+                _isFinished
             }
         }
         
@@ -44,7 +44,7 @@ extension Navigation {
             }
             
             get {
-                return _isExecuting
+                _isExecuting
             }
         }
         

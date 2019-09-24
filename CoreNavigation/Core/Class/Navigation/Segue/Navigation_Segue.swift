@@ -10,7 +10,7 @@ extension Navigation {
             identifier: String,
             from sourceViewController: FromViewControllerType = UIViewController.visibleViewController()
         ) -> Navigation.Segue.Builder<FromViewControllerType> {
-            return Segue.Builder(
+            Segue.Builder(
                 configuration: Configuration(
                     directive: .direction(.segue(identifier)),
                     toBlock: { UIViewController.Destination<UIViewController>.None() },

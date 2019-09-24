@@ -18,14 +18,14 @@ extension Routing {
 
         func unregister(pattern: String) {
             registrations = registrations.filter({ (registration) -> Bool in
-                return !registration.value.patterns.contains(pattern)
+                !registration.value.patterns.contains(pattern)
             })
         }
 
         func match(for matchable: Matchable) -> Routing.RouteMatch? {
             var parameters: [String: Any]?
 
-            guard let registration = (registrations.first { return $0.value.matches(matchable, &parameters) })?.value else {
+            guard let registration = (registrations.first { $0.value.matches(matchable, &parameters) })?.value else {
                 return nil
             }
 
@@ -36,7 +36,7 @@ extension Routing {
 
 private extension AnyDestination {
     static func identifier() -> String {
-        return String(describing: self)
+        String(describing: self)
     }
 }
 
@@ -46,13 +46,13 @@ private extension Routing.Router {
         let patterns: [String]
 
         func matches(_ matchable: Matchable, _ parameters: inout [String: Any]?) -> Bool {
-            return self.patterns.first { (pattern) -> Bool in
+            self.patterns.first { (pattern) -> Bool in
                 guard let regularExpression = try? Routing.RegularExpression(pattern: pattern) else {
                     return false
                 }
 
                 return regularExpression.matchResult(for: matchable.uri, parameters: &parameters)
-                } != nil
+            } != nil
         }
     }
 }

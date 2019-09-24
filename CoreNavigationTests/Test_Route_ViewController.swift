@@ -8,7 +8,7 @@ class TestRouteViewController: QuickSpec {
         typealias ViewControllerType = MockViewController
         
         static func routePatterns() -> [String] {
-            return ["TestRouteViewController/:parameter1"]
+            ["TestRouteViewController/:parameter1"]
         }
         
         var parameters: [String : Any]?

@@ -17,7 +17,7 @@ extension Navigation.Back {
         }
 
         @discardableResult public func animated(_ isAnimated: Bool) -> Self {
-            return animated { isAnimated }
+            animated { isAnimated }
         }
 
         @discardableResult public func delay(_ block: @escaping () -> TimeInterval) -> Self {
@@ -29,7 +29,7 @@ extension Navigation.Back {
         }
         
         @discardableResult public func delay(_ seconds: TimeInterval) -> Self {
-            return delay { seconds }
+            delay { seconds }
         }
         
         @discardableResult public func onComplete(_ block: @escaping (FromViewControllerType, ToViewControllerType) -> Void) -> Self {

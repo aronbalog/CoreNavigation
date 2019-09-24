@@ -9,11 +9,11 @@ extension Navigation {
         }
 
         @discardableResult public func viewController<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(_ viewController: FromViewControllerType) -> Back.Builder<FromViewControllerType, ToViewControllerType> {
-            return Back.Builder(configuration: Configuration(directive: .direction(navigationType), toBlock: { UIViewController.Destination<UIViewController>.None() }, from: viewController), queue: queue)
+            Back.Builder(configuration: Configuration(directive: .direction(navigationType), toBlock: { UIViewController.Destination<UIViewController>.None() }, from: viewController), queue: queue)
         }
 
         @discardableResult public func visibleViewController<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>() -> Back.Builder<FromViewControllerType, ToViewControllerType> {
-            return viewController(UIViewController.visibleViewController())
+            viewController(UIViewController.visibleViewController())
         }
 
     }

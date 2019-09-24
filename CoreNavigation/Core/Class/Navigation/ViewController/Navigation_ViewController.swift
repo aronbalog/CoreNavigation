@@ -7,12 +7,10 @@ extension Navigation {
         }
 
         @discardableResult public func viewController<DestinationType: Destination>(for destination: DestinationType) -> Builder<DestinationType> {
-            return Builder(
+            Builder(
                 configuration: Configuration(
                     directive: .none,
-                    toBlock: {
-                        return destination
-                    },
+                    toBlock: { destination },
                     from: UIViewController.visibleViewController()
                 ),
                 queue: queue)

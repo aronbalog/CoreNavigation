@@ -6,7 +6,7 @@ import CoreNavigation
 class TestRouteViewController2: QuickSpec {
     final class MockViewController: UIViewController, Routable {
         static func routePatterns() -> [String] {
-            return ["http://example.com/TestRouteViewController2/:parameter1/:parameter2"]
+            ["http://example.com/TestRouteViewController2/:parameter1/:parameter2"]
         }
         
         required init(parameters: [String : Any]?) {

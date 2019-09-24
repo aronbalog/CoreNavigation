@@ -17,7 +17,7 @@ extension Navigation.To {
         }
 
         @discardableResult public func animated(_ isAnimated: Bool) -> Self {
-            return animated { isAnimated }
+            animated { isAnimated }
         }
 
         @discardableResult public func transitioningDelegate(_ transitioningDelegate: UIViewControllerTransitioningDelegate) -> Self {
@@ -117,7 +117,7 @@ extension Navigation.To {
         }
         
         @discardableResult public func delay(_ seconds: TimeInterval) -> Self {
-            return delay { seconds }
+            delay { seconds }
         }
 
         @discardableResult public func `catch`(_ block: @escaping (Error) -> Void) -> Self {
@@ -208,14 +208,14 @@ extension Navigation.To.Builder where DestinationType.ViewControllerType: DataRe
 
 extension Navigation.To.Builder where DestinationType: Routing.Destination {
     @discardableResult public func cache(with cacheable: Cacheable) -> Self {
-        return cache(cacheIdentifier: configuration.destination.route.uri, cacheable: cacheable)
+        cache(cacheIdentifier: configuration.destination.route.uri, cacheable: cacheable)
     }
 
     @discardableResult public func cache(with cachingType: Caching.CachingType) -> Self {
-        return cache(with: Caching.Builder(cachingType: cachingType))
+        cache(with: Caching.Builder(cachingType: cachingType))
     }
 
     @discardableResult public func cache(_ block: @escaping (Caching.Context) -> Void) -> Self {
-        return cache(with: Caching.Builder(cachingType: .block(block)))
+        cache(with: Caching.Builder(cachingType: .block(block)))
     }
 }

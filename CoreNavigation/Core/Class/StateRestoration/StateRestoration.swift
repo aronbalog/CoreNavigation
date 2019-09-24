@@ -35,7 +35,7 @@ class StateRestoration {
     }
     
     private static func storageIdentifier(for identifier: String) -> String {
-        return "CoreNavigation.StateRestoration.\(identifier)" 
+        "CoreNavigation.StateRestoration.\(identifier)"
     }
 }
 
@@ -44,7 +44,7 @@ extension StateRestoration: UIViewControllerRestoration {
         guard let identifier = identifierComponents.last else { return nil }
         guard let item = find(identifier: identifier) else { return nil }
         let viewController: UIViewController = {
-            return item.viewControllerClass.init(coder: coder) ?? item.viewControllerClass.init()
+            item.viewControllerClass.init(coder: coder) ?? item.viewControllerClass.init()
         }()
         
         if let dataReceivable = viewController as? AnyDataReceivable {

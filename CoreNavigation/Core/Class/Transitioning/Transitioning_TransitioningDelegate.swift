@@ -29,7 +29,7 @@ extension Transitioning {
         }
 
         func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-            return transitionDuration
+            transitionDuration
         }
 
         func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {

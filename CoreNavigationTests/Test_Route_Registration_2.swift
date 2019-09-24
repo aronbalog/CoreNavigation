@@ -8,7 +8,7 @@ class TestRouteRegistration2: QuickSpec {
         typealias ViewControllerType = UIViewController
         
         static func routePatterns() -> [String] {
-            return ["TestRouteRegistration2/:parameter1"]
+            ["TestRouteRegistration2/:parameter1"]
         }
         
         var parameters: [String : Any]?

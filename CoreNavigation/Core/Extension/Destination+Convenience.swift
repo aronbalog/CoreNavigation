@@ -1,14 +1,14 @@
 extension Destination {
     public func navigate<FromType: UIViewController>(_ navigationType: Navigation.Direction.Forward, _ to: (Navigation.To.Builder<Self, FromType>) -> Navigation.To.Builder<Self, FromType>) -> Navigation.Operation {
-        return Navigate(navigationType, { to($0.to(self)) })
+        Navigate(navigationType, { to($0.to(self)) })
     }
 
     public func present<FromType: UIViewController>(_ to: (Navigation.To.Builder<Self, FromType>) -> Navigation.To.Builder<Self, FromType>) -> Navigation.Operation {
-        return navigate(.present, to)
+        navigate(.present, to)
     }
     
     public func present(animated: Bool = true, completion: ((Navigation.Result<Self, UIViewController>) -> Void)? = nil) -> Navigation.Operation {
-        return navigate(.present, { $0
+        navigate(.present, { $0
             .animated(animated)
             .onComplete({ (result) in
                 completion?(result)
@@ -17,11 +17,11 @@ extension Destination {
     }
 
     public func push<FromType: UIViewController>(_ to: (Navigation.To.Builder<Self, FromType>) -> Navigation.To.Builder<Self, FromType>) -> Navigation.Operation {
-        return navigate(.push, to)
+        navigate(.push, to)
     }
     
     public func push(animated: Bool = true, completion: ((Navigation.Result<Self, UIViewController>) -> Void)? = nil) -> Navigation.Operation {
-        return navigate(.push, { $0
+        navigate(.push, { $0
             .animated(animated)
             .onComplete({ (result) in
                 completion?(result)

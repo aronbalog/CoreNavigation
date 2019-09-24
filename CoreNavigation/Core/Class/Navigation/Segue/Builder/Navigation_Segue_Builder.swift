@@ -68,7 +68,7 @@ extension Navigation.Segue {
         }
         
         @discardableResult public func delay(_ seconds: TimeInterval) -> Self {
-            return delay { seconds }
+            delay { seconds }
         }
         
         @discardableResult public func onViewControllerEvents(_ events: UIViewController.Event<UIViewController>...) -> Self {

@@ -1,3 +1,3 @@
 extension URL: Matchable {
-    public var uri: String { return absoluteString.uri }
+    public var uri: String { absoluteString.uri }
 }

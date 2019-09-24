@@ -116,9 +116,7 @@ extension Routing {
             let matches = componentRegex.matches(in: string, options: [], range: NSRange(location: 0, length: string.count))
 
             let tokens = matches.map({ (result) -> String in
-                let namedGroupToken = (string as NSString).substring(with: result.range)
-
-                return namedGroupToken
+                (string as NSString).substring(with: result.range)
             })
 
             return tokens

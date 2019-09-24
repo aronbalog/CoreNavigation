@@ -200,7 +200,7 @@ extension UIViewController {
     private static let association = ObjectAssociation<UIViewController.Observer>()
 
     var coreNavigationEvents: UIViewController.Observer? {
-        get { return UIViewController.association[self] }
+        get { UIViewController.association[self] }
         set { UIViewController.association[self] = newValue }
     }
 }

@@ -39,6 +39,9 @@ class ViewController: UIViewController {
                     .none
                 })
             )
+            .transition(with: 3) { (context) in
+                
+            }
         }
         ==> "some/2".push(animated: false)
 //        ==> "some/2".push(animated: false)

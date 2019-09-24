@@ -14,7 +14,7 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     let directive: Directive
     private var toBlock: () -> DestinationType
     lazy var destination: DestinationType = {
-        return toBlock()
+        toBlock()
     }()
 
     var sourceViewController: FromType
