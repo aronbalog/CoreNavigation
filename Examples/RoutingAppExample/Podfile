@@ -1,0 +1,6 @@
+target 'RoutingAppExample' do
+  use_frameworks!
+
+  pod 'CoreNavigation', path: '../..'
+  
+end

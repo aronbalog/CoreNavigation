@@ -1,0 +1,16 @@
+PODS:
+  - CoreNavigation (1.0.0-beta-5)
+
+DEPENDENCIES:
+  - CoreNavigation (from `../..`)
+
+EXTERNAL SOURCES:
+  CoreNavigation:
+    :path: "../.."
+
+SPEC CHECKSUMS:
+  CoreNavigation: adccebb26a02e31f106220b571d349fbfbc7e5e0
+
+PODFILE CHECKSUM: 38de42aa98cf87c38634de351bdbf1e969c578ba
+
+COCOAPODS: 1.7.5
