@@ -9,4 +9,5 @@ Pod::Spec.new do |spec|
 	spec.source = { :git => 'https://github.com/aronbalog/CoreNavigation.git', :tag => spec.version }
 	spec.requires_arc = true
 	spec.source_files = 'CoreNavigation/**/*.{swift}'
+	spec.swift_versions = "5.1"
 end
