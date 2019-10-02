@@ -2,8 +2,8 @@ extension Navigator {
     func present(
         operation: Navigation.Operation
         ) {
-        queue.sync {
-            resolve(
+        DispatchQueue.main.async {
+            self.resolve(
                 onComplete: { destination, viewController, embeddingViewController in
                     let dataPassingCandidates: [Any?] =
                         self.configuration.protections +

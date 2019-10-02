@@ -2,11 +2,12 @@ public protocol Destination: AnyDestination {
     associatedtype ViewControllerType: UIViewController
 
     func resolve(with resolver: Resolver<Self>)
+    func didResolve(viewController: ViewControllerType)
 }
 
 extension Destination {
     public func resolve(with resolver: Resolver<Self>) {
-        resolver.complete(viewController: ViewControllerType.init())
+        resolver.complete(viewController: .init())
     }
 
     public static func resolveDestination(parameters: [String: Any]?, destination: @escaping (Self) -> Void, failure: @escaping (Error) -> Void) throws {
@@ -15,6 +16,10 @@ extension Destination {
 
     public func resolveRouting(with resolver: Resolver<Routing.Destination>) throws {
         // empty implementation, never gonna happen if destination conforms to Routable
+    }
+    
+    public func didResolve(viewController: ViewControllerType) {
+        // empty implementation
     }
 }
 

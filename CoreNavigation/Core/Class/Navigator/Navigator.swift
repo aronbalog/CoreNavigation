@@ -133,6 +133,8 @@ class Navigator<DestinationType: Destination, FromType: UIViewController> {
                     }
 
                     onComplete(destination, viewController, embeddingViewController)
+                    
+                    destination.didResolve(viewController: viewController)
                 },
                 onCancel: onCancel
             )

@@ -10,7 +10,7 @@ extension Embedding.Embedder {
             DispatchQueue.main.async {
                 let pageViewController = self.pageViewControllerType.init()
                 
-                pageViewController.setViewControllers([context.rootViewController], direction: UIPageViewController.NavigationDirection.forward, animated: false, completion: { (isCompleted) in
+                pageViewController.setViewControllers([context.rootViewController], direction: UIPageViewController.NavigationDirection.forward, animated: false, completion: { (_) in
                     context.complete(viewController: pageViewController)
                 })
             }
