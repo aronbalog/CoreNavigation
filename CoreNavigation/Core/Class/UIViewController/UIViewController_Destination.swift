@@ -7,7 +7,9 @@ extension UIViewController {
         }
 
         public func resolve(with resolver: Resolver<UIViewController.Destination<ViewControllerType>>) {
-            resolver.complete(viewController: block())
+            DispatchQueue.main.async {
+                resolver.complete(viewController: self.block())
+            }
         }
     }
 }

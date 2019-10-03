@@ -17,6 +17,7 @@ extension UIViewController {
         var didReceiveMemoryWarningBlocks: [(UIViewController) -> Void] = []
         var applicationFinishedRestoringStateBlocks: [(UIViewController) -> Void] = []
         var prepareForSegueBlocks: [(UIStoryboardSegue, Any?) -> Void] = []
+        var dismissBlocks: [(UIViewController, Bool, (() -> Void)?) -> Void] = []
 
         func onLoadView(_ loadView: @escaping (UIViewController) -> Void) {
             loadViewBlocks.append(loadView)

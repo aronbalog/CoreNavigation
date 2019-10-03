@@ -17,6 +17,7 @@ extension UIViewController {
         Swizzler.swizzle(UIViewController.self, #selector(didReceiveMemoryWarning), #selector(coreNavigation_didReceiveMemoryWarning))
         Swizzler.swizzle(UIViewController.self, #selector(applicationFinishedRestoringState), #selector(coreNavigation_applicationFinishedRestoringState))
         Swizzler.swizzle(UIViewController.self, #selector(prepare(for:sender:)), #selector(coreNavigation_prepareForSegue))
+        Swizzler.swizzle(UIViewController.self, #selector(dismiss(animated:completion:)), #selector(coreNavigation_dismiss(animated:completion:)))
 
         // iOS 11
         if #available(iOS 11.0, *) {
@@ -24,7 +25,7 @@ extension UIViewController {
             Swizzler.swizzle(UIViewController.self, #selector(viewSafeAreaInsetsDidChange), #selector(coreNavigation_viewSafeAreaInsetsDidChange))
         }
     }()
-
+    
     @objc func coreNavigation_loadView() {
         coreNavigation_loadView()
 
@@ -172,6 +173,20 @@ extension UIViewController {
             $0(segue, sender)
         })
     }
+    
+    @objc func coreNavigation_dismiss(animated: Bool, completion: (() -> Void)? = nil) {
+        coreNavigation_dismiss(animated: animated, completion: { [weak self] in
+            completion?()
+            
+            self?.coreNavigationDataManager = nil
+        })
+
+        coreNavigationEvents?.dismissBlocks.forEach({ [weak self] in
+            guard let `self` = self else { return }
+
+            $0(self, animated, completion)
+        })
+    }
 
     @available(iOS 11.0, *)
     @objc func coreNavigation_viewLayoutMarginsDidChange() {
@@ -197,10 +212,22 @@ extension UIViewController {
 }
 
 extension UIViewController {
-    private static let association = ObjectAssociation<UIViewController.Observer>()
-
+    private static let observer = ObjectAssociation<UIViewController.Observer>()
+    private static let dataManager = ObjectAssociation<UIViewController.DataManager>()
+    
     var coreNavigationEvents: UIViewController.Observer? {
-        get { UIViewController.association[self] }
-        set { UIViewController.association[self] = newValue }
+        get { UIViewController.observer[self] }
+        set { UIViewController.observer[self] = newValue }
+    }
+    
+    var coreNavigationDataManager: UIViewController.DataManager? {
+        get { UIViewController.dataManager[self] }
+        set { UIViewController.dataManager[self] = newValue }
+    }
+}
+
+extension UIViewController {
+    class DataManager: NSObject {
+        var blocks: NSMutableArray = []
     }
 }

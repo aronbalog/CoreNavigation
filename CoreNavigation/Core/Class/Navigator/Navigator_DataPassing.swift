@@ -11,6 +11,12 @@ extension Navigator {
                     self.queue.sync {
                         dataReceivable.didReceiveAnyData(data)
                         if let viewController = dataReceivable as? UIViewController {
+                            viewController.coreNavigationDataManager?.blocks.compactMap({ (element) -> ((Any?, UIViewController) -> Void)? in
+                                element as? (Any?, UIViewController) -> Void
+                            }).forEach({ (block) in
+                                block(data, self.configuration.sourceViewController)
+                            })
+                            viewController.coreNavigationDataManager = nil
                             self.prepareForStateRestorationIfNeeded(viewController: viewController, viewControllerData: data)
                         }
                     }

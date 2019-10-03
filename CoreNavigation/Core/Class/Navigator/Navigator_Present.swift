@@ -17,10 +17,18 @@ extension Navigator {
                     let destinationViewController = embeddingViewController ?? viewController
                     let result = self.doOnNavigationSuccess(destination: destination, viewController: viewController)
                     var transitioningDelegate = self.configuration.transitioningDelegateBlock?()
-                    
+                    let sourceViewController = self.configuration.sourceViewController
+
                     func action() {
                         destinationViewController.transitioningDelegate = transitioningDelegate
-                        self.configuration.sourceViewController.present(destinationViewController, animated: self.configuration.isAnimatedBlock(), completion: {
+                    
+                        if sourceViewController is AnyDataReceivable {
+                            let dataManager = UIViewController.DataManager()
+                            dataManager.blocks.addObjects(from: self.configuration.dataReturningBlocks)
+                            sourceViewController.coreNavigationDataManager = dataManager
+                        }
+                        
+                        sourceViewController.present(destinationViewController, animated: self.configuration.isAnimatedBlock(), completion: {
                             self.resultCompletion(with: result, operation: operation)
                             transitioningDelegate = nil
                         })

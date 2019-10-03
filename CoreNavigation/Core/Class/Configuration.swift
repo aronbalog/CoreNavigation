@@ -4,6 +4,7 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     typealias OnFailureBlock = (Error) -> Void
     typealias ViewControllerEventBlock = () -> [UIViewController.Event<DestinationType.ViewControllerType>]
     typealias DataPassingBlock<T> = (DataPassing.Context<T>) -> Void
+    typealias DataReturningBlock<T> = (T, UIViewController) -> Void
     typealias CachingBlock = () -> (String, Cacheable)
     typealias TransitioningDelegateBlock = () -> UIViewControllerTransitioningDelegate?
     typealias IsAnimatedBlock = () -> Bool
@@ -21,6 +22,8 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     var isAnimatedBlock: IsAnimatedBlock = { true }
     var transitioningDelegateBlock: TransitioningDelegateBlock?
     var dataPassingBlock: DataPassingBlock<Any?>?
+    var dataReturningBlocks: [DataReturningBlock<Any?>] = []
+    var backDataPassingElements: [(UIViewController.Type, DataPassingBlock<Any?>)] = []
     var onSuccessBlocks: [OnSuccessBlock] = []
     var onCompletionBlocks: [OnCompletionBlock] = []
     var onFailureBlocks: [OnFailureBlock] = []

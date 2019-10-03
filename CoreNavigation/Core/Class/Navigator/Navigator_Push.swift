@@ -15,11 +15,16 @@ extension Navigator {
                                 embeddingViewController
                     ]
                     self.passData(self.configuration.dataPassingBlock, to: dataPassingCandidates)
-                    let destinationViewController = embeddingViewController ?? viewController
                     let result = self.doOnNavigationSuccess(destination: destination, viewController: viewController)
                     var transitioningDelegate = self.configuration.transitioningDelegateBlock?()
                     
                     func action() {
+                        let destinationViewController = embeddingViewController ?? viewController
+
+                        let dataManager = UIViewController.DataManager()
+                        dataManager.blocks.addObjects(from: self.configuration.dataReturningBlocks)
+                        self.configuration.sourceViewController.coreNavigationDataManager = dataManager
+                        
                         navigationController?.transitioningDelegate = transitioningDelegate
                         navigationController?.pushViewController(destinationViewController, animated: self.configuration.isAnimatedBlock(), completion: {
                             self.resultCompletion(with: result, operation: operation)

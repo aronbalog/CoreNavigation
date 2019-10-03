@@ -28,6 +28,7 @@
 		386D00B622FC6820005056C1 /* DataReceivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D00B522FC6820005056C1 /* DataReceivable.swift */; };
 		386D00BE22FC7675005056C1 /* AnyDataReceivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D00BD22FC7675005056C1 /* AnyDataReceivable.swift */; };
 		386D00C022FCAC1F005056C1 /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D00BF22FCAC1F005056C1 /* Resolver.swift */; };
+		38860850234634630001693B /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3886084F234634630001693B /* ViewController2.swift */; };
 		388AC6432330F8170071F37D /* Global_Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388AC6422330F8170071F37D /* Global_Routing.swift */; };
 		388AC646233112EA0071F37D /* Global_Close.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388AC645233112EA0071F37D /* Global_Close.swift */; };
 		388AC648233114D90071F37D /* Global_Caching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 388AC647233114D90071F37D /* Global_Caching.swift */; };
@@ -179,6 +180,7 @@
 		386D00B522FC6820005056C1 /* DataReceivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReceivable.swift; sourceTree = "<group>"; };
 		386D00BD22FC7675005056C1 /* AnyDataReceivable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyDataReceivable.swift; sourceTree = "<group>"; };
 		386D00BF22FCAC1F005056C1 /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
+		3886084F234634630001693B /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 		388AC6422330F8170071F37D /* Global_Routing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global_Routing.swift; sourceTree = "<group>"; };
 		388AC645233112EA0071F37D /* Global_Close.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global_Close.swift; sourceTree = "<group>"; };
 		388AC647233114D90071F37D /* Global_Caching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global_Caching.swift; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 			children = (
 				386D008A22FC44DB005056C1 /* AppDelegate.swift */,
 				386D008C22FC44DB005056C1 /* ViewController.swift */,
+				3886084F234634630001693B /* ViewController2.swift */,
 				38B5F9B7231FE31700FEB14A /* Transitions.swift */,
 				386D009122FC44DD005056C1 /* Assets.xcassets */,
 				386D009622FC44DD005056C1 /* Info.plist */,
@@ -1113,6 +1116,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38B5F9B8231FE31700FEB14A /* Transitions.swift in Sources */,
+				38860850234634630001693B /* ViewController2.swift in Sources */,
 				386D008D22FC44DB005056C1 /* ViewController.swift in Sources */,
 				386D008B22FC44DB005056C1 /* AppDelegate.swift in Sources */,
 			);

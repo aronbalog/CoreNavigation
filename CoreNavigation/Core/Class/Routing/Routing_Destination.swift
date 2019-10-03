@@ -12,7 +12,7 @@ extension Routing {
         }
 
         public func didReceiveData(_ data: Any?) {
-            if type(of: resolvedDestination) != UIViewController.self {
+            if !(resolvedDestination is UIViewController) {
                 (resolvedDestination as? AnyDataReceivable)?.didReceiveAnyData(data)
             }
         }
