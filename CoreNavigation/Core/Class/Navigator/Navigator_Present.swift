@@ -18,7 +18,16 @@ extension Navigator {
                     let result = self.doOnNavigationSuccess(destination: destination, viewController: viewController)
                     var transitioningDelegate = self.configuration.transitioningDelegateBlock?()
                     let sourceViewController = self.configuration.sourceViewController
-
+                    
+                    destinationViewController.modalPresentationStyle = self.configuration.modalPresentationStyleBlock()
+                    destinationViewController.modalTransitionStyle = self.configuration.modalTransitionStyleBlock()
+                    if
+                        #available(iOS 13, *),
+                        let isModalInPresentationBlock = self.configuration.isModalInPresentationBlock
+                    {
+                        destinationViewController.isModalInPresentation = isModalInPresentationBlock()
+                    }
+                    
                     func action() {
                         destinationViewController.transitioningDelegate = transitioningDelegate
                     

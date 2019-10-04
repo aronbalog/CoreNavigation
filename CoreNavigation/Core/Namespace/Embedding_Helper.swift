@@ -1,3 +1,0 @@
-extension Embedding {
-    struct Embedder {}
-}

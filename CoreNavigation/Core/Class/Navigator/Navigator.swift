@@ -38,6 +38,15 @@ class Navigator<DestinationType: Destination, FromType: UIViewController> {
                         case .dismiss: self.dismiss(operation: operation)
                         case .pop: self.pop(operation: operation)
                         case .popToRootViewController: self.popToRootViewController(operation: operation)
+                        case .automatic:
+                            if
+                                let navigationController = self.configuration.sourceViewController as? UINavigationController,
+                                navigationController.viewControllers.count > 1
+                            {
+                                self.pop(operation: operation)
+                            } else {
+                                self.dismiss(operation: operation)
+                            }
                         }
                     case .segue(let identifier): self.performSegue(with: identifier, operation: operation)
                     }

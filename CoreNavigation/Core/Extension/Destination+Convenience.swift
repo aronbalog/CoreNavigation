@@ -1,36 +1,36 @@
 extension Destination {
-    public func navigate<FromType: UIViewController>(_ navigationType: Navigation.Direction.Forward, _ to: (Navigation.To.Builder<Self, FromType>) -> Navigation.To.Builder<Self, FromType>) -> Navigation.Operation {
+    public func navigate<BuildableType: Buildable>(_ navigationType: Navigation.Direction.Forward, _ to: (BuildableType) -> BuildableType) -> Navigation.Operation where BuildableType.DestinationType == Self {
         Navigate(navigationType, { to($0.to(self)) })
     }
 
-    public func present<FromType: UIViewController>(_ to: (Navigation.To.Builder<Self, FromType>) -> Navigation.To.Builder<Self, FromType>) -> Navigation.Operation {
+    public func present<FromType: UIViewController>(_ to: (Navigation.Builder.To<Self, FromType>.Present) -> Navigation.Builder.To<Self, FromType>.Present) -> Navigation.Operation {
         navigate(.present, to)
     }
     
     public func present(animated: Bool = true, completion: ((Navigation.Result<Self, UIViewController>) -> Void)? = nil) -> Navigation.Operation {
-        navigate(.present, { $0
+        present { $0
             .animated(animated)
             .onComplete({ (result) in
                 completion?(result)
             })
-        })
+        }
     }
 
-    public func push<FromType: UIViewController>(_ to: (Navigation.To.Builder<Self, FromType>) -> Navigation.To.Builder<Self, FromType>) -> Navigation.Operation {
+    public func push<FromType: UIViewController>(_ to: (Navigation.Builder.To<Self, FromType>.Push) -> Navigation.Builder.To<Self, FromType>.Push) -> Navigation.Operation {
         navigate(.push, to)
     }
     
     public func push(animated: Bool = true, completion: ((Navigation.Result<Self, UIViewController>) -> Void)? = nil) -> Navigation.Operation {
-        navigate(.push, { $0
+        push { $0
             .animated(animated)
             .onComplete({ (result) in
                 completion?(result)
             })
-        })
+        }
     }
 
     public func viewController(_ block: @escaping (Self.ViewControllerType) -> Void, _ failure: ((Error) -> Void)? = nil) {
-        let builder = Navigation.ViewController.Builder(configuration: Navigation.ViewController(queue: queue).viewController(for: self).configuration, queue: queue)
+        let builder = Navigation.Builder.ViewController(configuration: Navigation.ViewController<Navigation.Builder.ViewController>(queue: queue).viewController(for: self).configuration, queue: queue)
 
         Navigator(queue: queue, configuration: builder.configuration).resolve(
             onComplete: { (_, viewController, _) in
@@ -61,7 +61,7 @@ extension Destination {
     }
 
     func resolvedDestination(_ block: @escaping (Self) -> Void, _ failure: ((Error) -> Void)? = nil) {
-        let builder = Navigation.ViewController.Builder(configuration: Navigation.ViewController(queue: queue).viewController(for: self).configuration, queue: queue)
+        let builder = Navigation.Builder.ViewController(configuration: Navigation.ViewController<Navigation.Builder.ViewController>(queue: queue).viewController(for: self).configuration, queue: queue)
 
         Navigator(queue: queue, configuration: builder.configuration).resolve(
             onComplete: { (destination, _, _) in

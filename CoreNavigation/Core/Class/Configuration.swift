@@ -1,4 +1,4 @@
-class Configuration<DestinationType: Destination, FromType: UIViewController> {
+public class Configuration<DestinationType: Destination, FromType: UIViewController> {
     typealias OnSuccessBlock = (Navigation.Result<DestinationType, FromType>) -> Void
     typealias OnCompletionBlock = (Navigation.Result<DestinationType, FromType>) -> Void
     typealias OnFailureBlock = (Error) -> Void
@@ -11,7 +11,10 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     typealias StateRestorationBlock = () -> (identifier: String, expirationDate: Date)
     typealias DelayBlock = () -> TimeInterval
     typealias PrepareForSegueBlock = (UIStoryboardSegue, Any?) -> Void
-    
+    typealias ModalPresentationStyleBlock = () -> UIModalPresentationStyle
+    typealias ModalTransitionStyleBlock = () -> UIModalTransitionStyle
+    typealias IsModalInPresentationBlock = () -> Bool
+
     let directive: Directive
     private var toBlock: () -> DestinationType
     lazy var destination: DestinationType = {
@@ -34,6 +37,18 @@ class Configuration<DestinationType: Destination, FromType: UIViewController> {
     var stateRestorationBlock: StateRestorationBlock?
     var prepareForSegueBlock: PrepareForSegueBlock?
     var delayBlock: DelayBlock?
+    var modalPresentationStyleBlock: ModalPresentationStyleBlock = {
+        if #available(iOS 13, *) {
+            return .automatic
+        }
+        
+        return .fullScreen
+    }
+    var modalTransitionStyleBlock: ModalTransitionStyleBlock = {
+        .coverVertical
+    }
+    
+    var isModalInPresentationBlock: IsModalInPresentationBlock?
 
     init(directive: Directive, toBlock: @escaping () -> DestinationType, from sourceViewController: FromType) {
         self.directive = directive

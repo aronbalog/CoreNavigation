@@ -1,7 +1,7 @@
 /// Pushes resolved `UIViewController` instance to currently presented `UINavigationController` using configuration block.
 ///
 /// - Parameter to: Navigation configuration block
-@discardableResult public func Push<DestinationType: Destination, FromType: UIViewController>(_ to: (Navigation.To) -> Navigation.To.Builder<DestinationType, FromType>) -> Navigation.Operation {
+@discardableResult public func Push<DestinationType: Destination, FromType: UIViewController>(_ to: (Navigation.To<Navigation.Builder.To<DestinationType, FromType>.Push>) -> Navigation.Builder.To<DestinationType, FromType>.Push) -> Navigation.Operation {
     Navigate(.push, to)
 }
 
@@ -55,7 +55,7 @@ public func > <DestinationType: Destination, FromType: UIViewController>(left: F
 }
 
 /// :nodoc:
-public func > <DestinationType: Destination, FromType: UIViewController>(left: FromType, right: @escaping (Navigation.To) -> Navigation.To.Builder<DestinationType, FromType>) -> Navigation.Operation {
+public func > <DestinationType: Destination, FromType: UIViewController>(left: FromType, right: @escaping (Navigation.To<Navigation.Builder.To<DestinationType, FromType>.Push>) -> Navigation.Builder.To<DestinationType, FromType>.Push) -> Navigation.Operation {
     Push(right)
 }
 

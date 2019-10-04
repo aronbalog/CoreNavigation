@@ -1,13 +1,13 @@
 extension Navigation {
-    public class ViewController {
+    public class ViewController<BuildableType: Buildable> {
         private let queue: DispatchQueue
 
         init(queue: DispatchQueue) {
             self.queue = queue
         }
 
-        @discardableResult public func viewController<DestinationType: Destination>(for destination: DestinationType) -> Builder<DestinationType> {
-            Builder(
+        @discardableResult public func viewController(for destination: BuildableType.DestinationType) -> BuildableType {
+            BuildableType.init(
                 configuration: Configuration(
                     directive: .none,
                     toBlock: { destination },

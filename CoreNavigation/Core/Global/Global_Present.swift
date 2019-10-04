@@ -1,7 +1,7 @@
 /// Presents resolved `UIViewController` instance on currently presented `UIViewController` using configuration block.
 ///
 /// - Parameter to: Navigation configuration block
-@discardableResult public func Present<DestinationType: Destination, FromType: UIViewController>(_ to: (Navigation.To) -> Navigation.To.Builder<DestinationType, FromType>) -> Navigation.Operation {
+@discardableResult public func Present<DestinationType: Destination, FromType: UIViewController>(_ to: (Navigation.To<Navigation.Builder.To<DestinationType, FromType>.Present>) -> Navigation.Builder.To<DestinationType, FromType>.Present) -> Navigation.Operation {
     Navigate(.present, to)
 }
 
@@ -45,7 +45,7 @@
 }
 
 /// :nodoc:
-@discardableResult public func >>> <DestinationType: Destination, FromType: UIViewController>(left: FromType, right: @escaping (Navigation.To) -> Navigation.To.Builder<DestinationType, FromType>) -> Navigation.Operation {
+@discardableResult public func >>> <DestinationType: Destination, FromType: UIViewController>(left: FromType, right: @escaping (Navigation.To<Navigation.Builder.To<DestinationType, FromType>.Present>) -> Navigation.Builder.To<DestinationType, FromType>.Present) -> Navigation.Operation {
     Present(right)
 }
 

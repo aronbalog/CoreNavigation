@@ -1,1 +1,3 @@
-public struct Embedding {}
+public struct Embedding {
+     struct Embedder {}
+}

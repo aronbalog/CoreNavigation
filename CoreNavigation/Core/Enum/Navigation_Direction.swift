@@ -6,6 +6,7 @@ extension Navigation {
             case childViewController
         }
         public enum Back {
+            case automatic
             case dismiss
             case pop
             case popToRootViewController

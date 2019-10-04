@@ -3,7 +3,7 @@
 /// - Parameters:
 ///   - navigationType: `Navigation.Direction.Back` enum
 ///   - back: Navigation configuration block
-@discardableResult public func Close<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(_ navigationType: Navigation.Direction.Back, _ back: (Navigation.Back) -> Navigation.Back.Builder<FromViewControllerType, ToViewControllerType>) -> Navigation.Operation {
+@discardableResult public func Close<FromViewControllerType: UIViewController, ToViewControllerType: UIViewController>(_ navigationType: Navigation.Direction.Back, _ back: (Navigation.Back<Navigation.Builder.Back<FromViewControllerType, ToViewControllerType>>) -> Navigation.Builder.Back<FromViewControllerType, ToViewControllerType>) -> Navigation.Operation {
     Navigator(queue: queue, configuration: back(Navigation.Back(navigationType: navigationType, queue: queue)).configuration).navigate()
 }
 
@@ -18,7 +18,7 @@
         .visibleViewController()
         .animated(animated)
         .onComplete({ (fromViewController, toViewController) in
-            completion?(fromViewController as! FromViewControllerType, toViewController as! ToViewControllerType)
+            completion?(fromViewController, toViewController)
         })
     }
 }
@@ -35,7 +35,7 @@
         .viewController(viewController)
         .animated(animated)
         .onComplete({ (fromViewController, toViewController) in
-            completion?(fromViewController, toViewController as! ToViewControllerType)
+            completion?(fromViewController, toViewController)
         })
     }
 }
