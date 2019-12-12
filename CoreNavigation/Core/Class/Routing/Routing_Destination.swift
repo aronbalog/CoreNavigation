@@ -26,6 +26,8 @@ extension Routing {
             do {
                 try match.destinationType.resolveDestination(
                     parameters: match.parameters,
+                    uri: route.uri,
+                    pattern: match.pattern,
                     destination: { (destination) in
                         self.resolvedDestination = destination
 

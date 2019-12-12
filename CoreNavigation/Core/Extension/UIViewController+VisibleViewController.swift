@@ -1,20 +1,45 @@
 extension UIViewController {
 
     /// Returns the current application's top most view controller.
-    public static func visibleViewController<T: UIViewController>(in window: UIWindow = UIApplication.shared.keyWindow ?? {
-        let window = UIWindow()
-
-        window.makeKeyAndVisible()
-
-        return window
+    public static func visibleViewController<T: UIViewController>(in window: UIWindow = {
+        if Thread.isMainThread {
+            return UIApplication.shared.keyWindow
+        } else {
+            return DispatchQueue.main.sync { UIApplication.shared.keyWindow }
+        }
+    }() ?? {
+        func window() -> UIWindow {
+            let window = UIWindow()
+            window.makeKeyAndVisible()
+            return window
+        }
+        
+        if Thread.isMainThread {
+            return window()
+        } else {
+            return DispatchQueue.main.sync {
+                return window()
+            }
+        }
     }()) -> T {
-        let rootViewController = window.rootViewController ?? {
-            let viewController = UIViewController()
-            window.rootViewController = viewController
-            return viewController
-        }()
+        func viewController() -> T {
+            let rootViewController = window.rootViewController ?? {
+                let viewController = UIViewController()
+                window.rootViewController = viewController
+                return viewController
+            }()
 
-        return self.visibleViewController(of: rootViewController)
+            return self.visibleViewController(of: rootViewController)
+        }
+        
+        if Thread.isMainThread {
+            return viewController()
+        } else {
+            return DispatchQueue.main.sync {
+                return viewController()
+            }
+        }
+        
     }
 
     /// Returns the top most view controller from given view controller's stack.

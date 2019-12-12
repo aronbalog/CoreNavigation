@@ -10,6 +10,8 @@
 		1904CB8741E72A0D60F6732E /* Pods_HostApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92DFC6AA8E99DBDFE07CD33 /* Pods_HostApp.framework */; };
 		3803EA45231FE9DF0081B126 /* Transitioning_Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3803EA44231FE9DF0081B126 /* Transitioning_Context.swift */; };
 		3803EA47231FFBBF0081B126 /* Embedding_Embedder_None.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3803EA46231FFBBF0081B126 /* Embedding_Embedder_None.swift */; };
+		38337F43234E9ECB00C49513 /* Navigator_ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38337F42234E9ECB00C49513 /* Navigator_ChildViewController.swift */; };
+		38337F47234EA74F00C49513 /* Navigation_builder_To_Automatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38337F46234EA74F00C49513 /* Navigation_builder_To_Automatic.swift */; };
 		38458E082338E6F900481778 /* Embedding_Embedder_PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38458E072338E6F900481778 /* Embedding_Embedder_PageViewController.swift */; };
 		386D007422FC449C005056C1 /* CoreNavigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 386D006A22FC449C005056C1 /* CoreNavigation.framework */; };
 		386D007922FC449C005056C1 /* CoreNavigationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386D007822FC449C005056C1 /* CoreNavigationTests.swift */; };
@@ -183,6 +185,8 @@
 		1ED03CB5056C37F416D72674 /* Pods-StoryboardApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StoryboardApp.debug.xcconfig"; path = "Target Support Files/Pods-StoryboardApp/Pods-StoryboardApp.debug.xcconfig"; sourceTree = "<group>"; };
 		3803EA44231FE9DF0081B126 /* Transitioning_Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transitioning_Context.swift; sourceTree = "<group>"; };
 		3803EA46231FFBBF0081B126 /* Embedding_Embedder_None.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_Embedder_None.swift; sourceTree = "<group>"; };
+		38337F42234E9ECB00C49513 /* Navigator_ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator_ChildViewController.swift; sourceTree = "<group>"; };
+		38337F46234EA74F00C49513 /* Navigation_builder_To_Automatic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation_builder_To_Automatic.swift; sourceTree = "<group>"; };
 		38458E072338E6F900481778 /* Embedding_Embedder_PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Embedding_Embedder_PageViewController.swift; sourceTree = "<group>"; };
 		386D006A22FC449C005056C1 /* CoreNavigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreNavigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		386D006D22FC449C005056C1 /* CoreNavigation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreNavigation.h; sourceTree = "<group>"; };
@@ -382,6 +386,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		38337F44234EA72F00C49513 /* Push */ = {
+			isa = PBXGroup;
+			children = (
+				3886086423477F480001693B /* Navigation_Builder_To_Push.swift */,
+			);
+			path = Push;
+			sourceTree = "<group>";
+		};
+		38337F45234EA73C00C49513 /* Automatic */ = {
+			isa = PBXGroup;
+			children = (
+				38337F46234EA74F00C49513 /* Navigation_builder_To_Automatic.swift */,
+			);
+			path = Automatic;
+			sourceTree = "<group>";
+		};
 		386D006022FC449C005056C1 = {
 			isa = PBXGroup;
 			children = (
@@ -536,9 +556,10 @@
 		38860866234784FA0001693B /* To */ = {
 			isa = PBXGroup;
 			children = (
+				38337F45234EA73C00C49513 /* Automatic */,
+				38337F44234EA72F00C49513 /* Push */,
 				388608782347D3DC0001693B /* Common */,
 				388608722347D3400001693B /* Present */,
-				3886086423477F480001693B /* Navigation_Builder_To_Push.swift */,
 				386D00A522FC5B9C005056C1 /* Navigation_Builder_To.swift */,
 			);
 			path = To;
@@ -631,6 +652,7 @@
 				388AC653233237D20071F37D /* Navigator_Pop.swift */,
 				388AC6512332375B0071F37D /* Navigator_Protect.swift */,
 				388AC656233238560071F37D /* Navigator_Present.swift */,
+				38337F42234E9ECB00C49513 /* Navigator_ChildViewController.swift */,
 				388AC658233238910071F37D /* Navigator_DataPassing.swift */,
 				388AC65A233238E90071F37D /* Navigator_Push.swift */,
 				388AC65C233239360071F37D /* Navigator_Caching.swift */,
@@ -1121,6 +1143,7 @@
 				38B5F9B3231FE12200FEB14A /* Transitioning.swift in Sources */,
 				386D009F22FC5A3B005056C1 /* Global.swift in Sources */,
 				3886089A2348CB560001693B /* Navigation_Builder_Segue+Prepare.swift in Sources */,
+				38337F43234E9ECB00C49513 /* Navigator_ChildViewController.swift in Sources */,
 				388AC68E233387A60071F37D /* Navigation_Operation.swift in Sources */,
 				388608772347D39B0001693B /* Navigation_Builder_To_Present+ModalPresentationStyle.swift in Sources */,
 				386D00BE22FC7675005056C1 /* AnyDataReceivable.swift in Sources */,
@@ -1142,6 +1165,7 @@
 				3886089E2348CBA20001693B /* Navigation_Builder_Segue+DataPassing.swift in Sources */,
 				38EE33002315D824005DEE32 /* Routing_RouteMatch.swift in Sources */,
 				3886087E2347D4B60001693B /* Navigation_Builder_To+Protection.swift in Sources */,
+				38337F47234EA74F00C49513 /* Navigation_builder_To_Automatic.swift in Sources */,
 				388AC682233278EF0071F37D /* StateRestoration.swift in Sources */,
 				38EE32F72315D618005DEE32 /* Routable.swift in Sources */,
 				388AC68723327DB70071F37D /* Navigator_StateRestoration.swift in Sources */,

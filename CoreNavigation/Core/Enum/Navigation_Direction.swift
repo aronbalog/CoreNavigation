@@ -1,6 +1,7 @@
 extension Navigation {
     public enum Direction {
         public enum Forward {
+            case automatic
             case present
             case push
             case childViewController

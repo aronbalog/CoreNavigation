@@ -7,10 +7,21 @@ public protocol Destination: AnyDestination {
 
 extension Destination {
     public func resolve(with resolver: Resolver<Self>) {
-        resolver.complete(viewController: .init())
+        let viewController: ViewControllerType = {
+            switch Thread.isMainThread {
+            case true:
+                return ViewControllerType()
+            case false:
+                return DispatchQueue.main.sync {
+                    return ViewControllerType()
+                }
+            }
+        }()
+        
+        resolver.complete(viewController: viewController)
     }
 
-    public static func resolveDestination(parameters: [String: Any]?, destination: @escaping (Self) -> Void, failure: @escaping (Error) -> Void) throws {
+    public static func resolveDestination(parameters: [String: Any]?, uri: String, pattern: String, destination: @escaping (Self) -> Void, failure: @escaping (Error) -> Void) throws {
         // empty implementation, never gonna happen if destination conforms to Routable
     }
 
@@ -24,8 +35,18 @@ extension Destination {
 }
 
 extension Destination where Self: Routable {
-    public static func resolveDestination(parameters: [String: Any]?, destination: @escaping (Self) -> Void, failure: @escaping (Error) -> Void) throws {
-        destination(.init(parameters: parameters))
+    public static func resolveDestination(parameters: [String: Any]?, uri: String, pattern: String, destination: @escaping (Self) -> Void, failure: @escaping (Error) -> Void) throws {
+        func execute() throws {
+            destination(try .init(parameters: parameters, uri: uri, pattern: pattern))
+        }
+        if Thread.isMainThread {
+            try execute()
+        } else {
+            try DispatchQueue.main.sync {
+                try execute()
+            }
+        }
+        
     }
 
     public func resolveRouting(with resolver: Resolver<Routing.Destination>) throws {
